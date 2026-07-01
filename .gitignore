@@ -12,3 +12,6 @@ storybook-static/
 
 # local re-entry doc (not for the public repo)
 start-here.md
+
+# local agent skills (not part of the published library)
+.agents/
