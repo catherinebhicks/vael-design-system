@@ -1,0 +1,179 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/Changelog" />
+
+# Changelog
+
+Version history for the Vael Design System. V0 establishes the baseline — token system, component library, and pattern documentation — derived from the V0 Figma file.
+
+## V0 — Initial Release · April 2026
+
+Status: In progress — light mode documented; dark mode deferred.
+
+This is the initial version of the Vael Design System documentation. It establishes the baseline token system, component library, and pattern documentation derived from the V0 Figma file.
+
+### Foundations (8)
+
+| Area | Status | Notes |
+| --- | --- | --- |
+| Color tokens (light mode) | ✅ Documented | Semantic tokens for text, primary, secondary, feedback, action, divider, background |
+| Typography scale | ✅ Documented | h1–overline; Roboto family; desktop and mobile scales |
+| Elevation | ✅ Documented | 24-level shadow system with 3-layer drop shadows per level |
+| Spacing | ✅ Documented | 8px base grid; spacing/1 (8px) through spacing/8 (64px) |
+| Iconography | ✅ Documented | FontAwesome Pro — size, weight, color, and accessibility conventions |
+| Breakpoints | ✅ Documented | xs–xl responsive breakpoint scale |
+| Dark mode tokens | ⏳ Deferred | Not yet designed — will be added in a future version |
+| Motion / Animation | ⏳ Deferred | Not yet designed |
+
+### Components — full inventory (52)
+
+All 47 core MUI components and 5 MUI X components are documented.
+
+#### Inputs (14)
+
+| Component | Status |
+| --- | --- |
+| Autocomplete | ✅ Stable |
+| Button | ✅ Stable |
+| Button Group | ✅ Stable |
+| Checkbox | ✅ Stable |
+| Floating Action Button | ✅ Stable |
+| Form Elements | ✅ Stable |
+| Radio Group | ✅ Stable |
+| Rating | ✅ Stable |
+| Select | ✅ Stable |
+| Slider | ✅ Stable |
+| Switch | ✅ Stable |
+| Text Field | ✅ Stable |
+| Toggle Button | ✅ Stable |
+| Transfer List | ✅ Stable |
+
+#### Data Display (9)
+
+| Component | Status |
+| --- | --- |
+| Avatar | ✅ Stable |
+| Badge | ✅ Stable |
+| Chip | ✅ Stable |
+| Divider | ✅ Stable |
+| Icon | ✅ Stable |
+| List | ✅ Stable |
+| Table | ✅ Stable |
+| Tooltip | ✅ Stable |
+| Typography | ✅ Stable |
+
+#### Feedback (6)
+
+| Component | Status |
+| --- | --- |
+| Alert | ✅ Stable |
+| Backdrop | ✅ Stable |
+| Dialog | ✅ Stable |
+| Progress | ✅ Stable |
+| Skeleton | ✅ Stable |
+| Snackbar | ✅ Stable |
+
+#### Surfaces (4)
+
+| Component | Status |
+| --- | --- |
+| Accordion | ✅ Stable |
+| App Bar | ✅ Stable |
+| Card | ✅ Stable |
+| Paper | ✅ Stable |
+
+#### Navigation (9)
+
+| Component | Status |
+| --- | --- |
+| Bottom Navigation | ✅ Stable |
+| Breadcrumbs | ✅ Stable |
+| Drawer | ✅ Stable |
+| Link | ✅ Stable |
+| Menu | ✅ Stable |
+| Pagination | ✅ Stable |
+| Speed Dial | ✅ Stable |
+| Stepper | ✅ Stable |
+| Tabs | ✅ Stable |
+
+#### Layout (5)
+
+| Component | Status |
+| --- | --- |
+| Container | ✅ Stable |
+| Image List | ✅ Stable |
+| Spacing | ✅ Stable |
+| Stack | ✅ Stable |
+| Timeline | ✅ Stable |
+
+#### MUI X Components (5)
+
+| Component | Status | Library tier |
+| --- | --- | --- |
+| Data Grid | ✅ Documented | Community / Pro / Premium |
+| Date Picker | ✅ Documented | Community / Pro |
+| Time Picker | ✅ Documented | Community / Pro |
+| Date Time Picker | ✅ Documented | Community / Pro |
+| Tree View | ✅ Documented | Community / Pro |
+
+### Patterns (13)
+
+| Pattern | Status |
+| --- | --- |
+| Forms | ✅ Documented |
+| Headings & Page Structure | ✅ Documented |
+| Navigation Patterns | ✅ Documented |
+| Screen Templates | ✅ Documented |
+| Empty States | ✅ Documented |
+| Error Pages | ✅ Documented |
+| Table Visual Specification | ✅ Documented |
+| Component Usage Audit | ✅ Documented |
+| Third-Party Library Migration | ✅ Documented |
+| Row Action Menu | ✅ Documented |
+| Project Page Shell | ✅ Documented |
+| Monitoring Controls | ✅ Documented |
+| Loading and Error States | ✅ Documented |
+
+### Architecture Decision Records (12)
+
+- ADR 001 — MUI v7 as the component library
+- ADR 002 — 8px spacing base
+- ADR 003 — Roboto typeface
+- ADR 004 — Semantic token architecture
+- ADR 005 — Autocomplete over Select
+- ADR 006 — AG Grid over MUI DataGrid
+- ADR 007 — FontAwesome Pro over MUI icons
+- ADR 008 — Custom SideNav over MUI Drawer
+- ADR 009 — Third-party library wrapper pattern; feature code never imports raw library components
+- ADR 010 — Single notification API: `useAlert` routes by severity; `useSnackbarAlert`/`useBanner` are internal
+- ADR 011 — WCAG 2.1 Level AA as the accessibility compliance target: rationale, scope, and legal context
+- ADR 012 — PDF export accessibility: WCAG 2.1 AA applied to job reports, chart PNG + alt text + data table pattern
+
+### Internal components documented inline (15)
+
+| Component | Parent doc |
+| --- | --- |
+| SearchField | text-field.md |
+| TypographyInput | text-field.md |
+| StatusChip | chip.md |
+| ListTable | table.md |
+| ListTableV2 | table.md |
+| UncontrolledMenu | menu.md |
+| ModalProvider / useModal / useConfirmationDialog | dialog.md |
+| useAlert / useSnackbarAlert / useBanner | snackbar.md + alert.md |
+| LoadingContainer / LoadingPage | progress.md |
+| ErrorPage | patterns/error-pages.md |
+| BrandLogo / ExternalTopNav | app-bar.md |
+| DataGrid (AG Grid wrapper) | ag-grid.md |
+| DragOverlay | dnd-kit.md |
+| FlowCanvas | react-flow.md |
+| initHighchartsTheme | charts.md |
+
+### V1 planned additions
+
+- Dark mode token system (when designed in Figma)
+- Motion and animation tokens
+- MUI X Charts documentation
+- Component status lifecycle (Experimental → Stable → Deprecated)
+- Figma component annotation updates post-V0 review
+- Add `brand.*` brand tokens to Figma variable collection

@@ -1,0 +1,81 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Progress/Guidelines" />
+
+# Progress & Skeleton
+
+Linear or circular progress indicators for loading and operation feedback — Determinate, Indeterminate, and Buffer variants. Use Skeleton for loading placeholders (Text, Circle, Rectangle) when preserving page structure matters.
+
+Scope: Tier 1 — import from `@mui/material/LinearProgress` or `@mui/material/CircularProgress`. For zero-config page-level and section-level loading, use the Tier 3 internal wrappers `LoadingPage` and `LoadingContainer`.
+
+## Guidelines
+
+### When to use
+
+- A full page route is loading its initial data — use `LoadingPage`, which shows the product logo, a `LinearProgress` bar, and falls through to the error page automatically.
+- A panel or section within an already-rendered page is fetching data — use `LoadingContainer` (zero config, "Loading…" plus a full-width `LinearProgress`) so the surrounding shell stays visible.
+- A long-running operation has a known completion percentage — use Determinate `LinearProgress` with a label so users can estimate how long to wait (e.g., a data export or file upload).
+- A background operation is running with unknown duration (async config validation, service handshake) — use Indeterminate `LinearProgress` at the top of the affected panel.
+- Showing a loading state inline within a table cell or a button — use the 16px Circular variant to stay within the row height without disrupting layout.
+
+### When not to use
+
+- The operation has completed — replace Progress immediately with the result content or follow up with an Alert/Snackbar; never leave an indefinite spinner running after completion.
+- The duration is unknown but you are showing a Determinate variant — users will wait for a percentage that never reaches 100%. Use Indeterminate for truly unknown operations.
+- The loading state is for a skeleton-replaceable layout — use the Skeleton component so the page structure is preserved and perceived load time is reduced.
+- An error has occurred — swap the Progress indicator for an error state (Alert or `LoadingPage error={true}`); an animated spinner on a failed request is misleading.
+- You need to show progress for a real-time streaming metrics feed — that is not a loading state; use live data chart components instead.
+
+## Props
+
+### LinearProgress
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| variant | `'determinate' \| 'indeterminate' \| 'buffer' \| 'query'` | `'indeterminate'` | Use determinate when % complete is known; buffer for video-style buffered progress. |
+| value | number | 0 | 0–100. Required for determinate and buffer variants. |
+| valueBuffer | number | — | Buffer level (0–100). Only relevant for the buffer variant — the lighter secondary bar. |
+| color | `'primary' \| 'secondary' \| 'error' \| 'info' \| 'success' \| 'warning' \| 'inherit'` | `'primary'` | Use error when an operation has failed but is still running. |
+
+### CircularProgress
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| variant | `'determinate' \| 'indeterminate'` | `'indeterminate'` | Use determinate for tracked progress with a value label. |
+| value | number | 0 | 0–100. Required for the determinate variant. |
+| size | number \| string | 40 | Pixel diameter. The dashboard uses 40px (default), 32px, and 16px (inline/table cells). |
+| thickness | number | 3.6 | Track stroke weight. Increase for larger sizes to maintain visual weight. |
+| color | `'primary' \| 'secondary' \| 'error' \| 'info' \| 'success' \| 'warning' \| 'inherit'` | `'primary'` | Use inherit when embedding inside a colored button or chip. |
+
+## States
+
+| State | Visual |
+| --- | --- |
+| Linear — Determinate | Filled indicator bar grows from 0 to 100% of track width based on the value prop; optional percentage label. |
+| Linear — Indeterminate | Animated bar traverses the track in a loop; no value label. |
+| Linear — Buffer | Two bars: primary indicator for loaded content, secondary for the buffered range. |
+| Circular — 32px | Arc spins around a track ring; supports an optional centered label at this size. |
+| Circular — 16px | Compact inline spinner; no label at this size — insufficient space. |
+
+## Loaders
+
+Zero-config internal wrappers for the most common loading scenarios.
+
+### LoadingContainer — section-level loading
+
+Drop-in replacement for a panel's content region while data is fetching. Renders a "Loading…" label above a full-width `LinearProgress` (Indeterminate). No props. Use when the page shell (nav, header) is already rendered but a data section has not resolved.
+
+Import from `~/components/loaders/LoadingContainer`.
+
+### LoadingPage — full-page loading and error gate
+
+Renders the product logo and `LinearProgress` on load, and falls through to `GeneralErrorPage` when `error={true}`. Use at the top of any page component that needs to gate on a page-level data fetch before rendering the shell.
+
+Import from `~/components/loaders/LoadingPage`.
+
+| Scenario | Component |
+| --- | --- |
+| Page-level data fetch has not resolved | `LoadingPage loading={true}` |
+| Page-level fetch errored | `LoadingPage error={true}` — renders `GeneralErrorPage` |
+| Section within a loaded page is fetching | `LoadingContainer` |
+| Route-level error with HTTP status code | `ErrorPage` (see Error Pages pattern) |

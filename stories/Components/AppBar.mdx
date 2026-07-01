@@ -1,0 +1,70 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/AppBar/Guidelines" />
+
+# App Bar
+
+A top toolbar surface for global navigation and context controls. Supports Primary, Secondary, and Transparent colors, regular or dense density, and a small-screen variant that collapses title alignment.
+
+## Guidelines
+
+### Do
+
+- Use the internal `TopNav` component to render the dashboard's primary authenticated top nav — it wraps AppBar with BrandLogo and the project context switcher.
+- Use `ExternalTopNav` for unauthenticated or external-facing pages (intake forms, public routes) — it provides the brand-blue AppBar with a Login action.
+- Use `BrandLogo` to display the product wordmark as a home link on any nav surface, rather than a raw `img` tag.
+- Use a dense Toolbar (48px) on desktop dashboard pages where vertical space for data density is a priority.
+- Anchor global context controls — organization switcher, user avatar menu, notification bell — to a predictable top-of-viewport position.
+
+### Don't
+
+- Place an AppBar inside a Dialog or Drawer — the dashboard has one top nav; don't create a second AppBar inside an overlay surface.
+- Use an AppBar as a secondary toolbar within a page section — use a Paper-based toolbar pattern or a Tabs bar for section-level navigation.
+- Put job filter inputs or date range pickers directly in the AppBar — use a dedicated filter row or secondary toolbar below the AppBar.
+- Use `ExternalTopNav` on authenticated pages — it is only for unauthenticated routes; the authenticated shell uses `TopNav` instead.
+
+## Anatomy
+
+An AppBar is always composed of at minimum an `AppBar` root and a `Toolbar` child. The Toolbar provides the horizontal flex layout and consistent padding. Content inside the Toolbar should follow the pattern: leading icon/logo, then a flex-grow title area, then trailing actions (right-aligned).
+
+## Props
+
+This is a Tier 2 assembly pattern — always compose `AppBar` with `Toolbar`. In the dashboard, prefer the internal `TopNav` or `ExternalTopNav` wrappers rather than composing directly. Import from `@mui/material/AppBar` and `@mui/material/Toolbar`.
+
+### AppBar props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| position | 'fixed' \| 'absolute' \| 'sticky' \| 'static' \| 'relative' | 'fixed' | 'fixed' keeps the bar at the viewport top while the page scrolls. 'sticky' stays at the top within the scroll container. 'static' is used when the page itself manages position. |
+| color | 'default' \| 'primary' \| 'secondary' \| 'transparent' \| 'inherit' | 'primary' | Maps to theme palette. Use 'default' for a white/surface bar (e.g. unauthenticated marketing pages). 'transparent' for overlay on hero images. |
+| elevation | number | 4 | MUI shadow elevation level. Set to 0 when pairing with a bottom border via `sx`. |
+| enableColorOnDark | boolean | false | When `true`, keeps the specified color in dark mode rather than falling back to the dark surface color. |
+| sx | SxProps | — | Pass theme-aware overrides. Commonly used to set `zIndex`, adjust height, or apply a border-bottom. |
+
+### Toolbar props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| variant | 'regular' \| 'dense' | 'regular' | 'regular' renders 64px height; 'dense' renders 48px. Use 'dense' on data-heavy dashboard pages where vertical space matters. |
+| disableGutters | boolean | false | Removes the default horizontal padding (16px). Use when the AppBar content manages its own spacing. |
+
+## Accessibility
+
+- Wrap the AppBar in a `header` landmark or use `component="header"` on the AppBar to ensure screen readers identify it as the page header.
+- All IconButton children must have an accessible label via `aria-label` (e.g. `aria-label="open navigation"`, `aria-label="notifications"`).
+- The `BrandLogo` home link must have descriptive link text or `aria-label="Vael home"`.
+- Keyboard focus order must flow left-to-right through toolbar actions; do not use `tabIndex` to reorder.
+
+## Internal wrappers
+
+### BrandLogo
+
+Renders the Vael wordmark as a home link (`href="/"`). Used in all nav surfaces — both the authenticated TopNav and ExternalTopNav. Pass an `sx` prop to control the image container width or override spacing.
+
+### ExternalTopNav
+
+AppBar implementation for unauthenticated and external-facing pages — intake forms, public-facing routes. Renders BrandLogo on the left and a Login button on the right against a `brand.blue` background. Not used inside the authenticated app shell; the authenticated shell uses a separate TopNav component.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| position | AppBarProps['position'] | 'fixed' | 'fixed' pins to viewport top; 'static' lets it scroll with page content. Only surface-level prop exposed by the wrapper. |

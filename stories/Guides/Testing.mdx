@@ -1,0 +1,22 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guides/Testing" />
+
+# Testing
+
+React Testing Library, `jest-axe`, and Chromatic. Every component ships with three layers — RTL unit tests, accessibility checks via `jest-axe`, and visual regression in Chromatic. CI blocks on all three.
+
+## Query priority (RTL)
+
+1. `getByRole` — accessible role (preferred)
+2. `getByLabelText` — form fields
+3. `getByText` — non-interactive copy
+4. `getByTestId` — last resort only
+
+## Keyboard testing
+
+Use `userEvent.tab()` and `userEvent.keyboard('{Enter}')` — never `fireEvent.keyDown`. `userEvent` dispatches the full event sequence browsers do; `fireEvent` misses focus and blur.
+
+## Chromatic
+
+One story per variant. Use `parameters.chromatic = { viewports: [360, 768, 1200, 1920] }` for responsive components. Hover, focus, and error states need their own stories — Chromatic does not interact.

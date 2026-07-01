@@ -1,0 +1,56 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Row Menu" />
+
+# Row action menu
+
+The three-dot kebab menu is the standard pattern for per-row actions in data tables. It keeps tables visually clean by hiding low-frequency actions (archive, duplicate, delete, restore) behind a single trigger.
+
+## When to use menu vs. inline buttons
+
+### Use a row action menu when…
+
+- Two or more actions apply to a row.
+- The actions are destructive or infrequent.
+- Table density matters and inline buttons would crowd the row.
+
+### Use inline buttons when…
+
+- There is exactly one primary action per row (View / Edit).
+- The action is the main intent of the list and should be immediately visible.
+
+## UncontrolledMenu
+
+All row menus use `UncontrolledMenu` — it manages open/close state internally via `usePopover`, so you never wire up `anchorEl`, `open`, or `onClose` yourself.
+
+### Key props
+
+| Prop | Default | Purpose |
+| --- | --- | --- |
+| stopOnClickPropagation | false | Prevents row-level click handlers when the menu is clicked |
+| closeOnClick | false | Automatically closes the menu on any MenuItem click |
+| button | MoreVertOutlined IconButton | Render prop for a custom trigger |
+
+### Why vertical dots (MoreVertOutlined)?
+
+Vertical dots are the dominant convention in web application data tables — Google Workspace, GitHub, and most SaaS table patterns. Horizontal dots (MoreHorizOutlined) are more common in mobile or card layouts. Vertical matches user expectations in desktop data tables.
+
+### Why max 5 items?
+
+Beyond 5 items, a row menu starts to feel like a feature list rather than contextual actions. If a row has more than 5 actions, some likely belong in a detail view or confirmation dialog. 5 is also the practical limit before the menu requires scrolling on short viewport heights.
+
+## Guidelines
+
+### Do
+
+- Use `stopOnClickPropagation` when the row itself is clickable.
+- Default `closeOnClick` — better UX with no extra code.
+- Use `disabled` on MenuItem for temporarily unavailable actions.
+- Keep menus object-scoped (archive/duplicate/delete) — navigation belongs in row cells.
+
+### Don't
+
+- Hide the whole menu by rendering `null` — conditionally include children instead.
+- Put more than 5 items in a menu.
+- Use raw MUI `Menu` + `IconButton` directly in new row components.
+- Render an empty `UncontrolledMenu`.

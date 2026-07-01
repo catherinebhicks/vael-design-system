@@ -1,0 +1,36 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Migration" />
+
+# Third-party library migration
+
+Import from canonical wrappers, not from the underlying libraries. `@vael/wrappers` wraps every third-party UI library in a canonical component. Wrappers handle MUI v7 compatibility, theme injection, and library-specific init that would otherwise repeat at every call site.
+
+## Migration status
+
+| Library | Wrapper | Status | Remaining |
+| --- | --- | --- | --- |
+| AG Grid | DataGrid | Done | 0 files |
+| Highcharts | HighchartsClient | In progress | 2 components + app init |
+| React Flow | FlowCanvas | Blocked | 2 components (wrapper not built) |
+| @dnd-kit | DragOverlay | Not needed yet | Forward-looking guardrail |
+
+## Highcharts to HighchartsClient
+
+Some charts are rendered by importing `HighchartsReact` directly instead of the canonical `HighchartsClient`. A related gap: `initHighchartsTheme` is not called at app startup.
+
+Migrate direct `HighchartsReact` usage to `HighchartsClient`, and ensure `initHighchartsTheme(theme)` is called once during app initialization.
+
+## React Flow to FlowCanvas (blocked)
+
+`FlowCanvas` does not exist yet and must be built before any React Flow usage can be migrated. Until it exists, leave current usage in place. Raw hook and type imports (`useReactFlow`, `XYPosition`) are fine — they don't cause compatibility issues.
+
+## @dnd-kit
+
+No migration needed. `DragOverlay` isn't used anywhere yet, so the wrapper has nothing to replace. Current `DndContext` / `SortableContext` / `useSortable` usage is correct. The wrapper is a forward-looking guardrail for when `DragOverlay` is introduced.
+
+## Rule
+
+Import from the canonical wrapper at `~/components/…`, not from the library directly.
+
+Exception — raw type-only imports like `import type { AgGridReact }` for ref typing are acceptable; they don't pull in runtime that bypasses the wrapper.

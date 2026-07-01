@@ -1,0 +1,73 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guides/Hooks" />
+
+# Custom hooks reference
+
+Hooks live in `~/hooks/` and `~/components/`. The app wraps MUI feedback and overlay primitives in React hooks so call sites never manage `anchorEl`, `open`, or portal state themselves. Always prefer the hook over raw MUI.
+
+**Deprecation note:** The `src/hooks/` directory is deprecated as a location for new hooks. Place new hooks inside the relevant feature directory under `src/components/`.
+
+## Notifications
+
+| Hook | File | Purpose |
+| --- | --- | --- |
+| useAlert | feedback/Alert.tsx | Primary hook for feedback. Routes success to Snackbar; info / warning / error to Banner stack. Errors never auto-hide. |
+| useSnackbarAlert | feedback/useSnackbarAlert.tsx | Shows a Snackbar regardless of severity. Use useAlert instead for most cases. |
+| useBanner | feedback/useBanner.tsx | Shows a banner in the BannerStack. Supports persistent (`autoHideDuration: null`) and ephemeral banners. Sorted by severity (`error > warning > info > success`). |
+| useNotifications | feedback/useNotifications.tsx | Manages system notifications from the API and live socket. Used in the app shell — not for imperative user-action feedback. |
+
+### useAlert routing
+
+| Severity | Surface |
+| --- | --- |
+| 'success' | Snackbar (bottom-left, auto-hides) |
+| 'info', 'warning', 'error' | Banner stack (top of page) |
+| omitted | Banner stack, severity 'info' |
+
+## Modals and dialogs
+
+| Hook | File | Purpose |
+| --- | --- | --- |
+| useModal | hooks/useModal.ts | Low-level hook for ModalContext. Returns show and hide for rendering arbitrary content in a centered MUI Dialog. Only one modal can be open at a time. |
+| useConfirmationDialog | hooks/useConfirmationDialog.tsx | Promise-based confirmation dialog. Await to get a boolean — true if confirmed, false if cancelled. Uses useModal internally. |
+
+### useConfirmationDialog props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| title | string | required | Dialog title |
+| content | string \| ReactNode | required | Body text or content |
+| confirmLabel | string | 'Ok' | Label for the confirm button |
+| rejectLabel | string | 'Cancel' | Label for the reject button |
+| confirmOnly | boolean | false | Hides the cancel/reject button |
+
+## Timing utilities
+
+Located in `src/components/utils/`. Use when building new components that need interval or timeout management.
+
+| Hook | Purpose |
+| --- | --- |
+| useInterval | Calls a callback on a repeating interval. Pass null as delay to pause. Used internally by Banner for progress bar ticks. |
+| useTimeout | Calls a callback once after a delay. Clears the timeout on unmount. |
+| usePrevious | Returns the previous value of any variable. Useful for detecting direction of change. |
+
+## Navigation guards
+
+**useWarnBeforeTransition** (`src/components/interactions/useWarnBeforeTransition.ts`) warns the user before navigating away when unsaved changes are present. Accepts `(dirty: boolean, options?: { ignoreParams?: string[] })`. Covers link-based navigation, programmatic router pushes, browser back/forward, and tab close / page reload.
+
+## Real-time data
+
+All live hooks are built on TanStack React Query and socket.io, and require a `LiveSubscriptionProvider` in the component tree. Dual backend support: primary DB (legacy) and TimescaleDB, toggled via the `timescale-db-flag` feature flag.
+
+| Hook / Component | Purpose |
+| --- | --- |
+| LiveSubscriptionProvider | Context provider that manages the socket.io WebSocket connection. Wrap at page or feature level — not at the app root. |
+| useLiveLatest | Subscribes to the latest value for one or more jobs on a given topic. Each update replaces the previous value. Use for current-state displays (dashboard metrics, metric tables). |
+| useLiveChart | Subscribes to time-series data for charting. Each update appends new measurements. Use for historical and real-time charts. |
+| useLiveSocket | Returns `isConnected` and `isAuthenticated`. Use when a component needs to react to connection changes (e.g., a "reconnecting" indicator). |
+| useBooleanTopicStatus | Subscribes to live boolean sensor data (e.g., door closed, service running). Calls a callback when the value changes. Value mapping: `1` → `true`, `0` or empty → `false`, missing → `null`. |
+
+## Feature flags
+
+**useFeatureFlag** (`src/components/users/useFeatureFlag.tsx`) returns the enabled state of a DevCycle feature flag for the current viewer. It also returns a `PageGuard` component that renders a 404 (regular users) or 403 (superusers) if the flag is not enabled. Flag keys are typed via the generated `DVCVariableTypes`. Run `npm run generate:devcycle` after creating new flags.

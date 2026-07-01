@@ -1,0 +1,57 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Breakpoints" />
+
+# Breakpoints
+
+The dashboard is a **desktop-first web application**. Breakpoints exist to support graceful degradation on smaller viewports, not to produce a "mobile version." The primary user is an operator or administrator on a 1280px+ display; mobile layouts are a convenience for monitoring, not primary usage.
+
+## Breakpoint tokens
+
+MUI defaults — unchanged from the standard theme.
+
+| Token | Min width | Device class | Primary use |
+| --- | --- | --- | --- |
+| xs | 0px | Phone (portrait) | Fallback — single-column layouts, monitoring only |
+| sm | 600px | Phone (landscape) / small tablet | Stacked forms, simplified dashboards |
+| md | 900px | Tablet / small laptop | Two-column layouts, compact tables |
+| lg | 1200px | Laptop / desktop (primary target) | Full layouts — all panels visible |
+| xl | 1536px | Large desktop / external monitor | Max-width caps, multi-column dashboards |
+
+## Breakpoints in practice
+
+### Philosophy
+
+The dashboard does not attempt to be responsive in the marketing-site sense. Designs are built for `lg`+ first, then gracefully reduced for smaller viewports. Below `md`, entire features are often hidden or simplified — for example, multi-axis charts degrade to single-axis, bulk actions collapse into an overflow menu, sidebars become drawers.
+
+**Why desktop-first?** Dashboard users work at desks, running projects on workstations connected to server infrastructure. The task set — monitoring live jobs, configuring multi-step projects, analyzing time-series data — is inherently desktop-class work. Mobile is a secondary surface for at-a-glance monitoring or quick approvals, not the primary workflow. Optimizing for mobile would force compromises that hurt the primary user.
+
+### Using breakpoints in MUI
+
+MUI exposes breakpoints via three patterns:
+
+- `theme.breakpoints.up('md')` — media query for viewports ≥900px
+- `theme.breakpoints.down('md')` — media query for viewports &lt;900px
+- `theme.breakpoints.between('sm', 'lg')` — range (600px to 1199px)
+- Responsive prop syntax on `Grid`, `Stack`, `Box`: `{{ xs: 12, md: 6, lg: 4 }}`
+
+### Component behavior across breakpoints
+
+| Component | lg+ (primary) | md | sm / xs |
+| --- | --- | --- | --- |
+| Sidebar navigation | Permanent, expanded | Permanent, icon-only | Drawer (modal) |
+| Page header | Full — breadcrumbs + actions | Breadcrumbs + primary action | Title + menu |
+| Data table | All columns | Hide low-priority columns | Card list (mobile layout) |
+| Forms | Two-column where appropriate | Single column | Single column, full-width |
+| Chart grid | 2×N grid | 1×N | 1×N, reduced series |
+| Dialog | Constrained width (sm/md) | Constrained width (sm) | Full-screen |
+
+### Min-width baseline
+
+The absolute minimum supported viewport is **320px**. Below that we do not guarantee layout integrity. In practice most dashboard surfaces are unusable below `md` (900px) — they degrade but are not pleasant to use. This is an accepted trade-off.
+
+### Common pitfalls
+
+- **Over-engineering mobile** — don't spend design time perfecting mobile layouts for complex workflows. If a feature isn't usable on mobile, hide it and direct to desktop.
+- **Fluid-everything** — some elements benefit from fixed widths (e.g. numeric inputs for CPU thresholds). Don't reflexively make everything `width: 100%`.
+- **Breakpoint bleed** — writing a style for `xs` that carries into `sm`/`md` unintentionally. Use `down`/`between` helpers to scope precisely.

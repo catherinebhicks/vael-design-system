@@ -1,0 +1,55 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Headings" />
+
+# Page & section headings
+
+Standard header hierarchy for pages and sections. Two scopes — page-level and section-level — each with simple and complex variants. Establishes consistent visual hierarchy, supports wayfinding via breadcrumbs, and gives users a reliable location for primary page actions.
+
+## Variants
+
+### Page heading — complex
+
+Topbar + Breadcrumbs + h1 title + primary + secondary action.
+
+### Page heading — simple
+
+h1 + single primary Button. No Topbar or breadcrumbs.
+
+### Section heading
+
+Typography h2/subtitle + optional IconButton + Divider below.
+
+## Components used
+
+- Typography
+- Button
+- Breadcrumbs
+- Divider
+- IconButton
+
+## Responsive behaviour
+
+| Breakpoint | Behaviour |
+| --- | --- |
+| XS | Title and actions stack vertically; Breadcrumbs truncate to immediate parent; buttons go full-width |
+| SM | Title + actions on one row; button labels may shorten to icon-only |
+| MD | Full two-row complex layout; Breadcrumbs display up to three levels |
+| LG | Standard layout; Container padding matches page grid |
+| XL | Max-width cap on Container prevents excessively wide headings |
+
+## Guidelines
+
+### Do
+
+- Use the complex heading on any top-level destination reachable from global nav.
+- Use the simple heading for focused task flows (wizards, full-page modals).
+- Keep titles 1–5 words.
+- Right-align primary actions so they're consistently findable.
+
+### Don't
+
+- Nest a page heading inside another page heading.
+- Use the complex heading variant inside modals or side panels.
+- Place more than two buttons in a simple heading.
+- Use all-caps or decorative type for section labels.

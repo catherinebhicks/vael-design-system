@@ -1,0 +1,108 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/Governance" />
+
+# Process & governance
+
+How changes land, how versions move, what's in flight. Read this before proposing changes that cross sections — the design system has a contribution process, a versioning policy, and an active audit schedule. **This section signals intent for the living document** — the contribution template, RFC cadence, and reviewer rota are areas we will flesh out as the design system matures.
+
+## Theme status
+
+- **Light mode** (stable) — All foundations and components shipped in V0 · v.75. Token parity with `theme.ts`.
+- **Dark mode** (draft) — planned for a future release.
+
+## Documentation guides
+
+### For designers
+
+- **Getting Started** — Figma library access, component usage, contribution
+- **Figma Library Guide** — enabling the library, applying styles, handing off
+- **Voice & Tone** — writing principles, standard copy patterns, words to avoid
+- **Design QA Checklist** — pre-handoff: tokens, states, responsive, copy, a11y
+- **Component Decision Guide** — Select vs. Autocomplete, Switch vs. Checkbox, Dialog vs. Drawer
+- **Component & Pattern Creation** — one-off vs. system, component vs. pattern
+
+### For engineers
+
+- **Engineering Setup** — installing MUI, configuring the theme, `sx` vs `styled()`
+- **Custom Hooks Reference** — `useAlert`, `useBanner`, `useModal`, `useConfirmationDialog`
+- **Supernova Token Sync** — Figma → Supernova → `tokens/` pipeline
+- **Performance Guidelines** — icon imports, DataGrid virtualization, code splitting
+- **Testing Guide** — RTL patterns, axe a11y tests, keyboard testing, Chromatic
+- **Storybook Setup** — MUI theme integration, story templates, Chromatic
+- **i18n Guide** — date/number formatting, RTL layout, string externalization
+
+## Getting started — step by step
+
+Quick setup paths for designers and engineers new to the system. Follow the flow for your role, then refer to the detailed guide pages linked in the sidebar.
+
+### Designer onboarding — Figma library
+
+1. Open Figma
+2. In the Assets panel, search for **Vael Design System**
+3. Enable the library for your file via **Assets → Libraries → [toggle on]**
+4. Components appear in the Assets panel under their category (Inputs, Data Display, etc.)
+
+**Figma file:** Vael Design System V0
+
+### Using components
+
+- Drag components from the Assets panel into your designs
+- Use the properties panel to switch variants, toggle optional slots (icons, labels, etc.)
+- Never detach component instances without a specific reason — detached components won't receive library updates
+- Use the **Overview page** in the Figma file for a bird's-eye view of all components
+
+### Using tokens
+
+- Use the Variables panel to apply color tokens instead of raw hex values
+- Typography tokens are pre-applied via Text Styles — apply from the text style picker
+- Do not hardcode colors or font sizes directly on layers
+
+### Design + engineering handoff
+
+- Inspect any component in **Dev Mode** for exact token values, spacing, and export options
+- Annotate handoffs with: component variant name + key props, any token overrides, interaction states, custom patterns not covered by the library
+
+### Engineer onboarding — token and component reference
+
+All design tokens are documented in the Foundations section and map directly to MUI's theme configuration.
+
+| I need to… | Go to… |
+| --- | --- |
+| Choose a color | Color (Foundations) |
+| Set type hierarchy | Typography (Foundations) |
+| Add a shadow / elevation | Elevation (Foundations) |
+| Space elements | Spacing (Foundations) |
+| Use an icon | Iconography (Foundations) |
+| Find a component | Components index |
+| Submit or receive user input | Inputs |
+| Display data | Data Display |
+| Show a notification or status | Feedback |
+| Structure a page layout | Layout |
+
+Each component page covers: Overview, Anatomy, Variants, Design Tokens, Usage Guidelines, and Accessibility (ARIA roles, keyboard behavior, contrast requirements).
+
+### Contribution
+
+This is V0 — the system is actively evolving. To propose additions or changes:
+
+1. Check the What's Not Here Yet section to see if it's already planned
+2. Discuss with the design team before building net-new components
+3. New components must follow the existing documentation template and be added to the Figma library before being documented here
+
+**Note.** Do not add one-off component variations to product files without first evaluating whether they belong in the shared library.
+
+### Process & governance pages
+
+- **Contributing** — how to propose and add new components, variants, patterns
+- **Versioning & Deprecation Policy** — semver, breaking changes, deprecation lifecycle
+- **Migration Guide** — how to migrate between major versions; V0 → V1 template
+- **Changelog** — version history
+
+### Token exports
+
+| File | Format | Use for |
+| --- | --- | --- |
+| design-tokens.json | W3C / Style Dictionary | Token pipelines, Supernova sync |
+| tokens.css | CSS custom properties | Direct use in any web project |
+| theme.ts | MUI createTheme() | React + MUI v7 apps |

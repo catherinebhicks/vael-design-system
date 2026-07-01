@@ -1,0 +1,133 @@
+/* =============================================================================
+   VC Highcharts theme
+   CSS vars (--vc-*) are injected on :root by CssVarInjector in preview.tsx
+   and on chart container divs by buildVcVars(theme) in each component.
+   ============================================================================= */
+
+/* ── Chart surface ──────────────────────────────────────────────────────────── */
+.highcharts-background      { fill: var(--vc-surface) !important; }
+.highcharts-plot-background { fill: var(--vc-surface) !important; }
+.highcharts-plot-border     { fill: none !important; }
+
+/* ── Grid & axes ────────────────────────────────────────────────────────────── */
+.highcharts-axis-line,
+.highcharts-tick  { stroke: var(--vc-border); stroke-width: 1; }
+.highcharts-grid-line { stroke: var(--vc-grid); stroke-width: 1; fill: none; }
+
+/* ── Typography — DM Mono for tick labels, DM Sans for titles ───────────────── */
+.highcharts-axis-title text {
+  fill: var(--vc-ink);
+  font-size: 14px;
+  font-weight: 400;
+}
+.highcharts-axis-labels text {
+  fill: var(--vc-ink-muted);
+  font-size: 12px;
+  font-family: "DM Mono", "Courier New", monospace;
+}
+.highcharts-title text {
+  fill: var(--vc-ink);
+  font-size: 20px;
+  font-weight: 500;
+}
+.highcharts-subtitle text {
+  fill: var(--vc-ink-muted);
+  font-size: 14px;
+}
+
+/* ── Dual-axis: color-code tick labels to match their variable ──────────────── */
+.vc-axis-deemph    .highcharts-axis-labels text { fill: var(--vc-ink-muted); opacity: 0.5; }
+.vc-axis-cpu       .highcharts-axis-labels text { fill: var(--vc-var-cpu); }
+.vc-axis-memory    .highcharts-axis-labels text { fill: var(--vc-var-memory); }
+.vc-axis-latency   .highcharts-axis-labels text { fill: var(--vc-var-latency); }
+.vc-axis-throughput .highcharts-axis-labels text { fill: var(--vc-var-throughput); }
+
+/* ── Crosshair ──────────────────────────────────────────────────────────────── */
+.highcharts-crosshair-thin,
+.highcharts-crosshair {
+  stroke: var(--vc-ink-muted);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+  opacity: 0.4;
+}
+
+/* ── Series defaults ────────────────────────────────────────────────────────── */
+.highcharts-series { fill: none; }
+.highcharts-graph  { fill: none; stroke-width: 3; }
+.highcharts-area   { stroke: none; }
+.highcharts-point  { stroke-width: 0; }
+
+/* ── Series roles — stroke weight + dash pattern from spec ─────────────────── */
+.vc-role-actual    .highcharts-graph { stroke-width: 3;   stroke-dasharray: none; opacity: 1;    }
+.vc-role-threshold .highcharts-graph { stroke-width: 2;   stroke-dasharray: 6 4;  opacity: 0.75; }
+.vc-role-predicted .highcharts-graph { stroke-width: 1.5; stroke-dasharray: 3 3;  opacity: 0.65; }
+.vc-role-muted     .highcharts-graph { stroke-width: 1;   opacity: 0.4;           }
+.vc-role-alarm     .highcharts-graph { stroke-dasharray: none; opacity: 1;        }
+
+/* ── Hover & inactive ───────────────────────────────────────────────────────── */
+.highcharts-series-hover    .highcharts-graph { stroke-width: 5 !important; }
+.highcharts-series-inactive                   { opacity: 0.3 !important; }
+
+/* ── Deadband ────────────────────────────────────────────────────────────────── */
+.vc-deadband .highcharts-area  { fill: var(--vc-var-cpu); fill-opacity: 0.10; }
+.vc-deadband .highcharts-graph { stroke: none; fill: none; }
+
+/* ── Legend ─────────────────────────────────────────────────────────────────── */
+.highcharts-legend-box              { fill: transparent; stroke: none; }
+.highcharts-legend-item text        { fill: var(--vc-ink-muted); font-size: 12px; font-weight: 400; cursor: pointer; }
+.highcharts-legend-item:hover text  { fill: var(--vc-ink); }
+.highcharts-legend-item-hidden text { fill: var(--vc-ink-muted) !important; opacity: 0.5; }
+
+/* ── HTML Tooltip ────────────────────────────────────────────────────────────── */
+.vc-tooltip {
+  background: var(--vc-surface, #fff);
+  border: 1px solid var(--vc-border, rgba(0,0,0,0.12));
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-family: "DM Sans", "Helvetica", sans-serif;
+  font-size: 13px;
+  min-width: 160px;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.vc-tooltip__time {
+  font-size: 11px;
+  color: var(--vc-ink-muted, rgba(0,0,0,0.6));
+  font-family: "DM Mono", "Courier New", monospace;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--vc-border, rgba(0,0,0,0.12));
+}
+.vc-tooltip__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 2px 0;
+  color: var(--vc-ink-muted, rgba(0,0,0,0.6));
+  font-size: 12px;
+}
+.vc-tooltip__dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+.vc-tooltip__val {
+  font-family: "DM Mono", "Courier New", monospace;
+  font-size: 12px;
+  color: var(--vc-ink, rgba(0,0,0,0.87));
+  font-weight: 500;
+}
+
+/* ── Sparklines — strip all chart chrome ────────────────────────────────────── */
+.vc-chart--spark .highcharts-axis-line,
+.vc-chart--spark .highcharts-grid-line,
+.vc-chart--spark .highcharts-tick,
+.vc-chart--spark .highcharts-axis-labels { display: none; }
+.vc-chart--spark .highcharts-background,
+.vc-chart--spark .highcharts-plot-background { fill: transparent !important; }

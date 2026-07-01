@@ -1,0 +1,79 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guides/QA" />
+
+# Design QA checklist
+
+Run this checklist before handing designs off to engineering. It covers the most common gaps that cause rework — missing states, inaccessible choices, off-token values, and incomplete responsive behavior.
+
+## Tokens & styles
+
+- All fill colors use library color styles (no raw hex values in Fill panel)
+- All text layers use library text styles (no manually set font size/weight)
+- All elevation/shadow effects use library effect styles
+- Spacing between elements is a multiple of 8px
+- Border radius matches `shape.borderRadius` (4px) or a documented exception
+
+## Components
+
+- All components are library instances (not detached or locally recreated)
+- Correct variant/state is applied — especially for forms, buttons, and inputs
+- No component is manually resized in a way that breaks its internal layout
+- Interactive components show all required states: enabled, hovered, focused, error, disabled
+
+## States & interactions
+
+- Every interactive element has a visual hover state shown
+- Every form field shows: empty, filled, focused, error, and disabled states
+- Every destructive action has a confirmation step (Dialog or inline confirmation)
+- Loading states are designed (Skeleton or Progress — not just the loaded state)
+- Empty states are designed
+- Error states are designed (Alert/FormHelperText for inline)
+
+## Responsive behavior
+
+- Design covers at least mobile (375px) and desktop (1280px) breakpoints
+- Navigation collapses correctly at sm breakpoint
+- Tables/DataGrids have a mobile strategy (horizontal scroll, column hiding, or card layout)
+- No fixed-width elements that will break at smaller viewports
+- Touch targets are at least 44×44px on mobile
+
+## Content & copy
+
+- All copy follows [Voice & tone](#guide-voice) (sentence case, verb-first buttons, three-part errors)
+- No placeholder text (Lorem ipsum) in final designs
+- Form field labels are present on all inputs (not replaced by placeholder alone)
+- Error messages are specific (not just "Invalid input")
+- Button labels describe what happens (not "OK", "Submit", "Yes" without context)
+
+## Accessibility
+
+- Text contrast meets WCAG AA (4.5:1 body, 3:1 large text and UI components)
+- Color is not the only indicator of state (error is not just a red border — needs icon or text)
+- Icon-only buttons have a visible tooltip and an annotated `aria-label`
+- Form fields have visible labels (not placeholder-only)
+- Focus order is logical (annotated if non-standard)
+- Modal/Dialog: focus trap is noted in annotation
+
+## Annotations for engineering
+
+- Any custom spacing not derivable from the 8px grid is annotated with the exact value
+- Non-obvious token choices are annotated (e.g. "use `action/hover` not `primary/main` at 8% opacity")
+- Behavior that isn't visible in the static design is annotated (e.g. "auto-dismiss after 4s", "validate on blur")
+- Link to the relevant component doc page is added as a Figma comment or annotation
+- Any detached components are flagged with a note explaining why
+
+## Component-specific checks
+
+**Forms:** all fields show error state with helper text; required fields have a visible indicator and `aria-required` annotated; submit button is disabled until minimum required fields are filled (or documented otherwise).
+
+**Data Tables / DataGrid:** empty state designed; loading state designed (Skeleton rows or LinearProgress); row selection state shown if applicable; mobile behavior defined.
+
+**Navigation:** active page/item is visually distinguished; mobile nav collapse behavior is shown; breadcrumbs present on pages 2+ levels deep.
+
+## Sign-off
+
+- Self-review against this checklist complete
+- Designs reviewed by at least one other designer or stakeholder
+- Open questions documented in Figma comments or linked ticket
+- Figma Dev Mode link shared with engineering

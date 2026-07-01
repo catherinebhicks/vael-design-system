@@ -1,0 +1,117 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/Gap Analysis" />
+
+# Gap analysis
+
+Vael benchmarked against Google Material Design 3, IBM Carbon, Microsoft Fluent 2, Atlassian, Shopify Polaris, and Salesforce Lightning — scoped to gaps relevant to data-dense internal operations software.
+
+## Foundation token gaps
+
+| Gap | Priority | Notes |
+| --- | --- | --- |
+| Border / stroke tokens (border-subtle, border-strong, border-interactive) | High | Used constantly in tables and form fields; currently derived ad hoc |
+| Density tokens (compact / default / comfortable row heights) | High | Power users need compact density in data-dense views. Carbon has `$layout-density`. |
+| Focus ring tokens (color, width, offset) | High | Keyboard nav for power users; currently implicit via MUI defaults only |
+| Mono / code typography tokens | High | Server params, log output, config values all need formal mono tokens. Carbon has `$code-01`, `$code-02`. |
+| Z-index / layer scale | Medium | Vael has elevation shadows but no z-index token layer |
+| Reduced-motion token flag | Medium | WCAG requirement; prefers-reduced-motion not formally tokenized |
+| Interactive state layer tokens (hover/pressed opacity ramp) | Medium | Vael uses MUI action tokens but lacks an explicit opacity ramp. Material 3 and Fluent 2 define this. |
+| Semantic surface tokens (surface-container, surface-dim, on-surface-variant) | Medium | Reduces hardcoded paper/background overrides |
+| Shape scale (shape-small, shape-medium, shape-large, shape-full) | Low | Single border-radius works but limits systematic corner treatment |
+
+## Component gaps
+
+Components present in benchmarked systems not currently covered by Vael (MUI + MUI X + AG Grid + React Flow).
+
+| Component | Priority | Who has it | Notes |
+| --- | --- | --- | --- |
+| Number input / spinner | High | Carbon, Fluent 2 | Threshold entry is central to the product; has poor UX for numeric values |
+| Status indicator / traffic light | High | All 6 systems | Job states, server health, alarm states — dot + label + semantic color |
+| Structured list / definition list | High | Carbon, Atlassian | Label-value pairs, read-only. Metadata panels, job summaries, project details. |
+| Stat / KPI tile | High | Carbon, Atlassian, Polaris | Single metric + label + trend + unit. Metric dashboards. |
+| Tag (distinct from Chip) | High | Atlassian, Polaris, Carbon | Read-only, semantic color mapping. Chip implies interactivity; Tag is display-only. |
+| Notification center | High | Carbon, Fluent 2 | Bell icon opening an event feed panel. Core software surface for alarm log and system events. |
+| Inline edit | High | Carbon, Atlassian | Click-to-edit in place, no Dialog required. Project config parameter tweaking. |
+| Date/time range picker (unified start+end) | High | Carbon, Fluent 2 | Job windows and metric query ranges need a unified range picker. MUI X has two separate pickers only. |
+| Side panel / detail panel | High | Carbon, Fluent 2 | Persistent split-view aside, not a Drawer. Job detail alongside table is a pervasive UI pattern. |
+| Code block / syntax highlight | Medium | Carbon, Atlassian | API keys, config snippets, log output |
+| File uploader / dropzone | Medium | Carbon, Polaris, Atlassian | Config file upload, data import |
+| Split button | Medium | Carbon, Fluent 2, Atlassian | Primary action + dropdown trigger as one unit. Useful for "Start job" with sub-variants. |
+| Command bar / toolbar | Medium | Fluent 2, Carbon | Icon+label strip with overflow. Data grid toolbars, chart controls. |
+| Callout / inline panel | Medium | Atlassian, Polaris, Carbon | Bordered info/warning block, not a toast. Config warnings, project notes. |
+| Overflow menu | Medium | Atlassian, Polaris, Carbon | Icon button revealing contextual actions, distinct from Menu. Row action menu pattern exists but no standalone component. |
+
+## Pattern gaps
+
+| Pattern | Priority | Who has it | Notes |
+| --- | --- | --- | --- |
+| Filtering pattern (filter bar, filter pills, saved filters) | High | Carbon, Polaris, Atlassian | Filtering jobs/files/configs by multiple dimensions simultaneously |
+| Bulk action pattern (select-all → contextual action bar) | High | Carbon, Atlassian, Polaris | Batch operations on jobs or files |
+| Dashboard / metric overview layout | High | Carbon, Atlassian | Live job dashboards, project overview pages |
+| Data table master-detail / row expansion | High | Carbon, Atlassian | Job history with expandable detail rows |
+| Chart annotation pattern (threshold lines, event markers, range bands) | High | Carbon | Highcharts already in use; no system-level guidance on annotation, color encoding, or alarm visualization |
+| Confirmation pattern (inline confirmation for destructive actions) | Medium | Polaris, Carbon | Beyond Dialog — inline confirmation for irreversible actions without leaving context |
+| Wizard with branching | Medium | Carbon, Atlassian | Conditional multi-step form; project configuration can be non-linear |
+| Keyboard shortcut disclosure | Medium | Atlassian, Fluent 2 | Modal or panel listing all keyboard shortcuts; critical for power users |
+
+## Documentation gaps
+
+| Gap | Priority | Who has it | Notes |
+| --- | --- | --- | --- |
+| Data formatting guide (numbers, units, scientific notation, timestamps) | High | None — Vael opportunity | Critical for a data product. No benchmarked system covers numeric data formatting. Vael should define this. |
+| Chart / data viz usage guidelines | High | Carbon | Highcharts tokens exist but no guidance on chart type selection, axis labels, color encoding, or chart accessibility |
+| Per-component a11y spec (keyboard behavior, ARIA roles, screen reader notes) | High | Carbon, Fluent 2 | Vael has a QA checklist but no per-component a11y documentation |
+| Component status / maturity labels in docs | High | Carbon, Atlassian, Polaris | Vael has ADRs and audit matrix but no visible per-component status label |
+| Error message writing guide | Medium | Polaris, Carbon | Voice & tone exists but no error-specific guidance (system errors vs. user errors, recovery language) |
+| Token usage guidelines (when to use which semantic token) | Medium | Material 3, Atlassian | Vael documents that tokens exist but not the rationale for choosing one over another |
+| Motion principles (when to animate, what not to animate) | Medium | Material 3, Fluent 2, Atlassian | Partial motion tokens exist but no narrative principles or reduce-motion guidance |
+
+## Tooling gaps
+
+| Gap | Priority | Who has it | Notes |
+| --- | --- | --- | --- |
+| Automated a11y testing in CI (axe-core) | High | Carbon, Atlassian | Testing guide exists but no mention of automated a11y checks. Drop-in via `jest-axe` or `@axe-core/playwright`. |
+| Token linting (stylelint enforcing `--ds-*`, flagging raw hex) | Medium | Carbon | Prevents token bypass at the code level. Carbon has `@carbon/stylelint-plugin`. |
+| Storybook a11y addon (`@storybook/addon-a11y`) | Medium | Carbon, Atlassian | Storybook guide exists; addon not mentioned |
+| Visual regression testing (Chromatic or Percy) | Medium | Carbon, Atlassian, Polaris | Prevents silent component regressions across updates |
+| Per-component changelog | Medium | Carbon, Polaris | Versioning guide exists but not per-component diff visibility |
+
+## Priority stack rank
+
+### Do first
+
+1. Border/stroke tokens + density tokens
+2. Number input / spinner component
+3. Status indicator component
+4. Structured list / definition list component
+5. Tag component (distinct from Chip)
+6. Filtering pattern + bulk action pattern
+7. Per-component a11y documentation
+8. Data formatting guide
+9. Chart / data viz usage guidelines
+
+### Do next
+
+1. Focus ring tokens + reduced-motion token
+2. Inline edit component
+3. Notification center component
+4. Unified date/time range picker
+5. Stat / KPI tile component
+6. Dashboard layout pattern
+7. Automated a11y in CI (axe-core)
+8. Component status/maturity labels in docs
+9. Token linting enforcement
+
+## Real-time / streaming data display pattern
+
+None of the six benchmarked systems have a formalized pattern for live-updating metric values, stale data indicators, or alarm escalation states. This is entirely domain-specific to monitoring and operations software — and the highest-leverage area for Vael to define something that no other design system has.
+
+### What this pattern library could include
+
+- **Live value component** — current reading + unit + freshness indicator
+- **Stale data indicator** — value grayed out when the metric feed drops
+- **Alarm state escalation** — info → warning → critical with visual + audio cues
+- **Telemetry sparkline** — inline mini-chart for trend-at-a-glance
+- **Metric card** — threshold vs. actual, deviation indicator
+- **Event timeline** — system events overlaid on metric data

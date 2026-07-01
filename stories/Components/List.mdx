@@ -1,0 +1,112 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/List/Guidelines" />
+
+# List
+
+Single- or two-line list items with an optional leading icon or avatar and a trailing action. Use it to group related rows under subheaders, separated by dividers, when scannability matters more than column alignment.
+
+## Guidelines
+
+### Do
+
+- Build the global side navigation — List is the correct component for stacked, icon-anchored navigation items with hover, selected, and focused states.
+- Render a project checklist where each task has a primary label and a secondary status line (e.g., "Deploy to server" + "Due in 2 hours").
+- Display a settings panel with discrete options — notification preferences, access control entries, hardware configurations.
+- Show a feed of recent events or activity log entries where each row has a leading icon (event type) and a trailing timestamp.
+- List workflow steps, pipeline stages, or ordered instructions where sequence and scannability matter more than column alignment.
+- Use dense mode in space-constrained sidebars or panel drawers where an 8px row reduction meaningfully increases information density.
+
+### Don't
+
+- Compare two or more attributes across rows — use the Table component so columns align and headers provide context.
+- Put more than two lines of text in an item — use a Card layout instead; ListItem is not designed for rich multi-line content.
+- Add sortable columns, pagination, or bulk selection to a bare List — those patterns belong in ListTable or ListTableV2.
+- Use List for navigation tabs or segmented controls — use Tabs instead.
+
+## Anatomy
+
+A full list item is composed of an optional leading slot (icon or avatar), a text block (primary + secondary), and an optional trailing slot (secondary action). Any combination is valid; the text block is the only required zone.
+
+- **Leading slot** — `ListItemIcon` or `ListItemAvatar`. Accepts any node. Icon size is 24px by default; Avatar is 40px (32px in dense).
+- **Primary text** — `ListItemText primary`. Main label at body1 (16px). The accessible name of the item for screen readers.
+- **Secondary text** — `ListItemText secondary`. Supplementary context at body2 (14px, text/secondary). Keep to one line where possible.
+- **Trailing action** — `ListItem secondaryAction`. Right-aligned slot for Switch, Checkbox, or IconButton. Padding auto-expands to prevent overlap.
+
+## Props
+
+**Scope: Tier 1** — Direct MUI usage. No Vael wrapper. Import from `@mui/material/List`. For tabular list data with sort, pagination, or bulk selection, use the internal `ListTable` / `ListTableV2` wrapper (Tier 3 — import from `~/components/ListTable`).
+
+### List
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| dense | bool | false | Reduces list-item min-height from 48px to 40px. Use in space-constrained sidebars or panel drawers. |
+| disablePadding | bool | false | Removes the default 8px top/bottom padding on the List root. Required when nesting inside a Card or Paper that provides its own padding. |
+| subheader | node | — | Renders a sticky ListSubheader at the top of the list. Pass a `ListSubheader` element directly. |
+
+### ListItem
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| alignItems | "flex-start" \| "center" | "center" | Use "flex-start" when primary and secondary text create a tall item — aligns icon to the top line. |
+| disableGutters | bool | false | Removes default 16px horizontal padding. Use in flush-edge layouts. |
+| disablePadding | bool | false | Removes all padding (horizontal and vertical). Rarely needed; prefer dense on the parent List. |
+| divider | bool | false | Adds a full-bleed 1px bottom border. Prefer an explicit divider between groups for more control. |
+| secondaryAction | node | — | Right-aligned slot for a trailing IconButton, Switch, or Checkbox. Automatically adds right padding so the action doesn't overlap text. |
+
+### ListItemButton
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| selected | bool | false | Applies action/selected background. Use for the active navigation item or currently selected option. |
+| dense | bool | false | Reduces height independently of the parent List's dense prop. |
+| alignItems | "flex-start" \| "center" | "center" | Matches ListItem behavior. Set "flex-start" for two-line items with tall secondary text. |
+| onClick | func | — | Standard click handler. For navigation, prefer wrapping with React Router via the component prop. |
+
+### ListItemText
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| primary | node | — | Main label. Renders at body1 (16px) by default. Required for all interactive items. |
+| secondary | node | — | Supplementary line. Renders at body2 (14px, text/secondary). Use for dates, status, or descriptive context. |
+| inset | bool | false | Adds a left indent equal to the icon/avatar slot width. Use to align text-only items with icon items in the same list. |
+| primaryTypographyProps | TypographyProps | — | Override the primary text's Typography props — e.g., noWrap to truncate long labels. |
+
+### ListTable / ListTableV2 (Tier 3 internal wrapper)
+
+When a list requires sortable columns, pagination, or row-level bulk selection, use the internal `ListTable` or `ListTableV2` wrapper instead of bare `List`. These components wrap AG Grid with Vael-specific column definitions, row actions, and selection handling. Import from `~/components/ListTable`.
+
+| Component | Key capability | Status | Notes |
+| --- | --- | --- | --- |
+| ListTable | Single-select, sortable columns, server-side pagination | Stable | Current default for project and job list views. |
+| ListTableV2 | Multi-select, inline editing, virtualized rows | Draft | Replaces ListTable in Q2 '26. Do not use in new features without design review. |
+
+## States
+
+| State | Visual | Token | Notes |
+| --- | --- | --- | --- |
+| Enabled | Default background; full-opacity text and icons. | — | The resting state for all interactive and non-interactive items. |
+| Hovered | action/hover overlay on the row background. | --action-hover | Applied by ListItemButton. Non-interactive ListItem has no hover state. |
+| Selected | action/selected overlay; communicates the active item (e.g., current nav route). | --action-selected | Set via selected on ListItemButton. Nav active item uses Vael yellow override. |
+| Focused | Visible focus ring; triggered by keyboard navigation. | — | Focus ring must meet WCAG 2.4.11 (3:1 contrast against adjacent colors). |
+| Pressed | Momentary active tap state before navigation or action fires. | — | Ripple effect from MUI's ButtonBase. Disable with disableRipple only if animation causes accessibility issues. |
+| Disabled | Text and icons use text/disabled and action/disabled; non-interactive. | --text-disabled | Pass disabled prop on ListItemButton or individual action nodes. |
+
+## Accessibility
+
+- `List` renders a list by default, and each `ListItem` renders a list item. Use `component="nav"` on `List` for navigation menus so screen readers announce the landmark.
+- Interactive rows must use `ListItemButton`, not `ListItem`, to get correct focus management, keyboard Enter/Space activation, and role=button semantics.
+- Trailing `secondaryAction` icon buttons require `aria-label` — e.g., `aria-label="Delete project"`. Avoid generic labels like "Delete" when multiple rows exist.
+- When using `ListSubheader` as a section header, associate it with its list items via `aria-labelledby` on the `List`.
+- Dense mode reduces the touch target below 44px. Only use dense mode in pointer-primary interfaces (not mobile or touch-heavy workflows).
+
+## Design tokens
+
+| Token | Value | Used for | Notes |
+| --- | --- | --- | --- |
+| --action-hover | rgba(0,0,0,0.04) | Row hover state | Applied to ListItemButton on pointer hover. |
+| --action-selected | rgba(0,0,0,0.08) | Selected row | Applied when selected is set. Vael nav uses --vael-yellow override for the active nav item. |
+| --text-secondary | rgba(0,0,0,0.60) | Secondary text | Used for ListItemText secondary and subheader labels. |
+| --text-disabled | rgba(0,0,0,0.38) | Disabled state | Applied to primary text, icons, and action nodes when item is disabled. |
+| --divider | rgba(0,0,0,0.12) | Item divider | Used when divider is set or when an explicit divider separates groups. |

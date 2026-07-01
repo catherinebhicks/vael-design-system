@@ -1,0 +1,71 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Iconography" />
+
+# Iconography
+
+FontAwesome Pro v6.7.2 is the only icon library. Icons are installed via `@fortawesome` and rendered with the FontAwesome React component in three weights — Light, Regular, and Solid. Keep the weight consistent within a view, and never add `@mui/icons-material` imports.
+
+## One library, three weights, precise sizing rules
+
+The dashboard uses FontAwesome Pro v6.7.2 as its single icon library. No other icon libraries are permitted — not Material Icons, not custom SVG sets, not emoji. Consistency across thousands of icons throughout the app depends on this rule.
+
+### The rule
+
+- Icons are rendered with the FontAwesome React component from the `@fortawesome/react-fontawesome` package.
+- Three weights are loaded: Light (faL), Regular (faR, default), and Solid (faS).
+- Never add `@mui/icons-material` imports — this is enforced by ESLint.
+- Keep weight consistent within a view — don't mix Regular and Solid icons in the same toolbar.
+
+### Why FontAwesome Pro over Material Icons?
+
+Material Icons is limited in scope and feel — it only ships in "rounded" and "sharp" variants at a fixed optical size. FontAwesome Pro has ~30,000 icons spanning technical, business, and specialized domains (servers, databases, charts) that Material lacks. The three-weight system (Light/Regular/Solid) gives us a real hierarchy tool rather than inventing our own.
+
+## Weight semantics
+
+| Weight | Class | When to use |
+| --- | --- | --- |
+| Light | fa-light / faL | Decorative icons, large display icons, empty states, hero illustrations. Thin strokes create a quiet, elegant feel. |
+| Regular (default) | fa-regular / faR | The default for all inline UI — lists, navigation, inline actions, input adornments, buttons with icons. Balanced stroke weight. |
+| Solid | fa-solid / faS | Active or selected states (e.g. filled star vs. outlined star), error/warning states where urgency matters, and high-emphasis CTAs. Fills create visual weight. |
+
+The Solid weight is commonly paired with Regular to show state changes: a Regular star means "not favorited," a Solid star means "favorited." This is a widely understood convention and should be preferred over color changes alone.
+
+## Size tokens
+
+| Token | Size | Usage |
+| --- | --- | --- |
+| small | 20px | Dense UI (table headers, compact list items), inline with 14px text |
+| medium (default) | 24px | Buttons, nav items, list icons, most interactive contexts |
+| large | 35px | Feature callouts, empty state illustrations, major action cards |
+| inherit | parent font-size | Inline within a paragraph or heading — scales with surrounding text |
+
+Why 20 / 24 / 35? 24px is MUI's default icon size and pairs well with 16px body text. 20px matches the cap height of 14px body2 text for dense inline contexts. 35px is the "display" size used in empty states and feature callouts — larger than 24 but small enough not to feel like an illustration. Arbitrary sizes (e.g. 28px, 40px) are discouraged — if you need something between tokens, use `inherit` and set the parent font-size.
+
+## Color
+
+Icons inherit `color` from their parent by default. Specific color rules:
+
+- Default icons → `text.secondary` (60% opacity black) — decorative or supporting.
+- Interactive icons (buttons, nav) → `text.primary` (87% opacity).
+- Active/selected icons → `primary.main`.
+- Error/warning icons → `error.main` / `warning.main`.
+- Success icons → `success.main`.
+- Disabled icons → `action.disabled`.
+
+Never apply custom hex colors directly to an icon — route through semantic tokens so icons respect future theming changes (e.g. dark mode).
+
+## Accessibility
+
+- Decorative icons (purely visual) must have `aria-hidden="true"` so screen readers skip them.
+- Interactive icons (icon-only buttons) must have an accessible label via `aria-label` or a visible text tooltip.
+- Icon + text pairs — make the icon `aria-hidden` and let the text be the accessible label.
+- Never use an icon alone to convey meaning — pair with a text label whenever possible, or a tooltip as a minimum.
+- Hit targets for icon-only buttons must be at least 44×44px — wrap in an `IconButton` with adequate padding.
+
+## Common pitfalls
+
+- Importing from the wrong package — always use `@fortawesome/pro-regular-svg-icons`, `@fortawesome/pro-solid-svg-icons`, or `@fortawesome/pro-light-svg-icons`. Never `@fortawesome/free-*` (limited) or `@fortawesome/sharp-*` (not licensed).
+- Mixing weights in a toolbar — pick one weight per visual group. Toolbars, nav, and button rows should all use Regular unless an item needs to express active state via Solid.
+- Using icons as load-bearing labels — an icon of a server doesn't reliably mean "job" or "project" to every user. Always include text.
+- Ad-hoc inline SVG — if an icon you need doesn't exist in FontAwesome Pro, request it from the design team before adding a custom SVG. Maintaining a parallel asset set is how icon systems fragment.

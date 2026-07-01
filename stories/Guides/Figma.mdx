@@ -1,0 +1,24 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guides/Figma" />
+
+# Figma library
+
+For designers — the Vael library file plus its variables.
+
+## Enable the library
+
+1. Open the **Assets** panel, then click the _Libraries_ icon (bottom).
+2. Toggle on _Vael Design System_.
+3. If it is missing, request access in #design-systems — this needs team membership.
+
+## Applying styles
+
+- **Colors** — bound to Figma variables in the `color/` collection. Apply via _Fill_ → variable picker, never paste hex.
+- **Typography** — use registered text styles (`h1` … `caption`); custom type breaks handoff.
+- **Effects** — Elevation 1–5 are registered as Figma shared effect styles for convenience. Elevation 0 = no shadow. The full MUI scale (0–24) is available in code.
+- **Spacing** — Auto Layout padding / gap bound to `spacing/1–8`.
+
+## Handoff
+
+In Dev Mode, engineers see variable names (`color/primary/main`) rather than hex. If you see raw values in Dev Mode, your fill isn't using a variable — fix the source frame, not the output.

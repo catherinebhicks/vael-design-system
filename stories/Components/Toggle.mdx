@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Toggle/Guidelines" />
+
+# Toggle
+
+`ToggleButton` provides persistent state switching between a grouped set of options, while Transfer List explicitly moves items between two pools. Neither is currently used in product — documented here for reference and future use.
+
+## ToggleButton
+
+`ToggleButtonGroup` supports two modes: exclusive selection for view switchers (a single active option, such as switching a results view between List, Grid, and Chart) and multi-select for toggling several options at once.
+
+### Props
+
+**Scope: Tier 1** — Use directly from MUI; no Vael wrapper needed. Import from `@mui/material/ToggleButtonGroup` and `@mui/material/ToggleButton`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| **ToggleButtonGroup props** |  |  |  |
+| value | string \| string[] | — | Controlled selected value(s). Single string when exclusive, array when multi-select. |
+| onChange | `(event, value) => void` | — | Fires when a button is toggled. `value` is null if the last active exclusive button is deselected. |
+| exclusive | boolean | false | Single selection (true) vs multi-select (false). Use true for view-mode switchers. |
+| orientation | 'horizontal' \| 'vertical' | 'horizontal' | Use vertical for sidebar mode selectors or compact stacked controls. |
+| color | 'primary' \| 'secondary' \| 'error' \| 'warning' \| 'info' \| 'success' \| 'standard' | 'standard' | Applies to the selected-state highlight. Use primary in most product contexts. |
+| size | 'small' \| 'medium' \| 'large' | 'medium' | Use small in toolbars and dense analytical panels. |
+| fullWidth | boolean | false | Stretches the group to 100% of its container. Use in responsive panel headers. |
+| disabled | boolean | false | Disables all buttons in the group at once. For per-button disable, set it on the child ToggleButton. |
+| **ToggleButton props** |  |  |  |
+| value | any | — | Required. The value this button contributes to the group's `value`. |
+| selected | boolean | — | Usually managed by the parent ToggleButtonGroup. Override only when using uncontrolled standalone buttons. |
+| disabled | boolean | false | Disables this button only, while others in the group remain active. |
+| size | 'small' \| 'medium' \| 'large' | inherits | Inherits from the parent group; override per-button only in exceptional cases. |
+| color | 'primary' \| 'secondary' \| ... | inherits | Inherits from the parent group. |

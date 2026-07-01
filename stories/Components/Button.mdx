@@ -1,0 +1,180 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Button/Guidelines" />
+
+# Buttons
+
+Buttons trigger actions or navigation. There are three types: `Button` (the primary action), `IconButton` (icon-only, requires `aria-label`), and `LoadingButton` (async action with a spinner).
+
+## Button
+
+`Button` triggers an action or navigation. Use it for the primary and secondary actions in a view, and reach for `IconButton` or `LoadingButton` when the action is icon-only or asynchronous.
+
+### Guidelines
+
+#### Do
+
+- Use Contained for the single most important action per section.
+- Use Outlined for secondary actions alongside a contained primary.
+- Use Text for tertiary actions or in toolbars where space is tight.
+- Add a tooltip to every IconButton — an icon alone is not enough.
+- Keep labels 2–4 words and action-oriented.
+
+#### Don't
+
+- Use more than one Contained button in the same visual group.
+- Use Contained for destructive actions without Error color and a confirmation.
+- Use LoadingButton for synchronous actions.
+- Suppress the focus ring.
+- Apply the HTML `disabled` attribute — use `aria-disabled="true"` instead.
+
+### Props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| variant | 'contained' \| 'outlined' \| 'text' | 'text' | Visual emphasis. Use contained for the single primary action per view. |
+| size | 'small' \| 'medium' \| 'large' | 'medium' | Use large on touch-primary surfaces (44×44px minimum target). |
+| color | 'primary' \| 'secondary' \| 'error' \| 'warning' \| 'info' \| 'success' \| 'inherit' | 'primary' | Use error for destructive actions like Abort Job or Delete Project. |
+| disabled | boolean | false | Prefer aria-disabled over HTML disabled so the button stays in tab order. |
+| startIcon | ReactNode | — | Icon before the label. Use to reinforce action meaning in job control panels. |
+| endIcon | ReactNode | — | Icon after the label; useful for "Download ↓" or "Open in new tab ↗" affordances. |
+| loading (LoadingButton) | boolean | false | Shows a spinner and disables interaction. Set when an async operation is in flight. |
+| loadingPosition (LoadingButton) | 'start' \| 'end' \| 'center' | 'center' | Where the spinner appears relative to the label. |
+
+### States
+
+| State | Visual |
+| --- | --- |
+| Enabled | Default fill/border/text per variant and color. |
+| Hovered | Contained: background darkens to primary/dark. Outlined/Text: primary/_states/hover overlay applied. |
+| Focused | Visible focus ring — never suppressed. Required for keyboard navigation through job control interfaces. |
+| Pressed | Contained: elevated shadow increases to elevation/8. Ripple animates from press point. |
+| Disabled | Label uses action/disabled; contained background uses action/disabledBackground. Button stays in tab order when using aria-disabled. |
+| Loading (LoadingButton) | Label hidden or reduced; spinner shown at loadingPosition. Non-interactive for the duration of the async operation. |
+
+### Anatomy
+
+- `Button` — label (required), optional start/end icon, container with 4px border radius.
+- `IconButton` — icon only, circular ripple area, requires `aria-label`.
+- `LoadingButton` — label plus spinner (start or end position) shown while an async action runs.
+
+### Variants
+
+| Property | Options |
+| --- | --- |
+| variant | contained, outlined, text |
+| size | small, medium, large |
+| color | primary, secondary, error, warning, info, success, inherit |
+| state | enabled, hover, focus, pressed, disabled |
+| icons | start icon and/or end icon (optional) |
+
+- Contained — filled background, highest emphasis — one per view.
+- Outlined — border only, medium emphasis — secondary actions alongside contained.
+- Text — no border/background, lowest emphasis — tertiary, inline, or dense toolbars.
+
+### Design tokens
+
+| Token | Value | Usage |
+| --- | --- | --- |
+| primary/main | #1976D2 | Contained button background |
+| primary/dark | #1565C0 | Contained button hover background |
+| primary/contrastText | #FFFFFF | Label text on contained primary |
+| primary/_states/hover | alpha(primary, 0.04) | Hover overlay on outlined/text |
+| primary/_states/outlinedBorder | alpha(primary, 0.5) | Border on outlined button |
+| action/disabled | #000000 (26%) | Disabled label color |
+| action/disabledBackground | #000000 (12%) | Disabled contained background |
+| typography/button | Medium 500 · 14/24 | Button label text |
+| shape/borderRadius | 4px | Corner radius |
+| elevation/2 | resting shadow | Contained resting shadow |
+| elevation/8 | pressed shadow | Contained pressed/hover shadow |
+
+### Accessibility
+
+- All buttons need a discernible name — label text, or `aria-label` for icon-only buttons.
+- `IconButton` requires `aria-label` — an icon alone is not sufficient for screen readers.
+- Disabled buttons stay in the tab order with `aria-disabled="true"` rather than the HTML `disabled` attribute, so users can discover why the action is unavailable.
+- Minimum touch target is 44×44px — use the Large size for touch-primary surfaces.
+- The focus state must be visible — never suppress the focus ring.
+
+### When to use
+
+- Use Contained for the single primary action that advances a workflow — "Start Job," "Save Configuration," "Submit Plan" — where there is one clear next step.
+- Use Outlined for secondary actions alongside a contained button, such as "Cancel" or "Export Data" next to "Save" in job configuration or data export flows.
+- Use Text for low-priority inline actions in dense toolbars or table rows — "View Details" or "Edit Settings" where a text label would add clutter.
+- Use IconButton for icon-only toolbar actions in data panels — edit, delete, duplicate, or expand icons in server monitoring grids and metrics tables. Always pair with a tooltip.
+- Use LoadingButton whenever the action triggers an async call — submitting threshold changes, uploading data files, or exporting a job report.
+- Use Error color plus Contained for high-stakes destructive actions like "Abort Job" or "Delete Project" that require clear visual differentiation from safe actions.
+
+### When not to use
+
+- Don't place two Contained buttons in the same action group — one must be secondary or text to establish hierarchy.
+- Don't use Contained for destructive job actions without applying the Error color and adding a confirmation step — a filled primary-blue Abort Job button looks identical to a safe action.
+- Don't use LoadingButton for synchronous state changes — toggling a display option or marking a checklist item doesn't involve a network round-trip.
+- Don't use IconButton without a tooltip in data-dense panels — users scanning monitoring tables cannot decode an unfamiliar icon with no label.
+- Don't use buttons to toggle a persistent UI state (chart view vs. table view) — use `ToggleButton` instead, which communicates active state.
+- Don't write button labels that describe the object rather than the action — "Job Configuration" is a heading; prefer "Save Configuration" or "Edit Thresholds."
+
+## ButtonGroup
+
+Groups tightly related buttons into a single connected unit, sharing variant and size across all children. Use when 2–4 actions belong together and a dropdown isn't appropriate.
+
+Scope: Tier 1 — import from `@mui/material/ButtonGroup`. Shares `variant`, `size`, and `color` across all child `Button` elements.
+
+### Guidelines
+
+#### Do
+
+- Use for 2–4 tightly related, mutually exclusive operations (e.g. export format: CSV / JSON / Excel).
+- Keep labels short — 1–2 words per button.
+- Use `outlined` for secondary groupings and `contained` for primary action groups.
+- Use `orientation="vertical"` when horizontal space is constrained.
+
+#### Don't
+
+- Use for navigation between views — use `Tabs` or `ToggleButton` instead.
+- Mix variants or colors within the same group.
+- Use more than 4 buttons in a group — switch to a `Menu` or `Select`.
+- Use `ButtonGroup` when buttons are unrelated — use individual `Button` components with spacing.
+
+### Props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| variant | 'contained' \| 'outlined' \| 'text' | 'outlined' | Applied to all child buttons. Use outlined for grouped navigation controls. |
+| size | 'small' \| 'medium' \| 'large' | 'medium' | Applied uniformly. Prefer small in dense toolbars. |
+| color | 'primary' \| 'secondary' \| 'error' \| 'success' \| 'info' \| 'warning' | 'primary' | Applied to all children. |
+| orientation | 'horizontal' \| 'vertical' | 'horizontal' | Stack buttons vertically for sidebar icon groups. |
+| disabled | boolean | false | Disables all child buttons at once. |
+| disableElevation | boolean | false | Removes the box-shadow on the contained variant. |
+
+## FAB
+
+A persistent, floating button for the single most important action on a screen. Fixed-position and always visible — one per screen maximum.
+
+Scope: Tier 1 — import from `@mui/material/Fab`. FABs are intentionally rare in the dashboard — check the guidelines before introducing one. Use the `extended` variant for labeled FABs.
+
+### Guidelines
+
+#### Do
+
+- Use for the single most critical action on a screen (e.g. "New Project" on the projects list).
+- Position fixed at bottom-right (24px from each edge) — standard touch target placement.
+- Use the `extended` variant when the icon alone is ambiguous — a label adds clarity.
+- Use `primary` color to reinforce that this is the top action.
+
+#### Don't
+
+- Place more than one FAB on the same screen.
+- Use for destructive actions — a floating button implies construction, not deletion.
+- Use on data-dense screens (tables, dashboards) where the FAB occludes content.
+- Use when the primary action is already prominent in a toolbar or page header.
+
+### Props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| variant | 'circular' \| 'extended' | 'circular' | Use extended when a label is needed (e.g. "New Project"). |
+| size | 'small' \| 'medium' \| 'large' | 'large' | small (40px) for secondary FABs. large (56px) is the primary size. |
+| color | 'default' \| 'primary' \| 'secondary' \| 'success' \| 'error' \| 'info' \| 'warning' | 'default' | Use primary for the main creation action per page. |
+| disabled | boolean | false | Hides the FAB rather than disabling it — remove from DOM if the action is unavailable. |
+| href | string | — | Renders the FAB as an anchor element. Use with `component={NextLink}` for client-side routing. |

@@ -1,0 +1,52 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Empty States" />
+
+# Empty states
+
+Empty states appear when a view has no content — new users, cleared data, a search with no matches, or gated permissions. Done well, they transform a dead end into a clear next step. Done poorly, users are left wondering whether something is broken.
+
+## Anatomy
+
+- **Illustration (optional)** — Icon at Large (48px) or custom illustration. `text/secondary` so it recedes.
+- **Heading** — Typography `h5`/`h6`. State plainly — "No projects yet", never "Oops, nothing here".
+- **Body copy** — `body1` · `text/secondary`. One or two sentences — why it is empty and what to do.
+- **Primary CTA** — Button (Contained). Specific label: "Create experiment", not "Get started".
+- **Secondary (optional)** — Button (Text) or Link — docs, tour, or alternate path.
+
+## Variants
+
+- **No experiments yet** (first-use) — Create your first experiment to start tracking runs and results. CTA: Create experiment.
+- **No results for "reactor 42"** (no-results) — Try a different search term or clear your filters. CTA: Clear filters.
+- **Something went wrong** (error) — This may be temporary. Try again or contact support. CTA: Try again.
+- **Access restricted** (permission-gated) — You don't have permission to view this section. Contact your administrator for access.
+
+### Why 48px icons?
+
+Empty states communicate visually before the user reads any text. At 48px the icon is prominent enough to anchor the composition without competing with nearby text components. Smaller sizes (20–24px) read as inline icons rather than illustrative elements.
+
+## Design tokens
+
+| Token | Value | Usage |
+| --- | --- | --- |
+| text/secondary | #000000 (60%) | Body copy, icon color |
+| text/primary | #000000 (87%) | Heading |
+| primary/main | #1976D2 | CTA button (Contained) |
+| spacing/4 | 32px | Gap between illustration and heading |
+| spacing/2 | 16px | Gap between heading, body, and CTA |
+
+## Guidelines
+
+### Do
+
+- Include a next action in first-use and error variants.
+- Keep headings under 5 words.
+- Match tone to variant — welcoming, neutral, actionable.
+- Use `role="alert"` on error-variant messages.
+
+### Don't
+
+- Use error-red for benign empty states.
+- Fill empty states with lorem ipsum to suggest content exists.
+- Show an empty state during initial page load — use LoadingContainer.
+- Write apologetic headings like "Oops, nothing here".

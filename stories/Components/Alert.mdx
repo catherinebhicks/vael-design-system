@@ -1,0 +1,91 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Alert/Guidelines" />
+
+# Alert
+
+Inline feedback that doesn't interrupt the user's task. Comes in three variants across four severities (error, warning, info, success).
+
+## Guidelines
+
+### Do
+
+- Use an Error alert with a persistent (non-dismissible) banner near the relevant panel when a monitor has triggered an alarm the user must see before proceeding.
+- Place an Error alert above a form when a submission fails validation, so it stays visible while the user corrects fields — don't route it to a snackbar.
+- Use a Success alert inline with the job detail panel when a job completes and its data is ready.
+- Use Warning severity with a description of the current value and required action when a threshold is approaching (e.g. memory near its limit).
+- Use the Filled variant for system-level banners — maintenance windows, connection loss, license expiry — where highest visibility across the page header is needed.
+- Route programmatic notifications through `useAlert`, which sends success to a Snackbar and errors to a persistent inline banner.
+
+### Don't
+
+- Use an Alert for a transient success confirmation after a low-stakes action (e.g. "Job ID copied") — use a Snackbar instead.
+- Stack multiple alerts of the same severity — consolidate into a single alert with a summary.
+- Use an Alert for an empty state or onboarding tip — those have dedicated, less alarming patterns.
+- Use an Alert when the content requires input or a multi-step decision — use a Dialog so focus is properly trapped.
+- Import MUI Alert directly for notifications — use the design system wrapper that integrates with the dashboard notification system.
+
+## Variants
+
+- **standard** — use by default; softer, fits page flow.
+- **filled** — high-emphasis; use sparingly for critical errors or on grey backgrounds.
+- **outlined** — lowest emphasis; use when the Alert sits inside a colored surface.
+
+## Content
+
+- **Title** — optional, short, sentence case. Use when there is a secondary message line. Don't repeat the severity ("Error: Error saving").
+- **Body** — state the problem and the resolution. For example: "Connection to the server lost. Check the gateway and retry."
+- **Action** — one primary action max ("Retry", "Undo"). Use a text Button, not a Link.
+- **Dismiss** — include an `onClose` for non-persistent alerts. Omit for alerts that must remain until the condition clears.
+
+## Props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| severity | `"error"` \| `"warning"` \| `"info"` \| `"success"` | `"success"` | Controls icon, color, and ARIA role. Always set explicitly — do not rely on the default. |
+| variant | `"standard"` \| `"filled"` \| `"outlined"` | `"standard"` | Use standard for most inline alerts, filled for high-emphasis / critical, outlined on colored surfaces. |
+| onClose | `(event: React.SyntheticEvent) => void` | — | Renders a dismiss button when provided. Omit for alerts that must persist until the condition clears. |
+| action | `React.ReactNode` | — | Replaces the default close button area. Use a single text button ("Retry", "View logs"). One action max. |
+| icon | `React.ReactNode` \| `false` | severity icon | Override the severity icon, or pass `false` to remove it. Removing the icon requires a compensating accessible label. |
+| color | `"error"` \| `"warning"` \| `"info"` \| `"success"` | matches severity | Overrides color independently of severity. Use rarely — mismatches confuse screen readers. |
+| sx | `SxProps` | — | System prop for one-off style overrides. Prefer design token values. |
+
+## States
+
+| State | Visual |
+| --- | --- |
+| Error | Error icon, border, and background tint. Never auto-dismisses when triggered via `useAlert`. |
+| Warning | Warning icon, border, and background tint. Auto-dismisses after 2–7s when triggered via `useAlert`. |
+| Info | Info icon, border, and background tint. Auto-dismisses after 2–7s. |
+| Success | Success icon, border, and background tint. Routed to Snackbar (not banner) when triggered via `useAlert`. |
+| With close button | Trailing dismiss icon button; required for any non-critical alert that does not auto-dismiss. |
+| With action | Inline text button for a directly related remediation step (e.g. "View logs", "Retry"). |
+
+## Accessibility
+
+- Alerts render with `role="alert"` — screen readers announce them automatically.
+- Don't rely on color alone — the icon plus text carry the severity.
+- Place error alerts near the failing element, not at the top of a long form.
+
+## Related surfaces
+
+Default to an inline Alert. Reach for a Dialog only when the user must decide before continuing.
+
+| Surface | Use for | Blocking? |
+| --- | --- | --- |
+| Alert (inline) | Contextual feedback tied to a specific region — form errors, page-level warnings, empty/error states | No |
+| Snackbar | Transient, global feedback on an action — "Changes saved", "Export ready" | No |
+| Dialog | Blocking decisions — confirmations, critical errors that must be acknowledged | Yes |
+
+## useAlert hook
+
+`useAlert` is the primary API for all programmatic notifications in the dashboard. It routes by severity to the correct channel automatically — do not import MUI Alert or Snackbar directly to trigger notifications, and never mount your own Snackbar.
+
+| Severity | Channel | Behavior |
+| --- | --- | --- |
+| success | Snackbar (bottom-left) | Auto-dismisses after 2–7s (50ms × message length, clamped) |
+| info | Banner (inline) | Auto-dismisses after 2–7s |
+| warning | Banner (inline) | Auto-dismisses after 2–7s |
+| error | Banner (inline) | Never auto-dismisses — persists until the user closes it |
+
+Errors and warnings describe ongoing states requiring action — auto-hiding them before the user has read and responded is a usability failure in a monitoring context where missing an alarm has real consequences. Successes confirm completed actions that are already mentally acknowledged; a persistent banner would only add noise in a data-dense interface.

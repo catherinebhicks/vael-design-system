@@ -1,0 +1,65 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Typography" />
+
+# Typography
+
+Roboto for UI, Roboto Mono for job IDs, numeric values, and copy-pasteable strings. Base 16px. `h1`–`h2` use Light (300) — at `h3` and below, Regular is needed for legibility as stroke width becomes critical.
+
+## Type scale
+
+Type is the workhorse of the dashboard — every screen is text-dense and data-rich. The scale uses 13 MUI variants derived from Material Design's type system, with specific weights chosen for legibility at each size. Font families are strictly limited to Roboto and Roboto Mono — no decorative or branded display faces.
+
+### Font families
+
+| Family | Purpose | Weights loaded |
+| --- | --- | --- |
+| Roboto | All UI text, headings, body copy, buttons, labels | 300 (Light), 400 (Regular), 500 (Medium) |
+| Roboto Mono | Job IDs, numeric values, copy-pasteable strings, code | 400, 500 |
+
+**Why Roboto?** Roboto is the default Material Design typeface — adopted when MUI was chosen ([ADR 001](decisions.html#adr-001)). It has excellent legibility at small sizes, wide language coverage, and is free via Google Fonts. Switching would require re-testing every UI density decision.
+
+**Why Roboto Mono for IDs?** Fixed-width alignment makes long job IDs (e.g. `job-20240115-abc123`) scannable — operators need to compare IDs character-by-character. Proportional fonts produce ragged columns in tables, obscuring character-level differences like O vs 0 or l vs 1.
+
+### Full variant scale (13 tokens)
+
+| Variant | Weight | Size | Line height | Letter spacing | Usage |
+| --- | --- | --- | --- | --- | --- |
+| h1 | Light (300) | 96px | 1.167 | -1.5px | Page-level display headlines (rare) |
+| h2 | Light (300) | 60px | 1.2 | -0.5px | Major section headlines |
+| h3 | Regular (400) | 48px | 1.167 | 0 | Page titles |
+| h4 | Regular (400) | 34px | 1.235 | +0.25px | Dialog titles, hero numbers |
+| h5 | Regular (400) | 24px | 1.334 | 0 | Section headings within a page |
+| h6 | Medium (500) | 20px | 1.6 | +0.15px | Subsection headings, card titles |
+| subtitle1 | Regular (400) | 16px | 1.75 | +0.15px | Lead text, form section labels |
+| subtitle2 | Medium (500) | 14px | 1.57 | +0.1px | Supporting subheadings |
+| body1 | Regular (400) | 16px | 1.5 | +0.15px | Primary body copy — the default |
+| body2 | Regular (400) | 14px | 1.43 | +0.17px | Secondary body — tables, sidebars, dense UI |
+| button | Medium (500) | 14px | 1.75 | +0.4px, UPPERCASE | All button labels |
+| caption | Regular (400) | 12px | 1.66 | +0.4px | Helper text, timestamps, field descriptions |
+| overline | Regular (400) | 12px | 2.66 | +1px, UPPERCASE | Eyebrow labels, category tags |
+
+**Why letter-spacing tightens at large sizes and loosens at small sizes?** Optical spacing compensation. At display sizes (h1: 96px), the visual gap between letters appears larger than intended — negative tracking (-1.5px) restores visual density. At small sizes (caption: 12px, overline: 12px), letters blur together — positive tracking (+0.4px to +1px) creates breathing room and improves legibility. This follows Robert Bringhurst's tracking principles, formalized in Material Design's type system.
+
+### Weight rationale
+
+- **Light (300)** — Used only for `h1` and `h2`. At 96px and 60px, Regular is visually heavy; Light reads cleanly at display sizes.
+- **Regular (400)** — The workhorse. Default for body copy, most headings, and input text. Below 48px, Regular is needed for stroke legibility.
+- **Medium (500)** — Emphasis weight. Used for `h6`, `subtitle2`, `button`, and interactive labels where weight communicates affordance. Also used for table column headers and active nav items.
+- **Bold (700)** — Not included. MUI's token set has no named slot for 700. Adding it without a formal scale entry would create an undocumented weight — engineers would use ad-hoc `fontWeight: 700` outside the token system. If emphasis beyond Medium is needed, use color (`text.primary` vs `text.secondary`) or a size increase instead.
+
+### Usage guidelines
+
+- **Headings** use `h1`–`h6` semantically — the variant also sets the HTML tag. Override with `component="h1"` when the semantic tag should differ from the visual scale.
+- **Body copy** defaults to `body1` for most contexts; use `body2` inside tables, sidebars, dense lists, and metadata blocks.
+- **Buttons** always use the `button` variant — do not override weight or case. The UPPERCASE + tracking combination is the recognition pattern for "this is tappable."
+- **Captions** are for supplementary metadata (timestamps, field helper text). They should never carry primary information a user needs to complete a task.
+- **Overlines** are eyebrow labels above a heading — use sparingly to categorize a page or section.
+- **Monospace** is applied via `fontFamily: 'Roboto Mono'` on specific fields (job IDs, numeric values) — there is no dedicated variant.
+
+### Accessibility
+
+- Minimum body size is `body2` (14px) — below that, legibility degrades significantly.
+- Line length should target 45–75 characters for body copy. Our page-level max-width is ~820px, which caps body1 at about 72 characters.
+- Never use `text.disabled` for content a user must read — it's reserved for inactive controls.
+- All headings must follow document hierarchy (h1 → h2 → h3, no skipping) for screen readers. Use `component="hN"` to override the visual variant if needed.

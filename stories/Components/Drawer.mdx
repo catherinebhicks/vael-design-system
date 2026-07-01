@@ -1,0 +1,136 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Drawer/Guidelines" />
+
+# Drawer and Link
+
+Navigation surfaces: the `Drawer` side panel and the inline `Link`.
+
+## Drawer
+
+Side panel that is persistent at LG/XL breakpoints and modal at smaller ones. The global navigation drawer is 260px wide.
+
+### Guidelines
+
+#### Use when
+
+- Surfacing a contextual tool panel that users open on demand without leaving the main canvas.
+- Showing right-anchored detail panels with row metadata when a user selects a row in a data grid, keeping the full grid visible alongside the detail.
+- Providing a persistent left nav on large-screen desktop views where a section hierarchy needs to stay visible across routes.
+- Providing temporary overlay drawers on mobile or tablet for navigation menus that would consume too much screen space permanently.
+- Providing contextual filter panels that slide in from the right, letting users configure complex filter sets without leaving the data view.
+
+#### Don't use when
+
+- The content requires a full-page layout — use a dedicated route instead of cramming it into a drawer.
+- A `Dialog` is more appropriate, such as destructive confirmations where focus trapping and a clear cancel/confirm pattern are needed.
+- Using a permanent drawer on screens narrower than 1024px — it leaves too little room for data tables and chart panels.
+- Nesting a drawer inside another drawer — multiple concurrent sliding panels create disorienting spatial relationships.
+- Hiding critical controls inside a drawer where they may be overlooked during active monitoring — keep primary controls always visible.
+
+### Props
+
+Scope: Tier 1 — drop in, no wrapper needed. Import from `@mui/material/Drawer`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `open` | `boolean` | `false` | Controls visibility for temporary and persistent variants. Not needed for `permanent`. |
+| `onClose` | `(event, reason) => void` | — | Required for `temporary`. Called on backdrop click and Escape key. Use to set `open` to false. |
+| `anchor` | `'left' \| 'right' \| 'top' \| 'bottom'` | `'left'` | Edge the drawer slides from. Use `'right'` for detail panels; `'left'` for global nav. |
+| `variant` | `'temporary' \| 'persistent' \| 'permanent'` | `'temporary'` | See the variant reference below. `permanent` is used for the global nav shell. |
+| `PaperProps` | `PaperProps` | `{}` | Pass `sx` here to set width, background, or border overrides on the drawer surface. |
+| `ModalProps` | `ModalProps` | `{}` | Pass `keepMounted: true` to keep the DOM mounted for performance on frequently-toggled drawers. |
+| `transitionDuration` | `number \| { enter, exit }` | `{ enter: 225, exit: 195 }` | Override the slide animation duration in ms. Keep it under 250ms per the Vael motion spec. |
+
+```jsx
+// Temporary drawer — mobile nav or detail panel
+import Drawer from '@mui/material/Drawer';
+
+function NavDrawer({ open, onClose }) {
+  return (
+    <Drawer
+      open={open}
+      onClose={onClose}
+      anchor="left"
+      variant="temporary"
+      PaperProps={{ sx: { width: 260 } }}
+      ModalProps={{ keepMounted: true }}
+    >
+      {/* nav content */}
+    </Drawer>
+  );
+}
+
+// Permanent drawer — large-screen shell
+<Drawer variant="permanent" PaperProps={{ sx: { width: 260 } }}>
+  {/* nav content */}
+</Drawer>
+```
+
+### Variants
+
+| Variant | When |
+| --- | --- |
+| `permanent` | Always visible; content offsets by the drawer width. LG/XL global nav. |
+| `persistent` | Toggleable; content stays offset when open. Rare. |
+| `temporary` | Modal overlay; closes on outside click. XS/SM mobile nav and detail drawers. |
+
+### Specifications
+
+- Width — 260px.
+- Animation — under 250ms, ease-out.
+- Elevation — none when `permanent`, Elevation 4 when `temporary`.
+- Focus trap — MUI wraps content in a focus trap when `temporary`.
+- Escape key closes the `temporary` variant.
+
+### Accessibility
+
+- The temporary drawer receives a focus trap automatically via MUI's Modal infrastructure — no extra work needed.
+- Add `aria-label` to the root element for screen-reader navigation landmarks, e.g. `aria-label="Main navigation"`.
+- Escape key closes temporary and persistent drawers via MUI's built-in keydown handler.
+- Ensure the trigger button that opens the drawer has an accessible label (`aria-label="Open menu"`) and manages focus correctly on close.
+
+## Link
+
+MUI `Link` component — inline hyperlinks with typography variant control and underline behavior. Composed on top of the HTML `<a>` element.
+
+### Guidelines
+
+#### Use when
+
+- Navigating to another page or route — inline within body text or as a standalone navigational element.
+- Linking to external resources with `target="_blank"` and a visual affordance.
+- Building breadcrumb trails inside MUI's `Breadcrumbs` component.
+- Providing SPA-aware navigation by composing with React Router's `RouterLink`.
+
+#### Don't use when
+
+- The action triggers a mutation or command (save, submit, delete) — use a `Button` instead; links are for navigation.
+- Linking within a tab bar or primary navigation — use `Tabs` or the sidebar nav pattern; raw links in a tab-like row lack accessible role semantics.
+- The destination is only a `#anchor` on the same page and a smooth-scroll behavior is needed — handle the click event explicitly.
+- Displaying link text with only color as the distinguishing feature — combine with underline or an icon to meet accessibility contrast requirements.
+
+### Props
+
+Scope: Tier 1 — drop in, no wrapper needed. Import from `@mui/material/Link`. Renders as `<a>` by default; use the `component` prop to swap to a router link.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `href` | `string` | — | Destination URL. When using React Router, set `component={RouterLink}` and `to` instead. |
+| `variant` | Typography variant string — `'body1' \| 'body2' \| 'h6' \| 'caption'` … | `'inherit'` | Sets the typographic size and weight. Inherits parent text styles by default. |
+| `underline` | `'always' \| 'hover' \| 'none'` | `'always'` | Controls underline rendering. Use `'hover'` for nav links where an underline would be visually noisy. |
+| `color` | `'primary' \| 'secondary' \| 'textPrimary' \| 'textSecondary' \| 'error' \| 'inherit'` | `'primary'` | Maps to the theme palette. Use `'inherit'` to take on the parent container's color. |
+| `target` | `string` | — | Set `'_blank'` for external links opening in a new tab. |
+| `rel` | `string` | — | Always pair `target="_blank"` with `rel="noopener noreferrer"` for security. |
+| `component` | `React.ElementType` | `'a'` | Swap the root element — use `RouterLink` from React Router to integrate with the SPA router. |
+
+### Anatomy
+
+MUI `Link` is a thin wrapper over an `<a>` tag that adds: (1) typography variant inheritance, (2) color palette mapping, and (3) underline behavior via CSS. It composes cleanly with any text content and respects the theme's `typography` and `palette` tokens.
+
+### Accessibility
+
+- Always provide meaningful link text — avoid "click here" or "learn more" in isolation.
+- External links opening `_blank` should visually signal this (consider a small external-link icon) and always include `rel="noopener noreferrer"`.
+- Links styled with `underline="none"` must be distinguishable from non-link text by means other than color alone (e.g., weight, icon).
+- Focus ring is inherited from MUI's global focus-visible styles — do not suppress it.

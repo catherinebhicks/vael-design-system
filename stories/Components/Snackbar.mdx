@@ -1,0 +1,127 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Snackbar/Guidelines" />
+
+# Snackbar
+
+Transient messages at the screen edge with an optional action and dismiss. Only one appears on screen at a time. Use `useAlert` — severity auto-routes to the right surface (see ADR 010).
+
+## Guidelines
+
+### Do
+
+- Use Snackbar for transient, non-blocking feedback at the screen edge.
+- Confirm a completed low-stakes action — "Project saved", "Job ID copied", "Deployment published" — where the user already knows what they did and just needs confirmation it worked.
+- Trigger success notifications via `useAlert({ severity: 'success' })` — this routes automatically to Snackbar; do not construct a Snackbar manually for success messages.
+- Provide an "Undo" action immediately after a reversible operation (e.g. removing a tag from a project) — the single inline action is the right affordance.
+- Surface a brief info message that doesn't require the user to act — e.g. "Auto-save complete" — where a persistent banner would create visual noise.
+
+### Don't
+
+- Use Snackbar for errors that require user action — use an inline `Alert` instead. Snackbars are transient and easy to miss.
+- Use a Snackbar when a job has failed or a system alarm has fired — use a persistent banner via `useAlert({ severity: 'error' })`, which never auto-dismisses.
+- Use a Snackbar for an ongoing system condition (connection lost, license expiring, sync overdue) — use `useBanner`, which stacks persistent banners ordered by severity.
+- Use a Snackbar for any message longer than one sentence — anything more complex belongs in an Alert banner or Dialog.
+- Show more than one action — if the notification requires two choices, use a Dialog.
+- Import MUI `Snackbar` directly — always use `useAlert` (primary) or `useSnackbarAlert` (success-only) so notification routing stays consistent.
+- Force error or warning severity into a Snackbar — `useAlert` routes those to banners automatically; forcing them into a Snackbar hides critical system state behind an auto-dismissing toast.
+
+## Props
+
+Scope: Tier 1 — drop in, no wrapper needed. Import from `@mui/material/Snackbar`. In this codebase Snackbar is always paired with an `Alert` inside it for styled feedback — always use `useAlert` (Tier 3) for programmatic notifications rather than mounting Snackbar directly.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `open` | `boolean` | `false` | Controls visibility. Required — pair with state managed by `useAlert` or a local `useState`. |
+| `onClose` | `(event, reason: "timeout" \| "clickaway" \| "escapeKeyDown") => void` | — | Always guard against `reason === "clickaway"` — do not close on click-away for persistent or error messages. |
+| `autoHideDuration` | `number \| null` | `null` | Milliseconds until auto-dismiss. Use `4000` for default, `6000` with an Undo action, `null` for persistent (errors only). |
+| `anchorOrigin` | `{ vertical: "top" \| "bottom", horizontal: "left" \| "center" \| "right" }` | `{ vertical: "bottom", horizontal: "left" }` | Vael standard: bottom-left (desktop). Do not override without design approval. |
+| `message` | `React.ReactNode` | — | Simple string messages only. For severity-styled feedback, pass an `Alert` as children instead. |
+| `action` | `React.ReactNode` | — | Single text button ("UNDO", "VIEW") — one action max. Extends `autoHideDuration` to 6s so users can react. |
+| `TransitionComponent` | `React.ElementType` | `Grow` | Animation component. Vael uses `Slide direction="up"` for bottom-origin Snackbars. |
+
+```jsx
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import Slide from '@mui/material/Slide';
+
+// Standard usage: Snackbar + Alert inside (Vael pattern)
+function SlideUp(props) {
+  return <Slide {...props} direction="up" />;
+}
+
+<Snackbar
+  open={open}
+  onClose={(event, reason) => {
+    if (reason !== 'clickaway') setOpen(false);
+  }}
+  anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+  TransitionComponent={SlideUp}
+>
+  <Alert onClose={() => setOpen(false)} severity="success" variant="filled">
+    Changes saved successfully.
+  </Alert>
+</Snackbar>
+
+// Preferred: via useAlert hook (Tier 3) — handles open/close state automatically
+const { pushAlert } = useAlert();
+pushAlert({ severity: 'success', message: 'Changes saved' });
+
+// With undo action — 6s window
+pushAlert({
+  severity: 'info',
+  message: 'Job archived',
+  action: { label: 'Undo', onClick: restore },
+});
+```
+
+## Timing
+
+| Scenario | autoHideDuration | Notes |
+| --- | --- | --- |
+| Default | 4000 | Action confirmation with no user choice required |
+| With action | 6000 | Gives time to react to Undo |
+| Persistent | null | Error severity only; user must explicitly dismiss |
+
+## Position and stacking
+
+- Fixed position: bottom-left (desktop), bottom-center (mobile).
+- One on screen at a time. New messages replace or queue — they do not stack visually. The notification provider handles queuing.
+
+## Anatomy
+
+- Surface — `grey/900` background, white text, elevation 6, radius 4 px (severity variants use Alert coloring inside the snackbar).
+- Message — one sentence, present tense. “Changes saved.” not “Your changes have been saved.”
+- Action (optional) — single text button, `primary/main`, ALL CAPS. One action max.
+- Close — × IconButton trailing the action.
+
+## Accessibility
+
+- Snackbars use `role="status"` (polite) for success/info, `role="alert"` for error.
+- Auto-dismiss pauses on hover and focus.
+- Action buttons are reachable via keyboard — the provider focuses Undo briefly if `focusAction: true`.
+
+## Notification hooks
+
+The dashboard uses a two-tier notification system. Do not import `Snackbar` or `Alert` directly for programmatic notifications, and never use `notistack` directly — use one of the hooks below. `useAlert` routes `success` and `info` severity to the Snackbar channel and `warning`/`error` to inline Alert (when a target ref is provided) or persistent Snackbar (when none is). See [ADR 010](decisions.html#adr-010).
+
+| Hook | Channel | Persists across pages | Use for |
+| --- | --- | --- | --- |
+| `useAlert` | Routes by severity | Yes (banners) | Primary API — use this for almost everything |
+| `useSnackbarAlert` | Snackbar only (bottom-left) | No | Success-only transient confirmations |
+| `useBanner` | Banner stack (inline) | Yes | Persistent errors and warnings that must survive navigation |
+
+### useAlert routing rules
+
+| Severity | Behavior |
+| --- | --- |
+| success | Snackbar — bottom-left, auto-dismisses after 2–7s |
+| info | Banner — inline, auto-dismisses after 2–7s |
+| warning | Banner — inline, auto-dismisses after 2–7s |
+| error | Banner — inline, never auto-dismisses — requires user action to close |
+
+### useBanner — persistent multi-banner stack
+
+Use for conditions that must remain visible across navigation — connection loss, license expiry, hardware faults. Banners stack with the most critical at top (errors before warnings before info). Provide an `id` to suppress duplicate banners. Import from `~/components/feedback/useBanner`.
+
+Auto-hide duration formula: `Math.min(Math.max(message.length * 50, 2000), 7000)` ms — approximates adult reading speed at ~200 wpm, with a 2s floor and 7s ceiling. Anything needing more than 7s belongs in a persistent banner.

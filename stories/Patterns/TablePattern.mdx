@@ -1,0 +1,57 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Table" />
+
+# Table visual specification
+
+Three table implementations — MUI Table, MUI DataGrid, and AG Grid — must match exactly. MUI Table and DataGrid inherit most values from the theme; AG Grid needs an explicit CSS-custom-property mapping. This page is the single reference to keep them in sync.
+
+## Canonical values
+
+| Property | Value | MUI token |
+| --- | --- | --- |
+| Row height — standard | 52px (AG Grid) · 48px (MUI Table) | — |
+| Row height — dense | 36px | — |
+| Column header height | 56px | — |
+| Cell horizontal padding | 16px | spacing(2) |
+| Cell font | 14px · Regular 400 | typography/body2 |
+| Header font | 14px · Medium 500 | typography/subtitle2 |
+| Table background | #ffffff | background/paper |
+| Row divider | rgba(0,0,0,0.12) | divider |
+| Row hover | rgba(0,0,0,0.04) | action/hover |
+| Row selected | rgba(25,118,210,0.08) | alpha(primary.main, 0.08) |
+| Checkbox / sort active | #1976d2 | primary/main |
+| Border radius | 4px | shape/borderRadius |
+
+**Why 52px AG Grid vs 48px MUI Table?** AG Grid's internal cell renderer adds ~4px of internal padding MUI Table cells don't. 52px on AG Grid matches the visible content height of MUI at 48px — the difference compensates for renderer behaviour, not a design preference.
+
+**Why 56px header vs 52px row?** Headers carry more visual weight — Medium font weight plus sort icons. The extra 4px prevents cramped headers relative to bold labels and creates a subtle hierarchy that aids table scanning.
+
+**Why primary-tinted selected rows?** MUI DataGrid uses `alpha(primary.main, 0.08)`. MUI Table defaults to `action.selected` (a neutral black tint). The spec aligns all three to the primary-tinted value for visual consistency across table types.
+
+## AG Grid CSS-var mapping
+
+**Sync rules:** The `DataGrid` wrapper reads palette and typography at runtime via `useTheme()`, so most theme changes propagate automatically. Static layout values (`--ag-header-height`, `--ag-row-height`, `--ag-cell-horizontal-padding`) must be updated manually if the spec changes.
+
+## MUI Table — selected row override
+
+MUI Table inherits most values from the theme automatically. Only the selected row color needs an explicit override — add it via `sx` on `TableRow`.
+
+For dense tables (36px rows), use `size="small"`. Font, cell padding, hover color, divider, and checkbox color are automatic from the theme — no overrides needed.
+
+## MUI DataGrid — standard usage
+
+MUI DataGrid matches the spec out of the box when the theme is configured. No overrides are needed for standard usage.
+
+## What must stay in sync
+
+If any of the following change in the MUI theme, the AG Grid wrapper CSS vars must be updated to match:
+
+| Theme change | AG Grid vars to update |
+| --- | --- |
+| palette.primary.main | `--ag-range-selection-border-color`, `--ag-input-focus-border-color`, `--ag-checkbox-checked-color`, `--ag-selected-row-background-color` |
+| palette.divider | `--ag-border-color`, `--ag-row-border-color` |
+| palette.action.hover | `--ag-row-hover-color` |
+| palette.background.paper | `--ag-background-color`, `--ag-header-background-color` |
+| palette.text.primary | `--ag-foreground-color`, `--ag-header-foreground-color` |
+| typography.fontFamily | `--ag-font-family` |

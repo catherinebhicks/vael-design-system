@@ -1,0 +1,52 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Loading" />
+
+# Loading and inline error states
+
+Patterns for communicating system status: waiting on data, reporting failure, and acknowledging user actions. The app uses `LinearProgress` exclusively — `Skeleton` and `CircularProgress` are not used anywhere in the codebase.
+
+An audit found 0 usages of `Skeleton` or `CircularProgress` in the app codebase. All loading feedback uses `LinearProgress` via `LoadingPage` or `LoadingContainer`.
+
+## Which pattern to use
+
+| Scenario | Pattern |
+| --- | --- |
+| App waiting on a critical provider | LoadingPage |
+| Section / table fetching its data | LoadingContainer |
+| Mutation succeeded | useAlert(\{ severity: 'success' \}) |
+| Mutation failed | useAlert(\{ severity: 'error' \}) |
+| System alarm must persist | useBanner(\{ autoHideDuration: null \}) |
+| Navigation to missing resource | ErrorPage or 404 |
+| Query succeeded, no data | Empty state (PT 05) |
+
+## LoadingPage — app shell
+
+Full-viewport loader used while a critical provider (`ViewerProvider`) waits for its initial query. Shows the app logo above a `LinearProgress`.
+
+Props: `loading`, `error` — transitions to `GeneralErrorPage` when loading completes with an error.
+
+## LoadingContainer — section-level
+
+Scoped loader for list pages, tables, and data-fetching sections. Renders "Loading…" text (`Typography subtitle1`) above an indeterminate `LinearProgress`. Zero props.
+
+Why "Loading…" text over a skeleton? LoadingContainer is used precisely where the incoming layout is unknown, and skeletons require knowing the row count and card shape. A spinner alone provides no text for screen readers. "Loading…" with `LinearProgress` gives forward motion plus a text label accessible to assistive tech.
+
+## useAlert — inline feedback
+
+Routes messages to the right surface based on severity:
+
+| Severity | Surface |
+| --- | --- |
+| success · info | Snackbar (bottom-left, auto-hides) |
+| warning · error | Banner (top of page, stacks) |
+
+Auto-hide timing: success/info auto-hide via `calculateAutoHideDuration` (50ms per character, min 2s, max 7s). Error banners stay until manually dismissed.
+
+## useBanner — persistent
+
+For alarms and system-level warnings that must stay until explicitly dismissed. `BannerStack` sorts by severity (error > warning > info > success) then creation time; persistent banners render above ephemeral ones.
+
+## Error handling
+
+No custom error boundaries. Unhandled exceptions bubble to the framework's built-in handling, which renders the default 500 page. Expected errors are surfaced via GraphQL union error types, handled inline by the calling component.

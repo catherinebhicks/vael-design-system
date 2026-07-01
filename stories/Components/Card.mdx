@@ -1,0 +1,123 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Card/Guidelines" />
+
+# Card & Paper
+
+Card is a composable surface built from header, media, content, and action zones. Paper is the base surface it is built on — a flat container with 0–24 elevation levels and Elevation or Outlined variants.
+
+## Card
+
+Use a Card to surface a single project, job, or document as a bounded, scannable object with a title, key metadata, and one or two actions.
+
+### Anatomy
+
+A fully composed Card has four optional zones that stack vertically. Any zone can be omitted — a minimal card is just `CardContent` inside `Card`.
+
+- **CardMedia** — Hero image or video. Always set an explicit height to prevent layout shift (CLS). Use `component="img"` for accessible alt text.
+- **CardHeader** — Avatar, title, subheader, and an optional action. The right-aligned action slot is reserved for overflow or secondary icon buttons.
+- **CardContent** — Free-form body. All paragraph text, metrics, and non-action content belongs here. Padding is 16px on all sides.
+- **CardActions** — Primary and secondary text buttons or icon buttons. Keep to 1–2 actions. Use `disableSpacing` only if manually managing the gap.
+
+### Props
+
+Scope: Tier 1 — Direct MUI usage. No Vael wrapper. Import from `@mui/material/Card`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| raised | bool | false | Shorthand for `elevation={8}`. Prefer explicit elevation when you need a specific shadow level. |
+| variant | "elevation" \| "outlined" | "elevation" | Use `"outlined"` for digest/summary cards that sit inside an already-elevated surface. |
+| elevation | number (0–24) | 1 | Inherited from Paper. Controls drop-shadow depth. Keep ≤4 for inline cards; reserve 8+ for modals/popovers. |
+| square | bool | false | Removes the 4px border-radius. Use in flush-edge layouts (e.g., full-bleed panel sections). |
+| sx | SxProps | — | MUI system prop for one-off style overrides. Prefer tokens over raw values. |
+
+#### Sub-components
+
+| Sub-component | Key props | Default | Notes |
+| --- | --- | --- | --- |
+| CardHeader | avatar, title, subheader, action | — | `avatar` accepts any node (Avatar, icon). `action` is right-aligned — use for icon buttons (overflow menu). |
+| CardMedia | component, image, height | — | Use `component="img"` for real images. Default renders a div with `background-image`. Set explicit height to prevent layout shift. |
+| CardContent | — | — | Applies 16px padding on all sides; last-child removes bottom padding. Wrap all body text here. |
+| CardActions | disableSpacing | false | Default adds 8px gap between action children. Set `disableSpacing` to manage spacing manually. |
+
+### Example
+
+```jsx
+// Typical job-summary card
+import Card from '@mui/material/Card';
+import { CardHeader, CardMedia, CardContent, CardActions, Avatar, Button } from '@mui/material';
+
+<Card variant="elevation" elevation={1}>
+  <CardMedia component="img" height="140" image={job.thumbnailUrl} />
+  <CardHeader avatar={<Avatar>{job.owner[0]}</Avatar>} title={job.id} subheader={job.startedAt} />
+  <CardContent>{job.summary}</CardContent>
+  <CardActions>
+    <Button size="small">Open job</Button>
+  </CardActions>
+</Card>
+```
+
+### Design tokens
+
+| Token | Value | Component | Notes |
+| --- | --- | --- | --- |
+| --shadow-1 | MUI elevation 1 | Card default | Default card shadow. Maps to `elevation={1}`. |
+| --shadow-2 | MUI elevation 2 | Paper e2 | Use for panels that need slight lift above the page surface. |
+| --shadow-8 | MUI elevation 8 | Paper e8 | Use for hovered/dragged cards in drag-and-drop interfaces. |
+| --bg-paper | #ffffff | Both | Background of all elevated surfaces. Updated to a warm tint in the Q3 '26 rebrand. |
+| --divider | rgba(0,0,0,0.12) | Paper outlined | Border color for `variant="outlined"`. |
+
+### Accessibility
+
+- Card is a presentational container and adds no implicit ARIA role. If the card represents a landmark (e.g., an article), add `component="article"` on the Card.
+- CardMedia with `component="img"` must have a descriptive `alt` prop. Background-image cards (the default) are decorative and need no alt text.
+- CardActions buttons must have accessible labels. Icon-only buttons require `aria-label` on the IconButton.
+- Ensure sufficient contrast between the card surface (`--bg-paper`) and the surrounding page background. At elevation 1 the separation is shadow only — verify WCAG 1.4.11 Non-text Contrast in both light and dark themes.
+- For interactive cards (the entire card is clickable), wrap it in a button or link and ensure the focus ring is visible at the keyboard tab stop.
+
+## Paper
+
+Paper is the base surface that Card, Dialog, Menu, and Popover are built on. Use it directly as a layout surface for panels and chart containers.
+
+### Props
+
+Scope: Tier 1 — Direct MUI usage. Import from `@mui/material/Paper`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| elevation | number (0–24) | 1 | Maps directly to the MUI shadow scale. 0 = flat (border or background only). Keep ≤4 for page panels; 8–16 for overlays. |
+| variant | "elevation" \| "outlined" | "elevation" | `"outlined"` renders a 1px divider border with no shadow — use when stacking surfaces at the same elevation layer. |
+| square | bool | false | Removes the 4px border-radius. Use for edge-to-edge panel sections that span the full container width. |
+| component | elementType | "div" | Override the root element. Common: `"section"`, `"article"`, `"aside"` for semantic HTML landmarks. |
+
+### Example
+
+```jsx
+// Panel section using Paper as a layout surface
+import Paper from '@mui/material/Paper';
+
+// Elevated panel (default)
+<Paper>{children}</Paper>
+
+// Flat outlined panel (use inside already-elevated containers)
+<Paper variant="outlined" sx={{ p: 2 }}>{children}</Paper>
+```
+
+## Guidelines
+
+### Use when
+
+- Surfacing a single project or job as a scannable object — title, status chip, key metadata, and a primary action in one bounded unit.
+- Displaying key documents on the project dashboard where each document is an independent subject with its own actions.
+- Showing imagery items where CardMedia carries the image and CardActions holds download or annotate controls.
+- Building a draggable function card in the workflow editor's function library — the Card boundary defines the draggable region.
+- Grouping a job summary (server ID, start time, status, owner) with 1–2 quick actions like "View job" or "Export".
+- Using the Blank variant when a custom internal layout is required — e.g., a parameter summary panel with a bespoke grid inside.
+
+### Don't use when
+
+- Building a dense data table of jobs or projects — use AG Grid or MUI DataGrid instead; a Card implies a browsable subject, not a row.
+- Laying out a full project detail page — Card implies one subject; use Paper, Container, and Stack for multi-section page shells.
+- Wrapping a complex form (deployment and integration setup, parameter configuration) — a full page or Dialog provides better scroll and focus management.
+- Displaying a long list of alerts or log entries where scanning speed matters — a list or data grid row is faster to read than a card grid.
+- Nesting a full AG Grid or chart inside a Card — the container becomes ambiguous; use a Paper-based panel section instead.

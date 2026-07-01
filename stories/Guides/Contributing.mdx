@@ -1,0 +1,68 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guides/Contributing" />
+
+# Contributing
+
+Vael is open to contributions from any engineer or designer on the team. Every change goes through two reviewers — one from design, one from engineering — regardless of which discipline it touches.
+
+## When to contribute
+
+- A pattern is being built in multiple places independently (consolidation signal)
+- A component gap is causing teams to build one-off solutions
+- An existing component has a documented bug or accessibility issue
+- Documentation is missing, incorrect, or out of date
+
+Don't contribute:
+
+- One-off components unlikely to be reused outside one context
+- Product-specific logic that belongs in the app, not the system
+- Cosmetic variations achievable with existing component properties
+
+## Contribution types
+
+| Type | Description | Process |
+| --- | --- | --- |
+| Bug fix | Existing component behaves incorrectly or doc is wrong | File issue → fix → review |
+| Doc update | Documentation gap, clarification, or correction | Direct PR/edit if minor |
+| New variant | Add a property or state to an existing component | RFC → Figma → review |
+| New component | Propose an entirely new component or pattern | RFC → Design → Figma → Engineering → review |
+| Token change | Modify an existing token value | RFC required — breaking change risk |
+
+## Process overview
+
+1. **File an issue or RFC** — for bugs, open a ticket with what's broken, which component, and a Figma link. For new components or token changes, write an RFC (Request for Comments) with: Problem, Proposed solution, Scope, Alternatives considered, Open questions.
+2. **RFC review** — reviewed in the weekly design system sync. Outcomes: Approved / Approved with changes / Deferred / Declined (with reason).
+3. **Design in Figma** — design all variants, states, and responsive behaviors using existing tokens. Get a design review from at least one other designer.
+4. **Write documentation** — before engineering begins, using the standard template: Overview, Anatomy, Variants, Design Tokens, Usage Guidelines, Accessibility.
+5. **Engineering implementation** — implement using documented tokens; add unit, accessibility (axe), and visual regression tests; update `tokens/design-tokens.json`, `tokens/tokens.css`, and `tokens/theme.ts` if tokens changed.
+6. **Review** — PR requires Figma link, component doc, all states implemented, accessibility check passed, existing tests passing, and `changelog.md` updated. Requires 1 designer + 1 engineer approval (not the author).
+7. **Release** — merge to main, update `changelog.md` with version bump, announce in team channel with what changed, who it affects, and a link to docs.
+
+## Breaking changes
+
+Breaking changes are anything requiring existing implementations to update code or designs: renaming or removing a token, renaming a component prop, removing a variant, or changing a component's DOM structure. These require:
+
+- An RFC with migration path
+- A deprecation period (old behavior still works with a console warning for 1 version)
+- A migration guide written before the breaking version ships
+- An announcement to all teams before release
+
+## Ship checklist
+
+- Figma component updated with all variants (size, state, density)
+- Storybook story covering each variant + A11y addon clean
+- Unit tests (RTL + axe) green · Chromatic build approved
+- Docs page updated — anatomy, props, do/don't, a11y notes
+- Changelog entry in `CHANGELOG.md` under Unreleased
+
+## When to write an ADR
+
+Write an ADR for any decision future maintainers might second-guess: token values, component API differences from MUI defaults, rejected alternatives. Keep it to 1–2 pages. See [ADRs](decisions.html#adrs) for examples.
+
+## What we won't accept
+
+- Components that duplicate existing ones without a clear differentiation reason
+- Token values that bypass the semantic system (e.g. raw hex values not derived from primitives)
+- Components without documentation
+- Changes that remove accessibility requirements

@@ -1,0 +1,51 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Dark Mode" />
+
+# Dark mode
+
+The Console is currently **light-mode only**. Dark mode has been requested by internal users and is on the product roadmap but has not been formally scoped. This section documents the intended approach so that decisions made now don't block it later.
+
+## Current status
+
+Not shipped. A dark theme is not available in production. `theme.palette.mode` is hardcoded to `'light'`. Any UI built today should use semantic tokens (`background.default`, `text.primary`, etc.) so it adapts automatically when dark mode ships — never reference raw hex values or hardcoded whites/blacks.
+
+## Why it's not shipped yet
+
+- **Charts are the blocker.** Highcharts in styled mode picks up MUI tokens, but our chart layouts (grid lines, fills, zone shading) were all tuned against a white background. Re-tuning across all four chart components plus every downstream screen is a substantial project.
+- **External nav.** `ExternalTopNav` uses `brand.blue` as its background — this needs a dark-mode pairing that hasn't been designed.
+- **Print/export.** Many exports (job reports, PDFs) assume light backgrounds. Dark mode would need a print-specific override or continue using light for exports.
+- **Hasn't been prioritized.** User research shows it's a nice-to-have, not a blocker. Users work in well-lit environments; eye-strain in low-light isn't a top complaint.
+
+## When it does ship — the plan
+
+MUI's dark palette is a well-trodden path — we'll follow standard conventions with minor customizations:
+
+| Token | Light value | Dark value (planned) |
+| --- | --- | --- |
+| background.default | #FFFFFF | #121212 |
+| background.paper | #FFFFFF | #1E1E1E (elevated) |
+| text.primary | rgba(0,0,0,0.87) | rgba(255,255,255,0.87) |
+| text.secondary | rgba(0,0,0,0.60) | rgba(255,255,255,0.60) |
+| divider | rgba(0,0,0,0.12) | rgba(255,255,255,0.12) |
+| primary.main | #1976D2 | #90CAF9 (MD dark blue 200) |
+| error.main | #D32F2F | #F44336 (brighter — darker needs more saturation) |
+
+## Design rules for dark-ready UI
+
+- Never hardcode `color: '#fff'`, `background: 'white'`, or `border: '1px solid #e0e0e0'`. Always use tokens.
+- Use `background.paper` for any surface that should "lift" off the background — in dark mode it's slightly lighter than `background.default` rather than identical (as in light mode).
+- Avoid pure black (`#000000`) as a background — it's harsh in dark mode. MUI uses `#121212` per the MD spec.
+- Test color contrast for both modes. A primary color that hits AA on white may fail on dark.
+
+## Ship-ready checklist
+
+Before dark mode can ship, we need:
+
+1. A complete audit of components for hardcoded colors.
+2. Highcharts styled-mode tuning for dark backgrounds.
+3. A print/export override.
+4. A user toggle with persisted preference.
+5. System preference detection via `prefers-color-scheme`.
+
+Each is tractable — none is scoped yet.

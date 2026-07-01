@@ -1,0 +1,372 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Color" />
+
+# Color
+
+The color system uses semantic tokens organized by role — each token communicates intent rather than a raw value. All colors are referenced by token name, never hardcoded as hex. This keeps the palette consistent across components and makes future theme changes (dark mode) mechanical.
+
+## Semantic color
+
+Semantic tokens are grouped by role. Each token communicates intent, so components stay consistent and theme changes become mechanical.
+
+### Semantic roles
+
+| Token | Value | Usage |
+| --- | --- | --- |
+| primary.main | #1976D2 | Primary buttons, links, focus |
+| secondary.main | #9C27B0 | Secondary actions, accents |
+| error.main | #D32F2F | Validation, destructive |
+| warning.main | #EF6C00 | Caution, pre-alert |
+| info.main | #0288D1 | Neutral info |
+| success.main | #2E7D32 | Positive, confirmation |
+| text.primary | rgba(0,0,0,0.87) — 87% | 13:1 contrast |
+| text.secondary | rgba(0,0,0,0.60) — 60% | 6:1 contrast |
+
+### Chart metric mapping
+
+| Metric | Token | Value |
+| --- | --- | --- |
+| CPU | primary.main | #1976D2 |
+| Memory | chart-variable-memory | #00796B |
+| Throughput | success.main | #2E7D32 |
+| Requests | secondary.main | #9C27B0 |
+| Latency | warning.main | #EF6C00 |
+| Bandwidth | info.main | #0288D1 |
+
+**Why this mapping?** Each metric was assigned to the token that most intuitively matched its nature. Once assigned, mappings are permanent — changing them breaks visual recognition across all historical charts and reports.
+
+### Brand palette
+
+| Token | Value | Contrast and usage |
+| --- | --- | --- |
+| --ds-brand-blue | #3266C0 | 5.5:1 ✓ AA — Any text size, buttons, icons, borders |
+| --ds-brand-blue-tint | #EBF0FB | Surface/background only — text on top must independently meet 4.5:1 |
+| --ds-brand-green | #5F942E | 3.7:1 ✓ AA Large — Text ≥18 px regular or ≥14 px bold; icons and UI components |
+| --ds-brand-green-dark | #558322 | 4.7:1 ✓ AA — Any text size, buttons, icons, borders |
+| --ds-brand-green-fill | #72B337 | 2.5:1 ✗ FAIL — Decorative fills only; below 3:1 threshold for text and UI components |
+| --ds-brand-green-light | #ABD4A5 | 1.7:1 ✗ FAIL — Background only; text on top must independently meet 4.5:1 (use Off-Black) |
+| --ds-brand-grey | #EDEDED | Background/surface only — text on top must independently meet 4.5:1 (use Off-Black) |
+| --ds-brand-white | #FFFFFF | Background/surface — text on top must independently meet 4.5:1 |
+| --ds-brand-off-black | #282828 | 14.8:1 ✓ AAA — Any text size, any use; exceeds all WCAG thresholds |
+
+**Brand palette — documented for reference.** These tokens (`--ds-brand-*`) record the Vael marketing brand colors. They are not used in product UI chrome — the product system uses `primary.*`, `success.*`, and other semantic tokens. Use brand tokens only in explicitly brand-facing surfaces (e.g. marketing banners, public nav). WCAG AA requires 4.5:1 for normal text, 3:1 for large text (≥18 px or ≥14 px bold) and UI components (WCAG 1.4.11). Colors below 3:1 are restricted to decorative fills and backgrounds where text color carries the contrast burden independently.
+
+### Guidelines
+
+#### Do
+
+- Reference tokens by name (`primary.main`) — never raw hex.
+- Use `_states/*` tokens for interactive overlays.
+- Follow the chart variable color assignments everywhere.
+- Pair `primary.main` with `primary.contrastText` on colored surfaces.
+
+#### Don't
+
+- Hardcode color values in components.
+- Use `primary.main` for decorative, non-interactive elements.
+- Mix state overlays — only one overlay active at a time.
+- Reassign chart variable colors without a formal decision.
+
+## Full token reference
+
+Every color token, in every role. Each token communicates intent rather than a raw value, which keeps application consistent across components and simplifies future theme changes (e.g. dark mode). All colors are defined as semantic variables and must be referenced by token name, never hardcoded as hex values.
+
+### Text — body copy, labels, and supporting content
+
+| Token | Value | Usage |
+| --- | --- | --- |
+| text/primary | #000000 (87%) | Body text, headings |
+| text/secondary | #000000 (60%) | Supporting text, captions |
+| text/disabled | #000000 (38%) | Inactive/disabled text |
+
+**Why 87%, 60%, and 38%?** These are Material Design's specified opacity values for text on white. Each was chosen to hit a specific contrast ratio: 87% opacity black on white achieves ~13:1 contrast (well above WCAG AA's 4.5:1 minimum); 60% achieves ~6:1 (AA-compliant for normal text); 38% is intentionally below threshold because disabled elements are exempt from contrast requirements under WCAG 1.4.3.
+
+### Primary — key actions, links, and focus indicators
+
+| Token | Value | Usage |
+| --- | --- | --- |
+| primary/main | #1976D2 | Primary buttons, active states, links |
+| primary/dark | #1565C0 | Hover state on primary elements |
+| primary/light | #42A5F5 | Backgrounds, tinted surfaces |
+| primary/contrastText | #FFFFFF | Text on primary backgrounds |
+| primary/_states/hover | #1976D2 (4%) | Hover overlay |
+| primary/_states/selected | #1976D2 (8%) | Selected overlay |
+| primary/_states/focus | #1976D2 (12%) | Focus ring fill |
+| primary/_states/focusVisible | #1976D2 (30%) | Keyboard focus |
+| primary/_states/outlinedBorder | #1976D2 (50%) | Outlined borders |
+
+**Why #1976D2?** This is MUI's default primary blue, inherited when MUI was adopted as the component library (see ADR 001). It has not been customized to the Vael brand color — the brand navy (`brand.blue`) is reserved for public-facing surfaces like `ExternalTopNav`. Changing this value would affect every interactive element in the app.
+
+### Secondary — supporting actions
+
+| Token | Value | Usage |
+| --- | --- | --- |
+| secondary/main | #9C27B0 | Secondary buttons, accents |
+| secondary/dark | #7B1FA2 | Hover on secondary elements |
+| secondary/light | #BA68C8 | Tinted secondary surfaces |
+| secondary/contrastText | #FFFFFF | Text on secondary backgrounds |
+
+### Error — destructive actions and validation failures
+
+| Token | Value | Usage |
+| --- | --- | --- |
+| error/main | #D32F2F | Destructive actions, validation |
+| error/dark | #C62828 | Hover state |
+| error/light | #EF5350 | Tinted error surfaces |
+| error/contrastText | #FFFFFF | Text on error backgrounds |
+
+### Warning — caution and pre-critical states
+
+| Token | Value | Usage |
+| --- | --- | --- |
+| warning/main | #EF6C00 | Caution, pre-critical |
+| warning/dark | #E65100 | Hover state |
+| warning/light | #FF9800 | Tinted warning surfaces |
+| warning/contrastText | #FFFFFF | Text on warning backgrounds |
+
+### Info — neutral informational
+
+| Token | Value | Usage |
+| --- | --- | --- |
+| info/main | #0288D1 | Informational callouts |
+| info/dark | #01579B | Hover state |
+| info/light | #03A9F4 | Tinted info surfaces |
+| info/contrastText | #FFFFFF | Text on info backgrounds |
+
+### Success — positive confirmation
+
+| Token | Value | Usage |
+| --- | --- | --- |
+| success/main | #2E7D32 | Positive confirmation |
+| success/dark | #1B5E20 | Hover state |
+| success/light | #4CAF50 | Tinted success surfaces |
+| success/contrastText | #FFFFFF | Text on success backgrounds |
+
+### Tonal ramps — 6-stop scales for depth, dark mode, and fills
+
+Each semantic color has a full tonal ramp. The 50 and 100 stops are for tinted surface fills (alert backgrounds, tag fills, status row tints) — never use them as text colors. The 300 stop is decorative fill only. The 700 / 800 / 900 stops are high-contrast values for text on white or dark-mode reversed surfaces. The existing `main` and `dark` tokens map to specific stops in each ramp and are still the primary interactive reference.
+
+| Ramp | Stops |
+| --- | --- |
+| primary | 50, 100, 300, main, dark, 900 |
+| secondary | 50, 100, 300, main, dark, 900 |
+| error | 50, 100, 300, main, dark, 900 |
+| warning | 50, 100, 300, main, dark, 900 |
+| info | 50, 100, 300, main, 800, dark |
+| success | 50, 100, 300, 700, main, dark |
+
+**Which stop to use?** `50` — alert/chip background, status row tint, tag fill. `100` — hover fill on a tinted surface, icon container bg. `300` — decorative illustration fill, chart area opacity alternative (prefer opacity tokens for charts). `700/800` — text on white when `main` fails AA (rare). `900` — dark mode surface text, maximum contrast variant. In dark mode, the ramp inverts: use `100`–`300` for text on dark surfaces.
+
+### Neutral surfaces — cool-grey ramp for layering without brand color
+
+Use these to create visual depth and hierarchy — panel backgrounds, card resting states, table header fills, inset content areas. These tokens are the answer to "I need a slightly different background but don't want to use a semantic color." All surfaces support `text/primary` at ≥ 7:1 contrast. Use `surface-inverse` for code blocks, dark tooltips, or any inverse-text element.
+
+| Token | Value | Usage |
+| --- | --- | --- |
+| --ds-surface-1 | #F8FAFC | Sidebar bg, page section bg, very subtle |
+| --ds-surface-2 | #F1F5F9 | Card default, panel background |
+| --ds-surface-3 | #E2E8F0 | Inset content, secondary panels |
+| --ds-surface-4 | #CBD5E1 | Table header, dense background fills |
+| --ds-surface-inverse | #1E293B | Dark tooltips, code blocks, 14.6:1 vs white |
+
+#### Use neutral surfaces when
+
+- You need a panel or card to sit behind another panel (depth without color).
+- A table header needs weight without using primary blue.
+- Alternating row backgrounds for dense data tables.
+- Sidebar and navigation backgrounds need separation from content.
+
+#### Don't use neutral surfaces for
+
+- Status or semantic meaning — use tonal ramp 50/100 stops instead.
+- Interactive elements — use action overlay tokens (hover, selected).
+- Chart fills — use opacity tokens with a specific chart color.
+- Mixing with tonal ramp stops in the same component.
+
+### Opacity scale — state layers and chart fills
+
+Opacity tokens define the alpha channel for interactive state layers and chart fills. Apply them as CSS `opacity` or as the alpha in an `rgba()` with a color token — never hardcode an arbitrary opacity value. Each value maps to a specific interaction state in the Material Design state layer model.
+
+| Token | Value | When to use |
+| --- | --- | --- |
+| --ds-opacity-hover | 0.04 | Mouse hover over a surface or list item. The faintest signal — just enough to acknowledge the cursor. |
+| --ds-opacity-selected | 0.08 | A row, chip, or item is actively selected. Use on top of the element's resting background. |
+| --ds-opacity-focus | 0.12 | Keyboard focus ring fill (behind the outline). Also used for pressed / active tap state. |
+| --ds-opacity-pressed | 0.12 | Active / tap state. Same value as focus — they are mutually exclusive so the equality is intentional. |
+| --ds-opacity-dragged | 0.16 | Drag-in-progress state. Highest interactive state signal before an element is "fully active." |
+| --ds-opacity-disabled | 0.38 | Opacity of the disabled element's content (text, icon). Applied to the element itself, not a surface layer. |
+| --ds-opacity-chart-fill | 0.12 | Area fill under a line series. Matches focus opacity — creates a light halo without obscuring the data. |
+| --ds-opacity-chart-tolerance | 0.09 | Tolerance band behind a threshold line. Keep below 0.12 or it overwhelms the line. |
+| --ds-opacity-chart-annotation | 0.06 | Debug annotation plot bands. Always the lowest opacity — these are reference overlays, not primary data. |
+
+**Stacking rule.** State layers stack on top of each other: a selected + hovered item is 0.08 + 0.04 = 0.12 total. Do not apply both to the same element simultaneously in a way that adds unexpected visual weight — use a single combined state token when needed. Chart fill opacities should never stack: only one fill band per chart region.
+
+### Background — surfaces that components sit on
+
+| Token | Value | Usage |
+| --- | --- | --- |
+| background/default | #FFFFFF | Page background, outermost canvas |
+| background/paper | #FFFFFF | Cards, dialogs, menus, drawers |
+
+### Action — interaction state overlays
+
+| Token | Value | Usage |
+| --- | --- | --- |
+| action/active | #000000 (54%) | Icon tint |
+| action/hover | #000000 (4%) | Hover overlay |
+| action/selected | #000000 (8%) | Selected overlay |
+| action/disabled | #000000 (26%) | Disabled foreground |
+| action/disabledBackground | #000000 (12%) | Disabled background |
+| action/focus | #000000 (12%) | Focus overlay |
+
+### Grey — neutrals for borders and disabled surfaces
+
+| Token | Value | Usage |
+| --- | --- | --- |
+| grey/300 | #E0E0E0 | Stepper connectors, light borders |
+| grey/400 | #BDBDBD | Avatar fill, rating icon border |
+
+Only `grey/300` and `grey/400` are defined as named Figma variables. For other grey values use MUI's `theme.palette.grey[n]` (100–900) directly in code.
+
+### Common and divider
+
+| Token | Value | Usage |
+| --- | --- | --- |
+| common/white | #FFFFFF | White overlays, inverse text |
+| divider | #000000 (12%) | Horizontal rules |
+| _native/scrollbar-bg | #F1F5F9 | Scrollbar track background — Figma-only alias to surface/2 |
+
+### Brand palette — reference only, not used in product UI
+
+These CSS custom properties document the Vael marketing brand colors as CSS tokens. They are defined in `tokens.css` under the `--ds-brand-*` namespace and are not intended for product UI chrome — semantic tokens (`primary.*`, `success.*`, etc.) govern all interactive product surfaces. Use brand tokens only in explicitly brand-facing contexts (marketing banners, public nav). Two of these colors fail WCAG AA and must never carry text.
+
+| Token | Value | Contrast and usage |
+| --- | --- | --- |
+| --ds-brand-blue | #3266C0 | 5.5:1 ✓ PASS AA — Any text size, buttons, icons, and borders on white |
+| --ds-brand-blue-tint | #EBF0FB | Background/surface only — text placed on top must independently meet 4.5:1 against this surface |
+| --ds-brand-green | #5F942E | 3.7:1 ✓ PASS AA Large — White text at ≥18 px regular or ≥14 px bold; icons and UI components (3:1 threshold met) |
+| --ds-brand-green-dark | #558322 | 4.7:1 ✓ PASS AA — White text at any size, buttons, icons, and borders on white |
+| --ds-brand-green-fill | #72B337 | 2.5:1 ✗ FAIL — Below the 3:1 minimum for both text (WCAG 1.4.3) and UI components (WCAG 1.4.11); decorative fills and illustrations only |
+| --ds-brand-green-light | #ABD4A5 | 1.7:1 ✗ FAIL — Background/surface only; text on top must independently meet 4.5:1 (Off-Black #282828 achieves 8.7:1 on this surface) |
+| --ds-brand-green-light-tint | #EDF5EB | Background/surface only — text on top must independently meet 4.5:1 (Off-Black #282828 achieves this) |
+| --ds-brand-grey | #EDEDED | Background/surface only — text on top must independently meet 4.5:1 (Off-Black #282828 achieves 11.1:1 on this surface) |
+| --ds-brand-grey-text | #767676 | 4.5:1 ✓ PASS AA — Minimum-compliant grey for normal text on white; any text size, UI components |
+| --ds-brand-off-black | #282828 | 14.8:1 ✓ PASS AAA — Any text size, any use; exceeds all WCAG thresholds on white and light surfaces |
+| --ds-brand-white | #FFFFFF | Background/surface — text placed on top must independently meet 4.5:1 |
+
+**WCAG AA quick reference.** Normal text requires 4.5:1 contrast (WCAG 1.4.3). Large text (≥18 px regular or ≥14 px bold) requires 3:1. UI components and graphical objects also require 3:1 (WCAG 1.4.11). Decorative elements have no contrast requirement. For background-only colors, the background itself carries no contrast obligation — the text color placed on top must meet the applicable threshold independently. All contrast ratios listed assume white (#FFFFFF) as the opposing surface unless otherwise noted.
+
+### Alert component colors — pre-composed background and text pairs
+
+Used internally by the MUI `Alert` component — reference via the component, not directly as design tokens.
+
+| Severity | Token | Background | Text |
+| --- | --- | --- | --- |
+| Error | Alert · error | #FDEDED | #5F2120 |
+| Warning | Alert · warning | #FFF4E5 | #663C00 |
+| Info | Alert · info | #E5F6FD | #014361 |
+
+### Figma-internal variables — not exposed as --ds- tokens
+
+Two groups of variables exist in the Figma `palette` collection but have no corresponding `--ds-` CSS tokens. They are consumed internally by Figma component instances and by MUI's theme engine — you do not reference them directly in application code.
+
+| Group | Example | Purpose | How to use |
+| --- | --- | --- | --- |
+| _components/* | _components/alert/error/background | Pre-composed bg/text pairs that drive Figma component fills directly | Use the MUI component — these values are applied automatically by the theme |
+| _states/* | primary/_states/hover | Interaction state overlays at semantic opacity levels (4%, 8%, 12%, 30%, 50%) | Use --ds-opacity-* tokens in CSS, or rely on MUI's built-in hover/focus/pressed handling |
+
+### Chart metric color semantics
+
+Most metric colors map to semantic tokens. The exception is Memory, which uses a dedicated chart-only value (`#00796B`) that does not correspond to any semantic role. This separation exists because `error.main` (red) is reserved exclusively for alert and error states — using it for a routine metric would undermine the alert signal. See the Data Visualization Palette section below for the full chart color reference.
+
+**Why these assignments?** CPU uses blue (primary) as the most central measurement; Throughput uses green (success) because high throughput is a positive outcome indicator; Requests uses purple (secondary) as a secondary parameter; Latency uses orange (warning) because latency issues often precede alerts; Bandwidth uses info blue as an informational metric. Memory was previously mapped to red but was reassigned to teal — red is now reserved solely for alerts and error states. Once assigned, metric color mappings are permanent; changing them breaks visual recognition across all historical charts and reports.
+
+### Accessibility
+
+- `text/primary` on `background/default` achieves WCAG AA contrast (minimum 4.5:1 for normal text).
+- `text/secondary` should only be used for supplementary content where reduced contrast is acceptable.
+- `text/disabled` intentionally falls below WCAG thresholds — disabled elements are exempt from contrast requirements per WCAG 1.4.3.
+- Always pair `primary/main` with `primary/contrastText` when text appears on a colored surface.
+
+## Data visualization palette
+
+A fixed set of colors used exclusively in charts, sparklines, and dashboards. These colors are never used in UI chrome — no buttons, badges, or status chips. Each metric is permanently assigned one color; the assignment is a design decision that cannot change without breaking visual recognition in historical data.
+
+### Metrics — permanent assignments
+
+| Token | Value | Metric and contrast |
+| --- | --- | --- |
+| --ds-chart-variable-cpu | #1976D2 | CPU · 4.7:1 contrast |
+| --ds-chart-variable-memory | #00796B | Memory · 6.2:1 contrast |
+| --ds-chart-variable-throughput | #2E7D32 | Throughput · 7.1:1 contrast |
+| --ds-chart-variable-requests | #9C27B0 | Requests · 5.9:1 contrast |
+| --ds-chart-variable-latency | #EF6C00 | Latency · 3.1:1 contrast |
+| --ds-chart-variable-bandwidth | #0288D1 | Bandwidth · 3.5:1 contrast |
+
+### Extended palette — 7th series and beyond
+
+| Token | Value | Series and usage |
+| --- | --- | --- |
+| --ds-chart-extended-amber | #B45309 | Amber · 5.0:1 · disk usage, cache hits |
+| --ds-chart-extended-indigo | #3F51B5 | Indigo · 6.9:1 · additional series |
+| --ds-chart-extended-rose | #C2185B | Rose · 5.9:1 · queue depth |
+| --ds-chart-extended-sienna | #795548 | Sienna · 6.6:1 · connection pool |
+
+Use extended colors in order (amber → indigo → rose → sienna) only after the core 6 metrics are all in use. Do not skip or reorder — consistent assignment across charts is more important than aesthetic preference. All four pass WCAG AA text contrast (≥ 4.5:1) against white.
+
+### Alert and event markers
+
+| Token | Value | Event and contrast |
+| --- | --- | --- |
+| --ds-chart-event-error | #D32F2F | Alert · critical · 5.1:1 contrast |
+| --ds-chart-event-warning | #EF6C00 | Override · caution · 3.1:1 contrast |
+| --ds-chart-event-recovery | #2E7D32 | Resolved · cleared · 7.1:1 contrast |
+
+Alert red (`#D32F2F`) is the only color shared between the dataviz palette and the semantic UI palette — it maps directly to `error.main`. All other chart colors are independent of semantic UI tokens and must never appear in buttons, chips, alerts, or any UI component.
+
+## Dataviz color tokens
+
+All chart colors are defined in `vael/tokens.css` under `--ds-chart-*` and in the Highcharts styled-mode CSS as `--vc-*` variables. Use the token; never hardcode a hex value in a chart component.
+
+### Metric tokens
+
+| Token | Metric | Hex | Contrast | Notes |
+| --- | --- | --- | --- | --- |
+| --ds-chart-variable-cpu | CPU | #1976D2 | 4.7:1 | Maps to primary.main |
+| --ds-chart-variable-memory | Memory | #00796B | 6.2:1 | Chart-only value — not a semantic token. Teal avoids alert-red confusion. |
+| --ds-chart-variable-throughput | Throughput | #2E7D32 | 7.1:1 | Maps to success.main |
+| --ds-chart-variable-requests | Requests | #9C27B0 | 5.9:1 | Maps to secondary.main |
+| --ds-chart-variable-latency | Latency | #EF6C00 | 3.1:1 | Maps to warning.main. Meets 3:1 minimum for graphical elements; below 4.5:1 for text labels — use with care at small sizes. |
+| --ds-chart-variable-bandwidth | Bandwidth | #0288D1 | 3.5:1 | Maps to info.main. Visually similar to CPU blue — always rely on legend labels, not color alone. |
+
+### Extended tokens
+
+| Token | Metric | Hex | Contrast | Notes |
+| --- | --- | --- | --- | --- |
+| --ds-chart-extended-amber | Extended — amber | #B45309 | 5.0:1 | 7th series. Use for disk usage, cache hits, or throughput. |
+| --ds-chart-extended-indigo | Extended — indigo | #3F51B5 | 6.9:1 | 8th series. Use for additional series or overlay comparisons. |
+| --ds-chart-extended-rose | Extended — rose | #C2185B | 5.9:1 | 9th series. Use for queue depth or session counts. |
+| --ds-chart-extended-sienna | Extended — sienna | #795548 | 6.6:1 | 10th series. Use for connection pool or background jobs. |
+
+### Known accessibility limitations
+
+- **CPU vs Bandwidth** — `#1976D2` and `#0288D1` are both blue and can be difficult to distinguish without labels, especially for users with tritanopia. Legend labels are required whenever both appear in the same chart.
+- **Latency orange** — `#EF6C00` is at the 3:1 floor for graphical elements. Do not use it for text labels smaller than 18px; always pair with a legend or axis label.
+- **Red/green** — Alert red (`#D32F2F`) and Throughput green (`#2E7D32`) are indistinguishable to deuteranopes (~8% of men). Never rely on these two colors alone to convey different states — use shape, line-style, or position as a second signal.
+
+### Usage rules
+
+#### Do
+
+- Use `--ds-chart-variable-*` tokens in all chart components.
+- Always include a legend or axis label — never use color as the only differentiator.
+- Use alert red exclusively for alert and error states.
+- Treat these assignments as permanent — changing them breaks historical chart recognition.
+
+#### Don't
+
+- Use chart variable colors in UI components (buttons, chips, alerts).
+- Use alert red for memory or any routine metric.
+- Introduce new chart colors without a formal design decision and ADR.
+- Hardcode hex values — always reference the token.

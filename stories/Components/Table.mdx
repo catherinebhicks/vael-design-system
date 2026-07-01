@@ -1,0 +1,170 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Table/Guidelines" />
+
+# Table
+
+Tabular data display with three row types (standard, dense, expandable), a bulk-action row, and a pagination footer. For most tables, MUI Table is the default. For complex grids with a server-side row model, use AG Grid Enterprise (see ADR 006).
+
+## Guidelines
+
+### When to use
+
+- Displaying project lists, organization lists, or workspace assignment grids where users need to compare values across multiple columns (name, status, created date, assigned user).
+- Showing job results with sortable numeric columns — CPU, Memory, Latency — where right-aligned numbers need to align precisely for at-a-glance comparison.
+- Enabling bulk operations (archive, export, reassign) on records — enable the `Checkbox` column and pair with a bulk-action toolbar.
+- Working in dashboard panels or drawer panes where vertical space is constrained — use the small (dense) density.
+- Adding a `TableFooter` with pagination when project or job counts exceed the visible rows setting — never let a table grow unbounded.
+- Building new list pages — reach for `ListTableV2`, which provides column definitions, sorting, pagination, skeleton loading, and empty states out of the box.
+
+### When not to use
+
+- Each record has only one attribute — use a List instead. A one-column table adds header overhead with no comparative value.
+- The data requires grouping, tree structure, inline editing, or sparkline cell renderers — use the AG Grid DataGrid wrapper instead.
+- The table would exceed 10 columns without a horizontal scroll strategy — on dense dashboard screens, truncation causes users to miss critical parameters.
+- You need real-time streaming data rows updating at high frequency — AG Grid's virtualization handles that load; MUI Table will repaint too aggressively.
+- You are building raw `Chip` color overrides for status cells — pair with `StatusChip` via a `renderCell` column definition in `ListTableV2`.
+
+## Choosing a table technology
+
+The dashboard uses two table technologies intentionally. See ADR 006 for the full decision record.
+
+| Use MUI Table when… | Use AG Grid when… |
+| --- | --- |
+| ≤ 500 client-side rows, no virtualization needed | Thousands of rows, server-side row model, need virtualization |
+| Simple sort / filter / row-click | Column grouping, pivot, aggregation, per-cell editing |
+| Looks and feels native to MUI | Data-dense power-user views (job list, analytics data) |
+| Example: user management table, simple config tables | Example: job list, project explorer, monitoring panel |
+
+## Anatomy
+
+- **TableContainer** — wraps the table; handles overflow.
+- **Table** — the `<table>` element.
+- **TableHead** / **TableRow** / **TableCell** — the header row.
+- **TableBody** — data rows.
+- **TableFooter** (optional) — pagination, totals.
+- **TablePagination** — rows-per-page and page navigation.
+- **TableSortLabel** — sortable column header.
+- **Bulk action bar** — appears above the table when rows are selected.
+
+## Row densities
+
+| Density | Description |
+| --- | --- |
+| standard | 52px row height — default for most tables. |
+| dense | 36px row height — large data grids, audit logs. |
+| expandable | Click a row to expand a details panel below it. |
+
+## Selection patterns
+
+- **No selection** — read-only tables; row click may navigate to detail.
+- **Single selection** — radio in the first cell.
+- **Multi selection** — checkbox in the first cell plus a header checkbox for select-all.
+- **Bulk actions** — when at least one row is selected, show an action bar with the count and available actions.
+
+## Sorting and filtering
+
+- Sortable columns show `TableSortLabel` with a directional arrow.
+- Only one column is sorted at a time (MUI Table — AG Grid supports multi-sort).
+- Filters live above the table, not in column headers — use `SearchField` plus chips for active filters.
+
+## Props
+
+MUI Table components are drop-in — import them from `@mui/material`. For dashboard list pages, use the internal wrapper `ListTableV2`, which pre-wires column definitions, sorting, pagination, skeleton loading, and empty states.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| size | `'small' \| 'medium'` | `'medium'` | On `Table`. small = 36px dense rows; medium = 52px standard rows. |
+| stickyHeader | `boolean` | `false` | On `Table`. Pins the `TableHead` when scrolling inside a fixed-height `TableContainer`. |
+| padding | `'normal' \| 'checkbox' \| 'none'` | `'normal'` | On `TableCell`. Use `'checkbox'` for the first cell in selection rows. |
+| align | `'left' \| 'center' \| 'right' \| 'justify'` | `'left'` | On `TableCell`. Right-align numeric columns for visual alignment. |
+| sortDirection | `'asc' \| 'desc' \| false` | `false` | On `TableCell`. Sets `aria-sort` for accessibility when the column is sorted. |
+| active | `boolean` | `false` | On `TableSortLabel`. Shows the sort icon when the column is the active sort. |
+| direction | `'asc' \| 'desc'` | `'asc'` | On `TableSortLabel`. Controls the directional arrow. |
+| rowsPerPage | `number` | `10` | On `TablePagination`. Rows shown per page. |
+| rowsPerPageOptions | `number[]` | `[10, 25, 100]` | On `TablePagination`. Options in the rows-per-page selector. |
+| count | `number` | — | On `TablePagination`. Total row count — required for page-count display. |
+
+```jsx
+<TableContainer>
+  <Table size="small" stickyHeader>
+    <TableHead>
+      <TableRow>
+        <TableCell padding="checkbox">
+          <Checkbox />
+        </TableCell>
+        <TableCell>
+          <TableSortLabel active={orderBy === 'name'} direction={order}>
+            Job ID
+          </TableSortLabel>
+        </TableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>…</TableBody>
+  </Table>
+</TableContainer>
+<TablePagination
+  rowsPerPageOptions={[10, 25, 100]}
+  count={totalRows}
+  rowsPerPage={rowsPerPage}
+  page={page}
+  onPageChange={handlePageChange}
+/>
+```
+
+## States
+
+| State | Visual |
+| --- | --- |
+| Default | background/paper surface; text/primary cell text; text/secondary header labels. |
+| Row hover | action/hover overlay on the hovered row; `cursor: pointer` applied by ListTable. |
+| Row selected | `alpha(primary.main, 0.08)` background; matches MUI DataGrid and AG Grid selected-row treatment. |
+| Column sorted | Active sort icon shown; primary/main color on the sort arrow. |
+| Loading | `LinearProgress` bar above the table; skeleton rows fill the body when data is empty (ListTableV2 behavior). |
+| Empty | Centered `emptyMessage` string shown when data is an empty array and not loading. |
+
+## Accessibility
+
+- Always use semantic `<table>` / `<th>` / `<td>` elements.
+- Set `scope` on header cells.
+- Sortable columns announce sort state via `aria-sort`.
+- The select-all header checkbox has an `aria-label` (for example, "Select all rows").
+- Keyboard: Tab to a cell, Space or Enter to activate controls.
+
+## Design tokens
+
+| Token | Usage |
+| --- | --- |
+| typography/body2 | Cell content (14 px). |
+| typography/subtitle2 | Header cells (600 weight). |
+| text/primary | Body text, header text. |
+| text/secondary | Helper / secondary columns. |
+| divider | Row borders. |
+| action/hover | Row hover background. |
+| primary/main @ 8% | Row selected background. |
+
+## ListTable and ListTableV2
+
+### ListTable — styled primitive
+
+`ListTable` wraps MUI `Table` with vertical column dividers, bold header cells, a selected-column highlight class, 48px row height, and `size="small"` as the default density. Use it when you need a hand-composed table with custom row rendering.
+
+| Feature | Detail |
+| --- | --- |
+| Vertical dividers | `borderRight` on all cells; the last cell has no right border. |
+| Bold headers | `fontWeight: bold` on `TableCell.head`. |
+| Selected column | Add `className="selected-column"` to a header cell for a primary[50] background plus primary[600] bottom border. |
+| Row height | 48px (`theme.spacing(6)`) — MUI minimum touch target, aligns with the 8px grid. |
+| Row cursor | `cursor: pointer` on hover rows. |
+
+### ListTableV2 — managed list page table
+
+`ListTableV2` is the standard component for all new dashboard list pages. It adds a typed `Column` definition system, built-in sorting, pagination, row selection, skeleton loading rows, and empty states on top of `ListTable`.
+
+| Scenario | Use |
+| --- | --- |
+| New list page (projects, recipes, orgs) | `ListTableV2` |
+| Simple read-only hand-crafted table | `ListTable` |
+| Grouping, tree data, inline editing, high-frequency streaming | AG Grid DataGrid |
+
+**Loading behavior:** When `loading=true` and data is empty, `ListTableV2` renders `rowsPerPage` skeleton rows. When `loading=true` but data is already present (background refresh), only the `LinearProgress` bar shows — existing rows stay visible so users aren't interrupted mid-scan.

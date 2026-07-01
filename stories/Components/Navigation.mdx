@@ -1,0 +1,152 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Navigation/Guidelines" />
+
+# Navigation
+
+Secondary navigation primitives. Global navigation lives in AppBar and Drawer — these components handle in-page wayfinding: where you are (Breadcrumbs), paged data (Pagination), cross-page references (Link), and contextual actions (Menu).
+
+## Breadcrumbs
+
+Wayfinding across nested routes. The last item is plain Typography (the current page); preceding items are `Link` elements back to ancestors. See [PT 10](patterns.html#pattern-experiment) for canonical experiment-shell usage.
+
+### Do
+
+- Use on multi-level hierarchy pages — Recipe Editor (Scripts → Recipe name → Step), Organization Setup, Experiment Checklist — to orient users and provide a back-path.
+- Use on deep navigation paths (Experiments → Experiment → Analytical Data → Group) where the current position is three or more levels from the root.
+
+### Don't
+
+- Use on flat single-level pages (the main Experiments list, Hardware overview) where there is no meaningful hierarchy to traverse.
+
+### Props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| separator | ReactNode | '/' | Override the separator between items. The default `/` matches the wayfinding convention. |
+| maxItems | number | 8 | Collapses to an ellipsis when exceeded. Keep at the default for most pages. |
+| expandText | string | 'Show path' | Accessible label for the expand button shown when items are collapsed. |
+
+## Pagination
+
+Paged navigation for non-grid lists. Most tables paginate inside DataGrid; use Pagination for a non-grid list that spans more than 50 items.
+
+### Do
+
+- Use on simple list pages outside of data grids — organization lists, user lists — where the grid's built-in row model is not in use.
+
+### Don't
+
+- Use on data grid tables — the grid's own pagination toolbar handles this, and a second Pagination component creates conflicting controls.
+- Use on infinite-scroll feeds — use an intersection-observer "load more" or the grid's virtual row model instead.
+
+### Props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| count | number | — | Total number of pages. Required. |
+| page | number | — | Current page (1-based). Controlled. |
+| onChange | `(event, page) => void` | — | Fires with the new page number. |
+| size | 'small' \| 'medium' \| 'large' | 'medium' | Use small in dense list footers. |
+| shape | 'circular' \| 'rounded' | 'circular' | Button shape. Use rounded to match the Table pagination style. |
+
+## Link
+
+Router-aware link. Colored `primary.main` with an underline on hover. Use `component={NextLink}` for client-side routing.
+
+### Props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| component | ElementType | 'a' | Set to NextLink for client-side navigation. Required for all in-app links. |
+| href | string | — | Destination path. Pass to NextLink via the href prop. |
+| underline | 'always' \| 'hover' \| 'none' | 'always' | Convention is 'hover' for inline body links. |
+| color | string | 'primary' | Use 'inherit' in Breadcrumbs for the non-active ancestor items. |
+
+## Menu
+
+Popover list of actions anchored to a trigger. Always use `UncontrolledMenu` — see [PT 08](patterns.html#pattern-rowmenu). Raw MUI `Menu` is deprecated.
+
+### Do
+
+- Use `UncontrolledMenu` for row action menus (three-dot / kebab) on experiment list rows, recipe list items, or command rows to avoid managing anchorEl state at every call site.
+- Use for overflow actions on Cards (Edit, Duplicate, Archive) where CardActions can only show one or two primary actions.
+- Use the dense variant for toolbar and data grid action menus where vertical space is at a premium and the list may contain five or more items.
+
+### Don't
+
+- Use when the user needs multiple simultaneous selections — use a multi-select chip group or checkboxes instead.
+- Nest more than two levels deep — surface a Dialog or dedicated page for complex hierarchical choices.
+- Place destructive actions (Delete experiment, Archive run) at the top of the list — position them last, separated by a Divider.
+
+### UncontrolledMenu
+
+A self-contained wrapper around MUI `Menu` that manages its own `open` state and `anchorEl` internally. It eliminates boilerplate for the most common pattern: a three-dot or custom trigger button that opens a contextual action list. Import from `~/components/interactions/UncontrolledMenu`.
+
+#### Props
+
+| Prop | Type | Default | Notes |
+| --- | --- | --- | --- |
+| children | ReactNode | — | MenuItem elements rendered inside the menu. |
+| button | `(provided, open) => ReactElement` | MoreVertOutlined IconButton | Custom trigger renderer. Spread `provided` onto the element to wire up the click handler and aria attributes. |
+| closeOnClick | boolean | false | Close the menu when any child MenuItem is clicked — use for single-action menus where the choice always dismisses. |
+| stopOnClickPropagation | boolean | false | Calls `event.stopPropagation()` on the trigger click — required when the trigger sits inside a table row with a row-level click handler. |
+| ...MenuProps | MenuProps | — | Any MUI Menu prop except `open`, `anchorEl`, and `onClose`, which are managed internally. |
+
+## SpeedDial
+
+A FAB that expands into two to six sub-actions on tap. Use when a primary action has closely related variants that don't warrant their own persistent button. Import from `@mui/material/SpeedDial`, and check the decision guide before introducing it — it is rarely needed.
+
+### Do
+
+- Use when one FAB action has two to six closely related sub-actions (e.g. "New" → Run / Script / Template).
+- Keep action labels concise — they appear as tooltips on hover and focus.
+- Position it fixed at bottom-right, the same as a standard FAB.
+- Always provide `aria-label` on the trigger and on each action.
+
+### Don't
+
+- Use in data-dense screens where the dial occludes content — prefer a toolbar.
+- Use more than six actions — switch to a full Menu.
+- Use when actions are unrelated — group only genuinely related sub-actions.
+- Use alongside a separate FAB on the same screen.
+
+### Props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| ariaLabel | string | — | Required. Accessible label for the FAB trigger button. |
+| icon | ReactNode | — | The icon shown in the closed state. Use SpeedDialIcon for the open/close animation. |
+| direction | 'up' \| 'down' \| 'left' \| 'right' | 'up' | Which direction the actions fan out when opened. |
+| open | boolean | — | Controlled open state. Omit for uncontrolled. |
+| onOpen / onClose | `(event, reason) => void` | — | Called when the open state changes. `reason` is 'toggle', 'focus', 'mouseEnter', etc. |
+| hidden | boolean | false | Hides the entire SpeedDial. Use to show or hide based on scroll position. |
+
+## Popover
+
+An anchored floating surface. Import from `@mui/material/Popover`. For simple action lists, prefer `UncontrolledMenu`; use Popover when the floating content is richer than a list of menu items (e.g. a filter panel, a color picker, or a date-range selector).
+
+### Do
+
+- Use for inline details, small forms, or contextual help anchored to a specific element.
+- Keep content focused — if it needs a title, body, and actions, use a Dialog instead.
+- Close on backdrop click (default) unless the user is mid-input.
+- Use `anchorOrigin` and `transformOrigin` to control position relative to the anchor.
+
+### Don't
+
+- Use for simple text hints — use `Tooltip` instead.
+- Use for action lists — use `Menu` instead.
+- Use for blocking decisions — use `Dialog` instead.
+- Nest Popovers — never open a Popover from within a Popover.
+
+### Props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| open | boolean | false | Controls visibility. Use the `Boolean(anchorEl)` pattern. |
+| anchorEl | Element \| null | null | The DOM element the popover is positioned relative to — usually the trigger button's ref. |
+| onClose | `(event, reason) => void` | — | Close handler. Clear anchorEl here: `setAnchorEl(null)`. |
+| anchorOrigin | \{ vertical, horizontal \} | \{ vertical: 'top', horizontal: 'left' \} | Point on the anchor element from which the popover grows. |
+| transformOrigin | \{ vertical, horizontal \} | \{ vertical: 'top', horizontal: 'left' \} | Point on the popover that aligns to the anchor origin. |
+| elevation | number | 8 | Paper shadow depth. Use 4 for lightweight panels, 8 for richer content. |

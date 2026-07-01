@@ -1,0 +1,69 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Avatar/Guidelines" />
+
+# Avatar & Badge
+
+Avatars at 18, 32, 40, and 56 px with letter, icon, or image content, in three shape variants: `circular` (default), `rounded`, and `square`. `AvatarGroup` stacks multiple avatars with an overflow count, and `Badge` overlays status and unread counts.
+
+All three are Tier 1, drop-in components. Import `Avatar` and `AvatarGroup` from `@mui/material/Avatar`; import `Badge` from `@mui/material/Badge`.
+
+## Guidelines
+
+### Do
+
+- Identify the user assigned to a project or workspace in a list or detail view — use initials as the fallback when no profile photo is available.
+- Show who last modified a config, template, or project setting in an audit trail or activity feed.
+- Represent organization or team accounts with the `square` or `rounded` variant to visually distinguish them from individual users.
+- Display a compact ownership indicator in dense table rows — use the 24px or 32px size to avoid competing with primary data columns.
+- Use `AvatarGroup` when multiple team members are associated with a project and space is limited — show the overflow count rather than truncating silently.
+- Pair with a `Badge` (dot variant) to signal that a user has an unread notification or pending action on a shared asset.
+
+### Don't
+
+- Represent a service, server, or hardware unit with an Avatar — use an icon or illustration instead; Avatar is for people and human-controlled entities only.
+- Use Avatar as a general-purpose thumbnail for a document or media file — use an image component directly.
+- Rely on color alone to differentiate users — always pair with a visible name label or tooltip exposing the full name.
+- Render a blank Avatar — always set either `src` with an `alt`, initials, or an icon fallback.
+
+## Avatar
+
+Identity representation for people and human-controlled entities.
+
+### Props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| src | string | — | Image URL. Falls back to alt initials, then to icon when the image fails to load. |
+| alt | string | — | Alt text AND the initials source when no image. Pass the user's full name — MUI extracts first + last initials automatically. |
+| variant | 'circular' \| 'rounded' \| 'square' | 'circular' | Use circular for people; rounded / square for teams, orgs, or hardware entities. |
+| sx | SxProps | — | Override size via width / height. Dashboard sizes: 18px (xs), 24px (sm), 32px (md, default), 40px (lg). |
+| children | ReactNode | — | Explicit fallback content — icon or initials string. Takes over when src is absent. |
+
+## AvatarGroup
+
+Stacks multiple avatars with an overflow count when space is limited.
+
+### Props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| max | number | 5 | Max avatars shown before the overflow "+N" appears. Use 3–4 for dense table cells. |
+| total | number | — | Override the overflow count when the children array is paginated (you only rendered a subset). |
+| spacing | 'small' \| 'medium' \| number | 'medium' | Negative overlap between avatars. Use small for tight spaces. |
+| renderSurplus | (surplus) => ReactNode | — | Custom renderer for the overflow avatar — e.g. a Tooltip listing names. |
+
+## Badge
+
+Overlays status dots and unread counts on a child element.
+
+### Props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| badgeContent | ReactNode | — | The count or content shown in the badge. Pass 0 with showZero to show zero counts. |
+| color | 'default' \| 'primary' \| 'secondary' \| 'error' \| 'info' \| 'success' \| 'warning' | 'default' | Use error for unread alerts; success for online status dot. |
+| variant | 'standard' \| 'dot' | 'standard' | Use dot for presence/status indicators — no count shown. |
+| invisible | boolean | false | Hides the badge. Use to toggle visibility without unmounting. |
+| max | number | 99 | Shows "99+" when the count exceeds this. Override for larger counts. |
+| anchorOrigin | \{ vertical, horizontal \} | \{ vertical: 'top', horizontal: 'right' \} | Badge position relative to the child element. |

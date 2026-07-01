@@ -1,0 +1,64 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Forms" />
+
+# Forms
+
+Multi-section form experiences — registration flows, settings pages, and file upload surfaces. Provides a consistent structure across complexity levels, from a single-field email/password to multi-step settings with inner navigation.
+
+Forms use a content-column max-width of 600–800px.
+
+## Variants
+
+- **Register — basic** — Minimal email + password.
+- **Welcome panel split** — Branded panel + form column.
+- **Left inner navigation** — Vertical nav sidebar; 5+ sections.
+- **Top inner navigation** — Tabs across top; 2–4 sections.
+
+## Sub-patterns
+
+- **Basic forms** — Single-column and two-column field arrangements for general-purpose input.
+- **Uploader** — Drag-and-drop file upload area with progress state and error treatment.
+- **Uploader — examples** — In context with file lists, thumbnails, and retry states.
+- **Settings** — Account and app settings using the left inner nav layout; each section in a Card.
+
+## Components used
+
+- TextField
+- Autocomplete (use in place of a native Select — Select is not in the codebase)
+- Checkbox
+- RadioGroup
+- Switch
+- Button
+- Card
+- AppBar
+
+## Why max-width 600–800px?
+
+Keeps form line lengths readable (≈70–100 characters for label + field) and prevents fields from stretching so wide the eye loses the label/input association. Below 600px multi-column layouts collapse awkwardly. Above 800px, single-column forms look sparse.
+
+## Responsive behaviour
+
+| Breakpoint | Behaviour |
+| --- | --- |
+| XS | Full-width single-column; inner nav collapses to dropdown / top-anchored tabs; welcome panel hidden |
+| SM | Single-column fields; left nav collapses to top nav |
+| MD | Two-column field layouts available; left nav at reduced width |
+| LG | Standard two-panel layout for inner-nav variants; welcome panel reappears |
+| XL | Content-column max-width caps form; surrounding whitespace increases |
+
+## Guidelines
+
+### Do
+
+- Use left inner nav for 5+ sections; top nav for 2–4 sections.
+- Group related fields with a section heading and subtle separator.
+- Show inline validation errors beneath the relevant field.
+- Use the Uploader sub-pattern for file attachments.
+
+### Don't
+
+- Mix left and top inner navigation within one form.
+- Place destructive actions inside the form Card.
+- Use the welcome-panel layout for anything but auth/onboarding.
+- Stack more than two columns on small breakpoints.

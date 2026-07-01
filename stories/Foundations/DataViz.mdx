@@ -1,0 +1,45 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Data Visualization" />
+
+# Console Chart System
+
+Charts are first-class components, not ad-hoc visualizations. Built on **Highcharts styled mode**, driven by MUI tokens and a deterministic metric-to-color map. Every series carries a distinct **line style in addition to color**, so the system holds up in colorblind, print, and screenshot contexts.
+
+## Chart patterns
+
+- **Default** — One metric: actual vs threshold, with deadband and events.
+- **Exploratory** — Two y-axes maximum, secondary de-emphasized to 72% opacity.
+- **Diagnostic** — Opt-in deviation fill and dense event markers; gated by flag.
+
+## Chart types — when to use which
+
+- **Line** — Continuous metric over time. This is the default.
+- **Step** — Discrete state changes: mode, phase, threshold moves.
+- **Bar** — Compare a scalar across categories: jobs, servers.
+- **Stacked area** — Part-to-whole composition over time: request mix, traffic split.
+- **Box plot** — Job-to-job variability; outlier identification.
+- **Scatter** — Relationship between two measurements: correlation.
+
+## Series line styles
+
+| Variant | Style | Use for |
+| --- | --- | --- |
+| Actual | 2px solid | Measured value |
+| Threshold | 2px dashed | Target / control value |
+| Predicted | 1px dotted | Forecasted value |
+| Muted | 40% opacity | Backgrounded series |
+| Selected | 3px stroke | User-focused series |
+
+## Guardrails enforced in code
+
+- No rainbow palettes or arbitrary color.
+- No more than **4 visible series** by default.
+- No more than **2 y-axes**.
+- No opaque deadbands (8–12% fill only).
+- No drop shadows inside the plot area.
+- No default Highcharts theme — styled mode only.
+- No inline hardcoded colors or styles.
+- No interpolation across gaps — gaps must be visible.
+
+**Why 4 series / 2 axes?** Pre-attentive visual processing reliably tracks about 4 distinct colored elements without counting. A third y-axis has no natural placement and typically floats inside the plot area, creating ambiguity about which axis governs which series.

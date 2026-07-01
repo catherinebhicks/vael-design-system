@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Experiment" />
+
+# Experiment page shell
+
+All pages within an experiment section share a common layout. A shared `Layout` is applied globally, so individual pages do not import it. Each page supplies its own breadcrumb trail, title bar, and action buttons following a single shared pattern.
+
+## Shell wireframe
+
+```jsx
+<Stack spacing={2} sx={{ pl: 3, pr: 3 }}>
+  {/* Breadcrumbs */}
+  <Breadcrumbs>
+    <Link href="/e?view=active">Live Experiments</Link>
+    <Link href={`/e/${experimentId}/dashboard`}>{experimentName}</Link>
+    <Typography>Live Controls</Typography> {/* current page */}
+  </Breadcrumbs>
+
+  {/* Page title bar */}
+  <Toolbar
+    variant="dense"
+    disableGutters
+    sx={{ gap: 2, borderBottom: 1, borderColor: 'divider' }}
+  >
+    <Typography variant="h2">Page Title</Typography>
+    <Box sx={{ flexGrow: 1 }} />
+    <Button variant="text">Back</Button>
+    <Button color="primary">Primary Action</Button>
+  </Toolbar>
+</Stack>
+```

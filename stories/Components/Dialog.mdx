@@ -1,0 +1,154 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Dialog/Guidelines" />
+
+# Dialog and Backdrop
+
+## Dialog
+
+Modal surface for focused, blocking decisions. Uses elevation 24, and holds a title, content, and up to two trailing actions.
+
+### When to use
+
+- Destructive confirmations — ending a job, deleting a project, removing a user.
+- Critical errors — unrecoverable state that requires acknowledgement before continuing.
+- Focused creation flows — "New project" when the form is short and benefits from modal focus.
+- Entity pickers — "Select server", "Choose environment" when the list is too large for a Menu.
+
+Dialogs are interruptive. Do not use them for confirmations that can be safely undone with an Undo snackbar (saves, archives). For those, use the optimistic pattern plus `useAlert` with an Undo action.
+
+### Anatomy
+
+- Backdrop — dims page content; click-through closes non-destructive dialogs only.
+- Dialog surface — Paper, `elevation=24`, border-radius 4 px, max-width by type (see Sizes).
+- DialogTitle — Typography h6, sentence case, no colon.
+- DialogContent — body text (body1) and/or form fields.
+- DialogActions — right-aligned text buttons; primary action on the right.
+- Close affordance (optional) — top-right `IconButton` with `faXmark`.
+
+### Sizes
+
+| Size | Description |
+| --- | --- |
+| `maxWidth="xs"` | 444 px — confirmations |
+| `maxWidth="sm"` | 600 px — short forms, default |
+| `maxWidth="md"` | 900 px — longer forms, entity pickers |
+| `maxWidth="lg"` | 1200 px — rich configuration dialogs; rare |
+| `fullScreen` | Mobile confirmations, complex creation flows |
+
+### Action button patterns
+
+| Type | Pattern |
+| --- | --- |
+| Confirmation | Cancel (text) · Confirm (text/contained, primary) |
+| Destructive | Cancel (text) · Delete (text, error color) |
+| Form save | Cancel (text) · Save (contained, primary). Disable Save until valid. |
+| Info ack | Single OK (text, right) |
+
+### Props
+
+**Scope: Tier 1** — import from `@mui/material/Dialog`. For destructive confirmations, use the Tier 3 internal `ConfirmDialog` wrapper (see below).
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| open | boolean | false | Controls dialog visibility. Manage in parent state. |
+| onClose | `(event, reason) => void` | — | Called on backdrop click or Escape key. `reason` is `'backdropClick'` or `'escapeKeyDown'`. Block closing for destructive dialogs until the user makes an explicit choice. |
+| maxWidth | 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| false | 'sm' | xs (444px) for confirmations; sm (600px) default for most forms; md (900px) for entity pickers. |
+| fullWidth | boolean | false | Stretches dialog to `maxWidth`. Use with `maxWidth` for consistent form widths. |
+| fullScreen | boolean | false | Full-viewport on mobile. Avoid on desktop. |
+| disableEscapeKeyDown | boolean | false | Prevents Escape from closing. Use only for dialogs requiring an explicit user decision (destructive actions). |
+| TransitionComponent | ComponentType | Fade | Override the enter/exit animation. Default Fade is preferred. |
+| keepMounted | boolean | false | Keeps dialog in DOM when closed. Only use for performance-sensitive lazy content. |
+
+### Example
+
+```jsx
+<Dialog open={open} onClose={handleClose} maxWidth="xs" fullWidth>
+  <DialogTitle>End job JOB-012 now?</DialogTitle>
+  <DialogContent>
+    Ending a job halts automation and stops all active processes.
+  </DialogContent>
+  <DialogActions>
+    <Button onClick={handleClose}>Cancel</Button>
+    <Button color="error" onClick={handleConfirm}>End job</Button>
+  </DialogActions>
+</Dialog>
+```
+
+### Accessibility
+
+- Traps focus inside the dialog — Tab cycles within.
+- Esc closes — except for dialogs that require an explicit choice.
+- Initial focus on the least destructive action (Cancel).
+- `aria-labelledby` points at DialogTitle; `aria-describedby` at content.
+
+### ConfirmDialog — the shared wrapper
+
+Most confirmation dialogs use the `ConfirmDialog` wrapper. It provides the standard structure, keyboard handling, and destructive styling in one call. Do not hand-roll a dialog for a yes/no confirmation — use the `useConfirm` hook.
+
+### Decision guide
+
+#### Use when
+
+- Confirming an irreversible action — stopping a job, deleting project data, archiving a template — where the consequences must be stated clearly before the user commits.
+- Presenting a short form that blocks continuation until complete (e.g., required fields for starting a new job: server ID, template selection, target parameters).
+- Interrupting a session for an authentication event — e.g., the session timeout boundary that requires the user to re-authenticate before the dashboard reconnects to the server.
+- Showing a focused data preview (a specific job result, a workspace configuration detail) that doesn't warrant a full page navigation.
+- Using `useConfirmationDialog` for any delete, archive, or overwrite action — it resolves a `Promise` with no state management overhead in the caller.
+- Using `useModal` (via `ModalProvider`) to open feature-level dialogs from deeply nested components without prop-drilling the open/close state up the tree.
+
+#### Don't use when
+
+- The content is a notification or status message — use `useAlert`, which routes to Snackbar or Banner based on severity; dialogs interrupt workflow unnecessarily for passive messages.
+- The decision or form is complex enough to require multiple steps, sub-navigation, or embedded data tables — build a dedicated page or drawer instead.
+- You need a tooltip-style contextual overlay — use a Popover for non-blocking supplemental information.
+- The dialog would open from within another dialog — nested modals create disorienting focus trapping and are prohibited in the dashboard pattern library.
+- The confirmation is for a low-stakes, easily reversible action — reserve modal interruption for actions that are destructive or operationally significant.
+
+### Modal system — ModalProvider, useModal, useConfirmationDialog
+
+#### ModalProvider — global dialog system
+
+`ModalProvider` renders a single centered `Dialog` managed via `ModalContext`. Any component in the tree can open a modal without lifting state.
+
+| Default | Value |
+| --- | --- |
+| maxWidth | 'md' (overridable via options) |
+| disableScrollLock | true |
+| closeAfterTransition | true |
+| Position | Centered — always vertically and horizontally centered |
+
+**Pattern:** Build modal content as a standalone component (e.g., `ConfirmDeleteDialog`) that accepts `onConfirm` and `onCancel` props. The dialog component should not know about `ModalContext` — keep it dumb and testable.
+
+#### useModal — imperative open/close
+
+`useModal()` returns `{ show, hide }` from `ModalContext`. Use it to open any `ReactElement` as a centered dialog from any component depth without prop-drilling.
+
+#### useConfirmationDialog — promise-based confirmation
+
+Use for any destructive action (delete project, archive template, overwrite parameters). Calls `confirm({ title, content, confirmLabel, rejectLabel })` and returns a `Promise` — no state management required in the caller.
+
+| Prop | Default | Notes |
+| --- | --- | --- |
+| title | — | Dialog heading — state the action clearly, e.g., "Delete project?" |
+| content | — | Consequence statement — e.g., "This action cannot be undone and will remove all job data." |
+| confirmLabel | 'Ok' | Use the action verb: "Delete", "Stop job", "Archive" |
+| rejectLabel | 'Cancel' | Always provide a clear exit |
+| confirmOnly | false | Hide cancel — use only for acknowledgements, not destructive actions |
+
+## Backdrop
+
+A dimming overlay behind floating content (Dialog, Drawer, custom panels). Signals that the background is inert. In most cases you don't use Backdrop directly — Dialog and Drawer include one automatically.
+
+Only reach for `Backdrop` directly when building a custom panel that needs its own dimming overlay.
+
+### Props
+
+**Scope: Tier 1** — import from `@mui/material/Backdrop`. Rarely used standalone; Dialog and Modal manage their own Backdrop automatically.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| open | boolean | false | Controls visibility. Required. |
+| onClick | `(event) => void` | — | Attach close handler for dismissible backdrops. |
+| invisible | boolean | false | Removes the semi-transparent overlay — keeps the blocking behavior. Used for custom loading states. |
+| transitionDuration | number \| \{ enter, exit \} | — | Override fade duration in ms. |

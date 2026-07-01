@@ -1,0 +1,44 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Tooltip/Guidelines" />
+
+# Tooltip
+
+Short explanatory text shown on hover or focus. Never use a tooltip as the primary vehicle for critical information — tooltips aren't reachable on touch devices by default.
+
+## Guidelines
+
+### Do
+
+- Use tooltips for toolbar icon buttons, disabled-control explanations, and truncated-cell labels.
+- Keep the title short — max ~60 characters. Longer copy belongs in a Popover.
+- Override `placement` to `'top'` for dense toolbars.
+- Add an `arrow` when the tooltip floats far from its trigger.
+
+### Don't
+
+- Rely on a tooltip to convey critical information, since it isn't reachable on touch by default.
+- Remove the focus trigger (`disableFocusListener`) — it breaks keyboard accessibility.
+
+## Props
+
+Import from `@mui/material/Tooltip`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| title | node | — | Required. The tooltip text. Max ~60 chars; longer copy belongs in a Popover. |
+| placement | 'top' \| 'bottom' \| 'left' \| 'right' \| 'top-start' \| 'top-end' \| 'bottom-start' \| 'bottom-end' | 'bottom' | Override to 'top' for dense toolbars. |
+| arrow | bool | false | Renders an arrow pointing to the trigger. Use when the tooltip floats far from its element. |
+| open | bool | — | Controlled open state. Pair with onOpen / onClose. |
+| onOpen | func | — | Fired when the tooltip opens. Used in controlled mode. |
+| onClose | func | — | Fired when the tooltip closes. |
+| disableHoverListener | bool | false | Removes the hover trigger. Pair with custom open logic. |
+| disableFocusListener | bool | false | Removes the focus trigger. Caution — breaks keyboard accessibility. |
+| enterDelay | number | 100 | ms before the tooltip opens. 200ms recommended for toolbar density. |
+| leaveDelay | number | 0 | ms before the tooltip closes after the pointer leaves. |
+| followCursor | bool | false | Tooltip follows the cursor. Rarely needed; avoid in dense UIs. |
+
+## Accessibility
+
+- Keep the focus trigger enabled so keyboard users can reveal the tooltip.
+- For a disabled control, wrap it in a `span` so the tooltip still receives hover and focus events.

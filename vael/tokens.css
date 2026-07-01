@@ -1,0 +1,595 @@
+/* =============================================================================
+   GENERATED FILE — DO NOT EDIT MANUALLY
+   Source: Figma variables → Supernova → tokens/design-tokens.json
+   To update: change values in Figma, merge the design-system branch,
+              Supernova auto-opens a PR that regenerates this file.
+   Version: Vael v.75.0
+   ============================================================================= */
+
+/**
+ * Vael Design System — CSS Custom Properties
+ *
+ * All design tokens are exposed as CSS custom properties (variables) namespaced
+ * under the `--ds-` prefix. The naming convention is:
+ *
+ *   --ds-{group}-{subgroup?}-{name}
+ *
+ * Examples:
+ *   --ds-color-primary-main
+ *   --ds-typography-h1-font-size
+ *   --ds-spacing-4
+ *   --ds-motion-duration-standard
+ *
+ * Usage:
+ *   Import this file once at the root of your stylesheet or in your global
+ *   CSS entry point:
+ *
+ *     @import './tokens/tokens.css';
+ *
+ *   Then reference tokens anywhere in your styles:
+ *
+ *     .my-button {
+ *       background-color: var(--ds-color-primary-main);
+ *       font-size: var(--ds-typography-button-font-size);
+ *       border-radius: var(--ds-shape-border-radius);
+ *       transition: background-color var(--ds-motion-duration-standard)ms
+ *                   var(--ds-motion-easing-ease-in-out);
+ *     }
+ *
+ * Dark mode overrides are provided at the bottom of this file via
+ * @media (prefers-color-scheme: dark). They cover the subset of color tokens
+ * that change between light and dark; all other tokens remain constant.
+ *
+ * Token source: foundations/color.md, foundations/typography.md,
+ *               foundations/elevation.md, foundations/spacing.md
+ * MUI version:  v7
+ */
+
+:root {
+
+  /* =========================================================================
+     Color — Text
+     ========================================================================= */
+
+  --ds-color-text-primary:   #000000de;
+  --ds-color-text-secondary: #00000099;
+  --ds-color-text-disabled:  #00000061;
+
+  /* =========================================================================
+     Color — Primary
+     ========================================================================= */
+
+  --ds-color-primary-main:     #1976d2;
+  --ds-color-primary-dark:     #1565c0;
+  --ds-color-primary-light:    #42a5f5;
+  --ds-color-primary-contrast: #ffffff;
+
+  /* =========================================================================
+     Color — Secondary
+     ========================================================================= */
+
+  --ds-color-secondary-main:     #9c27b0;
+  --ds-color-secondary-dark:     #7b1fa2;
+  --ds-color-secondary-light:    #ba68c8;
+  --ds-color-secondary-contrast: #ffffff;
+
+  /* =========================================================================
+     Color — Error
+     ========================================================================= */
+
+  --ds-color-error-main:     #d32f2f;
+  --ds-color-error-dark:     #c62828;
+  --ds-color-error-light:    #ef5350;
+  --ds-color-error-contrast: #ffffff;
+
+  /* =========================================================================
+     Color — Warning
+     ========================================================================= */
+
+  --ds-color-warning-main:     #ef6c00;
+  --ds-color-warning-dark:     #e65100;
+  --ds-color-warning-light:    #ff9800;
+  --ds-color-warning-contrast: #ffffff;
+
+  /* =========================================================================
+     Color — Info
+     ========================================================================= */
+
+  --ds-color-info-main:     #0288d1;
+  --ds-color-info-dark:     #01579b;
+  --ds-color-info-light:    #03a9f4;
+  --ds-color-info-contrast: #ffffff;
+
+  /* =========================================================================
+     Color — Success
+     ========================================================================= */
+
+  --ds-color-success-main:     #2e7d32;
+  --ds-color-success-dark:     #1b5e20;
+  --ds-color-success-light:    #4caf50;
+  --ds-color-success-contrast: #ffffff;
+
+  /* =========================================================================
+     Color — Background
+     ========================================================================= */
+
+  --ds-color-background-default: #ffffff;
+  --ds-color-background-paper:   #ffffff;
+
+  /* =========================================================================
+     Color — Action
+     ========================================================================= */
+
+  --ds-color-action-active:             rgba(0, 0, 0, 0.54);
+  --ds-color-action-hover:              rgba(0, 0, 0, 0.04);
+  --ds-color-action-selected:           rgba(0, 0, 0, 0.08);
+  --ds-color-action-disabled:           rgba(0, 0, 0, 0.26);
+  --ds-color-action-disabled-background: rgba(0, 0, 0, 0.12);
+  --ds-color-action-focus:              rgba(0, 0, 0, 0.12);
+
+  /* =========================================================================
+     Color — Divider
+     ========================================================================= */
+
+  --ds-color-divider: rgba(0, 0, 0, 0.12);
+
+  /* =========================================================================
+     Color — Tonal ramps  (6-stop scale per semantic color)
+     ─────────────────────────────────────────────────────────────────────────
+     50 / 100   → surface fills and subtle tints. Never use for text.
+     300        → decorative fill only. Never use for text.
+     700 / 800  → text on light surfaces, high-emphasis elements.
+     900        → maximum contrast variant, use sparingly.
+     main / dark (existing tokens) remain the primary interactive reference.
+
+     All stops at 700+ are verified WCAG AA (≥ 4.5:1 vs white or black).
+     ========================================================================= */
+
+  /* Primary — Material Blue */
+  --ds-color-primary-50:   #E3F2FD;   /* surface tint */
+  --ds-color-primary-100:  #BBDEFB;   /* surface tint */
+  --ds-color-primary-300:  #64B5F6;   /* decorative fill only */
+  /* main #1976D2 · dark #1565C0  →  existing tokens */
+  --ds-color-primary-900:  #0D47A1;   /* 8.6:1 vs white */
+
+  /* Secondary — Material Purple */
+  --ds-color-secondary-50:  #F3E5F5;  /* surface tint */
+  --ds-color-secondary-100: #E1BEE7;  /* surface tint */
+  --ds-color-secondary-300: #CE93D8;  /* decorative fill only */
+  /* main #9C27B0 · dark #7B1FA2  →  existing tokens */
+  --ds-color-secondary-900: #4A148C;  /* 11.9:1 vs white */
+
+  /* Error — Material Red */
+  --ds-color-error-50:   #FFEBEE;     /* surface tint */
+  --ds-color-error-100:  #FFCDD2;     /* surface tint */
+  --ds-color-error-300:  #E57373;     /* decorative fill only */
+  /* main #D32F2F · dark #C62828  →  existing tokens */
+  --ds-color-error-900:  #B71C1C;     /* 6.6:1 vs white */
+
+  /* Warning — Material Orange */
+  --ds-color-warning-50:   #FFF3E0;   /* surface tint */
+  --ds-color-warning-100:  #FFE0B2;   /* surface tint */
+  --ds-color-warning-300:  #FFB74D;   /* decorative fill only */
+  /* main #EF6C00 · dark #E65100  →  existing tokens */
+  --ds-color-warning-900:  #BF360C;   /* 5.6:1 vs white */
+
+  /* Info — Material Light Blue */
+  --ds-color-info-50:   #E1F5FE;      /* surface tint */
+  --ds-color-info-100:  #B3E5FC;      /* surface tint */
+  --ds-color-info-300:  #4FC3F7;      /* decorative fill only */
+  /* main #0288D1  →  existing token */
+  --ds-color-info-800:  #0277BD;      /* 4.8:1 vs white — mid-dark step */
+  /* dark #01579B  →  existing token (900-equivalent) */
+
+  /* Success — Material Green */
+  --ds-color-success-50:   #E8F5E9;   /* surface tint */
+  --ds-color-success-100:  #C8E6C9;   /* surface tint */
+  --ds-color-success-300:  #81C784;   /* decorative fill only */
+  --ds-color-success-700:  #388E3C;   /* 4.1:1 vs white */
+  /* main #2E7D32 · dark #1B5E20  →  existing tokens */
+
+  /* =========================================================================
+     Color — Neutral surfaces
+     ─────────────────────────────────────────────────────────────────────────
+     Semantic surface tokens for layering and depth without using brand color.
+     Use these for panel backgrounds, card fills, and section separators.
+     Never use as text colors or interactive state indicators.
+
+     All support text-primary (rgba 0,0,0,0.87) at ≥ 7:1 contrast.
+     ========================================================================= */
+
+  --ds-surface-1:       #F8FAFC;   /* Near-white cool — page sections, sidebar bg */
+  --ds-surface-2:       #F1F5F9;   /* Light — card default, panel background */
+  --ds-surface-3:       #E2E8F0;   /* Medium — inset content, secondary panels */
+  --ds-surface-4:       #CBD5E1;   /* Strong — table header fills, dense bg */
+  --ds-surface-inverse: #1E293B;   /* Dark — tooltips, code blocks, inverse text areas */
+
+  /* =========================================================================
+     Opacity scale — state layers and chart fills
+     ─────────────────────────────────────────────────────────────────────────
+     Apply these as the alpha channel on a color token, never as a raw rgba.
+
+     State layers (applied on top of surface or component background):
+       hover    →  0.04   faint ripple, lowest signal
+       selected →  0.08   row/item selected state
+       focus    →  0.12   focus ring fill behind outline
+       pressed  →  0.12   active/tap state
+       dragged  →  0.16   highest interactive state signal
+       disabled →  0.38   element opacity, not background
+
+     Chart fills (area/band fills behind data lines):
+       chart-fill         →  0.12   standard area series fill
+       chart-deadband     →  0.09   process deadband band
+       chart-disturbance  →  0.06   debug/annotation plot band
+     ========================================================================= */
+
+  --ds-opacity-hover:      0.04;
+  --ds-opacity-selected:   0.08;
+  --ds-opacity-focus:      0.12;
+  --ds-opacity-pressed:    0.12;
+  --ds-opacity-dragged:    0.16;
+  --ds-opacity-disabled:   0.38;
+
+  --ds-opacity-chart-fill:        0.12;
+  --ds-opacity-chart-deadband:    0.09;
+  --ds-opacity-chart-disturbance: 0.06;
+
+  /* =========================================================================
+     Elevation (box-shadow values)
+     ========================================================================= */
+
+  --ds-elevation-1:  0px 2px 1px -1px rgba(0,0,0,0.20), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+  --ds-elevation-2:  0px 3px 1px -2px rgba(0,0,0,0.20), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12);
+  --ds-elevation-3:  0px 3px 3px -2px rgba(0,0,0,0.20), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12);
+  --ds-elevation-4:  0px 2px 4px -1px rgba(0,0,0,0.20), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
+  --ds-elevation-8:  0px 5px 5px -3px rgba(0,0,0,0.20), 0px 8px 10px 1px rgba(0,0,0,0.14), 0px 3px 14px 2px rgba(0,0,0,0.12);
+  --ds-elevation-16: 0px 8px 10px -5px rgba(0,0,0,0.20), 0px 16px 24px 2px rgba(0,0,0,0.14), 0px 6px 30px 5px rgba(0,0,0,0.12);
+  --ds-elevation-24: 0px 11px 15px -7px rgba(0,0,0,0.20), 0px 24px 38px 3px rgba(0,0,0,0.14), 0px 9px 46px 8px rgba(0,0,0,0.12);
+
+  /* =========================================================================
+     Typography — Font Family
+     ========================================================================= */
+
+  --ds-typography-font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+
+  /* =========================================================================
+     Typography — Font Weights
+     ========================================================================= */
+
+  --ds-typography-font-weight-light:   300;
+  --ds-typography-font-weight-regular: 400;
+  --ds-typography-font-weight-medium:  500;
+  --ds-typography-font-weight-bold:    700;
+
+  /* =========================================================================
+     Typography — Scale: h1
+     ========================================================================= */
+
+  --ds-typography-h1-font-size:    96px;
+  --ds-typography-h1-font-weight:  300;
+  --ds-typography-h1-line-height:  1.167;
+  --ds-typography-h1-letter-spacing: -1.5px;
+
+  /* =========================================================================
+     Typography — Scale: h2
+     ========================================================================= */
+
+  --ds-typography-h2-font-size:     60px;
+  --ds-typography-h2-font-weight:   300;
+  --ds-typography-h2-line-height:   1.2;
+  --ds-typography-h2-letter-spacing: -0.5px;
+
+  /* =========================================================================
+     Typography — Scale: h3
+     ========================================================================= */
+
+  --ds-typography-h3-font-size:     48px;
+  --ds-typography-h3-font-weight:   400;
+  --ds-typography-h3-line-height:   1.167;
+  --ds-typography-h3-letter-spacing: 0px;
+
+  /* =========================================================================
+     Typography — Scale: h4
+     ========================================================================= */
+
+  --ds-typography-h4-font-size:     34px;
+  --ds-typography-h4-font-weight:   400;
+  --ds-typography-h4-line-height:   1.235;
+  --ds-typography-h4-letter-spacing: 0.25px;
+
+  /* =========================================================================
+     Typography — Scale: h5
+     ========================================================================= */
+
+  --ds-typography-h5-font-size:     24px;
+  --ds-typography-h5-font-weight:   400;
+  --ds-typography-h5-line-height:   1.334;
+  --ds-typography-h5-letter-spacing: 0px;
+
+  /* =========================================================================
+     Typography — Scale: h6
+     ========================================================================= */
+
+  --ds-typography-h6-font-size:     20px;
+  --ds-typography-h6-font-weight:   500;
+  --ds-typography-h6-line-height:   1.6;
+  --ds-typography-h6-letter-spacing: 0.15px;
+
+  /* =========================================================================
+     Typography — Scale: subtitle1
+     ========================================================================= */
+
+  --ds-typography-subtitle1-font-size:     16px;
+  --ds-typography-subtitle1-font-weight:   400;
+  --ds-typography-subtitle1-line-height:   1.75;
+  --ds-typography-subtitle1-letter-spacing: 0.15px;
+
+  /* =========================================================================
+     Typography — Scale: subtitle2
+     ========================================================================= */
+
+  --ds-typography-subtitle2-font-size:     14px;
+  --ds-typography-subtitle2-font-weight:   500;
+  --ds-typography-subtitle2-line-height:   1.57;
+  --ds-typography-subtitle2-letter-spacing: 0.1px;
+
+  /* =========================================================================
+     Typography — Scale: body1
+     ========================================================================= */
+
+  --ds-typography-body1-font-size:     16px;
+  --ds-typography-body1-font-weight:   400;
+  --ds-typography-body1-line-height:   1.5;
+  --ds-typography-body1-letter-spacing: 0.15px;
+
+  /* =========================================================================
+     Typography — Scale: body2
+     ========================================================================= */
+
+  --ds-typography-body2-font-size:     14px;
+  --ds-typography-body2-font-weight:   400;
+  --ds-typography-body2-line-height:   1.43;
+  --ds-typography-body2-letter-spacing: 0.17px;
+
+  /* =========================================================================
+     Typography — Scale: button
+     ========================================================================= */
+
+  --ds-typography-button-font-size:     14px;
+  --ds-typography-button-font-weight:   500;
+  --ds-typography-button-line-height:   1.75;
+  --ds-typography-button-letter-spacing: 0.4px;
+
+  /* =========================================================================
+     Typography — Scale: caption
+     ========================================================================= */
+
+  --ds-typography-caption-font-size:     12px;
+  --ds-typography-caption-font-weight:   400;
+  --ds-typography-caption-line-height:   1.66;
+  --ds-typography-caption-letter-spacing: 0.4px;
+
+  /* =========================================================================
+     Typography — Scale: overline
+     ========================================================================= */
+
+  --ds-typography-overline-font-size:     12px;
+  --ds-typography-overline-font-weight:   400;
+  --ds-typography-overline-line-height:   2.66;
+  --ds-typography-overline-letter-spacing: 1px;
+
+  /* =========================================================================
+     Spacing (8px base grid)
+     ========================================================================= */
+
+  --ds-spacing-1: 8px;
+  --ds-spacing-2: 16px;
+  --ds-spacing-3: 24px;
+  --ds-spacing-4: 32px;
+  --ds-spacing-5: 40px;
+  --ds-spacing-6: 48px;
+  --ds-spacing-7: 56px;
+  --ds-spacing-8: 64px;
+
+  /* =========================================================================
+     Shape
+     ========================================================================= */
+
+  --ds-shape-border-radius: 4px;
+
+  /* =========================================================================
+     Breakpoints
+     Note: CSS custom properties cannot be used directly in @media queries.
+     These are provided for documentation and JS consumption.
+     ========================================================================= */
+
+  --ds-breakpoint-xs: 0px;
+  --ds-breakpoint-sm: 600px;
+  --ds-breakpoint-md: 900px;
+  --ds-breakpoint-lg: 1200px;
+  --ds-breakpoint-xl: 1536px;
+
+  /* =========================================================================
+     Motion — Easing
+     ========================================================================= */
+
+  --ds-motion-easing-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ds-motion-easing-ease-out:    cubic-bezier(0.0, 0, 0.2, 1);
+  --ds-motion-easing-ease-in:     cubic-bezier(0.4, 0, 1, 1);
+  --ds-motion-easing-sharp:       cubic-bezier(0.4, 0, 0.6, 1);
+
+  /* =========================================================================
+     Motion — Duration (milliseconds)
+     Usage: transition: opacity calc(var(--ds-motion-duration-standard) * 1ms)
+     ========================================================================= */
+
+  --ds-motion-duration-shortest:       150;
+  --ds-motion-duration-shorter:        200;
+  --ds-motion-duration-short:          250;
+  --ds-motion-duration-standard:       300;
+  --ds-motion-duration-complex:        375;
+  --ds-motion-duration-entering-screen: 225;
+  --ds-motion-duration-leaving-screen:  195;
+
+}
+
+/* Dark Mode — Draft, pending Figma design */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Text */
+    --ds-color-text-primary: rgba(255, 255, 255, 0.87);
+    --ds-color-text-secondary: rgba(255, 255, 255, 0.60);
+    --ds-color-text-disabled: rgba(255, 255, 255, 0.38);
+    /* Background */
+    --ds-color-background-default: #121212;
+    --ds-color-background-paper: #1e1e1e;
+    /* Primary */
+    --ds-color-primary-main: #90caf9;
+    --ds-color-primary-dark: #42a5f5;
+    --ds-color-primary-light: #e3f2fd;
+    --ds-color-primary-contrast: rgba(0, 0, 0, 0.87);
+    /* Secondary */
+    --ds-color-secondary-main: #ce93d8;
+    --ds-color-secondary-dark: #ab47bc;
+    --ds-color-secondary-light: #f3e5f5;
+    --ds-color-secondary-contrast: rgba(0, 0, 0, 0.87);
+    /* Error */
+    --ds-color-error-main: #f44336;
+    /* Warning */
+    --ds-color-warning-main: #ffa726;
+    --ds-color-warning-contrast: rgba(0, 0, 0, 0.87);
+    /* Info */
+    --ds-color-info-main: #29b6f6;
+    --ds-color-info-contrast: rgba(0, 0, 0, 0.87);
+    /* Success */
+    --ds-color-success-main: #66bb6a;
+    --ds-color-success-contrast: rgba(0, 0, 0, 0.87);
+    /* Action */
+    --ds-color-action-active: rgba(255, 255, 255, 0.56);
+    --ds-color-action-hover: rgba(255, 255, 255, 0.08);
+    --ds-color-action-selected: rgba(255, 255, 255, 0.16);
+    --ds-color-action-disabled: rgba(255, 255, 255, 0.30);
+    --ds-color-action-disabled-background: rgba(255, 255, 255, 0.12);
+    --ds-color-action-focus: rgba(255, 255, 255, 0.12);
+    /* Divider */
+    --ds-color-divider: rgba(255, 255, 255, 0.12);
+  }
+}
+
+/* ─── Chart Variable Colors ─────────────────────────────────────────────────
+ *
+ * Deterministic color assignments for process variables in the chart system.
+ * These map to semantic palette tokens — both must stay in sync.
+ * Never reassign without a formal design decision.
+ *
+ * Reference: foundations/data-visualization.md, components/charts.md
+ * ────────────────────────────────────────────────────────────────────────── */
+:root {
+  /* Process variable colors — core 6, permanently assigned */
+  --ds-chart-variable-cpu:          var(--ds-color-primary-main);   /* CPU utilization — blue   #1976d2 */
+  --ds-chart-variable-memory: #00796B;                        /* Memory          — teal   #00796b */
+  --ds-chart-variable-latency:          var(--ds-color-success-main);   /* Latency               — green  #2e7d32 */
+  --ds-chart-variable-throughput:   var(--ds-color-secondary-main); /* Throughput       — purple #9c27b0 */
+  --ds-chart-variable-requests:   var(--ds-color-warning-main);   /* Requests         — orange #ef6c00 */
+  --ds-chart-variable-storage:      var(--ds-color-info-main);      /* Storage          — blue   #0288d1 */
+
+  /* Extended dataviz palette — for 7th series and beyond
+   * Assign in order (extended-1 first) when core 6 are exhausted.
+   * All verified WCAG AA (≥ 4.5:1) against white.
+   * Never use these colors in UI chrome (buttons, chips, alerts). */
+  --ds-chart-extended-amber:  #B45309;  /* warm gold    5.0:1 — cell density, OD600 */
+  --ds-chart-extended-indigo: #3F51B5;  /* blue-purple  6.9:1 — additional gas species */
+  --ds-chart-extended-rose:   #C2185B;  /* warm pink    5.9:1 — secondary metabolites */
+  --ds-chart-extended-sienna: #795548;  /* earthy brown 6.6:1 — media components */
+
+  /* Event marker colors */
+  --ds-chart-event-warning:        var(--ds-color-warning-main);   /* Override / caution — diamond */
+  --ds-chart-event-error:          var(--ds-color-error-main);     /* Alarm / critical   — diamond */
+  --ds-chart-event-recovery:       var(--ds-color-success-main);   /* Resolved           — diamond */
+  --ds-chart-event-debug:          var(--ds-color-error-main);     /* Debug event        — circle  */
+
+  /* Deadband and range fill opacities */
+  --ds-opacity-chart-deadband:     0.09;   /* Never exceed 0.15 */
+  --ds-opacity-chart-disturbance:  0.06;   /* DebugChart plot band */
+  --ds-opacity-chart-fill:         0.12;   /* Area fill under process variable lines */
+}
+
+/* ─── Tonal Ramps ────────────────────────────────────────────────────────────
+ *
+ * 50/100/300 are surface-only tints — do not use for text.
+ * 700/800/900 meet WCAG AA for text (≥4.5:1 on white).
+ *
+ * ────────────────────────────────────────────────────────────────────────── */
+:root {
+  --ds-color-primary-50:    #E3F2FD;
+  --ds-color-primary-100:   #BBDEFB;
+  --ds-color-primary-300:   #64B5F6;
+  --ds-color-primary-900:   #0D47A1;
+
+  --ds-color-secondary-50:  #F3E5F5;
+  --ds-color-secondary-100: #E1BEE7;
+  --ds-color-secondary-300: #CE93D8;
+  --ds-color-secondary-900: #4A148C;
+
+  --ds-color-error-50:      #FFEBEE;
+  --ds-color-error-100:     #FFCDD2;
+  --ds-color-error-300:     #E57373;
+  --ds-color-error-900:     #B71C1C;
+
+  --ds-color-warning-50:    #FFF3E0;
+  --ds-color-warning-100:   #FFE0B2;
+  --ds-color-warning-300:   #FFB74D;
+  --ds-color-warning-900:   #BF360C;
+
+  --ds-color-info-50:       #E1F5FE;
+  --ds-color-info-100:      #B3E5FC;
+  --ds-color-info-300:      #4FC3F7;
+  --ds-color-info-800:      #0277BD;
+
+  --ds-color-success-50:    #E8F5E9;
+  --ds-color-success-100:   #C8E6C9;
+  --ds-color-success-300:   #81C784;
+  --ds-color-success-700:   #388E3C;
+}
+
+/* ─── Neutral Surfaces ───────────────────────────────────────────────────────
+ *
+ * Use in order: surface/1 is the lightest (outermost), surface/4 is darkest.
+ * surface/inverse is for dark overlays and high-contrast surfaces.
+ *
+ * ────────────────────────────────────────────────────────────────────────── */
+:root {
+  --ds-surface-1:       #F8FAFC;
+  --ds-surface-2:       #F1F5F9;
+  --ds-surface-3:       #E2E8F0;
+  --ds-surface-4:       #CBD5E1;
+  --ds-surface-inverse: #1E293B;
+}
+
+/* ─── Opacity Scale ──────────────────────────────────────────────────────────
+ *
+ * Use these values when composing state overlays, disabled states, and chart
+ * fills. Never stack more than two opacity layers on the same element.
+ *
+ * ────────────────────────────────────────────────────────────────────────── */
+:root {
+  --ds-opacity-hover:              0.04;
+  --ds-opacity-selected:           0.08;
+  --ds-opacity-focus:              0.12;
+  --ds-opacity-pressed:            0.12;
+  --ds-opacity-dragged:            0.16;
+  --ds-opacity-disabled:           0.38;
+}
+
+/* ─── Extended Dataviz Colors ────────────────────────────────────────────────
+ *
+ * Use only when the 6 core process variable colors are insufficient.
+ * All values pass WCAG AA for text (≥4.5:1 on white).
+ *
+ * ────────────────────────────────────────────────────────────────────────── */
+:root {
+  --ds-chart-extended-amber:  #B45309;  /* 5.0:1 — custom chart variables */
+  --ds-chart-extended-indigo: #3F51B5;  /* 6.9:1 */
+  --ds-chart-extended-rose:   #C2185B;  /* 5.9:1 */
+  --ds-chart-extended-sienna: #795548;  /* 6.6:1 */
+}

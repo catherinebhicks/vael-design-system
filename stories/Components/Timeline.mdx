@@ -1,0 +1,69 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Timeline/Guidelines" />
+
+# Timeline and Image list
+
+Two specialty layouts. Timeline (from `@mui/material`) renders event sequences; Image list renders gallery-style grids. Neither is widely used — check with design before introducing either to a new page.
+
+## Timeline
+
+Event sequence with dots, connectors, and content blocks on either side. Use the `alternate` position for mixed narrative content, and `right` for compact logs.
+
+Example entries:
+
+- **09:12** · CPU threshold changed 70% → 80%
+- **09:43** · Job B started · 120 req/min
+
+### Guidelines
+
+#### Use when
+
+- Displaying a project event history — deployments, config changes, file uploads, alerts triggered — as a scrollable chronological feed anchored to timestamps.
+- Showing audit logs for settings changes or config version history where users need to trace who changed what and when.
+- Summarizing a job lifecycle — Queued → Running → Deploying → Complete — with dot color coding that maps to semantic tokens (success, warning, error) for each phase status.
+- Showing the sequence of user interventions during a live job in a contextual detail panel, placing timestamps on the left and event descriptions on the right.
+- Displaying change logs for server firmware or configuration events in the Hardware section.
+
+#### Don't use when
+
+- Displaying live streaming metric data (CPU, Memory, Latency over time) — use a time-series chart. Timeline implies discrete events, not a continuous measurement signal.
+- Navigating sequential setup steps where the user needs to mark steps complete — use a Stepper, which provides actionable completion state.
+- Presenting a sortable or filterable list of projects — use a data grid. Timeline is ordered and non-interactive at the row level.
+- Showing non-chronological content categories or settings groups — the vertical connector and dot structure implies a time order that would mislead users.
+
+### Props
+
+Import from `@mui/lab/Timeline`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| position | 'left' \| 'right' \| 'alternate' \| 'alternate-reverse' | 'left' | On `Timeline`. Use `alternate` for narrative event logs; `right` for compact audit trails. |
+| color | 'inherit' \| 'grey' \| 'primary' \| 'secondary' \| 'error' \| 'info' \| 'success' \| 'warning' | 'grey' | On `TimelineDot`. Map to semantic status: success = complete, error = failed, warning = stalled. |
+| variant | 'filled' \| 'outlined' | 'filled' | On `TimelineDot`. Use outlined for pending or future events. |
+| align | 'left' \| 'right' | 'left' | On `TimelineOppositeContent`. Controls timestamp alignment. |
+
+## Image list
+
+Masonry or quilted grid for thumbnails, suited to visual-first browsing. Prefer a data grid with an image-cell renderer for catalogued data.
+
+### Guidelines
+
+#### Use when
+
+- Displaying imagery grid views where consistent aspect ratios are needed.
+
+#### Don't use when
+
+- Displaying application event logs — use Timeline instead.
+
+### Props
+
+Import from `@mui/material/ImageList`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| cols | number | 2 | Number of columns in the grid. |
+| rowHeight | number \| 'auto' | 164 | Pixel height per row. Use 'auto' for the masonry variant. |
+| variant | 'standard' \| 'quilted' \| 'woven' \| 'masonry' | 'standard' | Layout algorithm. Use masonry for variable-height imagery. |
+| gap | number | 4 | Pixel gap between items. |

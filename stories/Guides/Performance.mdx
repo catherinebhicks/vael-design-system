@@ -1,0 +1,22 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guides/Performance" />
+
+# Performance
+
+Guidelines for keeping the app fast: list virtualization, code splitting, and font loading.
+
+## DataGrid / AG Grid virtualization
+
+Virtualization is on by default. Don't disable it. Avoid `domLayout="autoHeight"` for tables over 50 rows — it defeats row virtualization.
+
+## Code splitting
+
+- Dialogs and Drawers — lazy-load with `next/dynamic`; their deps often dwarf the host page.
+- Charts — `HighchartsClient` is already dynamic; don't re-wrap it.
+- Recipe Editor — always dynamic; React Flow adds ~200 KB.
+
+## Fonts
+
+- Load Google Fonts and restrict to the four weights we use (300, 400, 500, 700).
+- Avoid `@import url(…)` in CSS — it blocks render.

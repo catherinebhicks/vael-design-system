@@ -1,0 +1,25 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Chip/Guidelines" />
+
+# Chip
+
+Compact element for tags, filters, and selected values. Comes in two variants (filled and outlined), seven colors, two sizes, and five states.
+
+## Props
+
+Import from `@mui/material/Chip`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| label | node | — | Required. The chip text or content. |
+| variant | 'filled' \| 'outlined' | 'filled' | Filled for emphasis; outlined for filters and secondary states. |
+| color | 'default' \| 'primary' \| 'secondary' \| 'error' \| 'warning' \| 'info' \| 'success' | 'default' | Always use semantically — see color guide below. |
+| size | 'medium' \| 'small' | 'medium' | medium = 32 px height; small = 24 px height. |
+| onDelete | func | — | When provided, renders a delete icon (×). Required for dismissible filter chips. |
+| deleteIcon | element | — | Override the trailing delete icon. Rarely needed. |
+| icon | element | — | Leading icon slot. Use for parameter chips (e.g. a metric icon for a status chip). |
+| avatar | element | — | Leading avatar slot. Use for user/assignee chips. Mutually exclusive with icon. |
+| clickable | bool | false | Adds hover/active ripple. Set implicitly when onClick is provided. |
+| disabled | bool | false | Renders non-interactive at reduced opacity. Still needs 3:1 contrast. |
+| onClick | func | — | Makes chip interactive (toggle, filter). Do not use for destructive primary actions. |

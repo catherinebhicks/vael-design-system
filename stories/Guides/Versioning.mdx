@@ -1,0 +1,79 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guides/Versioning" />
+
+# Versioning & migration
+
+The design system follows semantic versioning (SemVer) in the form `MAJOR.MINOR.PATCH` to communicate the impact of each release. All consumers should read this before upgrading across a major version boundary. Deprecated items remain available for at least one MINOR version before removal.
+
+**Current version: V0 (pre-release)** — no stability guarantees until V1.0.0. Teams using V0 should expect to migrate when V1 is declared.
+
+## Version format
+
+| Segment | When it increments |
+| --- | --- |
+| MAJOR | Breaking changes — existing implementations must update |
+| MINOR | New components, variants, or tokens — backward compatible |
+| PATCH | Bug fixes, documentation corrections, accessibility improvements |
+
+## What counts as a breaking change?
+
+| Change | Breaking? |
+| --- | --- |
+| Renaming or removing a token | Yes |
+| Changing a token's value significantly | Yes |
+| Renaming a component prop | Yes |
+| Removing a component prop or variant | Yes |
+| Changing a component's default behavior | Yes |
+| Changing a component's DOM structure | Yes |
+| Adding a new optional prop | No |
+| Adding a new component or token | No |
+| Documentation-only update | No |
+| Bug fix that corrects documented behavior | No |
+| Accessibility improvement (ARIA changes) | No |
+
+## Deprecation process
+
+1. **Deprecation notice** — mark in the component doc with `Status: Deprecated — use [X] instead`. Add a console warning in the component code.
+2. **Deprecation period** — the deprecated item remains functional for at least 1 MINOR version before removal.
+3. **Migration guide** — written before the deprecation is announced. Documents exactly what to change and why.
+4. **Removal** — happens in the next MAJOR version, with the migration guide linked from the changelog.
+
+## Status badge values
+
+| Badge | Meaning |
+| --- | --- |
+| Stable | In production, API is settled |
+| Draft | In progress, values provisional |
+| Experimental | Available for use, API may change in a MINOR version |
+| Deprecated | Do not use for new work; migration guide available |
+| Removed | No longer in the system; kept in docs for historical reference |
+
+## Release process
+
+1. Collect all changes since last release.
+2. Determine version bump based on change types above.
+3. Update `changelog.md` with date, version, and all changes organized by type (Breaking, Added, Changed, Fixed, Deprecated).
+4. Update `index.md` version field.
+5. Announce in team channel with: version number, summary of changes, link to changelog, and any migration needed.
+
+## Changelog format
+
+Follow the [Keep a Changelog](https://keepachangelog.com) format.
+
+## V0 → V1 criteria
+
+- All 52 components have been independently accessibility-audited.
+- Dark mode tokens have been designed in Figma and finalized.
+- Motion/animation tokens have been reviewed and approved.
+- Token naming has been finalized and stabilized.
+- At least one full product has shipped using the system.
+- Contribution process has been exercised at least once end-to-end.
+
+## Migration guide
+
+Patch and minor releases are backward compatible and require no migration. For major version upgrades, follow the migration guide for that version. Each guide lists breaking changes first, then migration steps ordered top to bottom, plus any automated codemods.
+
+**V0 — Baseline (April 2026):** V0 is the initial documentation-only release. It establishes all design token names, component documentation and variant structures, the `tokens/theme.ts` MUI theme configuration, and all pattern and process documentation. A V0 → V1 migration guide will be completed when V1 is released.
+
+If you encounter issues during migration: check the changelog for the specific version, post in the design system Slack channel with the specific error or component name, or file an issue if the migration guide is incomplete.

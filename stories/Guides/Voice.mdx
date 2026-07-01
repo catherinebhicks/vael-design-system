@@ -1,0 +1,98 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guides/Voice & Tone" />
+
+# Voice & tone
+
+Writing guidelines that apply to all UI copy. Vael voice is direct, technical, and human. The dashboard is used by people running demanding jobs — they need clarity, not cheerleading. Apply these guidelines wherever words appear: labels, error messages, buttons, tooltips, helper text, confirmation dialogs, and loading states.
+
+## Our voice
+
+- **Clear.** Say exactly what you mean. No jargon, no hedging. When in doubt, use the simplest word that carries the right meaning. Clarity is never sacrificed for cleverness.
+- **Direct.** Short is better. Active voice over passive. "Save your changes" not "Your changes can be saved." Every word should do work — if it doesn't, cut it.
+- **Confident.** Don't apologize for the product ("Unfortunately…", "Sorry, but…"). State facts and guide users forward.
+- **Human.** Use "you" and "your." Don't roboticize ("An error has occurred"). Our users are doing demanding work — treat them as capable adults.
+
+## Tone variations
+
+- **Instructional (forms, onboarding):** Helpful and efficient. No preamble, no throat-clearing. Get users oriented fast and let them move.
+- **Confirmational (success states):** Warm but brief. Acknowledge what happened without over-celebrating.
+- **Error / failure:** Calm and specific. State what went wrong — without blame — what it means, and what to do next. Never create panic.
+- **Empty / neutral:** Informative and forward-looking. Always indicate the path forward.
+
+## Writing principles
+
+- **Lead with the action or outcome.** Put the most important information first. Users scan interfaces.
+- **Use sentence case everywhere.** Button labels, headings, helper text, error messages — all sentence case. Title case only for proper nouns and branded names.
+- **Use present tense.** "File is too large" not "The file you uploaded was too large."
+- **Name the user's object, not the system's.** "Job", "Run", "Dashboard" — not "ServerJobRecord", "entity", "object".
+- **Error messages in three parts: what happened + why + what to do.** "File couldn't be uploaded. Files must be under 10 MB. Try compressing the file or splitting it into parts." — not "Upload error: 413".
+- **Button labels are verb phrases.** Labels like "OK" and "Submit" give no information about the consequence. Use "Save job", "Delete run". Exception: "Cancel" is always acceptable as a secondary action.
+- **Don't apologize; explain and move forward.** "Something went wrong loading this job. Try refreshing." — not "Sorry! We couldn't load your job."
+- **Avoid filler phrases.** Cut: "Please", "Simply", "Just", "Easily", "Note that", "Please note", "In order to".
+
+## Standard copy patterns
+
+### Confirmation dialogs (destructive actions)
+
+| Element | Copy pattern |
+| --- | --- |
+| Heading | "Delete [object name]?" |
+| Body | "This [object] will be permanently deleted. This can't be undone." |
+| Confirm button | "Delete [object name]" (Button, Error color) |
+| Cancel button | "Cancel" (Button, text) |
+
+### Success messages (Snackbar)
+
+"[Object] created." / "Changes saved." / "[Object] deleted." / "Copied to clipboard." — short, no "Successfully" prefix.
+
+### Empty state headings
+
+"No [objects] yet" (first-use) / "No results for “[query]”" (search) / "[Objects] couldn't be loaded" (error) / "You don't have access to this [area]" (permission).
+
+### Loading states
+
+Describe what's loading when possible — "Loading job data…" not just "Loading…". Fall back to "Loading…" only when the object type is genuinely unknown.
+
+## Error messages: problem + recovery
+
+### Don't
+
+- "Oops! Something went wrong 😬"
+
+### Do
+
+- "Could not save your changes. Try again or contact support."
+
+## Empty states: explain + invite
+
+### Don't
+
+- "No items."
+
+### Do
+
+- "No jobs yet. Create your first job to start tracking runs."
+
+## Words to avoid
+
+| Avoid | Use instead |
+| --- | --- |
+| Please | Remove — clutters every sentence |
+| Sorry / Oops | Remove — state the problem plainly |
+| Click / Tap / Hit | Select (more input-agnostic) |
+| Utilize / Leverage | Use |
+| Navigate to | Go to |
+| Perform | Run, do, execute |
+| Abort | Cancel, stop |
+| Failed to | Couldn't |
+| Successfully | Omit — success is implied |
+| Error occurred | [Specific thing] couldn't [action] |
+| Above · below | Previous · next (responsive layouts) |
+
+## Accessibility & internationalization
+
+- Screen reader users hear every word in isolation — write labels that make sense out of context. "Delete job" reads clearly; "Delete" alone does not.
+- Avoid idioms and metaphors that don't translate. Prefer literal phrasing.
+- All dates: use unambiguous long format — "Apr 9, 2026" not "4/9/26".
+- Numbers: use commas as thousands separators (1,000,000) and periods as decimal separators (3.14).

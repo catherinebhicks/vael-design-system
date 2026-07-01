@@ -1,0 +1,70 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Autocomplete/Guidelines" />
+
+# Autocomplete
+
+The canonical dropdown selection pattern: a text input enhanced with a filterable suggestion panel. It is the only approved selection component for dropdown use cases — MUI `Select` is not used (ADR 005), and an ESLint rule (`no-mui-select`) blocks it at CI. Use `Autocomplete` with `disableClearable` for short lists where filtering feels unnecessary, so the codebase keeps a single, consistent selection pattern.
+
+## Guidelines
+
+### Do
+
+- Use for all dropdown selections — single or multiple choice from a list of options; it is the only approved pattern (ADR 005).
+- Use when the option list has more than ~5 items and filtering helps the user find the right value quickly.
+- Use multiple-value mode when users can select several options at once — tagging with multiple labels, assigning multiple users to a job, or filtering by multiple server IDs. Selected values render as dismissible chips inside the input.
+- Use when the underlying dataset may grow over time — Autocomplete scales to large option lists without degrading the interaction.
+- Use for configuration fields like server version or serial number where valid values are server-fetched and must match an exact record.
+- Use `freeSolo` when free-form entry alongside suggestions is valid — for example a custom label name where a suggestion list exists but novel inputs are acceptable.
+
+### Don't
+
+- Don't use when there are fewer than 5 options — use a RadioGroup (mutually exclusive) or Checkboxes (multi-select) so all options are visible at once.
+- Don't allow free-form text input if the field must match an exact database record — validate or constrain the options list.
+- Don't remove the Clear button — users frequently change selections mid-setup and need to reset a field.
+- Don't use for a simple boolean or two-state setting (Active / Inactive) — a Switch or two-item RadioGroup communicates binary state more directly.
+- Don't stack multiple open Autocomplete dropdowns simultaneously — only one dropdown should be open at a time.
+
+## Props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| multiple | boolean | false | Enables multi-value selection. Selected values render as chips. Use for multi-server filter or multi-user assignment. |
+| options | T[] | required | Array of selectable values. For server-fetched lists, load async and show a loading indicator. |
+| value | T \| T[] \| null | null | Controlled selected value. Use T[] when multiple is true. |
+| onChange | `(event, value) => void` | — | Fires when selection changes. Value is null when cleared. |
+| freeSolo | boolean | false | Allows arbitrary text alongside suggestions. Use only when free-form entry is genuinely valid. |
+| disableClearable | boolean | false | Hides the clear button. Avoid — users need to reset selections. |
+| renderInput | `(params) => ReactNode` | required | Renders the underlying TextField. Always pass a label here. |
+| getOptionLabel | `(option: T) => string` | — | Required when options are objects. Returns the display string for an option. |
+| isOptionEqualToValue | `(option, value) => boolean` | — | Required for object options to prevent spurious "no option selected" mismatches on re-render. |
+| groupBy | `(option: T) => string` | — | Groups options under sub-headings. Return the group label string. Options must be sorted by group key before being passed to options — MUI does not sort them internally. |
+| renderGroup | `(params) => ReactNode` | — | Custom renderer for each group header. Use when the default header styling needs to match a data category chip or section label. |
+
+## Variants
+
+| Prop | Options | Description |
+| --- | --- | --- |
+| multiple | false / true | Allow more than one selection; selected values render as chips. |
+| disableClearable | false / true | Hide the clear button; use for required fields where no-selection is invalid. |
+| freeSolo | false / true | Allow typed values that don't match any option. |
+| loading | false / true | Show a loading spinner in the panel while options are fetched async. |
+| groupBy | function | Group options under sub-headings in the panel. |
+
+## Accessibility
+
+- Input must have an associated `<label>` — never rely on placeholder text alone.
+- The suggestion panel is announced via `aria-expanded` and `role="listbox"`.
+- Keyboard: arrow keys navigate options; Enter selects; Escape closes the panel.
+- Chips in multiple-value mode are removable via Backspace or Delete.
+
+## Design tokens
+
+| Token | Usage |
+| --- | --- |
+| primary/main | Focused border color, active chip background |
+| text/primary | Input and option text |
+| text/secondary | Placeholder text |
+| action/hover | Option hover background |
+| action/selected | Currently selected option background |
+| elevation/8 | Dropdown panel shadow |

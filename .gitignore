@@ -1,0 +1,11 @@
+demo/.DS_Store
+.DS_Store
+node_modules/
+dist/
+storybook-static/
+*.log
+
+# secrets
+.env
+.env.*
+!.env.example

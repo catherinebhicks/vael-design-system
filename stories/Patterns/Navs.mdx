@@ -1,0 +1,52 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Navigation Patterns" />
+
+# Navigation Patterns
+
+## Navigation shell
+
+The outer frame for every authenticated screen. Two surfaces — a fixed top AppBar and a left Drawer. Persistent at LG/XL; modal at smaller viewports. Wraps all page-level content and should remain consistent across routes.
+
+### Wireframe
+
+- **Extra-large layout (XL):** Persistent Drawer expanded with icons and labels; content offsets left margin by drawer width.
+- **Modal / overlay (SM, XS):** Drawer hidden by default; hamburger in AppBar opens full-height modal.
+
+### Components used
+
+- AppBar
+- Drawer
+- List
+- ListItem
+- Tabs
+- Link
+- IconButton
+
+### Responsive behaviour
+
+| Breakpoint | Behaviour |
+| --- | --- |
+| XS | Drawer hidden; hamburger IconButton opens full-height modal overlay |
+| SM | Same modal behaviour; AppBar may show fewer utility icons |
+| MD | Mini-rail Drawer (icon-only); expands on hover / toggle |
+| LG | Persistent expanded Drawer with icons + labels; content margin offset |
+| XL | Same as LG; drawer width may increase slightly |
+
+**Why max 6 top-level destinations before grouping?** Six is the practical limit of working memory for immediately scannable items (Miller's Law: 7 ± 2). Beyond 6, users rely on scanning rather than recall. Below 6, grouping adds hierarchy without a memory benefit.
+
+**Why ≤250ms drawer animations?** Nielsen's 100–300ms "fast but noticeable" window. 250ms is the upper edge of feeling responsive; above it, users wait for the animation rather than continuing to navigate.
+
+### Do
+
+- Use persistent Drawer at LG / XL
+- Collapse to modal at MD and below
+- Group nav items when you have more than six
+- Reserve AppBar Tabs for secondary navigation within a section
+
+### Don't
+
+- Put primary global nav inside AppBar Tabs
+- Stack persistent Drawer + in-page left nav without clear hierarchy
+- Nest more than two levels inside the Drawer
+- Animate drawer open/close for more than 250ms

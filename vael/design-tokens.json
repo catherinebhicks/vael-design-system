@@ -1,0 +1,986 @@
+{
+  "$schema": "https://tr.designtokens.org/format/",
+  "_supernova": {
+    "$description": "Full token source \u2014 all token groups combined. Use base.json + themes/ for Supernova split-mode import.",
+    "$version": "v.75.0"
+  },
+  "color": {
+    "text": {
+      "primary": {
+        "$value": "#000000de",
+        "$type": "color",
+        "$description": "Primary text color. High-emphasis content."
+      },
+      "secondary": {
+        "$value": "#00000099",
+        "$type": "color",
+        "$description": "Secondary text color. Medium-emphasis content."
+      },
+      "disabled": {
+        "$value": "#00000061",
+        "$type": "color",
+        "$description": "Disabled text color. Low-emphasis / non-interactive content."
+      }
+    },
+    "primary": {
+      "main": {
+        "$value": "#1976d2",
+        "$type": "color",
+        "$description": "Primary palette \u2014 main."
+      },
+      "dark": {
+        "$value": "#1565c0",
+        "$type": "color",
+        "$description": "Primary palette \u2014 dark variant (hover / pressed states)."
+      },
+      "light": {
+        "$value": "#42a5f5",
+        "$type": "color",
+        "$description": "Primary palette \u2014 light variant."
+      },
+      "contrast": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Text color used on primary-colored surfaces."
+      }
+    },
+    "secondary": {
+      "main": {
+        "$value": "#9c27b0",
+        "$type": "color",
+        "$description": "Secondary palette \u2014 main."
+      },
+      "dark": {
+        "$value": "#7b1fa2",
+        "$type": "color",
+        "$description": "Secondary palette \u2014 dark variant."
+      },
+      "light": {
+        "$value": "#ba68c8",
+        "$type": "color",
+        "$description": "Secondary palette \u2014 light variant."
+      },
+      "contrast": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Text color used on secondary-colored surfaces."
+      }
+    },
+    "error": {
+      "main": {
+        "$value": "#d32f2f",
+        "$type": "color",
+        "$description": "Error palette \u2014 main."
+      },
+      "dark": {
+        "$value": "#c62828",
+        "$type": "color",
+        "$description": "Error palette \u2014 dark variant."
+      },
+      "light": {
+        "$value": "#ef5350",
+        "$type": "color",
+        "$description": "Error palette \u2014 light variant."
+      },
+      "contrast": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Text color used on error-colored surfaces."
+      }
+    },
+    "warning": {
+      "main": {
+        "$value": "#ef6c00",
+        "$type": "color",
+        "$description": "Warning palette \u2014 main."
+      },
+      "dark": {
+        "$value": "#e65100",
+        "$type": "color",
+        "$description": "Warning palette \u2014 dark variant."
+      },
+      "light": {
+        "$value": "#ff9800",
+        "$type": "color",
+        "$description": "Warning palette \u2014 light variant."
+      },
+      "contrast": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Text color used on warning-colored surfaces."
+      }
+    },
+    "info": {
+      "main": {
+        "$value": "#0288d1",
+        "$type": "color",
+        "$description": "Info palette \u2014 main."
+      },
+      "dark": {
+        "$value": "#01579b",
+        "$type": "color",
+        "$description": "Info palette \u2014 dark variant."
+      },
+      "light": {
+        "$value": "#03a9f4",
+        "$type": "color",
+        "$description": "Info palette \u2014 light variant."
+      },
+      "contrast": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Text color used on info-colored surfaces."
+      }
+    },
+    "success": {
+      "main": {
+        "$value": "#2e7d32",
+        "$type": "color",
+        "$description": "Success palette \u2014 main."
+      },
+      "dark": {
+        "$value": "#1b5e20",
+        "$type": "color",
+        "$description": "Success palette \u2014 dark variant."
+      },
+      "light": {
+        "$value": "#4caf50",
+        "$type": "color",
+        "$description": "Success palette \u2014 light variant."
+      },
+      "contrast": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Text color used on success-colored surfaces."
+      }
+    },
+    "background": {
+      "default": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Page / app background."
+      },
+      "paper": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Surface-level background (cards, modals, drawers)."
+      }
+    },
+    "action": {
+      "active": {
+        "$value": "rgba(0,0,0,0.54)",
+        "$type": "color",
+        "$description": "Color of active interactive elements (icons, toggles)."
+      },
+      "hover": {
+        "$value": "rgba(0,0,0,0.04)",
+        "$type": "color",
+        "$description": "Overlay applied on hover."
+      },
+      "selected": {
+        "$value": "rgba(0,0,0,0.08)",
+        "$type": "color",
+        "$description": "Overlay applied on selected state."
+      },
+      "disabled": {
+        "$value": "rgba(0,0,0,0.26)",
+        "$type": "color",
+        "$description": "Color of disabled interactive elements."
+      },
+      "disabledBackground": {
+        "$value": "rgba(0,0,0,0.12)",
+        "$type": "color",
+        "$description": "Background of disabled elements."
+      },
+      "focus": {
+        "$value": "rgba(0,0,0,0.12)",
+        "$type": "color",
+        "$description": "Overlay applied on focus state."
+      }
+    },
+    "divider": {
+      "$value": "rgba(0,0,0,0.12)",
+      "$type": "color",
+      "$description": "Divider / hairline separator color."
+    }
+  },
+  "color-dark": {
+    "$description": "Dark mode color tokens. Apply when palette.mode = 'dark'. Token names are identical to light mode \u2014 only resolved values change.",
+    "text": {
+      "primary": {
+        "$value": "rgba(255,255,255,0.87)",
+        "$type": "color",
+        "$description": "Primary text color. High-emphasis content."
+      },
+      "secondary": {
+        "$value": "rgba(255,255,255,0.60)",
+        "$type": "color",
+        "$description": "Secondary text color. Medium-emphasis content."
+      },
+      "disabled": {
+        "$value": "rgba(255,255,255,0.38)",
+        "$type": "color",
+        "$description": "Disabled text color. Low-emphasis / non-interactive content."
+      }
+    },
+    "primary": {
+      "main": {
+        "$value": "#90caf9",
+        "$type": "color",
+        "$description": "Primary palette \u2014 main."
+      },
+      "dark": {
+        "$value": "#42a5f5",
+        "$type": "color",
+        "$description": "Primary palette \u2014 dark variant (hover / pressed states)."
+      },
+      "light": {
+        "$value": "#e3f2fd",
+        "$type": "color",
+        "$description": "Primary palette \u2014 light variant."
+      },
+      "contrast": {
+        "$value": "rgba(0,0,0,0.87)",
+        "$type": "color",
+        "$description": "Text color used on primary-colored surfaces."
+      }
+    },
+    "secondary": {
+      "main": {
+        "$value": "#ce93d8",
+        "$type": "color",
+        "$description": "Secondary palette \u2014 main."
+      },
+      "dark": {
+        "$value": "#ab47bc",
+        "$type": "color",
+        "$description": "Secondary palette \u2014 dark variant."
+      },
+      "light": {
+        "$value": "#f3e5f5",
+        "$type": "color",
+        "$description": "Secondary palette \u2014 light variant."
+      },
+      "contrast": {
+        "$value": "rgba(0,0,0,0.87)",
+        "$type": "color",
+        "$description": "Text color used on secondary-colored surfaces."
+      }
+    },
+    "error": {
+      "main": {
+        "$value": "#f44336",
+        "$type": "color",
+        "$description": "Error palette \u2014 main."
+      },
+      "dark": {
+        "$value": "#d32f2f",
+        "$type": "color",
+        "$description": "Error palette \u2014 dark variant."
+      },
+      "light": {
+        "$value": "#e57373",
+        "$type": "color",
+        "$description": "Error palette \u2014 light variant."
+      },
+      "contrast": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Text color used on error-colored surfaces."
+      }
+    },
+    "warning": {
+      "main": {
+        "$value": "#ffa726",
+        "$type": "color",
+        "$description": "Warning palette \u2014 main."
+      },
+      "dark": {
+        "$value": "#f57c00",
+        "$type": "color",
+        "$description": "Warning palette \u2014 dark variant."
+      },
+      "light": {
+        "$value": "#ffb74d",
+        "$type": "color",
+        "$description": "Warning palette \u2014 light variant."
+      },
+      "contrast": {
+        "$value": "rgba(0,0,0,0.87)",
+        "$type": "color",
+        "$description": "Text color used on warning-colored surfaces."
+      }
+    },
+    "info": {
+      "main": {
+        "$value": "#29b6f6",
+        "$type": "color",
+        "$description": "Info palette \u2014 main."
+      },
+      "dark": {
+        "$value": "#0288d1",
+        "$type": "color",
+        "$description": "Info palette \u2014 dark variant."
+      },
+      "light": {
+        "$value": "#4fc3f7",
+        "$type": "color",
+        "$description": "Info palette \u2014 light variant."
+      },
+      "contrast": {
+        "$value": "rgba(0,0,0,0.87)",
+        "$type": "color",
+        "$description": "Text color used on info-colored surfaces."
+      }
+    },
+    "success": {
+      "main": {
+        "$value": "#66bb6a",
+        "$type": "color",
+        "$description": "Success palette \u2014 main."
+      },
+      "dark": {
+        "$value": "#388e3c",
+        "$type": "color",
+        "$description": "Success palette \u2014 dark variant."
+      },
+      "light": {
+        "$value": "#81c784",
+        "$type": "color",
+        "$description": "Success palette \u2014 light variant."
+      },
+      "contrast": {
+        "$value": "rgba(0,0,0,0.87)",
+        "$type": "color",
+        "$description": "Text color used on success-colored surfaces."
+      }
+    },
+    "background": {
+      "default": {
+        "$value": "#121212",
+        "$type": "color",
+        "$description": "Page / app background."
+      },
+      "paper": {
+        "$value": "#1e1e1e",
+        "$type": "color",
+        "$description": "Surface-level background (cards, modals, drawers)."
+      }
+    },
+    "action": {
+      "active": {
+        "$value": "rgba(255,255,255,0.56)",
+        "$type": "color",
+        "$description": "Color of active interactive elements (icons, toggles)."
+      },
+      "hover": {
+        "$value": "rgba(255,255,255,0.08)",
+        "$type": "color",
+        "$description": "Overlay applied on hover."
+      },
+      "selected": {
+        "$value": "rgba(255,255,255,0.16)",
+        "$type": "color",
+        "$description": "Overlay applied on selected state."
+      },
+      "disabled": {
+        "$value": "rgba(255,255,255,0.30)",
+        "$type": "color",
+        "$description": "Color of disabled interactive elements."
+      },
+      "disabledBackground": {
+        "$value": "rgba(255,255,255,0.12)",
+        "$type": "color",
+        "$description": "Background of disabled elements."
+      },
+      "focus": {
+        "$value": "rgba(255,255,255,0.12)",
+        "$type": "color",
+        "$description": "Overlay applied on focus state."
+      }
+    },
+    "divider": {
+      "$value": "rgba(255,255,255,0.12)",
+      "$type": "color",
+      "$description": "Divider / hairline separator color."
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "$value": "Roboto, Helvetica, Arial, sans-serif",
+      "$type": "string",
+      "$description": "Base font stack for all UI text."
+    },
+    "fontWeightLight": {
+      "$value": 300,
+      "$type": "number",
+      "$description": "Light font weight."
+    },
+    "fontWeightRegular": {
+      "$value": 400,
+      "$type": "number",
+      "$description": "Regular font weight."
+    },
+    "fontWeightMedium": {
+      "$value": 500,
+      "$type": "number",
+      "$description": "Medium font weight."
+    },
+    "fontWeightBold": {
+      "$value": 700,
+      "$type": "number",
+      "$description": "Bold font weight."
+    },
+    "h1": {
+      "fontSize": {
+        "$value": "96px",
+        "$type": "dimension",
+        "$description": "h1 font size."
+      },
+      "fontWeight": {
+        "$value": 300,
+        "$type": "number",
+        "$description": "h1 font weight."
+      },
+      "lineHeight": {
+        "$value": 1.167,
+        "$type": "number",
+        "$description": "h1 line height (unitless ratio)."
+      },
+      "letterSpacing": {
+        "$value": "-1.5px",
+        "$type": "dimension",
+        "$description": "h1 letter spacing."
+      }
+    },
+    "h2": {
+      "fontSize": {
+        "$value": "60px",
+        "$type": "dimension",
+        "$description": "h2 font size."
+      },
+      "fontWeight": {
+        "$value": 300,
+        "$type": "number",
+        "$description": "h2 font weight."
+      },
+      "lineHeight": {
+        "$value": 1.2,
+        "$type": "number",
+        "$description": "h2 line height (unitless ratio)."
+      },
+      "letterSpacing": {
+        "$value": "-0.5px",
+        "$type": "dimension",
+        "$description": "h2 letter spacing."
+      }
+    },
+    "h3": {
+      "fontSize": {
+        "$value": "48px",
+        "$type": "dimension",
+        "$description": "h3 font size."
+      },
+      "fontWeight": {
+        "$value": 400,
+        "$type": "number",
+        "$description": "h3 font weight."
+      },
+      "lineHeight": {
+        "$value": 1.167,
+        "$type": "number",
+        "$description": "h3 line height (unitless ratio)."
+      },
+      "letterSpacing": {
+        "$value": "0px",
+        "$type": "dimension",
+        "$description": "h3 letter spacing."
+      }
+    },
+    "h4": {
+      "fontSize": {
+        "$value": "34px",
+        "$type": "dimension",
+        "$description": "h4 font size."
+      },
+      "fontWeight": {
+        "$value": 400,
+        "$type": "number",
+        "$description": "h4 font weight."
+      },
+      "lineHeight": {
+        "$value": 1.235,
+        "$type": "number",
+        "$description": "h4 line height (unitless ratio)."
+      },
+      "letterSpacing": {
+        "$value": "0.25px",
+        "$type": "dimension",
+        "$description": "h4 letter spacing."
+      }
+    },
+    "h5": {
+      "fontSize": {
+        "$value": "24px",
+        "$type": "dimension",
+        "$description": "h5 font size."
+      },
+      "fontWeight": {
+        "$value": 400,
+        "$type": "number",
+        "$description": "h5 font weight."
+      },
+      "lineHeight": {
+        "$value": 1.334,
+        "$type": "number",
+        "$description": "h5 line height (unitless ratio)."
+      },
+      "letterSpacing": {
+        "$value": "0px",
+        "$type": "dimension",
+        "$description": "h5 letter spacing."
+      }
+    },
+    "h6": {
+      "fontSize": {
+        "$value": "20px",
+        "$type": "dimension",
+        "$description": "h6 font size."
+      },
+      "fontWeight": {
+        "$value": 500,
+        "$type": "number",
+        "$description": "h6 font weight."
+      },
+      "lineHeight": {
+        "$value": 1.6,
+        "$type": "number",
+        "$description": "h6 line height (unitless ratio)."
+      },
+      "letterSpacing": {
+        "$value": "0.15px",
+        "$type": "dimension",
+        "$description": "h6 letter spacing."
+      }
+    },
+    "subtitle1": {
+      "fontSize": {
+        "$value": "16px",
+        "$type": "dimension",
+        "$description": "subtitle1 font size."
+      },
+      "fontWeight": {
+        "$value": 400,
+        "$type": "number",
+        "$description": "subtitle1 font weight."
+      },
+      "lineHeight": {
+        "$value": 1.75,
+        "$type": "number",
+        "$description": "subtitle1 line height (unitless ratio)."
+      },
+      "letterSpacing": {
+        "$value": "0.15px",
+        "$type": "dimension",
+        "$description": "subtitle1 letter spacing."
+      }
+    },
+    "subtitle2": {
+      "fontSize": {
+        "$value": "14px",
+        "$type": "dimension",
+        "$description": "subtitle2 font size."
+      },
+      "fontWeight": {
+        "$value": 500,
+        "$type": "number",
+        "$description": "subtitle2 font weight."
+      },
+      "lineHeight": {
+        "$value": 1.57,
+        "$type": "number",
+        "$description": "subtitle2 line height (unitless ratio)."
+      },
+      "letterSpacing": {
+        "$value": "0.1px",
+        "$type": "dimension",
+        "$description": "subtitle2 letter spacing."
+      }
+    },
+    "body1": {
+      "fontSize": {
+        "$value": "16px",
+        "$type": "dimension",
+        "$description": "body1 font size."
+      },
+      "fontWeight": {
+        "$value": 400,
+        "$type": "number",
+        "$description": "body1 font weight."
+      },
+      "lineHeight": {
+        "$value": 1.5,
+        "$type": "number",
+        "$description": "body1 line height (unitless ratio)."
+      },
+      "letterSpacing": {
+        "$value": "0.15px",
+        "$type": "dimension",
+        "$description": "body1 letter spacing."
+      }
+    },
+    "body2": {
+      "fontSize": {
+        "$value": "14px",
+        "$type": "dimension",
+        "$description": "body2 font size."
+      },
+      "fontWeight": {
+        "$value": 400,
+        "$type": "number",
+        "$description": "body2 font weight."
+      },
+      "lineHeight": {
+        "$value": 1.43,
+        "$type": "number",
+        "$description": "body2 line height (unitless ratio)."
+      },
+      "letterSpacing": {
+        "$value": "0.17px",
+        "$type": "dimension",
+        "$description": "body2 letter spacing."
+      }
+    },
+    "button": {
+      "fontSize": {
+        "$value": "14px",
+        "$type": "dimension",
+        "$description": "button font size."
+      },
+      "fontWeight": {
+        "$value": 500,
+        "$type": "number",
+        "$description": "button font weight."
+      },
+      "lineHeight": {
+        "$value": 1.75,
+        "$type": "number",
+        "$description": "button line height (unitless ratio)."
+      },
+      "letterSpacing": {
+        "$value": "0.4px",
+        "$type": "dimension",
+        "$description": "button letter spacing."
+      }
+    },
+    "caption": {
+      "fontSize": {
+        "$value": "12px",
+        "$type": "dimension",
+        "$description": "caption font size."
+      },
+      "fontWeight": {
+        "$value": 400,
+        "$type": "number",
+        "$description": "caption font weight."
+      },
+      "lineHeight": {
+        "$value": 1.66,
+        "$type": "number",
+        "$description": "caption line height (unitless ratio)."
+      },
+      "letterSpacing": {
+        "$value": "0.4px",
+        "$type": "dimension",
+        "$description": "caption letter spacing."
+      }
+    },
+    "overline": {
+      "fontSize": {
+        "$value": "12px",
+        "$type": "dimension",
+        "$description": "overline font size."
+      },
+      "fontWeight": {
+        "$value": 400,
+        "$type": "number",
+        "$description": "overline font weight."
+      },
+      "lineHeight": {
+        "$value": 2.66,
+        "$type": "number",
+        "$description": "overline line height (unitless ratio)."
+      },
+      "letterSpacing": {
+        "$value": "1px",
+        "$type": "dimension",
+        "$description": "overline letter spacing."
+      }
+    }
+  },
+  "spacing": {
+    "1": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing step 1 \u2014 1 \u00d7 8px base."
+    },
+    "2": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing step 2 \u2014 2 \u00d7 8px base."
+    },
+    "3": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing step 3 \u2014 3 \u00d7 8px base."
+    },
+    "4": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing step 4 \u2014 4 \u00d7 8px base."
+    },
+    "5": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing step 5 \u2014 5 \u00d7 8px base."
+    },
+    "6": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing step 6 \u2014 6 \u00d7 8px base."
+    },
+    "7": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing step 7 \u2014 7 \u00d7 8px base."
+    },
+    "8": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing step 8 \u2014 8 \u00d7 8px base."
+    }
+  },
+  "shape": {
+    "borderRadius": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Default border radius for components."
+    }
+  },
+  "breakpoints": {
+    "xs": {
+      "$value": "0px",
+      "$type": "dimension",
+      "$description": "Extra-small breakpoint \u2014 mobile portrait."
+    },
+    "sm": {
+      "$value": "600px",
+      "$type": "dimension",
+      "$description": "Small breakpoint \u2014 mobile landscape / small tablet."
+    },
+    "md": {
+      "$value": "900px",
+      "$type": "dimension",
+      "$description": "Medium breakpoint \u2014 tablet."
+    },
+    "lg": {
+      "$value": "1200px",
+      "$type": "dimension",
+      "$description": "Large breakpoint \u2014 desktop."
+    },
+    "xl": {
+      "$value": "1536px",
+      "$type": "dimension",
+      "$description": "Extra-large breakpoint \u2014 wide desktop."
+    }
+  },
+  "motion": {
+    "easing": {
+      "easeInOut": {
+        "$value": [
+          0.4,
+          0,
+          0.2,
+          1
+        ],
+        "$type": "cubicBezier",
+        "$description": "Standard easing \u2014 most UI transitions."
+      },
+      "easeOut": {
+        "$value": [
+          0.0,
+          0,
+          0.2,
+          1
+        ],
+        "$type": "cubicBezier",
+        "$description": "Decelerate easing \u2014 elements entering the screen."
+      },
+      "easeIn": {
+        "$value": [
+          0.4,
+          0,
+          1,
+          1
+        ],
+        "$type": "cubicBezier",
+        "$description": "Accelerate easing \u2014 elements leaving the screen."
+      },
+      "sharp": {
+        "$value": [
+          0.4,
+          0,
+          0.6,
+          1
+        ],
+        "$type": "cubicBezier",
+        "$description": "Sharp easing \u2014 elements that may return to view (e.g. drawer)."
+      }
+    },
+    "duration": {
+      "shortest": {
+        "$value": "150ms",
+        "$type": "duration",
+        "$description": "Shortest animation duration (ms)."
+      },
+      "shorter": {
+        "$value": "200ms",
+        "$type": "duration",
+        "$description": "Shorter animation duration (ms)."
+      },
+      "short": {
+        "$value": "250ms",
+        "$type": "duration",
+        "$description": "Short animation duration (ms)."
+      },
+      "standard": {
+        "$value": "300ms",
+        "$type": "duration",
+        "$description": "Standard animation duration (ms)."
+      },
+      "complex": {
+        "$value": "375ms",
+        "$type": "duration",
+        "$description": "Complex animation duration (ms) \u2014 used for multi-step transitions."
+      },
+      "enteringScreen": {
+        "$value": "225ms",
+        "$type": "duration",
+        "$description": "Duration for elements entering the screen (ms)."
+      },
+      "leavingScreen": {
+        "$value": "195ms",
+        "$type": "duration",
+        "$description": "Duration for elements leaving the screen (ms)."
+      }
+    }
+  },
+  "elevation": {
+    "1": {
+      "$value": "0px 2px 1px -1px rgba(0,0,0,0.20), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)",
+      "$type": "shadow",
+      "$description": "Elevation 1 \u2014 subtle raised surface (e.g. Card resting)."
+    },
+    "2": {
+      "$value": "0px 3px 1px -2px rgba(0,0,0,0.20), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
+      "$type": "shadow",
+      "$description": "Elevation 2."
+    },
+    "3": {
+      "$value": "0px 3px 3px -2px rgba(0,0,0,0.20), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12)",
+      "$type": "shadow",
+      "$description": "Elevation 3."
+    },
+    "4": {
+      "$value": "0px 2px 4px -1px rgba(0,0,0,0.20), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)",
+      "$type": "shadow",
+      "$description": "Elevation 4 \u2014 App Bar."
+    },
+    "8": {
+      "$value": "0px 5px 5px -3px rgba(0,0,0,0.20), 0px 8px 10px 1px rgba(0,0,0,0.14), 0px 3px 14px 2px rgba(0,0,0,0.12)",
+      "$type": "shadow",
+      "$description": "Elevation 8 \u2014 Menu, Popover."
+    },
+    "16": {
+      "$value": "0px 8px 10px -5px rgba(0,0,0,0.20), 0px 16px 24px 2px rgba(0,0,0,0.14), 0px 6px 30px 5px rgba(0,0,0,0.12)",
+      "$type": "shadow",
+      "$description": "Elevation 16 \u2014 Drawer, Modal."
+    },
+    "24": {
+      "$value": "0px 11px 15px -7px rgba(0,0,0,0.20), 0px 24px 38px 3px rgba(0,0,0,0.14), 0px 9px 46px 8px rgba(0,0,0,0.12)",
+      "$type": "shadow",
+      "$description": "Elevation 24 \u2014 Dialog."
+    }
+  },
+  "chart": {
+    "$description": "Deterministic metric color assignments for the chart system. Each metric always maps to the same semantic token \u2014 never reassign without a formal design decision.",
+    "variable": {
+      "Cpu": {
+        "$value": "#1976d2",
+        "$type": "color",
+        "$description": "CPU utilization. Maps to primary.main. Blue."
+      },
+      "Memory": {
+        "$value": "#d32f2f",
+        "$type": "color",
+        "$description": "Memory usage. Maps to error.main. Red."
+      },
+      "Latency": {
+        "$value": "#2e7d32",
+        "$type": "color",
+        "$description": "Latency. Maps to success.main. Green."
+      },
+      "Throughput": {
+        "$value": "#9c27b0",
+        "$type": "color",
+        "$description": "Throughput. Maps to secondary.main. Purple."
+      },
+      "Requests": {
+        "$value": "#ef6c00",
+        "$type": "color",
+        "$description": "Requests. Maps to warning.main. Orange."
+      },
+      "Storage": {
+        "$value": "#0288d1",
+        "$type": "color",
+        "$description": "Storage. Maps to info.main. Light blue."
+      }
+    },
+    "eventMarker": {
+      "warning": {
+        "$value": "#ef6c00",
+        "$type": "color",
+        "$description": "Warning/override event marker. Maps to warning.main. Diamond shape."
+      },
+      "error": {
+        "$value": "#d32f2f",
+        "$type": "color",
+        "$description": "Error/alarm event marker. Maps to error.main. Diamond shape."
+      },
+      "recovery": {
+        "$value": "#2e7d32",
+        "$type": "color",
+        "$description": "Recovery/resolved event marker. Maps to success.main. Diamond shape."
+      },
+      "debug": {
+        "$value": "#d32f2f",
+        "$type": "color",
+        "$description": "Debug event marker. Maps to error.main. Circle shape."
+      }
+    },
+    "deadband": {
+      "fillOpacity": {
+        "$value": "0.09",
+        "$type": "number",
+        "$description": "Deadband range fill opacity. Must not exceed 0.15."
+      }
+    },
+    "disturbanceBand": {
+      "fillOpacity": {
+        "$value": "0.06",
+        "$type": "number",
+        "$description": "Disturbance plot band fill opacity (DebugChart)."
+      }
+    }
+  }
+}

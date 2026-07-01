@@ -1,0 +1,89 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Layout/Guidelines" />
+
+# Layout
+
+Layout primitives — the non-visual components that compose every page: Box, Stack, Grid, and Container. Prefer these to custom flex/grid CSS so spacing stays token-bound.
+
+## Box
+
+Generic wrapper with direct access to the `sx` prop. Use as a styled `div` when you need one or two token-bound styles without a full `styled()` component.
+
+### Props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| sx | SxProps | — | Theme-aware style object. Spacing values (p, m, gap) map to the 8px scale. |
+| component | ElementType | 'div' | Override the root element — useful for semantic HTML (`span`, `section`). |
+
+## Stack
+
+Flex column/row with a `spacing` prop bound to the theme's spacing scale. Preferred over hand-rolled flex for grouped content.
+
+### Props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| direction | 'row' \| 'row-reverse' \| 'column' \| 'column-reverse' | 'column' | Flex direction. |
+| spacing | number \| string | 0 | Gap using the 8px spacing scale. Equivalent to `sx={{ gap: spacing * 8 }}`. |
+| divider | ReactNode | — | Element inserted between children — typically a `Divider`. |
+| alignItems | string | — | CSS align-items shorthand. |
+| justifyContent | string | — | CSS justify-content shorthand. |
+
+## Grid (v2)
+
+Responsive 12-column grid. Use for page-level multi-column layouts. For simpler row/column composition, prefer Stack.
+
+### Props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| container | boolean | false | Makes the element a grid container. |
+| xs / sm / md / lg / xl | number \| 'auto' \| boolean | — | Column span at each breakpoint (1–12). `true` = equal-width. |
+| spacing | number \| string | 0 | Uniform gap between items on the 8px scale. |
+| columnSpacing | number \| string | — | Column-only gap; overrides spacing for columns. |
+| rowSpacing | number \| string | — | Row-only gap; overrides spacing for rows. |
+
+## Container
+
+Centers content and caps width at a breakpoint token. Used sparingly — most pages use the Drawer-offset padding instead.
+
+### Props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| maxWidth | 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| false | 'lg' | Max content width. Use `false` to opt out of capping. Most dashboard pages use the Drawer offset instead. |
+| fixed | boolean | false | Jumps to the next breakpoint boundary rather than fluid-scaling. |
+| disableGutters | boolean | false | Removes horizontal padding. Use when the parent already provides padding. |
+
+## Guidelines
+
+### Do
+
+- Use `sx` spacing tokens (`p: 2`) rather than raw pixel values.
+- Prefer Stack for 90% of row/column composition.
+- Use Grid when you genuinely need a 12-column responsive grid.
+
+### Don't
+
+- Nest more than 3 layers of Box / Stack — extract a component instead.
+- Use Container inside sections that already sit in a Drawer-offset main.
+- Reach for raw flex CSS when Stack would solve it in one prop.
+
+## When to use
+
+- **Container:** Constraining the width of project plan forms and organization setup flows — use Max Width: Medium (900px) so text lines stay readable on wide monitors.
+- **Container:** Wide analytical data pages and grid-heavy views — use Max Width: Large or Extra Large to let the data grid use available horizontal space.
+- **Stack (Column):** Stacking form field groups, card content blocks, and page sections with consistent 16px or 24px gaps — the primary vertical spacing primitive throughout the dashboard.
+- **Stack (Row):** Aligning icon + label pairs, button groups (Save / Cancel), job status chips, or tag rows without reaching for custom flexbox CSS.
+- **Paper:** Any custom surface that needs elevation separation from the page background — a detail panel, a form container, or a split-pane sidebar that isn't a Card.
+- **Paper Outlined:** Form sections on organization setup or new system setup flows where a 1px border communicates a section boundary without adding shadow depth.
+
+## When not to use
+
+- **Stack:** Two-dimensional grid layouts (a 3-column server card grid) — use Grid; Stack is one-dimensional and will not wrap or reflow correctly.
+- **Container:** Setting a fixed pixel width directly — always use the Max Width prop so the container remains responsive.
+- **Paper:** Elevation levels above 8 for persistent layout surfaces — reserve high elevation (16, 24) for temporary modal layers like Dialogs and Drawers.
+- **Container (Disable Gutters):** For standard text-and-card content — removing gutters causes content to touch viewport edges, which impairs readability on monitors at high zoom.
+- **Paper:** As a replacement for Card when the content has a clear subject with actions — Card provides the correct semantic structure for those cases.

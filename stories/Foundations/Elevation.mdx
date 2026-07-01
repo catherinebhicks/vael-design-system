@@ -1,0 +1,59 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Elevation" />
+
+# Elevation
+
+Elevation uses layered drop shadows to express depth and hierarchy across 24 levels, following Material Design's additive shadow model.
+
+## 24 levels, three layers each
+
+Every level uses three layered drop shadows: umbra (20%), penumbra (14%), and ambient (12%). Use the lowest elevation that achieves the necessary visual separation. Elevation alone must not be the only cue for hierarchy.
+
+**Why 24 levels?** MUI ships 25 (0–24) following the Material Design spec. This is inherited directly — not a design-system decision. Using MUI defaults means all components that internally reference elevation values (Dialog at 24, Card at 1) work without reconfiguration.
+
+## Shadow construction
+
+Each elevation level is composed of three layered drop shadows — umbra (key light), penumbra (ambient occlusion edge), and ambient (overall diffuse) — that together create the illusion of a light source casting a soft, realistic shadow.
+
+### Shadow composition
+
+| Layer | Opacity | Role |
+| --- | --- | --- |
+| Umbra | 20% | Core shadow — darkest, tightest blur |
+| Penumbra | 14% | Medium blur — fills the edge transition |
+| Ambient | 12% | Widest blur — simulates diffuse sky light |
+
+**Why three layers?** A single drop shadow looks artificial — real shadows have a hard core, a softer edge, and diffuse fill from ambient light. Stacking three shadows approximates this. The specific opacity values (20/14/12) were tuned to produce believable elevation without visual heaviness.
+
+## Component mappings
+
+This table shows which elevation each component uses.
+
+| Level | Components | Purpose |
+| --- | --- | --- |
+| 0 | App background, outlined variants | Flat — no shadow |
+| 1 | Card (resting), Chip, Tooltip | Minimal lift — subtle surface distinction |
+| 2 | Button (contained, resting) | Affordance cue for primary interaction |
+| 3 | Refresh indicator, Snackbar | Transient surfaces |
+| 4 | AppBar (scrolled), Bottom nav | Separation from scrolling content below |
+| 6 | FAB (resting), SpeedDial | Floating affordance |
+| 8 | Card (hover), Menu, Popover, SubMenu | Open / active overlay |
+| 9 | Bottom sheet | Modal-adjacent surfaces |
+| 12 | FAB (pressed), Date picker | Pressed / focused state |
+| 16 | Drawer (side), Modal bottom sheet | Structural overlays that persist |
+| 24 | Dialog | Highest — blocks all content below |
+
+## Outlined variant
+
+Many MUI components (Card, Paper, Button) ship an `outlined` variant that uses a 1px border instead of a shadow. Use outlined when:
+
+- The surface is dense with other elevated elements (e.g. a card inside a dialog) and stacking shadows would look muddy.
+- Print / export fidelity matters — borders render predictably, shadows may not.
+- The design is already visually busy and a hairline is enough separation.
+
+## Common pitfalls
+
+- **Don't stack too many elevated surfaces.** If you have a Card (elevation 1) containing a Menu (elevation 8) inside a Dialog (elevation 24), the visual hierarchy becomes noise. Use outlined variants for inner layers.
+- **Don't invent intermediate elevations.** Use the approved component mappings — don't pick elevation 5 arbitrarily for a custom surface. Instead ask: what is this surface's role? Map to the existing role (e.g. menu-like → 8).
+- **Elevation alone is not hierarchy.** Reinforce with size, position, and opacity — users with vision impairments or in high-contrast modes may not see shadows.

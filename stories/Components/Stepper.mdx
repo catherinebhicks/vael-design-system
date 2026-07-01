@@ -1,0 +1,99 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Stepper/Guidelines" />
+
+# Stepper
+
+A `Stepper` displays progress through a linear or non-linear sequence of steps. Each step carries one of four states: inactive, active, complete, or error. Use it to guide users through an ordered flow where completion state matters.
+
+## Anatomy
+
+A `Stepper` renders a horizontal or vertical list of `Step` components connected by `StepConnector` lines. Each step comprises a `StepLabel` (icon + text + optional subtext) and optionally a `StepContent` (vertical only) for inline panel content.
+
+`MobileStepper` is a separate component — it does not share state with `Stepper` and is used independently for card-based or bottom-sheet flows.
+
+## Guidelines
+
+### When to use
+
+- Guiding users through a sequential flow — Pre-run checks, then Inoculation, then Sampling, then Harvest — where order and completion state matter.
+- Multi-step setup wizards (3–5 steps: Define, Configure, Set Parameters, Review) where each step must be completed before advancing.
+- Onboarding a new organization or system — setup flows with distinct, ordered configuration stages (Hardware, Vessels, Users, Protocols).
+- Displaying real-time step status during an active run — use error and warning states to surface deviations without requiring the user to open a separate panel.
+- Vertical alignment when steps have descriptive sub-labels (step name plus estimated duration) that need more vertical space to read clearly.
+
+### When not to use
+
+- Navigating between parallel sections (Overview, Analytics, Controls) — use Tabs; sections are not sequential steps and users move freely between them.
+- A process has more than six steps in horizontal orientation — labels truncate or wrap; switch to vertical or break the flow into phases.
+- Displaying an audit log or event history — use Timeline, which is purpose-built for chronological sequences without implying a required completion order.
+- Flows where steps are truly independent and can be completed in any order — the Stepper implies sequence; use a checklist pattern instead.
+- Marking a step complete before the user has explicitly confirmed their input — do not auto-advance on partial data entry.
+
+## Props
+
+**Scope: Tier 1** — Approved for all product surfaces. Import from `@mui/material/Stepper`.
+
+### Stepper
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| activeStep | number | 0 | Zero-based index of the active step. Drive from state for controlled steppers. |
+| orientation | "horizontal" \| "vertical" | "horizontal" | Vertical layout accommodates StepContent (expandable inline content under each step). |
+| alternativeLabel | boolean | false | Places step labels below the icon rather than beside it. Recommended for horizontal steppers with long labels. |
+| nonLinear | boolean | false | Allows steps to be completed in any order. Use for multi-section forms where order is not enforced. |
+
+### Step
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| completed | boolean | auto | Marks the step as completed (checkmark icon). Computed automatically in linear mode; supply explicitly in nonLinear mode. |
+| disabled | boolean | false | Makes the step non-interactive in nonLinear mode. |
+| expanded | boolean | false | Expands the StepContent when orientation is vertical. |
+
+### StepLabel
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| optional | ReactNode | — | Secondary subtext displayed below the step label. Use for estimated durations or status descriptions. |
+| error | boolean | false | Renders the step icon and label in error color. Use for sensor faults or validation failures. |
+| StepIconComponent | elementType | built-in | Swap the default step icon for a custom component — e.g., to render Warning or Info icons for non-error states. |
+
+### MobileStepper
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| activeStep | number | 0 | Zero-based index of the current step. Controls dot/progress position. |
+| steps | number | — | Total number of steps. Required. |
+| variant | "text" \| "dots" \| "progress" | "dots" | `text`: "Step N of M" label. `dots`: bullet indicators. `progress`: a LinearProgress bar. Use progress for long flows (more than 5 steps). |
+| position | "bottom" \| "top" \| "static" | "bottom" | `bottom` / `top` use `position: fixed`. Use static when embedding inside a card or sheet. |
+| nextButton | node | — | Required. The next-step action button. |
+| backButton | node | — | Required. The previous-step action button. |
+
+## States
+
+| State | Visual | How to trigger | Notes |
+| --- | --- | --- | --- |
+| Inactive | Grey circle with step number | Default (step > activeStep) | Text is `text-disabled`. |
+| Active | Primary circle with step number | activeStep === index | Bold label, primary color icon. |
+| Completed | Primary circle with checkmark | activeStep > index (linear) or completed prop | Auto in linear mode. |
+| Error | Error-colored icon | StepLabel error prop | Use for sensor failures or validation blocks. Pair with optional subtext explaining the error. |
+| Warning / Info | Custom icon via StepIconComponent | Custom icon component | MUI does not have native warning/info states — supply a StepIconComponent that conditionally renders a warning or info icon. |
+
+## Accessibility
+
+- The step list is not keyboard-navigable by default in linear mode — users interact with the form content inside each step, not the step icons themselves.
+- In `nonLinear` mode, each `Step` becomes a button; ensure focus styles are visible.
+- Always pair `StepLabel error` with a descriptive `optional` subtext node so screen readers receive context on what failed.
+- For warning or info states implemented via `StepIconComponent`, pass `aria-label` to the custom icon element.
+
+## Design tokens
+
+| Token | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| MuiStepIcon.styleOverrides.root | CSS object | — | Override icon circle size, color, or border. |
+| MuiStepIcon.styleOverrides.active | CSS object | primary.main fill | Active step icon color. |
+| MuiStepIcon.styleOverrides.completed | CSS object | primary.main fill | Completed step icon color. |
+| MuiStepConnector.styleOverrides.line | CSS object | 1px solid divider | Override connector thickness or color. |
+| MuiMobileStepper.styleOverrides.dot | CSS object | 8px circle | Override dot size in the dots variant. |
+| MuiMobileStepper.styleOverrides.dotActive | CSS object | primary.main fill | Active dot color. |

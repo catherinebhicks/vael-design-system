@@ -1,0 +1,75 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Tabs/Guidelines" />
+
+# Tabs
+
+Organize sibling views into parallel panels. Available as Standard, Scrollable, or Full Width, in either horizontal or vertical orientation.
+
+## Guidelines
+
+### Do
+
+- Organize project detail sections — Overview, Files, Settings, Checklist — where each section is parallel and independently meaningful.
+- Switch between monitoring groups that a user has configured, especially when groups are user-defined and variable in count (use the Scrollable variant).
+- Separate project plan form sections (Goals, Setup, Schedule) into discrete panels without navigating to a new route.
+- Use vertical orientation for a settings sidebar where categories (Notifications, Permissions, Integrations) are listed in a left-hand panel.
+- Use the Full Width variant when displaying two or three top-level server or job comparison tabs that should fill the container equally.
+
+### Don't
+
+- Walk users through a sequential setup flow (configure to deploy to monitor) — use a Stepper that communicates step completion and order.
+- Hide interdependent content panels behind tabs when users need to reference CPU alongside Memory while editing — keep both visible instead.
+- Display more than seven or eight monitoring groups in the Standard variant — labels will overflow; switch to Scrollable.
+- Use tabs for primary app-level navigation between routes (Projects, Jobs, Servers, Settings) — these belong in the TopNav or a Drawer.
+- Use tabs to filter or scope a data grid — use toolbar chips, a select, or filter inputs directly on the grid instead.
+
+## Props
+
+Scope: Tier 1 — approved for all product surfaces. Import from `@mui/material/Tabs` and `@mui/material/Tab`.
+
+### Tabs props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| value | any | — | The value of the currently selected tab. Must match a `Tab`'s value. Use with `onChange` for the controlled pattern. |
+| onChange | `(event, newValue) => void` | — | Callback fired when the active tab changes. Required in controlled usage. |
+| orientation | "horizontal" \| "vertical" | "horizontal" | Vertical orientation pairs with a sidebar layout; pair with a flex container. |
+| variant | "standard" \| "scrollable" \| "fullWidth" | "standard" | Use `scrollable` for dynamic/user-defined group counts; `fullWidth` for 2–3 equal-width top-level tabs. |
+| scrollButtons | "auto" \| true \| false | "auto" | Only applies when `variant="scrollable"`. "auto" shows buttons only when overflow occurs. |
+| allowScrollButtonsMobile | boolean | false | By default scroll buttons are hidden on mobile (xs breakpoint). Set true to force them visible on small screens. |
+| textColor | "primary" \| "secondary" \| "inherit" | "primary" | Color of active tab label text. Use "inherit" when Tabs sit inside a colored AppBar. |
+| indicatorColor | "primary" \| "secondary" | "primary" | Color of the active indicator underline. |
+| centered | boolean | false | Centers tabs within the container. Only applies to the standard variant. |
+
+### Tab props
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| label | node | — | The tab label text (or node). Required for accessible naming. |
+| value | any | tab index | The value that matches `Tabs.value`. Defaults to the tab's zero-based index if omitted. |
+| icon | node | — | Icon element rendered alongside or instead of the label. |
+| iconPosition | "top" \| "bottom" \| "start" \| "end" | "top" | Controls where the icon renders relative to the label. "start" / "end" gives a compact horizontal layout preferred in dense UIs. |
+| disabled | boolean | false | Renders the tab non-interactive with text-disabled color. |
+| wrapped | boolean | false | Allows the label to wrap onto two lines when space is constrained. |
+
+## Anatomy
+
+A `Tabs` container renders a `role="tablist"` with an animated ink indicator. Each `Tab` renders a `role="tab"` button. Panel regions use `role="tabpanel"` and must be wired manually (MUI does not render a TabPanel). The `aria-controls` / `aria-labelledby` pairing is required for full ARIA compliance.
+
+## Accessibility
+
+- Always provide `id` on each `Tab` and a matching `aria-controls` pointing to the panel id.
+- Always provide `aria-labelledby` on each panel pointing back to its tab id.
+- Keyboard: Arrow keys move focus between tabs; Enter/Space activates. This is native to MUI's implementation.
+- Do not use `disabled` on a tab unless the content is truly unavailable — consider hiding the tab instead to reduce cognitive noise.
+- When using icon-only tabs (no label), provide `aria-label` on each `Tab`.
+
+## Design tokens
+
+| Token | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| MuiTabs.styleOverrides.root | CSS object | — | Override the tabs bar root; e.g. `borderBottom` thickness. |
+| MuiTabs.styleOverrides.indicator | CSS object | 2px solid primary.main | Ink underline. Set `height`, `borderRadius`, or `background` here. |
+| MuiTab.styleOverrides.root | CSS object | — | Override padding, `minHeight` (default 48px), font-weight, or `textTransform`. |
+| palette.primary.main | hex / token | #1976D2 | Default indicator and active-text color when `textColor="primary"`. |

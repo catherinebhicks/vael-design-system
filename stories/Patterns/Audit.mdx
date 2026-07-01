@@ -1,0 +1,72 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Audit" />
+
+# Component usage audit
+
+Before changing a shared component, check where it is used across the product. Widely adopted primitives such as Button and Typography appear on many screens, so a small tweak can ripple much further than expected. This audit maps each documented component to its adoption status so you can avoid blind-spot breakage.
+
+_Last audited: 2026-04-09_
+
+## Status legend
+
+- ✅ Active — broadly adopted across the product.
+- ⚠️ Limited — used in only a few places.
+- ❌ Not adopted — documented but not currently in use (aspirational, or handled a different way).
+
+## Inputs
+
+| Component | Status | Notes |
+| --- | --- | --- |
+| Button | ✅ Active | |
+| IconButton | ✅ Active | |
+| TextField | ✅ Active | |
+| Autocomplete | ✅ Active | |
+| Checkbox | ⚠️ Limited | |
+| Select · Switch · Slider · Rating · Radio · ButtonGroup · ToggleButton · Transfer | ❌ Not adopted | Selects are handled via Autocomplete; the rest are aspirational. |
+
+## Data display
+
+| Component | Status | Notes |
+| --- | --- | --- |
+| Typography | ✅ Active | Used across all pages for headings, labels, and body text. |
+| Divider | ✅ Active | |
+| List / ListItem | ✅ Active | |
+| Tooltip | ✅ Active | |
+| Chip | ⚠️ Limited | Also used via the StatusChip wrapper. |
+| Table | ⚠️ Limited | |
+| Avatar · Badge · Icon · DataGrid | ❌ Not adopted | DataGrid uses an AG Grid wrapper instead. |
+
+## Surfaces and feedback
+
+| Component | Status | Notes |
+| --- | --- | --- |
+| Card | ✅ Active | |
+| Alert | ✅ Active | |
+| Paper | ⚠️ Limited | |
+| Accordion | ⚠️ Limited | |
+| Dialog · Snackbar | ⚠️ Limited | Mounted globally. |
+| Backdrop · CircularProgress · LinearProgress · Skeleton · AppBar · Container | ❌ Not adopted | No spinners or skeletons in use. |
+
+## Navigation and layout
+
+| Component | Status | Notes |
+| --- | --- | --- |
+| Box | ✅ Active | Most widely used layout primitive. |
+| Stack | ✅ Active | Vertical and horizontal grouping throughout. |
+| Grid | ✅ Active | Multi-column layouts. |
+| Link · Menu | ✅ Active | |
+| Breadcrumbs | ✅ Active | |
+| Tabs | ⚠️ Limited | |
+| Pagination | ⚠️ Limited | |
+| Drawer · Speed Dial · Stepper · Bottom Navigation | ❌ Not adopted | A custom side nav is used instead. |
+
+## Third-party libraries
+
+| Library | Status | Notes |
+| --- | --- | --- |
+| FontAwesome Pro | ✅ Active | Full icon layer. |
+| React Flow | ✅ Active | |
+| AG Grid (via DataGrid) | ✅ Active | |
+| Highcharts | ✅ Active | |
+| @dnd-kit | ⚠️ Limited | Sortable tab groups. |

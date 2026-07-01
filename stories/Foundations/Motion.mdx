@@ -1,0 +1,52 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Motion" />
+
+# Motion
+
+Motion in the Console is used **functionally**, not decoratively. Animations exist to provide continuity (elements entering or exiting, state changes), confirm actions (button ripple, success toast slide), and draw attention to transient content (snackbar, skeleton loader). We do not use motion to "add polish" — every animation should have a reason.
+
+## Duration tokens
+
+| Token | Value | Usage |
+| --- | --- | --- |
+| duration.shortest | 150ms | Tooltip, simple color transitions |
+| duration.shorter | 200ms | Hover states, focus rings |
+| duration.short | 250ms | Default. Most transitions — select, fade, popover |
+| duration.standard | 300ms | Dialog, drawer, modal transitions |
+| duration.complex | 375ms | Expansions, multi-stage transitions |
+| duration.enteringScreen | 225ms | Element entering viewport |
+| duration.leavingScreen | 195ms | Element leaving viewport (faster — less attention) |
+
+## Easing tokens
+
+| Token | cubic-bezier | Usage |
+| --- | --- | --- |
+| easing.easeInOut | (0.4, 0, 0.2, 1) | Default. Balanced — elements moving on and staying on screen |
+| easing.easeOut | (0, 0, 0.2, 1) | Elements entering the screen — fast start, gentle settle |
+| easing.easeIn | (0.4, 0, 1, 1) | Elements leaving the screen — gentle start, fast exit |
+| easing.sharp | (0.4, 0, 0.6, 1) | Objects entering and leaving permanently — modal overlays |
+
+## When to animate, and when not to
+
+### Where we use motion
+
+- **State change confirmation** — a checkbox fills, a toggle slides, a button shows ripple on tap. Motion confirms the tap happened.
+- **Element entering or leaving** — dialogs fade and scale in, drawers slide in, snackbars slide up. Motion provides continuity so the user's eye follows the element from origin to destination.
+- **Skeleton loaders** — a subtle pulse or shimmer indicates "this area is loading" without being distracting.
+- **Focus ring** — a gentle appearance of the focus ring on keyboard navigation helps visibility.
+- **Chart data updates** — the line tweens when new data arrives (live runs) so the user tracks the change rather than seeing a jump.
+
+### Where we do NOT use motion
+
+- **Scroll-triggered animations.** Content revealing as you scroll is a marketing-site pattern. The Console is a tool — content should be where it is, not perform.
+- **Parallax.** Never.
+- **Hero animations on data.** Don't animate a chart "drawing in" when the user opens a dashboard. The user came for the data — show it.
+- **Hover-only decorations.** Don't animate a card when you hover it unless the hover itself changes state (e.g. showing an action bar). "Lift on hover" alone is decorative.
+- **Loading spinners for instant operations.** If an operation completes in under 500ms, a spinner just flashes and adds visual noise. Only show one when the wait is genuinely perceptible.
+
+### Common pitfalls
+
+- **Animating in both directions at the same speed.** Entering should be slightly slower than leaving — arriving draws attention; leaving should get out of the way.
+- **Chained animations.** If element A animates then B then C, total time balloons. Run animations in parallel unless sequence is the point.
+- **Springy curves on structural elements.** Bouncy easing looks playful on a "like" button but wrong on a modal opening. Use `easeInOut` or `sharp` for structural motion; save spring curves for micro-interactions.

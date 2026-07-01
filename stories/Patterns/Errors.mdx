@@ -1,0 +1,85 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Errors" />
+
+# Error pages
+
+Full-page errors replace the entire viewport when navigation or data-loading fails catastrophically — missing routes, permission walls, server crashes, lost connectivity. Unlike inline Alerts or Snackbars, a full-page error is the destination. Every variant must orient the user quickly and offer a concrete recovery path.
+
+## Variants
+
+### 404 — Page not found
+
+The page you're looking for doesn't exist or has been moved.
+
+- Primary action: Go to home
+
+### 403 — Access denied
+
+You don't have permission to view this page. Contact your administrator if you think this is a mistake.
+
+- Primary action: Go to home
+
+### 500 — Something went wrong
+
+We're having trouble loading this page. Try again or come back later.
+
+- Primary action: Try again
+
+### Offline — You're offline
+
+Check your internet connection and try again.
+
+- Primary action: Try again
+
+## Why de-emphasize the status code?
+
+Most users don't know what 404 or 500 means without context, and leading with a number creates anxiety before they understand the situation. The heading and body carry the meaningful message; the code is subordinate — consistent with how Stripe, GitHub, and most modern web apps present error pages.
+
+## Inline vs. full-page
+
+| Scenario | Use |
+| --- | --- |
+| Form field validation | FormHelperText (error state) |
+| A section of the page failed | Alert (severity: error) inline |
+| Entire page / route failed | Full-page error pattern |
+| API call with no visible outcome | Snackbar (severity: error) |
+
+## ErrorPage component
+
+`ErrorPage` renders the status code as an `h1`, the message as an `h6`, and a three-card recovery grid: Browse experiments, Help Center, and Email support.
+
+### Props
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| statusCode | number | HTTP status code displayed as the page heading (e.g., 404, 500) |
+| message | string | Human-readable error description displayed below the status code |
+
+### Recovery card layout
+
+| Card | Action |
+| --- | --- |
+| Browse experiments | Internal link to the experiment list |
+| Help Center | External link to the Vael help docs |
+| Email support | `mailto:` link to the support address |
+
+### LoadingPage relationship
+
+`LoadingPage` internally delegates to `GeneralErrorPage` (a wrapper around `ErrorPage`) when its `error` prop is `true`. For route-level errors with a known status code, use `ErrorPage` directly. For data-fetch errors in a page component, use `LoadingPage` with `error={true}`.
+
+## Guidelines
+
+### Do
+
+- Always provide a recovery path — at least one primary action.
+- Use plain language in headings and body copy.
+- Keep body copy to two sentences or fewer.
+- Retry automatically when connectivity returns (`navigator.onLine`).
+
+### Don't
+
+- Show stack traces or internal error codes to end users.
+- Use "error" in the heading — "went wrong" and "not found" work better.
+- Leave the user without a path forward.
+- Expose role or permission names in 403 body copy.

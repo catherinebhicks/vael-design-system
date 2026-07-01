@@ -1,0 +1,63 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Screens" />
+
+# Full screen templates
+
+Complete, ready-to-reference page layouts showing how design system components compose into real product screens. Use these as a starting point for new top-level pages — they capture the full context of navigation shell, content area, data surfaces, and responsive adaptation at every supported breakpoint.
+
+- Status: Stable
+- Scope: page layout
+- 3 templates, 9 variants
+
+## Variants
+
+### Log in — Large
+
+Centered Card on full-bleed background. No nav chrome.
+
+### Job Directory — Large
+
+AppBar + Drawer + filter column + results list.
+
+### User Management — XL/LG
+
+Full DataGrid with primary action in heading.
+
+### User Management — XS
+
+Card-per-row fallback; no horizontal scroll.
+
+## Components used
+
+- AppBar
+- Drawer
+- Table / DataGrid
+- Card
+- Pagination
+- TextField
+- Button
+- Chip
+- Dialog
+
+## Responsive behaviour
+
+| Breakpoint | Log in | Job Directory | User Management |
+| --- | --- | --- | --- |
+| XS · 1536 | Standard Card | Matches LG, wider grid | Full DataGrid; max-width content |
+
+## Guidelines
+
+### Do
+
+- Use User Management as the canonical full-responsive DataGrid reference.
+- Apply Job Directory's inline-at-large, Dialog-at-small filter pattern broadly.
+- Match content-area padding and max-width constraints across all new pages.
+- Keep Log in and pre-auth screens free of the Drawer.
+
+### Don't
+
+- Invent a sixth responsive behaviour that maps to these three types.
+- Show a DataGrid on XS without a Card-per-row fallback.
+- Add decorative banners to admin / directory templates.
+- Show the Drawer on pre-auth screens.

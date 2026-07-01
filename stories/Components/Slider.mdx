@@ -1,0 +1,55 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Slider/Guidelines" />
+
+# Slider and Rating
+
+Slider handles continuous or stepped value selection along a range. Rating handles star-based feedback collection or display. Neither is currently used in the product — documented for reference and future use.
+
+## Slider
+
+Use Slider for selecting a single value or a range along a continuous or stepped track.
+
+### Props
+
+Scope: Tier 1 — drop in, no wrapper needed. Import from `@mui/material/Slider`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| value | number \| number[] | — | Controlled value. Pass an array for range sliders. |
+| onChange | `(e, value) => void` | — | Fires on every thumb move. Use onChangeCommitted for expensive callbacks. |
+| onChangeCommitted | `(e, value) => void` | — | Fires only when the user releases the thumb. Preferred for API calls or analytics. |
+| min | number | 0 | Minimum value on the track. |
+| max | number | 100 | Maximum value on the track. |
+| step | number \| null | 1 | Granularity of movement. Pass null when using marks to snap only to mark values. |
+| marks | boolean \| Mark[] | false | true for auto marks at each step; pass an array for custom labels at specific values. |
+| valueLabelDisplay | 'auto' \| 'on' \| 'off' | 'off' | Always pair with valueLabelFormat to include units where relevant. |
+| orientation | 'horizontal' \| 'vertical' | 'horizontal' | Vertical only in specific spatial layouts; set an explicit height on the container. |
+| disabled | boolean | false | Prevents interaction. Thumb and track render at reduced opacity. |
+| color | 'primary' \| 'secondary' | 'primary' | Track and thumb color. Defaults to primary. |
+| size | 'small' \| 'medium' | 'medium' | Track height and thumb diameter. Use small in dense panels. |
+| track | 'normal' \| 'inverted' \| false | 'normal' | 'inverted' fills the un-selected portion. false hides the fill entirely. |
+| getAriaLabel | `(index: number) => string` | — | Required for range sliders — label each thumb distinctly (e.g. "Minimum value", "Maximum value"). |
+| valueLabelFormat | string \| `(value) => string` | — | Formats the value bubble label. Use it to append units to the value, e.g. appending "rpm". |
+
+## Rating
+
+Use Rating for star-based feedback, either interactive input or read-only display.
+
+### Props
+
+Scope: Tier 1 — drop in, no wrapper needed. Import from `@mui/material/Rating`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| value | number \| null | — | Controlled star value. null renders an empty/unset state. |
+| onChange | `(e, value) => void` | — | Fires when the user selects a star. value will be null if the user clicks the current rating to clear it. |
+| max | number | 5 | Total number of stars. Rarely needs to change from 5. |
+| precision | 1 \| 0.5 | 1 | Use 0.5 only when source data has fractional precision. |
+| size | 'small' \| 'medium' \| 'large' | 'medium' | Star icon size. |
+| readOnly | boolean | false | Display-only mode. Always show a numeric label alongside in read-only contexts. |
+| disabled | boolean | false | Prevents interaction. Use when the current user cannot submit a rating. |
+| icon | ReactNode | filled star | Custom filled-star icon. Rarely needed — only override if brand requires a non-star glyph. |
+| emptyIcon | ReactNode | empty star | Custom empty-star icon. Override together with icon. |
+| getLabelText | `(value) => string` | — | Accessible label for each star. Required for screen readers. |
+| name | string | — | Required when multiple Rating components appear on the same page to avoid ARIA conflicts. |

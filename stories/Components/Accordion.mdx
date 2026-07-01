@@ -1,0 +1,20 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Accordion/Guidelines" />
+
+# Accordion
+
+Vertically stacked expandable panels that progressively disclose content. Use it to group related settings or details that can be collapsed to reduce visual clutter.
+
+## Props
+
+Scope: Tier 1 — drop in, no wrapper needed. Import from `@mui/material/Accordion`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| expanded | boolean | false | Controls whether the panel body is visible. Use with `onChange` for controlled mode. |
+| onChange | `(event, expanded) => void` | — | Fires when the user clicks the summary row. Receives new expanded state. |
+| disabled | boolean | false | Prevents interaction and dims the summary row. |
+| disableGutters | boolean | false | Removes default vertical padding — use in compact list layouts. |
+| defaultExpanded | boolean | false | Sets initial open state in uncontrolled mode. |
+| square | boolean | false | Removes border-radius. Used when nesting in a flat card surface. |

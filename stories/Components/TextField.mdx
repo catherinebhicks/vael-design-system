@@ -1,0 +1,164 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/TextField/Guidelines" />
+
+# Text Field
+
+Three variants (`outlined`, `filled`, `standard`), two sizes, and six states. Supports leading and trailing adornments — use FontAwesome icons in either slot.
+
+## Anatomy
+
+- **Label** — floats above the input when focused or filled.
+- **Input area** — the editable region.
+- **Placeholder** (optional) — hint text when the field is empty and unfocused.
+- **Helper text** (optional) — below the input; used for instructions or validation messages.
+- **Start adornment** (optional) — icon or text before the input value.
+- **End adornment** (optional) — icon or text after the input value.
+- **Border / underline** — visual container; style depends on variant.
+
+## Variants
+
+| Property | Options |
+| --- | --- |
+| variant | outlined (default), filled, standard |
+| size | medium, small |
+| state | enabled, hover, focus, disabled, error |
+| Multiline rows | Flexible, 4, 6, 8 |
+
+- **Outlined** — border on all sides; highest definition; **recommended default**.
+- **Filled** — filled background with bottom border only; for dense forms.
+- **Standard** — bottom border only; minimal or inline contexts.
+
+## Guidelines
+
+### Use when
+
+- Use **TextField (Outlined)** for any form-based data entry — project names, threshold values, target CPU or Memory thresholds, and user-defined job parameters.
+- Use **TextField (type="number")** for precise numeric threshold entry — request rate, latency targets, throughput limits — where the user must type an exact value.
+- Use **TextField (Multiline)** for free-text config notes, description fields, or observation comments where content length is unpredictable.
+- Use **SearchField** for every search or filter input — project list search, metrics data filter, user lookup — to maintain a consistent search affordance across the dashboard.
+- Use **TypographyInput** for in-context rename interactions: project names in the plan header, config titles, and any entity name a user should edit without navigating elsewhere.
+- Use helper text to show acceptable input ranges (e.g., "0–100 %") directly below a threshold field, so users don't have to recall valid bounds from memory.
+- Use end adornments for unit labels (ms, req/s, MB, %) adjacent to numeric threshold fields so units are immediately visible.
+
+### Don't use when
+
+- Don't use a raw **TextField + manually added Search icon** for filter inputs — always use `SearchField`, which handles the adornment, clear button, and consistent styling.
+- Don't use **TypographyInput** for general form fields like threshold values — its in-context rename pattern is for entity names only.
+- Don't use **placeholder text as the only label** — users tab through fields quickly and the placeholder disappears on focus, leaving the field unlabeled mid-entry.
+- Don't mix **Outlined and Filled** variants within the same form section — use Outlined as the default throughout the dashboard.
+- Don't use a **TextField for selection from a known list** (server model, OS version, region name) — use Autocomplete, which surfaces valid options and prevents typos in critical fields.
+- Don't use the **Standard (underline-only) variant** inside card- or table-embedded forms — the minimal border is difficult to perceive in dense metrics panels.
+
+## Props
+
+**Scope: Tier 1** — drop in, no wrapper needed. Import from `@mui/material/TextField`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| label | node | — | Floating label text. Always provide a label — never rely on placeholder alone. |
+| variant | 'outlined' \| 'filled' \| 'standard' | 'outlined' | Outlined is the dashboard default. Avoid mixing variants within the same form. |
+| size | 'medium' \| 'small' | 'medium' | Use small in dense tables or side panels. |
+| value | string \| number | — | Controlled value. Pair with `onChange`. |
+| onChange | `(e: ChangeEvent) => void` | — | Fires on every keystroke. |
+| error | boolean | false | Turns border and label red. Must pair with helperText and `aria-invalid`. |
+| helperText | node | — | Below-field message. Used for validation errors or input hints (e.g. "0–100 %"). |
+| required | boolean | false | Appends `*` to label and sets `aria-required`. |
+| disabled | boolean | false | Use for locked thresholds during active jobs. |
+| fullWidth | boolean | false | Stretches field to container width. Recommended in forms. |
+| multiline | boolean | false | Renders a `<textarea>`. Pair with rows or maxRows. |
+| rows | number | — | Fixed row count when multiline is true. |
+| maxRows | number | — | Max rows before scrolling when multiline is true. Prefer over fixed rows for notes fields. |
+| type | 'text' \| 'number' \| 'password' \| 'email' \| … | 'text' | Use 'number' for threshold entry. Pair with inputProps min/max/step. |
+| InputProps | InputProps | — | Pass startAdornment or endAdornment here. Use for unit labels (ms, req/s) or icon buttons. |
+| inputProps | object | — | Forwarded to the native input — use for `min`, `max`, `step`, `aria-*`. |
+| autoComplete | string | — | HTML autocomplete attribute. Set 'off' on job-ID fields to prevent browser suggestions. |
+| autoFocus | boolean | false | Focus on mount. Use sparingly — only one field per page. |
+| placeholder | string | — | Hint text shown when empty and unfocused. Never use as a substitute for label. |
+| select | boolean | false | Renders a `<select>` inside the TextField shell. Use for short inline selects in a form row. |
+
+### Example
+
+```jsx
+// Outlined threshold field with unit adornment and range hint
+<TextField
+  label="Throughput"
+  type="number"
+  value={throughput}
+  onChange={(e) => setThroughput(Number(e.target.value))}
+  inputProps={{ min: 0, max: 1200, step: 10 }}
+  InputProps={{ endAdornment: <span>req/s</span> }}
+  helperText="Valid range: 0 – 1200 req/s"
+  fullWidth
+/>
+
+// Error state with accessible message
+<TextField
+  label="Latency"
+  value={latency}
+  onChange={(e) => setLatency(e.target.value)}
+  error={!!latencyError}
+  helperText={latencyError ?? "Typical range: 6.5 – 7.5"}
+  inputProps={{ "aria-invalid": !!latencyError }}
+/>
+```
+
+## States
+
+| State | Visual |
+| --- | --- |
+| Enabled | Default border at rest; label shown inside or above the field depending on whether a value is present. |
+| Hovered | Border darkens slightly to signal interactivity. |
+| Focused | Border adopts primary/main color; label floats above the field; focus ring visible for keyboard users. |
+| Disabled | Reduced opacity across label, border, and value text. Used for locked thresholds during active jobs. |
+| Error | Border and floating label adopt error/main; helper text becomes the error message. Must pair with `aria-invalid="true"`. |
+
+## Design tokens
+
+| Token | Usage |
+| --- | --- |
+| primary/main | Focused border, floating label when focused |
+| text/primary | Input value text |
+| text/secondary | Placeholder, helper text |
+| text/disabled | Disabled text |
+| error/main | Error border, label, helper text |
+| action/active | Adornment icon color |
+| typography/body1 | Input text (Medium) |
+| typography/body2 | Input text (Small), helper |
+| borderRadius | 4px (Outlined corners) |
+
+## Accessibility
+
+- Every input must have an associated `<label>` — use the floating label pattern.
+- Helper text and error messages are linked via `aria-describedby`.
+- Error state requires `aria-invalid="true"` plus a message — never color alone.
+- Set `aria-required="true"` on required fields, with a visible required indicator.
+
+## SearchField
+
+Standard search and filter input. Wraps `TextField` with a persistent Search icon start adornment and an optional Clear button that appears automatically when the field has a value. Do not assemble a TextField + Search icon manually — always use this wrapper.
+
+**Import:** `~/components/inputs/SearchField`
+
+| Prop | Type | Default | Notes |
+| --- | --- | --- | --- |
+| value | string | — | Controlled input value. |
+| onChange | TextFieldProps['onChange'] | — | Change handler. |
+| onClear | () => void | — | If provided, a Clear icon button renders when value is non-empty. Omit for non-clearable fields. |
+| ...rest | TextFieldProps | — | All standard TextField props — label, size, fullWidth, disabled, error, etc. |
+
+## TypographyInput
+
+Inline edit component. Renders text as a Typography element at rest; switches to an editable Input on interaction. Used for in-context renaming of project names, config titles, and entity names. Hover turns text `accent.500` and reveals a pencil icon; clicking auto-selects all text and enters edit mode; blurring or pressing Enter confirms.
+
+**Import:** `~/components/inputs/TypographyInput` — **Tier 3** internal wrapper.
+
+| Prop | Type | Default | Notes |
+| --- | --- | --- | --- |
+| defaultValue | string | required | Fallback display value when value is empty — prevents a blank, unclickable state. |
+| value | string | '' | Controlled current value shown in both read and edit modes. |
+| variant | TypographyProps['variant'] | 'body1' | Sets text size in both modes — use 'h6' for project plan headers. |
+| disabled | boolean | — | Hides the pencil icon and prevents edit mode. Use when the user lacks rename permission. |
+| onBlur | InputProps['onBlur'] | — | Called on blur — trigger save logic here. Component does not auto-save. |
+| typographyProps | TypographyProps | — | Additional props forwarded to the Typography element in read mode. |
+| ...rest | InputProps | — | All other MUI Input props including onChange and placeholder. |

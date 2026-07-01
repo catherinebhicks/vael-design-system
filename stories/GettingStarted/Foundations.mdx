@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/Foundations" />
+
+# Foundations
+
+Core visual decisions. Start here before working with components. Every component in the library is assembled from these primitives — color tokens, type scale, 8px spacing, 24 elevation levels, FontAwesome Pro icons, and the Highcharts styled-mode chart vocabulary.
+
+## Color
+
+11 semantic roles plus deterministic chart variable mapping. Never hardcode hex.
+
+## Typography
+
+Roboto for UI, Roboto Mono for run IDs and code. 13-variant scale, Bold excluded.
+
+## Spacing
+
+8px base, scale 1–8. Values beyond 64px are layout-level, not spacing.
+
+## Elevation
+
+24 levels, each a three-layer shadow (umbra, penumbra, ambient).
+
+## Iconography
+
+FontAwesome Pro v6.7.2 — Light, Regular, Solid. Never `@mui/icons-material`.
+
+## Data viz
+
+Highcharts styled-mode. Deterministic variable-to-token color. Max 4 series, max 2 y-axes.

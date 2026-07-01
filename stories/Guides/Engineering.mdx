@@ -1,0 +1,22 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guides/Engineering" />
+
+# Engineering setup
+
+Guidance for building with the design system on MUI v7, Next.js, and TypeScript.
+
+## Styling: sx vs styled()
+
+| Technique | Use when |
+| --- | --- |
+| `sx` prop | One-off styling, token-based (`color: 'primary.main'`), or conditional styles via theme callback |
+| `styled()` | Reusable styled component, slot-based API, or complex selectors (pseudo-elements, media queries) |
+| CSS modules | Keyframes, large blocks of static CSS, or cross-component utility classes |
+| Inline style | Never in production — tokens are bypassed |
+
+## Reading the theme
+
+- Inside a component, use `useTheme()`.
+- Inside `sx`, use the callback form: `sx={(t) => ({ color: t.palette.primary.main })}`.
+- Never hardcode values.

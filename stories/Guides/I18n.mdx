@@ -1,0 +1,19 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guides/Internationalization" />
+
+# Internationalization (i18n)
+
+The app is English-only today, but every new component must be i18n-ready. In practice that means: externalize strings, never concatenate translated fragments, and respect logical CSS properties.
+
+## Rules
+
+- Wrap user-visible strings in `t('path.to.key')` — never pass literals to `Typography` children in shared components.
+- Format dates with `Intl.DateTimeFormat(userLocale)` and numbers with `Intl.NumberFormat`.
+- Use logical CSS properties — `padding-inline-start`, not `padding-left`.
+- Use `margin-inline` / `margin-block` in `sx` — MUI theme spacing supports `mx` / `my`.
+- For icons next to text, place the icon with `flex-direction: row` (not `-reverse`) — this lets `dir=rtl` mirror correctly.
+
+## Plural forms
+
+Use `Intl.PluralRules` or `t('key', { count })`. Never build plurals by hand with string concatenation such as `` `${n} item${n === 1 ? '' : 's'}` ``.

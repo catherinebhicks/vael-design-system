@@ -1,0 +1,115 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Selection/Guidelines" />
+
+# Selection controls
+
+Switches for independent settings, checkboxes for multi-select, radios for single-select among a small set.
+
+## Checkbox
+
+Use a checkbox for discrete, independent on/off items and for multi-select scenarios.
+
+### Props
+
+Scope: Tier 1 — use directly from MUI; no Vael wrapper needed. Import from `@mui/material/Checkbox`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| checked | boolean | — | Controlled checked state. Pair with onChange for fully controlled usage. |
+| onChange | `(event, checked: boolean) => void` | — | Use to update selection state in workspace assignment or checklist components. |
+| indeterminate | boolean | false | Shows the dash icon. Use for "select all" table headers when some but not all rows are selected. |
+| color | `'primary' \| 'secondary' \| 'error' \| 'warning' \| 'info' \| 'success' \| 'default'` | `'primary'` | Use error to flag a required but unselected checklist item. |
+| size | `'small' \| 'medium'` | `'medium'` | Use small in dense workspace-assignment or metric tables. |
+| disabled | boolean | false | Use when a checklist task is locked pending a prerequisite step. |
+| icon | node | — | Custom unchecked icon. Rarely needed — prefer the default MUI icon. |
+| checkedIcon | node | — | Custom checked icon. Rarely needed — prefer the default MUI icon. |
+
+### States
+
+| State | Visual |
+| --- | --- |
+| Unchecked | Empty box outline at action/active color. |
+| Checked | Filled box with checkmark; fill uses primary/main. |
+| Indeterminate | Filled box with dash icon; `aria-checked="mixed"`. Represents partial selection in workspace assignment or multi-row tables. |
+| Disabled | Reduced opacity on both control and label; non-interactive. |
+| Hovered | Ripple background around the control; signals interactivity. |
+| Focused | Focus ring around the control; required for keyboard navigation through configuration forms. |
+
+## RadioGroup and Radio
+
+Use a radio group when users must choose exactly one option from a small, fixed set.
+
+### Props
+
+Scope: Tier 1 — use directly from MUI. Import from `@mui/material/RadioGroup` and `@mui/material/Radio`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| RadioGroup — value | string | — | Controlled selected value. Must match a value on one child Radio. |
+| RadioGroup — onChange | `(event, value: string) => void` | — | Fires when selection changes. |
+| RadioGroup — row | boolean | false | Horizontal layout. Use only for 2–3 short options (e.g. Manual / Auto / Scheduled inline). |
+| RadioGroup — name | string | — | Required for form submission and screen reader group association. |
+| Radio — value | string | — | Value submitted when this radio is selected. Must be unique within its RadioGroup. |
+| Radio — color | `'primary' \| 'secondary' \| 'error' \| ...` | `'primary'` | Inherits from RadioGroup if not set individually. |
+| Radio — size | `'small' \| 'medium'` | `'medium'` | Use small in dense configuration grids. |
+| Radio — disabled | boolean | false | Disables this option only; other radios in the group remain interactive. |
+
+### States
+
+| State | Visual |
+| --- | --- |
+| Unchecked | Empty circle outline at action/active. |
+| Checked | Filled circle with inner dot; primary/main. |
+| Group — Error | Helper text adopts error/main; communicated via text, not color alone. |
+| Hovered | Ripple background around the control; signals interactivity. |
+| Focused | Focus ring around the control; required for keyboard navigation through configuration forms. |
+
+## Switch
+
+Use a switch for binary settings that take effect immediately without a save step.
+
+### Props
+
+Scope: Tier 1 — use directly from MUI; no Vael wrapper needed. Import from `@mui/material/Switch`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| checked | boolean | — | Controlled on/off state. Flip immediately reflects the setting — no save step. |
+| onChange | `(event, checked: boolean) => void` | — | Fires on toggle. Trigger the immediate side-effect (API call, local state) here. |
+| color | `'primary' \| 'secondary' \| 'error' \| 'warning' \| 'info' \| 'success' \| 'default'` | `'primary'` | Use warning or error for settings with high operational consequence (e.g. disabling a critical alert). |
+| size | `'small' \| 'medium'` | `'medium'` | Use small only in compact job-metric cards where Medium would crowd the layout. |
+| disabled | boolean | false | Use when a setting is locked by job state or user permission. |
+| edge | `'start' \| 'end' \| false` | false | Removes horizontal padding on the specified edge. Use 'end' when the switch is the last item in a row control. |
+| inputProps | object | — | Pass aria-label here when there is no visible FormControlLabel. |
+
+### States
+
+| State | Visual |
+| --- | --- |
+| Off | Thumb at left; track is grey (action/active). |
+| On | Thumb at right; track uses primary/main. |
+| Disabled | Thumb and track both muted at action/disabled; thumb position still indicates last known state. |
+| Hovered | Ripple background around the thumb; signals interactivity. |
+| Focused | Focus ring around the control; required for keyboard navigation through configuration forms. |
+
+## Guidelines
+
+### Do
+
+- Use Checkbox for multi-select scenarios — selecting multiple servers for a batch operation, or filtering a project list by multiple status flags (Running, Complete, Paused).
+- Use the Indeterminate checkbox state for "select all" table headers in workspace assignment and server selection tables — when some but not all rows are checked.
+- Use Checkbox for project checklist task completion — discrete, independent on/off items in a procedural workflow.
+- Use Radio Group when users must choose exactly one option from a small, fixed set — monitoring mode (CPU, Memory, Latency), data export format (CSV, Excel, JSON), or normalization method.
+- Use Switch for binary settings that take effect immediately without a save step — toggling alert notifications, enabling automatic data sync, or activating live-update mode.
+- Use Switch (Small) in dense configuration panels where the default Medium size would crowd adjacent controls.
+- Use FormGroup to visually group 3 or more related checkboxes or switches with a shared label — metric display toggles, data-export column options.
+
+### Don't
+
+- Don't use a Checkbox for mutually exclusive options — use Radio Group so selecting one option deselects the others.
+- Don't use a Switch for settings that require a save or confirmation step before taking effect — use a Checkbox + Submit button pattern instead.
+- Don't use a Radio Group for more than ~7 options — use Autocomplete so users can filter rather than scroll a long vertical list.
+- Don't use Checkbox to trigger actions (Delete, Archive) — that is a button's job; checkboxes represent selection state.
+- Don't leave the Indeterminate state persistent after the user explicitly interacts — it represents a computed intermediate state, not a permanent third option.
+- Don't use a Switch to replace a Checkbox in a multi-item selection list — switches imply immediate system effect; checkboxes imply form submission.

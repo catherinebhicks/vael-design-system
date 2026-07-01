@@ -1,0 +1,220 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/Accessibility" />
+
+# Accessibility
+
+The library targets WCAG 2.1 AA. MUI components inherit MUI's built-in accessibility; custom components require an independent audit.
+
+## WCAG 2.1 AA
+
+MUI components inherit MUI's built-in WCAG 2.1 AA accessibility. Custom components outside MUI — SideNav, Highcharts, AG Grid, React Flow, and dnd-kit — require independent audit.
+
+### ADR 011 · WCAG 2.1 Level AA Compliance Target
+
+Why 2.1 AA was chosen over 2.0, 2.2, Level A, and AAA.
+
+2.0 is outdated; 2.2 adds criteria not yet required by most procurement. Level A is insufficient for enterprise; AAA is aspirational and has criteria that conflict with product requirements (e.g. 7:1 contrast breaks our semantic palette). AA is the legal baseline and the achievable target.
+
+### ADR 012 · PDF Export Accessibility
+
+Charts in PDF run reports: PNG image + descriptive alt text + data table.
+
+`@react-pdf/renderer` cannot produce PDF/UA-1 certified output. Until a regulated customer requires it, each chart in a PDF export is paired with a data summary table so screen reader users get the information.
+
+## Audit status at a glance
+
+- Inputs (14) — all 🔵 MUI Baseline · Q2 2026 audit scheduled
+- Data Display (9) — all 🔵 MUI Baseline · Q3 2026 audit
+- Feedback (6) — all 🔵 MUI Baseline · Q3 2026 audit
+- Third-party — AG Grid, React Flow, Highcharts — keyboard and screen-reader gaps tracked
+
+## Audit materials
+
+What "audited" means, what we test against, and how results are tracked.
+
+Accessibility audits combine automated tooling, manual keyboard + screen-reader testing, and color-contrast verification against WCAG 2.1 AA. Each audit produces a component scorecard, a list of filed issues, and a status badge that appears in the component doc header.
+
+### Audit scorecard — per component
+
+Every component moves through a five-part scorecard. A component can only be marked Verified AA once all five pass.
+
+| Check | Tool / method | Pass criteria |
+| --- | --- | --- |
+| Automated scan | @axe-core/react + jest-axe on all Storybook stories | Zero violations at minor + severity |
+| Keyboard nav | Manual — Tab, Shift+Tab, Arrow keys, Enter, Space, Escape | All actions reachable and operable without pointer; focus order logical; no focus traps outside modals |
+| Screen reader | Manual — VoiceOver (macOS Safari), NVDA (Win Firefox) | Name, role, state announced correctly on focus and on change |
+| Contrast | tokens/contrast-report.json — generated from token pairs | Text ≥ 4.5:1; large text and UI ≥ 3:1; state changes distinguishable |
+| Reduced motion | Manual — prefers-reduced-motion: reduce | No parallax, no autoplaying transitions, essential motion reduced to fade/opacity |
+
+### Audit status badges
+
+Appear in the component doc header next to the version tag. Click through to the audit record.
+
+- **Verified AA** — All 5 scorecard checks pass; audit signed within the last 12 months.
+- **MUI baseline** — Ships unmodified MUI behavior. Inherits MUI's public a11y record; not independently signed off by the team.
+- **Audit scheduled** — Component is queued for audit in a specific quarter; MUI baseline in effect until then.
+- **Known gaps** — Audit complete, non-blocking issues filed. Component ships with documented workarounds.
+- **Not audited** — Third-party / unwrapped library or experimental component. Not eligible for audit yet.
+
+### Audit schedule
+
+The first pass (Q2 2026 – Q1 2027) covers all base MUI components and custom third-party wrappers. After the first pass completes, all components are re-audited on a rolling annual cadence — any component whose Verified AA sign-off is older than 12 months is queued for the next available quarter. Within each quarter, components are prioritized by codebase usage frequency — most-used first — so regressions in high-traffic surfaces are caught earliest.
+
+| Quarter | Scope | Status |
+| --- | --- | --- |
+| Q2 2026 | Inputs (14) — Button, TextField, Checkbox, Radio, Switch, Select, Autocomplete, Slider, DatePicker, TimePicker, FileInput, ToggleButton, Chip (input), Rating | In progress |
+| Q3 2026 | Data Display (9) + Feedback (6) — Table, DataGrid, List, Card, Avatar, Badge, Tooltip, Typography, Divider, Alert, Dialog, Drawer, Snackbar, Progress, Skeleton | Scheduled |
+| Q4 2026 | Surfaces (4), Navigation (9), Layout (5) — AppBar, Paper, Accordion, Tabs, Stepper, Breadcrumbs, Menu, BottomNavigation, Drawer, Link, Pagination, SpeedDial, Box, Container, Grid, Stack, ImageList | Scheduled |
+| Q1 2027 | Third-party wrappers — AG Grid DataGrid, React Flow FlowCanvas, Highcharts wrapper, @dnd-kit DragOverlay | Scheduled |
+
+### Audit artifacts — where results live
+
+- **Audit record** — `docs/accessibility/audits/[component].md` · scorecard results, filed issues, sign-off date, auditor
+- **Contrast report** — `tokens/contrast-report.json` · auto-generated nightly from the token graph
+- **Issue tracker** — all findings filed under the `a11y` label with severity (blocker / serious / moderate / minor) matching axe's scale
+- **Known-gaps registry** — `docs/accessibility/known-gaps.md` · open issues that ship with documented workarounds
+
+### Environments we test against
+
+| Platform | Browsers / AT | Notes |
+| --- | --- | --- |
+| macOS | Safari + VoiceOver · Chrome + VoiceOver | Primary target — matches primary user workstations |
+| Windows | Firefox + NVDA · Edge + Narrator | Secondary target — primarily QA |
+| iOS / Android | Safari + VoiceOver · Chrome + TalkBack | Not a primary target; spot-checked on responsive components |
+
+### When AA can't be reached
+
+Third-party components (AG Grid keyboard gaps, React Flow canvas keyboard model) may not meet AA in their shipped state. In those cases, we document the gap, provide a keyboard-accessible alternate surface where required, and file upstream issues with the vendor. The goal is no AA regressions introduced by our code.
+
+## Component audit status matrix
+
+52-component audit status — all categories.
+
+Every component in the library is tracked below. All MUI core components are currently at 🔵 MUI Baseline — not independently audited; inheriting MUI's accessibility implementation. Internal and third-party components are ⏳ Pending independent audit. Last reviewed: April 2026.
+
+- 🔵 **MUI Baseline** — inherits MUI a11y; not independently audited
+- ⏳ **Pending** — scheduled for audit
+- ✅ **Audited — Pass** — meets WCAG 2.1 AA
+- ⚠️ **Audited — Issues** — known issues documented
+- ❌ **Fail** — known WCAG failure
+
+### Inputs (14)
+
+| Component | Status | Key notes |
+| --- | --- | --- |
+| Autocomplete | 🔵 MUI Baseline | `aria-expanded`, `role="combobox"` via MUI |
+| Button | 🔵 MUI Baseline | — |
+| Button Group | 🔵 MUI Baseline | — |
+| Checkbox | 🔵 MUI Baseline | — |
+| Floating Action Button | 🔵 MUI Baseline | Requires `aria-label` on icon-only variants |
+| Form Elements | 🔵 MUI Baseline | `aria-describedby` linking required in implementation |
+| Radio Group | 🔵 MUI Baseline | `role="radiogroup"` required on group wrapper |
+| Rating | 🔵 MUI Baseline | — |
+| Select | 🔵 MUI Baseline | — |
+| Slider | 🔵 MUI Baseline | — |
+| Switch | 🔵 MUI Baseline | `role="switch"` + `aria-checked` via MUI |
+| Text Field | 🔵 MUI Baseline | `aria-invalid` + `aria-describedby` required in error state |
+| Toggle Button | 🔵 MUI Baseline | Icon-only requires `aria-label` |
+| Transfer List | 🔵 MUI Baseline | Transfer buttons require descriptive `aria-label` |
+
+### Data Display (9)
+
+| Component | Status | Key notes |
+| --- | --- | --- |
+| Avatar | 🔵 MUI Baseline | Decorative avatars need `aria-hidden="true"` |
+| Badge | 🔵 MUI Baseline | Badge count must be communicated via `aria-label` |
+| Chip | 🔵 MUI Baseline | Delete button requires `aria-label` |
+| Divider | 🔵 MUI Baseline | Use `role="separator"` for semantic dividers |
+| Icon | 🔵 MUI Baseline | Decorative icons need `aria-hidden="true"`; meaningful icons need `aria-label` |
+| List | 🔵 MUI Baseline | — |
+| Table | 🔵 MUI Baseline | `scope` attributes required on header cells |
+| Tooltip | 🔵 MUI Baseline | Triggered on focus as well as hover |
+| Typography | 🔵 MUI Baseline | Heading hierarchy must be maintained in implementation |
+
+### Feedback (6)
+
+| Component | Status | Key notes |
+| --- | --- | --- |
+| Alert | 🔵 MUI Baseline | `role="alert"` for errors; `role="status"` for info/success |
+| Backdrop | 🔵 MUI Baseline | Focus must be trapped inside overlaid content |
+| Dialog | 🔵 MUI Baseline | Focus trap, `aria-modal="true"`, Escape to close |
+| Progress | 🔵 MUI Baseline | Determinate: `aria-valuenow`; Indeterminate: `aria-label` |
+| Skeleton | 🔵 MUI Baseline | Container should have `aria-busy="true"` while loading |
+| Snackbar | 🔵 MUI Baseline | `aria-live="polite"` for non-critical; assertive for errors |
+
+### Surfaces (4)
+
+| Component | Status | Key notes |
+| --- | --- | --- |
+| Accordion | 🔵 MUI Baseline | `aria-expanded` on trigger button |
+| App Bar | 🔵 MUI Baseline | Must contain a navigation landmark if navigation is present |
+| Card | 🔵 MUI Baseline | Interactive cards need focusable action area |
+| Paper | 🔵 MUI Baseline | No inherent accessibility role; semantic meaning comes from content |
+
+### Navigation (9)
+
+| Component | Status | Key notes |
+| --- | --- | --- |
+| Bottom Navigation | 🔵 MUI Baseline | `role="navigation"` + `aria-label` on wrapper |
+| Breadcrumbs | 🔵 MUI Baseline | `aria-label="Breadcrumb"` on the nav wrapper |
+| Drawer | 🔵 MUI Baseline | Focus trap when Temporary; Escape to close |
+| Link | 🔵 MUI Baseline | Link text must be descriptive (not "click here") |
+| Menu | 🔵 MUI Baseline | `role="menu"`, arrow key navigation |
+| Pagination | 🔵 MUI Baseline | `aria-label` on container; current page: `aria-current="page"` |
+| Speed Dial | 🔵 MUI Baseline | `aria-label` on FAB trigger; actions announced on expand |
+| Stepper | 🔵 MUI Baseline | Current step: `aria-current="step"` |
+| Tabs | 🔵 MUI Baseline | `role="tablist"`, `role="tab"`, `role="tabpanel"` |
+
+### Layout (5)
+
+| Component | Status | Key notes |
+| --- | --- | --- |
+| Container | 🔵 MUI Baseline | Layout only; no ARIA needed |
+| Image List | 🔵 MUI Baseline | Images require alt text |
+| Spacing | 🔵 MUI Baseline | Decorative only |
+| Stack | 🔵 MUI Baseline | Layout only |
+| Timeline | 🔵 MUI Baseline | Use `role="list"` on timeline; `role="listitem"` on events |
+
+### MUI X Components (5)
+
+| Component | Status | Key notes |
+| --- | --- | --- |
+| Data Grid | 🔵 MUI Baseline | Complex widget; MUI X has extensive a11y built in; test with real data |
+| Date Picker | 🔵 MUI Baseline | Calendar grid requires keyboard navigation |
+| Time Picker | 🔵 MUI Baseline | — |
+| Date Time Picker | 🔵 MUI Baseline | — |
+| Tree View | 🔵 MUI Baseline | `aria-expanded` on parent nodes |
+
+### Internal components — wrappers with partial MUI inheritance (8)
+
+These components wrap MUI primitives and inherit most MUI accessibility behaviors, but require independent audit to verify custom behavior.
+
+| Component | Status | Key notes |
+| --- | --- | --- |
+| SearchField | ⏳ Pending | Clear button needs `aria-label="Clear search"` and must not trap focus |
+| StatusChip | ⏳ Pending | 9 custom colors × background combinations need contrast check |
+| ListTable | ⏳ Pending | Selected-column highlight must not rely on color alone |
+| UncontrolledMenu | ⏳ Pending | Focus must return to trigger on close; `aria-expanded` toggled on trigger |
+| ModalProvider / useModal | ⏳ Pending | Custom content via `show()` must be self-contained with its own focus management |
+| useConfirmationDialog | ⏳ Pending | `confirmLabel` / `rejectLabel` must be descriptive; `enableAutoFocus` should be true on destructive actions |
+| ExternalTopNav | ⏳ Pending | Login button must have visible focus state; BrandLogo link needs descriptive text |
+| BrandLogo | ⏳ Pending | Verify: link announced as "Vael Logo, link, home page" by screen readers |
+
+### Internal components — custom / no MUI baseline (5) highest priority
+
+| Component | Status | Key notes |
+| --- | --- | --- |
+| TypographyInput | ⏳ Pending | High risk. At rest renders as Typography — screen readers will not announce as editable. Needs `role="button"`, `aria-label="Edit [field name]"`, live region for edit mode entry/exit |
+| ListTableV2 | ⏳ Pending | High risk. Sortable headers (`aria-sort`), row checkboxes, select-all (`aria-checked="mixed"`), Skeleton rows (`aria-busy`) |
+| LoadingContainer | ⏳ Pending | Container should have `aria-live="polite"` or `aria-busy="true"` |
+| LoadingPage | ⏳ Pending | Page should reflect loading state; focus to first meaningful element on load complete |
+| ErrorPage | ⏳ Pending | Error heading should receive focus on mount; page must reflect error (e.g. "404 — Page Not Found") |
+
+### Third-party wrappers (3) library a11y applies, needs verification
+
+| Component | Status | Key notes |
+| --- | --- | --- |
+| DataGrid (AG Grid) | ⏳ Pending | AG Grid Enterprise has WCAG 2.1 AA support built in. Verify: grid role, column sort via keyboard, cell navigation, row selection announced |
+| DragOverlay (dnd-kit) | ⏳ Pending | Verify: drag items reachable by keyboard, drop targets announced, drag state via `aria-live`. Non-keyboard fallback required if drag is only interaction path |
+| FlowCanvas (React Flow) | ⏳ Pending | Highest risk. Node-based diagrams have limited a11y support. Requires keyboard navigation between nodes, screen reader node descriptions, fallback text representation |

@@ -1,0 +1,59 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/AgGrid/Guidelines" />
+
+# DataGrid (AG Grid Enterprise)
+
+Our canonical high-performance grid, wrapped as `DataGrid`. It matches the MUI Table visually, so MUI Table and DataGrid feel like the same component at different densities of data. Always use the internal `DataGrid` wrapper — never instantiate `AgGridReact` directly, since the wrapper owns license registration, MUI token mapping, and default column definitions.
+
+## When to use
+
+| Scenario | Use |
+| --- | --- |
+| Over 100 rows with sort / filter / column resize | DataGrid (AG Grid) |
+| Inline editing, grouped headers, or pivots | DataGrid — enterprise features |
+
+## Guidelines
+
+### Do
+
+- Use DataGrid when the table needs column groups — spanning headers that cluster related metric columns (CPU / Memory / Latency under "Monitoring Metrics"), which MUI DataGrid does not support natively.
+- Use it to display job data with row grouping and aggregate values — grouping jobs by server or by project with summary rows showing mean values.
+- Use its tree data mode with `getDataPath` to navigate a parent-child project hierarchy inline — servers containing jobs, jobs containing files.
+- Use it for data-entry tables where users tab between hundreds of cells, require cell validation, and enter values via keyboard.
+- Use it for live monitoring tables (Settings, dashboard live metrics) that subscribe to real-time updates — AG Grid's row model handles incremental updates efficiently without full re-renders.
+- Use it for Excel export of filtered or sorted project data — but only when the Enterprise license is confirmed active.
+- Use the server-side row model for very large datasets (thousands of jobs, alert histories) where loading all rows client-side would degrade performance.
+
+### Don't
+
+- Don't use DataGrid for a simple flat list (organization list, user list) with no grouping, tree data, or server-side requirements — MUI DataGrid or MUI Table is lighter and faster to implement.
+- Don't use it when design-system alignment is the top priority — AG Grid requires custom CSS token mapping, whereas MUI DataGrid integrates with the MUI palette automatically.
+- Don't import `AgGridReact` directly in feature code — always use the internal DataGrid wrapper, which handles license registration and MUI token mapping.
+- Don't enable both row grouping and master-detail simultaneously without explicit product validation — the combined UI is complex and needs careful UX review before shipping.
+- Don't expose Excel export without verifying the Enterprise license is active in the build environment — unlicensed enterprise features produce a watermark.
+
+## Props
+
+Always use the internal `DataGrid` wrapper. It owns license registration, MUI token mapping, and default column definitions, so feature code never touches `AgGridReact` directly.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| rowData | TData[] | [] | Array of row objects. Keep references stable; avoid recreating on every render. |
+| columnDefs | ColDef[] | — | Column definitions — field, headerName, width, cellRenderer, etc. |
+| getRowId | `(params) => string` | — | Required. Stable identity for rows — prevents flickering on data updates. |
+| rowSelection | 'single' \| 'multiple' | — | Enables row selection mode. |
+| onSelectionChanged | `(event) => void` | — | Fires when row selection changes. Use `event.api.getSelectedRows()`. |
+| rowModelType | 'clientSide' \| 'serverSide' \| 'infinite' | 'clientSide' | Use serverSide for large datasets — keeps only the visible page in memory. |
+| readOnlyEdit | boolean | false | Enables controlled editing via `onCellEditRequest`. Required pattern for Settings. |
+| onCellEditRequest | `(event) => void` | — | Controlled cell edit handler. Update your data source here; AG Grid does not mutate. |
+| defaultColDef | ColDef | — | Applied to all columns. The wrapper provides sensible defaults — override only as needed. |
+| onGridReady | `(params) => void` | — | Access `params.api` to store the grid API ref for programmatic control. |
+
+## Implementation
+
+The `DataGrid` wrapper is the canonical AG Grid integration component. It wraps AG Grid Enterprise v31.3.4 with product theming, license registration, and MUI token mapping applied via CSS custom properties at runtime. All feature code must import this wrapper — never instantiate `AgGridReact` directly.
+
+The wrapper reads MUI palette values via `useTheme()` and writes them to AG Grid's CSS variable API (`--ag-background-color`, `--ag-row-hover-color`, etc.), keeping the grid visually synchronized with the active MUI theme, including future dark mode support.
+
+Pin all three AG Grid packages (`ag-grid-community`, `ag-grid-enterprise`, `ag-grid-react`) to the same version — v31.3.4 — to prevent runtime errors from version mismatches.
