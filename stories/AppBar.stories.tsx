@@ -19,7 +19,7 @@ export const Default: StoryObj = {
   render: () => (
     <AppBar position="static">
       <Toolbar>
-        <IconButton edge="start" color="inherit" sx={{ mr: 2 }}><FontAwesomeIcon icon={faBars} /></IconButton>
+        <IconButton edge="start" color="inherit" aria-label="Open navigation menu" sx={{ mr: 2 }}><FontAwesomeIcon icon={faBars} /></IconButton>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>Vael</Typography>
       </Toolbar>
     </AppBar>

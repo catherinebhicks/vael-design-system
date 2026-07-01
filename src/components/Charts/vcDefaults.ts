@@ -1,5 +1,6 @@
 import type React from 'react';
 import Highcharts from 'highcharts';
+import 'highcharts/modules/accessibility';
 import type { Theme } from '@mui/material/styles';
 import { chartVariableColors, chartEventColors, palette, theme } from '../../theme';
 
@@ -73,7 +74,8 @@ const categorical = [
 // before useEffect would fire).
 Highcharts.setOptions({
     colors: categorical,
-    accessibility: { enabled: false },
+    // Screen-reader + keyboard support for every chart (module imported above).
+    accessibility: { enabled: true, keyboardNavigation: { enabled: true } },
     chart: {
       animation: false,
       spacing: [8, 8, 8, 8],

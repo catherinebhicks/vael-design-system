@@ -6,6 +6,22 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 The library targets WCAG 2.1 AA. MUI components inherit MUI's built-in accessibility; custom components require an independent audit.
 
+## Conformance statement
+
+Vael **aims to conform to WCAG 2.1 Level AA**. This is the current state of the shipped library:
+
+- **Foundation — MUI baseline.** Every component is built on MUI v7, which ships AA-level roles, labelling, keyboard operation, and focus management. Component overrides adjust styling only; they do not remove semantics.
+- **Custom components — labelled and operable.** The components Vael adds on top of MUI have been audited for the common failure modes:
+  - Icon-only controls carry an `aria-label` (`PasswordField` visibility toggle, `InputNumber` steppers, `FileUpload` remove buttons, `UncontrolledMenu` trigger).
+  - Decorative icons and glyphs are `aria-hidden`; text carries the meaning.
+  - `Legend` items, when interactive, are real `<button type="button">`s with `aria-pressed`, keyboard operable, with a visible focus ring.
+  - `TrendBadge` exposes its direction and magnitude to screen readers via `aria-label` ("3.2% decrease"), not the arrow glyph or color alone.
+- **Charts — keyboard + screen reader.** The Highcharts **accessibility module is enabled** for every chart, providing keyboard navigation and screen-reader descriptions of series and points. Series are differentiated by **line style in addition to color** (see [Data Visualization](?path=/docs/foundations-data-visualization--docs)), so charts remain readable without color perception.
+- **Color is never the sole signal.** Status is reinforced with text, icon, or shape (chips, alerts, trend badges, chart line styles).
+- **Tooling.** `@storybook/addon-a11y` (axe-core) runs against every story in the a11y panel, so regressions surface during development.
+
+**Known limitations / in progress.** A full manual screen-reader pass of the heavy third-party surfaces (AG Grid, React Flow) is still pending; dark-mode contrast has been verified for the core text/surface tokens but not yet every component state. These are tracked below.
+
 ## WCAG 2.1 AA
 
 MUI components inherit MUI's built-in WCAG 2.1 AA accessibility. Custom components outside MUI — SideNav, Highcharts, AG Grid, React Flow, and dnd-kit — require independent audit.
@@ -27,7 +43,8 @@ Charts in PDF run reports: PNG image + descriptive alt text + data table.
 - Inputs (14) — all 🔵 MUI Baseline · Q2 2026 audit scheduled
 - Data Display (9) — all 🔵 MUI Baseline · Q3 2026 audit
 - Feedback (6) — all 🔵 MUI Baseline · Q3 2026 audit
-- Third-party — AG Grid, React Flow, Highcharts — keyboard and screen-reader gaps tracked
+- Charts (Highcharts) — 🟢 accessibility module enabled (keyboard + screen-reader); line-style differentiation
+- Third-party — AG Grid, React Flow — keyboard and screen-reader manual audit tracked
 
 ## Audit materials
 

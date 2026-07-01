@@ -28,11 +28,15 @@ export function TrendBadge({
   const good = flat ? null : up === positiveIsGood;
   const arrow = flat ? '→' : up ? '▲' : '▼';
   const paletteKey = good === null ? 'grey' : good ? 'success' : 'error';
+  const direction = flat ? 'no change' : up ? 'increase' : 'decrease';
+  const label = flat ? 'No change' : `${Math.abs(value)}${suffix} ${direction}`;
 
   return (
     <Box
       component="span"
       className={className}
+      role="img"
+      aria-label={label}
       sx={(theme) => {
         const tint =
           paletteKey === 'grey'

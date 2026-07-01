@@ -37,6 +37,7 @@ export function Legend({ items, orientation = 'horizontal', onToggle, className 
           <Box
             key={item.label + i}
             component={interactive ? 'button' : 'span'}
+            type={interactive ? 'button' : undefined}
             onClick={interactive ? () => onToggle!(i, item) : undefined}
             aria-pressed={interactive ? !inactive : undefined}
             sx={(theme) => ({
