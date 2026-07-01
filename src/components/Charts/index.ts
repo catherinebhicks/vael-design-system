@@ -5,3 +5,6 @@ export * from './ControlChart';
 export * from './MultiAxisChart';
 export * from './GaugeChart';
 export * from './SparklineChart';
+export * from './DonutChart';
+export * from './BarChart';
+export * from './AreaChart';
