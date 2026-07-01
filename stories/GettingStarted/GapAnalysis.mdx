@@ -22,25 +22,25 @@ Vael benchmarked against Google Material Design 3, IBM Carbon, Microsoft Fluent 
 
 ## Component gaps
 
-Components present in benchmarked systems not currently covered by Vael (MUI + MUI X + AG Grid + React Flow).
+Components present in benchmarked systems not currently covered by Vael (MUI + MUI X + AG Grid + React Flow). Several of the High/Medium items below have **shipped since this analysis** — marked ✅ — as part of rounding out the dashboard and form layers.
 
 | Component | Priority | Who has it | Notes |
 | --- | --- | --- | --- |
-| Number input / spinner | High | Carbon, Fluent 2 | Threshold entry is central to the product; has poor UX for numeric values |
+| Number input / spinner | High | Carbon, Fluent 2 | ✅ **Shipped** as `InputNumber` — stepper + min/max/step |
 | Status indicator / traffic light | High | All 6 systems | Job states, server health, alarm states — dot + label + semantic color |
 | Structured list / definition list | High | Carbon, Atlassian | Label-value pairs, read-only. Metadata panels, job summaries, project details. |
-| Stat / KPI tile | High | Carbon, Atlassian, Polaris | Single metric + label + trend + unit. Metric dashboards. |
+| Stat / KPI tile | High | Carbon, Atlassian, Polaris | ✅ **Shipped** as `StatCard` — metric + `TrendBadge` + inline sparkline |
 | Tag (distinct from Chip) | High | Atlassian, Polaris, Carbon | Read-only, semantic color mapping. Chip implies interactivity; Tag is display-only. |
 | Notification center | High | Carbon, Fluent 2 | Bell icon opening an event feed panel. Core software surface for alarm log and system events. |
 | Inline edit | High | Carbon, Atlassian | Click-to-edit in place, no Dialog required. Project config parameter tweaking. |
 | Date/time range picker (unified start+end) | High | Carbon, Fluent 2 | Job windows and metric query ranges need a unified range picker. MUI X has two separate pickers only. |
 | Side panel / detail panel | High | Carbon, Fluent 2 | Persistent split-view aside, not a Drawer. Job detail alongside table is a pervasive UI pattern. |
 | Code block / syntax highlight | Medium | Carbon, Atlassian | API keys, config snippets, log output |
-| File uploader / dropzone | Medium | Carbon, Polaris, Atlassian | Config file upload, data import |
+| File uploader / dropzone | Medium | Carbon, Polaris, Atlassian | ✅ **Shipped** as `FileUpload` — drag-drop dropzone + file list |
 | Split button | Medium | Carbon, Fluent 2, Atlassian | Primary action + dropdown trigger as one unit. Useful for "Start job" with sub-variants. |
 | Command bar / toolbar | Medium | Fluent 2, Carbon | Icon+label strip with overflow. Data grid toolbars, chart controls. |
 | Callout / inline panel | Medium | Atlassian, Polaris, Carbon | Bordered info/warning block, not a toast. Config warnings, project notes. |
-| Overflow menu | Medium | Atlassian, Polaris, Carbon | Icon button revealing contextual actions, distinct from Menu. Row action menu pattern exists but no standalone component. |
+| Overflow menu | Medium | Atlassian, Polaris, Carbon | ✅ **Shipped** as `UncontrolledMenu` — icon button revealing contextual actions; see the [Row Menu](?path=/docs/patterns-row-menu--docs) pattern |
 
 ## Pattern gaps
 
@@ -82,7 +82,7 @@ Components present in benchmarked systems not currently covered by Vael (MUI + M
 ### Do first
 
 1. Border/stroke tokens + density tokens
-2. Number input / spinner component
+2. Number input / spinner component ✅ shipped (`InputNumber`)
 3. Status indicator component
 4. Structured list / definition list component
 5. Tag component (distinct from Chip)
@@ -97,8 +97,8 @@ Components present in benchmarked systems not currently covered by Vael (MUI + M
 2. Inline edit component
 3. Notification center component
 4. Unified date/time range picker
-5. Stat / KPI tile component
-6. Dashboard layout pattern
+5. Stat / KPI tile component ✅ shipped (`StatCard`)
+6. Dashboard layout pattern ✅ shipped (Patterns/Dashboard)
 7. Automated a11y in CI (axe-core)
 8. Component status/maturity labels in docs
 9. Token linting enforcement
