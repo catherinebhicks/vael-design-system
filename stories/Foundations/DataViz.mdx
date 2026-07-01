@@ -7,6 +7,18 @@ import { LineStyleSpecimen, GuardrailSpecimen, ChartTypeSpecimens } from '../spe
 
 Charts are first-class components, not ad-hoc visualizations. Built on **Highcharts styled mode**, driven by MUI tokens and a deterministic metric-to-color map. Every series carries a distinct **line style in addition to color**, so the system holds up in colorblind, print, and screenshot contexts.
 
+## Built on Highcharts
+
+Every chart in the system — `HighchartsChart`, `SparklineChart`, and the `AreaChart` / `BarChart` / `DonutChart` wrappers — renders with **[Highcharts](https://www.highcharts.com/)** via `highcharts-react-official`. The reskin themes Highcharts to the Vael aesthetic (palette, hairline axes, rounded soft-shadow tooltips, Inter type) through a global `Highcharts.setOptions` in `vcDefaults.ts` — it does **not** swap the engine. The chart components are thin, opinionated wrappers over that themed base.
+
+**Dependencies.** `highcharts` and `highcharts-react-official` are declared as **optional peer dependencies** — install them alongside the library only if you use the chart components:
+
+```bash
+npm install highcharts highcharts-react-official
+```
+
+> **Licensing.** Highcharts is free for non-commercial use but requires a **commercial license** for commercial products. Because it's a peer dependency, that licensing relationship is between the consuming application and Highcharts — the design system does not bundle or relicense it. See the [Highcharts license](https://shop.highcharts.com/).
+
 ## The chart types, live
 
 Area, donut, and bar on the reskinned Highcharts layer — the same tokens and palette as the rest of the system.

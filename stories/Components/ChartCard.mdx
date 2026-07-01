@@ -6,6 +6,8 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 `ChartCard` wraps any chart in a product-ready dashboard tile: a header for the title, subtitle, and a toolbar `action` slot, the chart itself as `children`, and an optional footer `Legend`. Use it to give every chart on a dashboard a consistent frame.
 
+`ChartCard` is engine-agnostic — it renders whatever chart you pass as `children`. In this system that's typically a **Highcharts**-based chart (`AreaChart`, `BarChart`, `DonutChart`); see [Data Visualization](?path=/docs/foundations-data-visualization--docs).
+
 ## Guidelines
 
 ### Do
