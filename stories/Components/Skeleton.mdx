@@ -1,0 +1,56 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Skeleton/Guidelines" />
+
+# Skeleton
+
+`Skeleton` is a placeholder that mirrors the shape of content while it loads. Use it to reserve layout space and signal progress for text, avatars, cards, and images — reach for `SkeletonText` when you need a multi-line paragraph block.
+
+## Guidelines
+
+### Do
+
+- Match the skeleton's `variant`, size, and position to the real content it replaces.
+- Show skeletons for the initial load of a view (dashboards, tables, profile cards).
+- Use `SkeletonText` for multi-line paragraph placeholders — it staggers line widths automatically.
+- Keep the default `wave` animation for a consistent, low-distraction loading feel.
+- Swap the skeleton for real content the moment data resolves.
+
+### Don't
+
+- Use a skeleton for actions the user triggers — use a spinner or `LoadingButton` instead.
+- Leave skeletons on screen indefinitely; add a timeout or error state for failed loads.
+- Mismatch the skeleton and final layout, which causes a jarring shift on load.
+- Stack dozens of skeleton rows when a single progress indicator would communicate the same thing.
+- Animate skeletons where users have requested reduced motion — respect the OS setting.
+
+## Props
+
+### Skeleton
+
+| Prop | Type | Default | Notes |
+| --- | --- | --- | --- |
+| variant | 'text' \| 'circular' \| 'rectangular' \| 'rounded' | 'text' | Shape of the placeholder. Use circular for avatars, rounded for cards and images. |
+| animation | 'pulse' \| 'wave' \| false | 'wave' | Vael defaults to wave; pass false to disable motion for reduced-motion contexts. |
+| width | number \| string | — | Explicit width; omit to inherit the parent or content width. |
+| height | number \| string | — | Explicit height; required for rectangular/rounded variants without children. |
+| sx | SxProps | — | Theme-aware style overrides forwarded to the root element. |
+
+Extends MUI `SkeletonProps`; all standard pass-throughs (e.g. `component`, `className`) are supported.
+
+### SkeletonText
+
+| Prop | Type | Default | Notes |
+| --- | --- | --- | --- |
+| lines | number | 3 | Number of text lines to render; the last line is shortened to 60% when more than one line. |
+| animation | 'pulse' \| 'wave' \| false | 'wave' | Animation applied to every line. |
+| spacing | number | 0.5 | Vertical gap between lines, in theme spacing units. |
+| containerProps | BoxProps | — | Props (e.g. `sx`) forwarded to the wrapping `Box`. |
+
+## Accessibility
+
+- Skeletons are decorative and non-interactive — they are not focusable and stay out of the tab order.
+- Give the loading region an accessible status, e.g. `aria-busy="true"` on the container and `aria-live="polite"` to announce when content arrives.
+- Ensure the placeholder color meets contrast expectations against the surface; skeletons should read as subtle, not as real content.
+- Honor reduced-motion preferences by passing `animation={false}` when the user has requested less motion.
+- Remove skeletons and move focus predictably once content loads so screen reader users are not left on empty placeholders.

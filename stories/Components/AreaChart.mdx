@@ -1,0 +1,46 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/AreaChart/Guidelines" />
+
+# AreaChart
+
+`AreaChart` plots a filled line for trends over a continuous or categorical axis. Use it to show how a value moves over time, or — when `stacked` — how parts combine into a whole across time.
+
+## Guidelines
+
+### Do
+
+- Use for trends over time, such as daily active users or request volume across a week.
+- Use `stacked` to show part-of-whole over time, e.g. traffic broken down by source.
+- Omit `categories` to get a datetime x-axis, and pass `[timestamp, value]` pairs.
+- Pass `categories` with plain `number[]` data for evenly spaced, labeled buckets.
+- Keep the series count low (roughly 1–4) so the filled areas stay readable.
+
+### Don't
+
+- Don't stack unrelated series whose sum has no meaning — use overlaid lines instead.
+- Don't mix time-series pairs and bare numbers in the same chart; pick one data shape.
+- Don't rely on fill alone to distinguish overlapping non-stacked series — set explicit `color`s.
+- Don't crowd the plot with many thin series; switch to a `LineChart` when comparing precise values.
+- Don't hard-code series colors when the default categorical palette already reads clearly.
+
+## Props
+
+| Prop | Type | Default | Notes |
+| --- | --- | --- | --- |
+| series | `AreaSeries[]` | — | Required. Each series has `name`, `data`, and optional `color`. `data` is `[timestamp, value]` pairs (datetime axis) or `number[]` (categorical axis). |
+| categories | `string[]` | — | Category labels for a categorical x-axis. Omit for a datetime axis. |
+| stacked | `boolean` | `false` | Stacks series (`stacking: 'normal'`) for part-of-whole-over-time. |
+| height | `number` | `320` | Chart height in pixels. |
+| className | `string` | — | Applied to the wrapping `div`. |
+| style | `React.CSSProperties` | — | Merged onto the wrapper after the theme's chart variables. |
+
+The legend appears automatically when more than one series is provided. Series colors default to the Vael categorical palette; the subtle fill comes from the global theme.
+
+## Accessibility
+
+- The chart is drawn as SVG — pair it with a heading or caption that states what the trend represents, since the shapes alone are not announced.
+- Give every series a clear, distinct `name`; these label the legend and any tooltips.
+- Don't encode meaning by fill color alone — supply high-contrast `color`s or provide an adjacent data table for screen-reader users.
+- For a data-critical view, offer the underlying numbers in an accessible table so the information isn't locked in the visualization.
+- Ensure the surrounding container keeps a visible focus outline if the chart is placed inside an interactive card or link.

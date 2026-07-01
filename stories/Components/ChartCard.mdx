@@ -1,0 +1,47 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/ChartCard/Guidelines" />
+
+# ChartCard
+
+`ChartCard` wraps any chart in a product-ready dashboard tile: a header for the title, subtitle, and a toolbar `action` slot, the chart itself as `children`, and an optional footer `Legend`. Use it to give every chart on a dashboard a consistent frame.
+
+## Guidelines
+
+### Do
+
+- Give every card a clear `title` that names what the chart measures — "Active Users," "Revenue by Region."
+- Use the `action` slot for chart-level controls like a date-range picker, filter, or overflow menu.
+- Pass a `legend` when the chart has more than one series, so viewers can decode colors.
+- Keep the chart itself inside `children` — the card handles spacing and framing for you.
+- Handle `onLegendToggle` when series should be interactively shown or hidden.
+
+### Don't
+
+- Stack multiple unrelated charts inside one card — use one card per chart.
+- Put page-level actions (export all, refresh dashboard) in a single card's `action` slot.
+- Repeat the series names in both the chart and a redundant caption when a `legend` already covers them.
+- Rely on the legend alone to convey meaning if colors are the only differentiator — pair with labels or patterns.
+- Omit the `title` on a standalone card; an unlabeled chart is hard to scan.
+
+## Props
+
+| Prop | Type | Default | Notes |
+| --- | --- | --- | --- |
+| title | ReactNode | — | Card heading, rendered as an h6 (600 weight). Name what the chart measures. |
+| subtitle | ReactNode | — | Secondary line below the title, in muted `text.secondary`. Use for timeframe or context. |
+| action | ReactNode | — | Toolbar slot on the right of the header (menu, filter, date range, etc.). |
+| legend | LegendItem[] | — | Optional footer legend. Rendered only when the array is non-empty. |
+| onLegendToggle | (index: number, item: LegendItem) => void | — | Called when a legend item is toggled; wire up to show/hide series. |
+| children | ReactNode | — | Required. The chart to display inside the card. |
+| className | string | — | Applied to the root MUI `Card` for custom styling. |
+
+The header only renders when at least one of `title`, `subtitle`, or `action` is provided; otherwise the chart sits flush in the card body.
+
+## Accessibility
+
+- Provide a meaningful `title` — it acts as the accessible name that lets screen-reader users identify the card among many on a dashboard.
+- Ensure the chart in `children` carries its own text alternative (e.g. an accessible summary or data table); `ChartCard` frames the chart but does not describe its data.
+- Interactive controls in the `action` slot must be real, focusable elements (buttons with labels or `aria-label`) so they are reachable by keyboard.
+- When `onLegendToggle` hides a series, reflect that state in the legend so it is perceivable without relying on color alone.
+- Do not encode series meaning through color only — pair legend swatches with labels so the card remains usable for color-blind viewers.

@@ -1,0 +1,50 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/AdvancedSelect/Guidelines" />
+
+# AdvancedSelect
+
+A searchable, typeahead select built on MUI `Autocomplete`. Use it when a plain `Select` gets unwieldy — long option lists, asynchronously loaded options, or multi-value selection rendered as removable chips.
+
+## Guidelines
+
+### Do
+
+- Use for long or searchable lists where scanning a static dropdown is slow — countries, users, tags, repositories.
+- Set `multiple` when a field accepts several values, and let the selected values render as chips.
+- Pass `loading` and a clear `loadingText` while options are fetched from a remote source.
+- Always provide a `label` so the field has a persistent, accessible name.
+- Keep option `label` text short and scannable so search and chips stay legible.
+
+### Don't
+
+- Use it for 2–5 fixed options — a plain `Select` or `RadioGroup` is simpler.
+- Mismatch `value` and `multiple`: pass a `string` for single select and `string[]` when `multiple` is set.
+- Rely on `placeholder` as the field's only name — it disappears once a value is chosen.
+- Leave `loading` on after options arrive; the spinner should clear when data is ready.
+- Pack dozens of chips into a `small`, fixed-width field — give a multi-select room to wrap.
+
+## Props
+
+| Prop | Type | Default | Notes |
+| --- | --- | --- | --- |
+| options | AdvancedSelectOption[] | — | Required. Each option is `{ label: string; value: string }`. |
+| value | string \| string[] | — | Required. Use a `string` for single select, `string[]` when `multiple`. |
+| onChange | (value: string \| string[]) => void | — | Required. Receives the next value(s) — a `string[]` when `multiple`, otherwise a `string` (`''` when cleared). |
+| multiple | boolean | false | Allow several values, rendered as removable chips. |
+| loading | boolean | false | Shows a spinner and `loadingText` while options load. |
+| loadingText | string | 'Loading…' | Text shown while `loading` before any options exist. |
+| placeholder | string | — | Input placeholder; not a substitute for `label`. |
+| label | string | — | Field label. Supplies the accessible name — set it. |
+| fullWidth | boolean | true | Stretch to fill the container width. |
+| size | 'small' \| 'medium' | 'medium' | Control density; also sizes the multi-select chips. |
+| disabled | boolean | false | Disable the control. |
+
+## Accessibility
+
+- Set `label` — it renders the `TextField` label and gives the input a discernible accessible name; `placeholder` alone is not sufficient.
+- Keyboard support comes from `Autocomplete`: type to filter, Arrow keys to move through options, Enter to select, and Escape to close the popup.
+- In `multiple` mode each chip is removable with Backspace or its delete affordance; the chip label is announced when focused.
+- The listbox and its active option are wired with `aria-expanded`, `aria-activedescendant`, and `role="option"`, so selection state is conveyed to screen readers.
+- The focus ring on the input is visible and must not be suppressed, so keyboard users can track the field.
+- Ensure option text and chip labels meet contrast requirements against the field background.

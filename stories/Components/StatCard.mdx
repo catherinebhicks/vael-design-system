@@ -1,0 +1,48 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/StatCard/Guidelines" />
+
+# StatCard
+
+`StatCard` is a KPI tile that pairs a label with a large value and, optionally, a trend delta, a caption, an inline sparkline, and a leading icon. It is the core building block for dashboard summary rows.
+
+## Guidelines
+
+### Do
+
+- Use one metric per card — a single label, a single value.
+- Keep labels short and scannable (e.g. "Active Users", "Monthly Revenue").
+- Pre-format the `value` string for its unit ("$24.8k", "1,204", "98.2%").
+- Add a `caption` to give the delta context — "vs last month".
+- Set `positiveIsGood={false}` when a rising number is bad (error rate, latency, churn).
+
+### Don't
+
+- Pack multiple metrics or a full chart into one card — use a chart component instead.
+- Pass a raw unformatted number when the display needs units, separators, or rounding.
+- Show a `delta` without indicating the comparison period in the `caption`.
+- Feed the `sparkline` a sparse or single-point series — it needs a real trend to read.
+- Rely on `sparklineColor` alone to convey meaning; the value and delta carry the signal.
+
+## Props
+
+| Prop | Type | Default | Notes |
+| --- | --- | --- | --- |
+| label | string | — | Required. Short metric name shown above the value. |
+| value | string \| number | — | Required. The headline figure. Pre-format strings for units and separators. |
+| delta | number | — | Change shown as a `TrendBadge` (e.g. `12.5` renders +12.5%). Omit to hide the badge. |
+| deltaSuffix | string | '%' | Unit appended to the delta in the badge. |
+| positiveIsGood | boolean | true | Flips `TrendBadge` coloring. Set false when an increase is undesirable. |
+| caption | string | — | Small text beside the delta, e.g. "vs last week". |
+| sparkline | number[] | — | Values for the inline sparkline; omit to hide it. |
+| sparklineColor | string | — | Overrides the sparkline stroke color. |
+| icon | ReactNode | — | Optional leading adornment rendered before the label. |
+| className | string | — | Passed to the underlying themed `Card`. |
+
+## Accessibility
+
+- The label and value are real text, so screen readers announce the metric and its value in order — keep the `label` descriptive rather than abbreviated.
+- The `TrendBadge` conveys direction with color; ensure the sign in the delta (+/−) and the `caption` also carry that meaning for color-blind users.
+- The `sparkline` is decorative reinforcement, not the primary data source — never make it the only way to read the trend.
+- If `icon` adds meaning beyond decoration, give it an accessible label; otherwise it should be hidden from assistive tech.
+- Verify label and caption text (which use `text.secondary`) meet WCAG AA contrast against the card surface.

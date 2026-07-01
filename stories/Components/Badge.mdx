@@ -1,0 +1,50 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Badge/Guidelines" />
+
+# Badge
+
+Badge overlays a small count or status indicator on the top-right corner of another element, such as an icon button or avatar. Use it to surface unread notifications, pending items, or a live status without adding a separate label.
+
+## Guidelines
+
+### Do
+
+- Attach a badge to an icon or interactive element that the count refers to (e.g. a notifications bell or messages icon).
+- Use `badgeContent` for counts and set `max` so large numbers render as "99+" instead of overflowing.
+- Use the dot `variant` when presence matters but the exact number does not.
+- Keep the badge value current — update or clear it as the underlying state changes.
+- Pair the badge with an accessible label on its host element so the count has context.
+
+### Don't
+
+- Show a badge with a zero count — use `showZero={false}` (the default) to hide it.
+- Put multi-word text or long strings in `badgeContent`; it is sized for short counts, not labels.
+- Rely on badge color alone to convey meaning — reinforce it with text or an icon elsewhere.
+- Stack multiple badges on a single element.
+- Use a badge as a standalone control — it is decoration over a child, not a clickable target itself.
+
+## Props
+
+Badge re-exports MUI's `BadgeProps`. The most-used props:
+
+| Prop | Type | Default | Notes |
+| --- | --- | --- | --- |
+| badgeContent | ReactNode | — | The value shown in the badge, typically a number. |
+| max | number | 99 | Caps the displayed count; higher values render as the max followed by a plus. |
+| variant | 'standard' \| 'dot' | 'standard' | Use `dot` for a status indicator with no number. |
+| color | 'default' \| 'primary' \| 'secondary' \| 'error' \| 'info' \| 'success' \| 'warning' | 'default' | Use `error` for urgent counts, `success` for healthy status. |
+| showZero | boolean | false | When false, the badge is hidden if `badgeContent` is 0. |
+| overlap | 'rectangular' \| 'circular' | 'rectangular' | Use `circular` when the child is round, such as an avatar. |
+| anchorOrigin | `AnchorOrigin` object | top / right | Corner where the badge sits relative to its child; set `vertical` (top/bottom) and `horizontal` (left/right). |
+| invisible | boolean | false | Hides the badge without unmounting the child. |
+| children | ReactNode | — | The element the badge is anchored to. |
+| component | ElementType | 'span' | Root element or component to render. |
+
+## Accessibility
+
+- The badge value is decorative on its own — give the host element a discernible name (e.g. `aria-label="Notifications, 3 unread"`) so screen readers announce the count in context.
+- For the `dot` variant, convey the status through the host element's accessible name, since a bare dot communicates nothing to assistive tech.
+- Ensure the badge color meets contrast against both its own background and the surface behind it; don't use color as the only signal.
+- Because the badge is not focusable, keep keyboard interaction on the child element (button, link) it annotates.
+- When a count changes in response to live updates, announce it via the host control or an `aria-live` region rather than relying on the visual badge alone.

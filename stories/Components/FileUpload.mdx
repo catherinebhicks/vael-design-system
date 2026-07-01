@@ -1,0 +1,44 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/FileUpload/Guidelines" />
+
+# FileUpload
+
+A controlled dropzone for selecting files by drag-and-drop or click-to-browse, with a running list of chosen files that can be removed individually. Use it wherever a form needs the user to attach one or more files — an avatar image, a CSV import, or supporting documents.
+
+## Guidelines
+
+### Do
+
+- Own the `value`/`onChange` pair in parent state — `FileUpload` is fully controlled and renders nothing on its own.
+- Set `accept` to the exact MIME types and extensions you support, e.g. `{ 'image/*': ['.png', '.jpg'] }`.
+- Set `maxSize` when there is a real upload limit — the caption surfaces it before the user picks a file.
+- Set `multiple={false}` when the field takes exactly one file, such as a profile photo.
+- Validate the returned `File[]` (count, size, type) before uploading, and show errors near the field.
+
+### Don't
+
+- Assume the component uploads anything — it only manages selection; you handle the transfer.
+- Leave `accept` unset when only certain formats are valid, then reject files after the fact.
+- Rely on `maxSize` alone for security — always re-check size and type on the server.
+- Mutate the existing `value` array; pass a new array to `onChange` so React re-renders.
+- Disable the field silently — pair `disabled` with a message explaining why attachments are unavailable.
+
+## Props
+
+| Prop | Type | Default | Notes |
+| --- | --- | --- | --- |
+| value | File[] | — | Required. Currently selected files (controlled). |
+| onChange | (files: File[]) => void | — | Required. Called with the next list whenever the selection changes, including removals. |
+| accept | Record&lt;string, string[]&gt; | — | Accepted MIME types mapped to extensions, e.g. `{ 'image/*': ['.png', '.jpg'] }`. |
+| multiple | boolean | true | Allow selecting more than one file. When false, a new pick replaces the current file. |
+| maxSize | number | — | Maximum size per file, in bytes. Also shown as a caption in the dropzone. |
+| disabled | boolean | false | Disables the dropzone and the per-file remove buttons. |
+
+## Accessibility
+
+- The hidden file input is fully keyboard operable — the dropzone is focusable, and Enter or Space opens the browser's native file picker.
+- A visible focus ring is drawn on the dropzone via `:focus-visible`; never suppress it.
+- The selected-files list uses `aria-label="Selected files"`, and each remove button has an `aria-label` of `Remove <filename>` so its purpose is clear to screen readers.
+- Decorative glyphs (the cloud icon and the "×" remove mark) are marked `aria-hidden`, so assistive tech reads only the meaningful text.
+- The dropzone prompt and the max-size caption are real text, keeping contrast and legibility intact; dragging swaps the label to "Drop files to upload" for a clear active state.

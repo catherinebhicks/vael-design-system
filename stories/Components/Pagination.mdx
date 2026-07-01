@@ -1,0 +1,54 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Pagination/Guidelines" />
+
+# Pagination
+
+`Pagination` lets users move through a set of results split across multiple pages. Use it below tables, search results, or card grids where the full list is too long to show at once. Vael defaults to `shape="rounded"` to match the reskin; it is otherwise a thin wrapper over MUI Pagination and accepts every `MuiPaginationProps`.
+
+## Guidelines
+
+### Do
+
+- Show pagination when a list exceeds one page and the total count is known.
+- Keep `count` in sync with the real number of pages so the last page is reachable.
+- Control the component (`page` + `onChange`) when the current page lives in URL or app state.
+- Use `siblingCount` and `boundaryCount` to keep the control compact on narrow layouts.
+- Pair with a page-size selector when users need to change how many rows load at a time.
+
+### Don't
+
+- Use pagination for infinite or streaming feeds — prefer a "Load more" button or infinite scroll.
+- Hardcode `count` — derive it from the total item count and page size.
+- Hide the control entirely when there is only one page; keep the pattern predictable, or render nothing consistently.
+- Mix pagination with infinite scroll on the same list.
+- Rely on color alone to signal the active page — MUI already sets `aria-current`, so keep it.
+
+## Props
+
+| Prop | Type | Default | Notes |
+| --- | --- | --- | --- |
+| count | number | 1 | Total number of pages. |
+| page | number | — | Current page (controlled). Pair with `onChange`. |
+| defaultPage | number | 1 | Initial page when uncontrolled. |
+| onChange | (event, page: number) => void | — | Fires when the user selects a page. |
+| shape | 'circular' \| 'rounded' | 'rounded' | Vael default is rounded to match the reskin. |
+| variant | 'text' \| 'outlined' | 'text' | Item style. |
+| color | 'primary' \| 'secondary' \| 'standard' | 'standard' | Selected-item color. |
+| size | 'small' \| 'medium' \| 'large' | 'medium' | Control density. Use small in toolbars or dense tables. |
+| siblingCount | number | 1 | Pages shown on each side of the current page. |
+| boundaryCount | number | 1 | Pages always shown at the start and end. |
+| showFirstButton | boolean | false | Adds a jump-to-first-page control. |
+| showLastButton | boolean | false | Adds a jump-to-last-page control. |
+| hidePrevButton | boolean | false | Hides the previous-page arrow. |
+| hideNextButton | boolean | false | Hides the next-page arrow. |
+| disabled | boolean | false | Disables the entire control. |
+| getItemAriaLabel | (type, page, selected) => string | — | Customizes each item's accessible label for localization. |
+
+## Accessibility
+
+- The control renders as a `<nav>` landmark; supply `aria-label` (e.g. "Search results pages") when more than one pagination exists on the page.
+- Each page item is a real button — reachable and operable by Tab and Enter/Space, with a visible focus ring that must not be suppressed.
+- The active page carries `aria-current="page"`; do not remove it, since it is the non-visual signal of the current position.
+- Previous/next and first/last controls have descriptive labels; use `getItemAriaLabel` to translate them for non-English locales.
+- Ensure selected-item contrast meets WCAG AA against its background — verify custom `color` overrides at 4.5:1 for text.

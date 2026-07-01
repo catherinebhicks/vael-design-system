@@ -1,0 +1,48 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Breadcrumbs/Guidelines" />
+
+# Breadcrumbs
+
+Breadcrumbs show a page's location within the app hierarchy and let users jump back to any ancestor. Use them on nested pages — a settings detail view, a record inside a folder — where the path back to the top isn't otherwise visible.
+
+## Guidelines
+
+### Do
+
+- Order `items` from root to current page, left to right.
+- Give the current page a crumb with no `href` — it renders as plain text.
+- Provide an `href` on every ancestor crumb so it's clickable.
+- Set `maxItems` on deep trails so long paths collapse to an ellipsis.
+- Keep labels short and match the destination's page title.
+
+### Don't
+
+- Make the current page (last crumb) a link — it points to where the user already is.
+- Use breadcrumbs as the primary navigation — pair them with a nav or menu.
+- Include more than one crumb per level, or repeat the site name every step.
+- Rely on breadcrumbs for a flat, single-level app with no hierarchy.
+- Write labels that don't match the page they lead to.
+
+## Props
+
+| Prop | Type | Default | Notes |
+| --- | --- | --- | --- |
+| items | BreadcrumbItem[] | — | Required. Ordered list of crumbs from root to current page. |
+| separator | React.ReactNode | '/' | Character or node between crumbs. Pass an icon (e.g. a chevron) for a different look. |
+| maxItems | number | — | Collapses the trail to an ellipsis once it exceeds this many items. |
+
+`BreadcrumbItem`:
+
+| Field | Type | Default | Notes |
+| --- | --- | --- | --- |
+| label | string | — | Required. Visible text for the crumb. |
+| href | string | — | If set, the crumb renders as a link. The last item, or any item without an `href`, renders as the current page. |
+
+## Accessibility
+
+- The list is wrapped in a `<nav aria-label="breadcrumb">` landmark so assistive tech can find and skip it.
+- The current-page crumb carries `aria-current="page"` and renders as non-interactive text, not a link.
+- Ancestor crumbs are real `<a>` elements — keyboard focusable and reachable in tab order.
+- If you replace `separator` with an icon, keep it decorative; it should not be announced or focusable.
+- Ensure link and current-text colors meet 4.5:1 contrast against the background.

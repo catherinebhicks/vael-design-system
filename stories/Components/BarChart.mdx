@@ -1,0 +1,45 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/BarChart/Guidelines" />
+
+# BarChart
+
+A categorical bar/column chart for comparing values across a set of discrete categories. Renders vertical columns by default, or horizontal bars when `horizontal` is set, with series colors drawn from the Vael categorical palette.
+
+## Guidelines
+
+### Do
+
+- Use it to compare a value across discrete categories — revenue by region, tickets by status, sessions by device.
+- Keep `categories` short and readable; switch to `horizontal` when labels are long or numerous.
+- Use `stacked` to show part-to-whole composition when the total across series is meaningful.
+- Give every series a clear `name` — it appears in the legend once there is more than one series.
+- Order categories intentionally (by value, time, or a fixed sequence) so the comparison is easy to scan.
+
+### Don't
+
+- Don't use a bar chart for continuous time trends where a line chart reads better.
+- Don't stack more than a handful of series — the middle bands become hard to compare.
+- Don't override `color` per series unless a category has a fixed brand or status meaning; the default palette keeps series distinguishable.
+- Don't pack in so many categories that bars become slivers — filter, group, or paginate the data first.
+- Don't rely on color alone to convey series meaning; keep the legend and labels visible.
+
+## Props
+
+| Prop | Type | Default | Notes |
+| --- | --- | --- | --- |
+| categories | string[] | — | Required. Category labels along the x-axis (or y-axis when horizontal). |
+| series | BarSeries[] | — | Required. One or more data series. Each is `{ name: string; data: number[]; color?: string }`, with `data` aligned to `categories` by index. |
+| horizontal | boolean | false | Renders horizontal bars instead of vertical columns. Use for long labels or many categories. |
+| stacked | boolean | false | Stacks series on top of each other for part-to-whole comparisons. |
+| height | number | 320 | Chart height in pixels. |
+| className | string | — | Applied to the wrapping container element. |
+| style | React.CSSProperties | — | Inline styles merged onto the container (after the theme palette variables). |
+
+## Accessibility
+
+- Provide a visible heading or caption near the chart describing what it shows — the SVG alone is not self-describing to screen readers.
+- The legend renders automatically for multi-series data; keep it visible so series are identifiable without relying on color.
+- Ensure series colors meet a 3:1 contrast against the background and are distinguishable for color-blind viewers; pair color with clear category and series labels.
+- Offer an equivalent data table for keyboard and assistive-technology users when the chart carries essential information.
+- Avoid encoding meaning in color alone — use distinct category labels and legend text so the comparison survives without color perception.

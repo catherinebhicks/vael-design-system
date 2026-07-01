@@ -1,0 +1,44 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/DonutChart/Guidelines" />
+
+# DonutChart
+
+A pie chart with a hollow center for showing part-of-whole breakdowns — how a total splits across a handful of categories. Use it for composition (storage by type, traffic by source, tasks by status), and set an optional center label to surface the total or a headline figure.
+
+## Guidelines
+
+### Do
+
+- Use it for part-of-whole data where the slices sum to a meaningful 100%.
+- Keep the category count low — 5 or fewer slices stay readable.
+- Use `centerLabel` to show the total or a key metric in the empty hole.
+- Let colors default to the Vael categorical palette so charts stay consistent across the app.
+- Add a legend or tooltip when slice labels are hidden, so every slice is identifiable.
+
+### Don't
+
+- Use it to compare exact values — reach for a bar chart when precise magnitudes matter.
+- Crowd it with many thin slices; group small categories into an "Other" slice instead.
+- Enable `showDataLabels` on a dense chart where labels overlap and collide.
+- Set `innerSize` to `'0%'` (a full pie) if you plan to use `centerLabel` — there is no hole to fill.
+- Rely on color alone to distinguish slices; pair it with a legend or labels.
+
+## Props
+
+| Prop | Type | Default | Notes |
+| --- | --- | --- | --- |
+| data | `DonutSlice[]` | — | Required. Each slice is `{ name: string; y: number; color?: string }`. Omit `color` to use the palette. |
+| height | number | 280 | Chart height in pixels. |
+| innerSize | string | '70%' | Radius of the donut hole. Use `'0%'` for a full pie. |
+| centerLabel | `{ value: string; label?: string }` | — | Big number plus optional caption rendered in the center. |
+| showDataLabels | boolean | false | Show per-slice labels (name). When false, rely on the legend/tooltip. |
+| className | string | — | Applied to the wrapping element. |
+| style | `React.CSSProperties` | — | Inline styles merged onto the wrapper. |
+
+## Accessibility
+
+- The center label is marked `aria-hidden` because it duplicates data already in the chart — provide the total in surrounding text or a heading for screen readers.
+- Slice colors from the default palette are chosen for contrast, but color is not the only cue: keep the legend or tooltip on so slices are identifiable without color perception.
+- Pair the chart with an accessible summary or a data table alternative so the underlying values are available to non-visual users.
+- Ensure tooltips are reachable and text meets contrast requirements against the transparent chart background.

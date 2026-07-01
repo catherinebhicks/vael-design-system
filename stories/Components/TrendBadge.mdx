@@ -1,0 +1,42 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/TrendBadge/Guidelines" />
+
+# TrendBadge
+
+A compact delta pill that shows a period-over-period change — an arrow plus a signed value like ▲ +12% or ▼ −3%. Use it inline next to a metric to signal direction and whether the change is good or bad.
+
+## Guidelines
+
+### Do
+
+- Place it directly beside the metric it describes, in a stat card, KPI header, or table cell.
+- Use `positiveIsGood={false}` for metrics where a decrease is the win — error rate, latency, churn, page load time.
+- Keep the `suffix` short and consistent across a group of related metrics ('%', 'ms', 'k').
+- Use `size="small"` in dense tables and `size="medium"` in prominent stat headers.
+- Pair the badge with the underlying number and a label so the delta has context.
+
+### Don't
+
+- Use it as the only representation of a value — it shows a change, not the current figure.
+- Flip `positiveIsGood` inconsistently within one dashboard; keep the meaning of green stable per metric type.
+- Rely on color alone to convey good vs. bad — the arrow and sign carry the meaning too.
+- Pass an already-signed string; `value` is a number and the component adds the sign and arrow.
+- Use it for non-comparative values like counts or IDs where there is no baseline.
+
+## Props
+
+| Prop | Type | Default | Notes |
+| --- | --- | --- | --- |
+| value | number | — | Required. The delta. Its sign drives the arrow: positive ▲, negative ▼, zero →. |
+| suffix | string | '%' | Unit shown after the value, e.g. '%', 'ms', 'k'. |
+| positiveIsGood | boolean | true | Set false when a decrease is the desired outcome (error rate, latency). Controls success vs. error tint. |
+| size | 'small' \| 'medium' | 'small' | Font size and padding. Use medium in prominent headers, small in tables. |
+| className | string | — | Passed to the root span for style overrides. |
+
+## Accessibility
+
+- The arrow glyph is marked `aria-hidden`, so screen readers announce the signed value and suffix (e.g. "+12%") without a decorative character. Ensure a nearby label names the metric.
+- Color is a secondary cue only: the leading + / − sign and the ▲ / ▼ / → arrow communicate direction independently, so the badge remains legible for color-blind users and in high-contrast modes.
+- Tints are derived from the theme's success and error palette (or a neutral grey when the value is 0) against a light background wash, keeping foreground text at an accessible contrast ratio.
+- The badge is non-interactive and stays out of the tab order — do not attach click handlers; put any action on an adjacent control instead.

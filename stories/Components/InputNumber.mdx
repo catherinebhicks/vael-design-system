@@ -1,0 +1,50 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/InputNumber/Guidelines" />
+
+# InputNumber
+
+A numeric text field with decrement and increment steppers on either side of the value. Use it for bounded, discrete numeric input — quantities, counts, page sizes, or configuration values — where users benefit from stepping as well as typing.
+
+## Guidelines
+
+### Do
+
+- Set `min` and `max` when the value has a valid range — the component clamps typed and stepped values to those bounds.
+- Choose a `step` that matches the field's unit (1 for counts, 5 or 10 for larger increments).
+- Provide a `label` so the field has a discernible name; otherwise the input falls back to an "Number" aria-label.
+- Use `helperText` to state the expected range or unit, and pair it with `error` for validation feedback.
+- Keep the field controlled — pass `value` and update it in `onChange`.
+
+### Don't
+
+- Use it for free-form or unbounded numbers where steppers add no value — use a plain text field instead.
+- Rely on it for very large ranges where stepping one at a time is impractical — use a slider or direct entry.
+- Forget to handle the empty state — `value` can be `''`, and `onChange` only fires with a valid clamped number.
+- Set a `step` finer than the precision the value actually needs.
+- Omit both `label` and any external label, leaving the field unnamed in context.
+
+## Props
+
+| Prop | Type | Default | Notes |
+| --- | --- | --- | --- |
+| value | number \| '' | — | Current value (controlled). Use `''` for an empty field. |
+| onChange | (value: number) => void | — | Called with the clamped numeric value on step or valid input. Does not fire while the field is empty. |
+| min | number | — | Minimum allowed value. Clamps input and disables the decrement stepper at the floor. |
+| max | number | — | Maximum allowed value. Clamps input and disables the increment stepper at the ceiling. |
+| step | number | 1 | Increment/decrement amount applied by the steppers. |
+| label | string | — | Field label. Also used as the input's accessible name. |
+| disabled | boolean | false | Disables the field and both steppers. |
+| size | 'small' \| 'medium' | 'medium' | MUI field size. Use small in dense forms. |
+| fullWidth | boolean | false | Stretches the field to fill its container. |
+| helperText | ReactNode | — | Helper text shown below the field. |
+| error | boolean | false | Renders the field in an error state. |
+
+## Accessibility
+
+- The steppers are `IconButton`s with fixed `aria-label`s ("Decrease value" and "Increase value"), so they are announced independently of the field.
+- Provide a `label` to give the input an accessible name; when omitted, the input carries an `"Number"` aria-label as a fallback.
+- The decrement and increment buttons become disabled at `min` and `max` respectively, communicating the bounds to assistive technology.
+- `inputMode="numeric"` surfaces a numeric keypad on touch devices without blocking keyboard entry.
+- Pair `error` with descriptive `helperText` so the reason for an invalid value is conveyed as text, not color alone.
+- Both steppers and the field remain keyboard-focusable; the visible focus ring must never be suppressed.

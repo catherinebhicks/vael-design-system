@@ -1,0 +1,50 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Legend/Guidelines" />
+
+# Legend
+
+`Legend` maps each series in a chart to a colored indicator and a label. Use it alongside a chart to identify series, and pass `onToggle` to make items interactive so users can show or hide series.
+
+## Guidelines
+
+### Do
+
+- Keep each `label` short and match it exactly to the series name in the chart.
+- Set an item's `color` to the same value the chart uses for that series.
+- Provide `onToggle` when users should be able to show or hide series, and reflect the result by setting `active` on each item.
+- Use `orientation="vertical"` when the legend sits in a narrow sidebar or beside a tall chart.
+- Place the legend close to the chart it describes so the association is obvious.
+
+### Don't
+
+- Rely on color alone to distinguish series — the label is what makes each entry readable.
+- Add more than a handful of items to a single legend; group or filter series when the list grows long.
+- Make items interactive (`onToggle`) when hiding a series has no effect on the chart.
+- Reword labels so they no longer match the chart's series names.
+- Reuse the same color for two different series in one legend.
+
+## Props
+
+| Prop | Type | Default | Notes |
+| --- | --- | --- | --- |
+| items | LegendItem[] | — | Required. One entry per series: `{ label, color, active? }`. |
+| orientation | 'horizontal' \| 'vertical' | 'horizontal' | Horizontal wraps items in a row; vertical stacks them in a column. |
+| onToggle | (index: number, item: LegendItem) => void | — | When provided, items render as buttons and fire on click. Use to show/hide series. |
+| className | string | — | Applied to the root container for layout overrides. |
+
+`LegendItem`:
+
+| Field | Type | Default | Notes |
+| --- | --- | --- | --- |
+| label | string | — | Required. Text shown next to the indicator; should match the chart series. |
+| color | string | — | Required. Any CSS color for the indicator dot. Match the series color. |
+| active | boolean | true | Set to `false` to dim the item and show a hollow (outlined) indicator. |
+
+## Accessibility
+
+- When `onToggle` is set, each item renders as a native `<button>`, so it is keyboard-focusable and activates with Enter or Space.
+- Interactive items expose `aria-pressed`, reflecting `active` so assistive tech announces the show/hide state.
+- Focused interactive items show a visible 2px focus ring in the primary color — do not suppress it.
+- Don't depend on the color dot alone; the always-present label ensures the series is distinguishable without color perception.
+- Non-interactive legends render as inline `<span>` elements and are read as plain text, which is appropriate when the legend is purely informational.
