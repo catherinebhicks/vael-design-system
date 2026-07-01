@@ -15,10 +15,10 @@ type Story = StoryObj<typeof FlowCanvas>;
 
 const initialNodes: Node[] = [
   { id: '1', position: { x: 80, y: 200 }, data: { label: 'Start' } },
-  { id: '2', position: { x: 280, y: 100 }, data: { label: 'Inoculation' } },
-  { id: '3', position: { x: 280, y: 300 }, data: { label: 'Media Prep' } },
-  { id: '4', position: { x: 500, y: 200 }, data: { label: 'Bioreactor Run' } },
-  { id: '5', position: { x: 700, y: 200 }, data: { label: 'Harvest' } },
+  { id: '2', position: { x: 280, y: 100 }, data: { label: 'Build' } },
+  { id: '3', position: { x: 280, y: 300 }, data: { label: 'Lint' } },
+  { id: '4', position: { x: 500, y: 200 }, data: { label: 'Test' } },
+  { id: '5', position: { x: 700, y: 200 }, data: { label: 'Deploy' } },
 ];
 
 const initialEdges: Edge[] = [

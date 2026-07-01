@@ -1,10 +1,10 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Patterns/Process" />
+<Meta title="Patterns/Bulk Edit" />
 
-# Process controls UI
+# Bulk inline editing
 
-The process controls UI displays and edits live process parameters for a running experiment. Parameters group by process type into collapsible `Accordion` sections, each containing an editable `DataGrid`. The page operates in two modes — `edit` and `review` — with explicit confirmation before any change reaches hardware.
+The bulk-edit pattern displays and edits many records' values inline before committing them together. Records group by category into collapsible `Accordion` sections, each containing an editable `DataGrid`. The page operates in two modes — `edit` and `review` — with explicit confirmation before any change is saved to the server.
 
 ## Flow
 
@@ -18,9 +18,9 @@ The pattern moves through three steps: edit → review → submit.
   readOnlyEdit
   columnDefs={columnDefs}
   domLayout="autoHeight"
-  getRowId={getRowId}              // keyed by run.id
+  getRowId={getRowId}              // keyed by row.id
   onCellEditRequest={onCellValueChanged}
   rowData={rowData}
-  context={{ processType: { id, label }, serverColumns: columns }}
+  context={{ category: { id, label }, serverColumns: columns }}
 />
 ```

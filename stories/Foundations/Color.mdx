@@ -116,7 +116,7 @@ Every color token, in every role. Each token communicates intent rather than a r
 | primary/_states/focusVisible | #1976D2 (30%) | Keyboard focus |
 | primary/_states/outlinedBorder | #1976D2 (50%) | Outlined borders |
 
-**Why #1976D2?** This is MUI's default primary blue, inherited when MUI was adopted as the component library (see ADR 001). It has not been customized to the Vael brand color — the brand navy (`brand.blue`) is reserved for public-facing surfaces like `ExternalTopNav`. Changing this value would affect every interactive element in the app.
+**Why #1976D2?** This blue is Vael's primary brand color — a clear, accessible mid-blue that reads as trustworthy and stays legible against both light surfaces and white text. It anchors every interactive element (buttons, links, focus rings), so it is defined once as a token and never hardcoded; changing it re-themes the whole system in one place.
 
 ### Secondary — supporting actions
 

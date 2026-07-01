@@ -8,7 +8,7 @@ Secondary navigation primitives. Global navigation lives in AppBar and Drawer �
 
 ## Breadcrumbs
 
-Wayfinding across nested routes. The last item is plain Typography (the current page); preceding items are `Link` elements back to ancestors. See [PT 10](patterns.html#pattern-experiment) for canonical experiment-shell usage.
+Wayfinding across nested routes. The last item is plain Typography (the current page); preceding items are `Link` elements back to ancestors. See the [Detail Page](?path=/docs/patterns-detail-page--docs) pattern for canonical detail-shell usage.
 
 ### Do
 
@@ -69,7 +69,7 @@ Popover list of actions anchored to a trigger. Always use `UncontrolledMenu` —
 
 ### Do
 
-- Use `UncontrolledMenu` for row action menus (three-dot / kebab) on experiment list rows, recipe list items, or command rows to avoid managing anchorEl state at every call site.
+- Use `UncontrolledMenu` for row action menus (three-dot / kebab) on project list rows, report rows, or command rows to avoid managing anchorEl state at every call site.
 - Use for overflow actions on Cards (Edit, Duplicate, Archive) where CardActions can only show one or two primary actions.
 - Use the dense variant for toolbar and data grid action menus where vertical space is at a premium and the list may contain five or more items.
 
@@ -77,7 +77,7 @@ Popover list of actions anchored to a trigger. Always use `UncontrolledMenu` —
 
 - Use when the user needs multiple simultaneous selections — use a multi-select chip group or checkboxes instead.
 - Nest more than two levels deep — surface a Dialog or dedicated page for complex hierarchical choices.
-- Place destructive actions (Delete experiment, Archive run) at the top of the list — position them last, separated by a Divider.
+- Place destructive actions (Delete project, Archive item) at the top of the list — position them last, separated by a Divider.
 
 ### UncontrolledMenu
 

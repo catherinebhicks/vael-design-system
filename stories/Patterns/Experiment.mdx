@@ -1,10 +1,10 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Patterns/Experiment" />
+<Meta title="Patterns/Detail Page" />
 
-# Experiment page shell
+# Detail page shell
 
-All pages within an experiment section share a common layout. A shared `Layout` is applied globally, so individual pages do not import it. Each page supplies its own breadcrumb trail, title bar, and action buttons following a single shared pattern.
+All pages within a record's detail section (a project, an account, a report) share a common layout. A shared `Layout` is applied globally, so individual pages do not import it. Each page supplies its own breadcrumb trail, title bar, and action buttons following a single shared pattern.
 
 ## Shell wireframe
 
@@ -12,9 +12,9 @@ All pages within an experiment section share a common layout. A shared `Layout` 
 <Stack spacing={2} sx={{ pl: 3, pr: 3 }}>
   {/* Breadcrumbs */}
   <Breadcrumbs>
-    <Link href="/e?view=active">Live Experiments</Link>
-    <Link href={`/e/${experimentId}/dashboard`}>{experimentName}</Link>
-    <Typography>Live Controls</Typography> {/* current page */}
+    <Link href="/projects?view=active">Projects</Link>
+    <Link href={`/projects/${projectId}/overview`}>{projectName}</Link>
+    <Typography>Settings</Typography> {/* current page */}
   </Breadcrumbs>
 
   {/* Page title bar */}
