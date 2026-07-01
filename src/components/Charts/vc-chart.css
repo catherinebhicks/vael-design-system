@@ -14,21 +14,21 @@
 .highcharts-tick  { stroke: var(--vc-border); stroke-width: 1; }
 .highcharts-grid-line { stroke: var(--vc-grid); stroke-width: 1; fill: none; }
 
-/* ── Typography — DM Mono for tick labels, DM Sans for titles ───────────────── */
+/* ── Typography — Inter throughout (matches the reskinned system) ───────────── */
 .highcharts-axis-title text {
-  fill: var(--vc-ink);
-  font-size: 14px;
-  font-weight: 400;
+  fill: var(--vc-ink-muted);
+  font-size: 12px;
+  font-weight: 500;
 }
 .highcharts-axis-labels text {
   fill: var(--vc-ink-muted);
-  font-size: 12px;
-  font-family: "DM Mono", "Courier New", monospace;
+  font-size: 11px;
+  font-family: inherit;
 }
 .highcharts-title text {
   fill: var(--vc-ink);
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 600;
 }
 .highcharts-subtitle text {
   fill: var(--vc-ink-muted);
@@ -53,7 +53,7 @@
 
 /* ── Series defaults ────────────────────────────────────────────────────────── */
 .highcharts-series { fill: none; }
-.highcharts-graph  { fill: none; stroke-width: 3; }
+.highcharts-graph  { fill: none; stroke-width: 2; }
 .highcharts-area   { stroke: none; }
 .highcharts-point  { stroke-width: 0; }
 
