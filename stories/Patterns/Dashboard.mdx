@@ -1,0 +1,32 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as DashboardStories from '../Dashboard.stories';
+
+<Meta of={DashboardStories} />
+
+# Dashboard
+
+The dashboard is the system's flagship composition — proof that the primitives, the reskinned charts, and the dashboard layer all fit together into a real product screen. Everything below is assembled entirely from Vael components; nothing is bespoke.
+
+<Canvas of={DashboardStories.Overview} />
+
+## Anatomy
+
+- **KPI row** — a responsive grid of [`StatCard`](?path=/docs/components-statcard-guidelines--docs)s. Each pairs a metric with a [`TrendBadge`](?path=/docs/components-trendbadge-guidelines--docs) delta and an optional inline sparkline. Use `positiveIsGood={false}` for metrics where down is good (error rate, latency).
+- **Chart row** — [`ChartCard`](?path=/docs/components-chartcard-guidelines--docs) wrappers around the reskinned charts. The wide card carries an [`AreaChart`](?path=/docs/components-areachart-guidelines--docs) with a footer [`Legend`](?path=/docs/components-legend-guidelines--docs); the narrow card a [`DonutChart`](?path=/docs/components-donutchart-guidelines--docs) with a center label.
+- **Detail row** — a full-width `ChartCard` with a [`BarChart`](?path=/docs/components-barchart-guidelines--docs) for categorical comparison.
+
+## Guidelines
+
+### Do
+
+- Lead with the KPI row — the numbers a user checks first belong above the fold.
+- Keep each chart to the data-viz guardrails (≤ 4 series, ≤ 2 axes) — see [Data Visualization](?path=/docs/foundations-data-visualization--docs).
+- Use a consistent card rhythm: `ChartCard` gives every chart the same header, padding, and elevation.
+- Size the grid with `auto-fit` / `minmax` so the KPI row reflows instead of overflowing.
+
+### Don't
+
+- Crowd the top of the page with more than 4–6 KPIs — move secondary metrics into their own section.
+- Mix chart engines or bespoke one-off charts alongside the system charts.
+- Animate charts "drawing in" on load — the user came for the data (see [Motion](?path=/docs/foundations-motion--docs)).
+- Put primary navigation inside the dashboard content — that belongs in the [navigation shell](?path=/docs/patterns-navigation-patterns--docs).

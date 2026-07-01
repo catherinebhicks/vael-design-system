@@ -1,12 +1,17 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { LoadingContainerExample, SkeletonExample, AlertSurfacesExample } from './examples/LoadingExamples';
 
 <Meta title="Patterns/Loading" />
 
 # Loading and inline error states
 
-Patterns for communicating system status: waiting on data, reporting failure, and acknowledging user actions. The app uses `LinearProgress` exclusively — `Skeleton` and `CircularProgress` are not used anywhere in the codebase.
+Patterns for communicating system status: waiting on data, reporting failure, and acknowledging user actions. The default loading feedback is `LinearProgress` (via `LoadingPage` and `LoadingContainer`); a `Skeleton` component ships for cases where the incoming layout is known.
 
-An audit found 0 usages of `Skeleton` or `CircularProgress` in the app codebase. All loading feedback uses `LinearProgress` via `LoadingPage` or `LoadingContainer`.
+**Default: `LinearProgress`.** Prefer the text + `LinearProgress` `LoadingContainer` pattern where the incoming layout is unknown — it gives forward motion plus a screen-reader label. Reach for `Skeleton` (see [Components/Skeleton](?path=/docs/components-skeleton-guidelines--docs)) only when the shape of the content is known ahead of time, so the placeholder matches it.
+
+<LoadingContainerExample />
+
+<SkeletonExample />
 
 ## Which pattern to use
 
@@ -40,6 +45,8 @@ Routes messages to the right surface based on severity:
 | --- | --- |
 | success · info | Snackbar (bottom-left, auto-hides) |
 | warning · error | Banner (top of page, stacks) |
+
+<AlertSurfacesExample />
 
 Auto-hide timing: success/info auto-hide via `calculateAutoHideDuration` (50ms per character, min 2s, max 7s). Error banners stay until manually dismissed.
 
