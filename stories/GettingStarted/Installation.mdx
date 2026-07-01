@@ -1,0 +1,107 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/Installation" />
+
+# Installation
+
+Vael is a themed **MUI v7** component library with a Highcharts data-viz layer. Getting started is three steps: install, load the fonts, wrap your app in the theme.
+
+> **Pre-release (V0).** The API is settled enough to build with, but not yet frozen — see [Versioning](?path=/docs/guides-versioning--docs).
+
+## 1. Install
+
+```bash
+npm install vael-design-system @mui/material @emotion/react @emotion/styled
+```
+
+`react`, `react-dom`, `@mui/material`, and Emotion are **peer dependencies** — install them alongside the library.
+
+**Optional peers**, only needed for the features that use them:
+
+```bash
+# Charts (Area / Bar / Donut / Highcharts wrappers)
+npm install highcharts highcharts-react-official
+
+# Data grid (DataGrid / AG Grid wrappers)
+npm install ag-grid-community ag-grid-react
+```
+
+> Highcharts requires a commercial license for commercial products — see [Data Visualization](?path=/docs/foundations-data-visualization--docs).
+
+## 2. Load the fonts
+
+Vael uses **Inter** for UI and **DM Mono** for numeric/monospaced data. Install them from Fontsource and import once at your app entry point:
+
+```bash
+npm install @fontsource-variable/inter @fontsource/dm-mono
+```
+
+```ts
+// app entry (e.g. main.tsx / _app.tsx)
+import '@fontsource-variable/inter';
+import '@fontsource/dm-mono/400.css';
+import '@fontsource/dm-mono/500.css';
+```
+
+Any loading strategy works (self-hosted, Google Fonts, next/font) as long as the `Inter` and `DM Mono` families are available — the theme references them by name.
+
+## 3. Wrap your app in the theme
+
+Vael exports a ready-made MUI theme (`theme`) and its dark counterpart (`darkTheme`). Wrap your tree in MUI's `ThemeProvider` with `CssBaseline`:
+
+```tsx
+import { ThemeProvider, CssBaseline } from '@mui/material';
+import { theme } from 'vael-design-system';
+
+export function App({ children }) {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {children}
+    </ThemeProvider>
+  );
+}
+```
+
+## Quick start
+
+Import components from the package root and use them inside the provider:
+
+```tsx
+import { Button, StatCard } from 'vael-design-system';
+
+export function Example() {
+  return (
+    <>
+      <Button variant="contained">Get started</Button>
+      <StatCard label="Active users" value="12,480" delta={12.5} caption="vs last week" />
+    </>
+  );
+}
+```
+
+## Dark mode
+
+`darkTheme` is a drop-in for `theme`. Swap it based on your own state (a toggle, `prefers-color-scheme`, etc.):
+
+```tsx
+import { ThemeProvider, CssBaseline } from '@mui/material';
+import { theme, darkTheme } from 'vael-design-system';
+
+export function App({ mode, children }) {
+  return (
+    <ThemeProvider theme={mode === 'dark' ? darkTheme : theme}>
+      <CssBaseline />
+      {children}
+    </ThemeProvider>
+  );
+}
+```
+
+Components and charts adapt automatically — no per-component configuration. See [Dark Mode](?path=/docs/foundations-dark-mode--docs).
+
+## Next steps
+
+- [Foundations](?path=/docs/getting-started-foundations--docs) — color, type, spacing, elevation, icons, data-viz.
+- [Theming Vael](?path=/docs/guides-theming--docs) — customize tokens and extend the theme.
+- Browse **Components** and **Patterns** in the sidebar for live examples.

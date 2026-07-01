@@ -1,0 +1,110 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guides/Theming" />
+
+# Theming Vael
+
+Vael ships a complete MUI v7 theme. You can use it as-is, or extend it to fit a product's brand — without forking the library.
+
+## What's exported
+
+From the package root:
+
+| Export | What it is |
+| --- | --- |
+| `theme` | The default (light) MUI theme — palette, typography, shape, shadows, and component overrides. |
+| `darkTheme` | The dark counterpart. Same typography/shape/overrides, dark palette. |
+| `palette` | The raw 12 tonal ramps (`primary`, `neutral`, `teal`, …), each keyed `50`–`950`. Useful for chart series and custom UI. |
+| `ColorName`, `ColorStep` | Types for the ramp keys. |
+
+```ts
+import { theme, darkTheme, palette } from 'vael-design-system';
+```
+
+## The token layers
+
+The theme is built from three layers, so a change flows through the whole system:
+
+1. **`design-tokens.json`** — the source-of-truth primitives (W3C token format): raw color ramps, spacing, radii, type scale.
+2. **`theme.ts`** — maps primitives to **semantic** MUI theme values (`primary.main`, `text.secondary`, `background.paper`) and encodes the component overrides (the "polish").
+3. **`tokens.css`** — the same tokens as CSS custom properties, for non-MUI surfaces.
+
+Because everything references tokens, re-theming is mechanical: change a token once and every component that uses it updates.
+
+## Reading the theme in your own components
+
+Never hardcode values — read them from the theme so your UI stays consistent and dark-mode-ready.
+
+```tsx
+import { useTheme } from '@mui/material/styles';
+
+function Metric() {
+  const t = useTheme();
+  return <span style={{ color: t.palette.primary.main }}>…</span>;
+}
+```
+
+Inside `sx`, use the callback form:
+
+```tsx
+<Box sx={(t) => ({ color: t.palette.text.secondary, p: t.spacing(2) })} />
+```
+
+## Extending the theme
+
+To adjust Vael for a product brand, build on the exported theme with MUI's `createTheme` — pass `theme` as the base and layer your overrides on top:
+
+```tsx
+import { createTheme } from '@mui/material/styles';
+import { theme as vaelTheme } from 'vael-design-system';
+
+export const brandTheme = createTheme(vaelTheme, {
+  palette: {
+    primary: { main: '#6C5CE7' },   // your brand color
+  },
+  shape: { borderRadius: 12 },       // rounder corners
+});
+```
+
+Your overrides deep-merge over Vael's defaults, so you only specify what changes; everything else (typography, component polish, shadows) is inherited. Wrap your app in `<ThemeProvider theme={brandTheme}>` as usual.
+
+### Overriding a component's style
+
+Component overrides live under `components` and use the same slot API as MUI:
+
+```tsx
+const brandTheme = createTheme(vaelTheme, {
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: { textTransform: 'uppercase' }, // e.g. re-enable uppercase labels
+      },
+    },
+  },
+});
+```
+
+## Using the palette ramps directly
+
+For charts and custom visuals, pull specific steps from the exported ramps instead of guessing hex values:
+
+```tsx
+import { palette } from 'vael-design-system';
+
+const seriesColors = [palette.primary[600], palette.teal[600], palette.amber[600]];
+```
+
+## Dark mode
+
+`darkTheme` is a drop-in replacement — swap it at the `ThemeProvider`. If you've built a `brandTheme`, create a dark variant the same way, using `darkTheme` as the base:
+
+```tsx
+import { createTheme } from '@mui/material/styles';
+import { darkTheme as vaelDark } from 'vael-design-system';
+
+export const brandDarkTheme = createTheme(vaelDark, {
+  palette: { primary: { main: '#8B7FF0' } },
+});
+```
+
+See [Dark Mode](?path=/docs/foundations-dark-mode--docs) and [Color](?path=/docs/foundations-color--docs) for the token details.
