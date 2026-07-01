@@ -6,6 +6,11 @@ export type { ColorName, ColorStep } from './theme';
 // Components
 export * from './components/AgGrid';
 export * from './components/Charts';
+// Dashboard / data-viz layer
+export * from './components/StatCard';
+export * from './components/ChartCard';
+export * from './components/Legend';
+export * from './components/TrendBadge';
 export * from './components/Accordion';
 export * from './components/DragOverlay';
 export * from './components/FlowCanvas';
