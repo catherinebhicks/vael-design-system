@@ -1,10 +1,17 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { LineStyleSpecimen, GuardrailSpecimen, ChartTypeSpecimens } from '../specimens/ChartSpecimens';
 
 <Meta title="Foundations/Data Visualization" />
 
 # Chart System
 
 Charts are first-class components, not ad-hoc visualizations. Built on **Highcharts styled mode**, driven by MUI tokens and a deterministic metric-to-color map. Every series carries a distinct **line style in addition to color**, so the system holds up in colorblind, print, and screenshot contexts.
+
+## The chart types, live
+
+Area, donut, and bar on the reskinned Highcharts layer — the same tokens and palette as the rest of the system.
+
+<ChartTypeSpecimens />
 
 ## Chart patterns
 
@@ -31,6 +38,10 @@ Charts are first-class components, not ad-hoc visualizations. Built on **Highcha
 | Muted | 40% opacity | Backgrounded series |
 | Selected | 3px stroke | User-focused series |
 
+Actual (solid), target (dashed), and forecast (dotted) on one chart — the style, not just the color, tells them apart:
+
+<LineStyleSpecimen />
+
 ## Guardrails enforced in code
 
 - No rainbow palettes or arbitrary color.
@@ -43,3 +54,7 @@ Charts are first-class components, not ad-hoc visualizations. Built on **Highcha
 - No interpolation across gaps — gaps must be visible.
 
 **Why 4 series / 2 axes?** Pre-attentive visual processing reliably tracks about 4 distinct colored elements without counting. A third y-axis has no natural placement and typically floats inside the plot area, creating ambiguity about which axis governs which series.
+
+This is the ceiling — four series across two axes, and no more:
+
+<GuardrailSpecimen />

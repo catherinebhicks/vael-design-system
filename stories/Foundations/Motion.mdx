@@ -1,10 +1,17 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { MotionDemo } from '../specimens/MotionDemo';
 
 <Meta title="Foundations/Motion" />
 
 # Motion
 
 Motion in the system is used **functionally**, not decoratively. Animations exist to provide continuity (elements entering or exiting, state changes), confirm actions (button ripple, success toast slide), and draw attention to transient content (snackbar, skeleton loader). We do not use motion to "add polish" — every animation should have a reason.
+
+## Feel the tokens
+
+Timing reads better felt than tabled — click through the duration and easing tokens.
+
+<MotionDemo />
 
 ## Duration tokens
 
@@ -35,7 +42,7 @@ Motion in the system is used **functionally**, not decoratively. Animations exis
 - **Element entering or leaving** — dialogs fade and scale in, drawers slide in, snackbars slide up. Motion provides continuity so the user's eye follows the element from origin to destination.
 - **Skeleton loaders** — a subtle pulse or shimmer indicates "this area is loading" without being distracting.
 - **Focus ring** — a gentle appearance of the focus ring on keyboard navigation helps visibility.
-- **Chart data updates** — the line tweens when new data arrives (live runs) so the user tracks the change rather than seeing a jump.
+- **Chart data updates** — the line tweens when new data arrives (live data) so the user tracks the change rather than seeing a jump.
 
 ### Where we do NOT use motion
 

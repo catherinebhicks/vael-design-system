@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { ShadowScale } from '../specimens/ShadowScale';
 
 <Meta title="Foundations/Elevation" />
 
@@ -9,6 +10,12 @@ Elevation uses layered drop shadows to express depth and hierarchy across 24 lev
 ## 24 levels, three layers each
 
 Every level uses three layered drop shadows: umbra (20%), penumbra (14%), and ambient (12%). Use the lowest elevation that achieves the necessary visual separation. Elevation alone must not be the only cue for hierarchy.
+
+## The mapped levels, rendered
+
+Each surface below carries the real shadow for the level the system assigns it.
+
+<ShadowScale />
 
 **Why 24 levels?** MUI ships 25 (0–24) following the Material Design spec. This is inherited directly — not a design-system decision. Using MUI defaults means all components that internally reference elevation values (Dialog at 24, Card at 1) work without reconfiguration.
 

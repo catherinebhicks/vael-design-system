@@ -1,10 +1,17 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { SpacingScale } from '../specimens/SpacingScale';
 
 <Meta title="Foundations/Spacing" />
 
 # Spacing
 
 An 8px base unit with an 8-step scale. All padding, margin, and gap values are multiples of the 8px base. The scale stops at 8 steps — values beyond 64px are layout-level concerns (percentage widths, Grid columns, viewport units) rather than spacing tokens.
+
+## The scale, at true size
+
+Each bar below is rendered at its actual token width.
+
+<SpacingScale />
 
 ## The 8px grid, explained
 
