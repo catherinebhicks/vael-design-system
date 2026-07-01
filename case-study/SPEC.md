@@ -2,9 +2,11 @@
 
 ## Context
 
-Catherine has a finished written walkthrough (3 cuts + 2 diagrams) about building the **Vael** design system with AI as a build method (`~/Desktop/vael-ai-build/`). She wants to elevate it into a **polished Vercel landing page** that shines — a portfolio-grade, showpiece-quality case study.
+Catherine has a finished written walkthrough (three cuts + two diagrams) about building the **Vael** design system with AI — and, after it was shelved, carrying it forward and rebuilding it in the open (`~/Desktop/vael-ai-build/`). She wants to elevate it into a **polished Vercel landing page** that shines — a portfolio-grade, showpiece-quality case study.
 
 **Why:** it's an AI-forward portfolio piece during an active job search, and the page's craft is itself proof of design ability.
+
+**Spine (drives structure):** AI collapses the cost of production → so judgment and ownership become the whole job → and the rescue proves it. Two chapters — *built for a startup* (production) → *shelved* → *carried forward solo* (rebuilt in the open). Every beat serves the spine and hands off to the next.
 
 **Audience priority (drives every trade-off):**
 1. **Hiring / clients** — skimming evaluators deciding in ~30s. Fast proof, scannable, credibility-forward.
@@ -22,43 +24,47 @@ A single, scroll-driven marketing-style case-study page. Not a multi-page site. 
 ## Tech
 
 - **Next.js (App Router) + TypeScript + Tailwind CSS**, deployed to **Vercel**.
-- **Framer Motion** for scroll reveals, the stat counters, and the signature pipeline animation.
+- **Framer Motion** for scroll reveals, the stat counters, and the signature "code becomes design" animation.
 - Standalone **private** repo (Catherine's default). Build + preview **locally first**; do **not** push or deploy without explicit approval (standing rule).
-- Project lives at `~/Desktop/vael-ai-build/site/`.
-- Static export-friendly: no server data, no DB, no auth. All content is in-repo.
+- Static export-friendly: no server data, no DB, no auth. All content is in-repo. Page meets **WCAG AA**.
 
 ## Content basis
 
-Page copy is a **tightened cut of `medium.md`** (showpiece > peers → tight, visual, not a long read). Full depth links out to the eventual Medium post. Real facts reused verbatim: 27 components · 75 doc pages · 17 Shape Up pitches · 145 tickets · v0.75; foundation tokens 11 color / 13 type / 8 spacing / 24 elevation; W3C design-tokens format; Figma → Supernova → token JSON → generated MUI theme; stack MUI + MUI X + AG Grid + React Flow.
+Page copy is `copy-deck.md` (beats on the spine); the full story is `writing/deep-dive.md`. Full depth links out to the eventual Medium post. Real facts (see `writing/README.md` for the canonical list):
+
+- **27 components at the startup → 44 now** (carried forward) · **80+ doc pages** (Storybook now; a generated static site originally) · **17 Shape Up pitches · 145 tickets** · a **six-week Shape Up cycle**, then expanded.
+- Tokens in the open **W3C design-tokens format** (described qualitatively — "eight spacing steps, not forty"; don't cite the old 11/13/24 counts).
+- **Phase-1 (production), past tense:** Figma → Supernova → **generated** MUI theme; a **`build.py`** docs generator (~485 lines).
+- **Current stack:** MUI v7 + MUI X (Data Grid) core, **Highcharts** for charts, AG Grid optional, dnd-kit / React Flow. Live **Storybook**.
 
 ## Visual system
 
-- **Accent:** Vael blue `#1976d2` (+ `#1565c0` dark, `#42a5f5` light) — the real primary tokens.
+- **Accent:** Vael blue `#1976d2` (+ `#1565c0` dark, `#42a5f5` light) — the real primary tokens. Coral `#FF6A4D` for callouts.
 - **Aesthetic = three styles as a rhythm, not a blend:**
   - *Editorial* = the narrative spine (large headings, generous whitespace, pull quotes).
   - *Design-system furniture* = recurring UI (token swatches, component cards, stat counters, the blue accent).
-  - *Dark "engine-room" interludes* = the two technical sections (tokens, pipeline) flip to a dark canvas + monospace; the contrast marks them as the technical heart.
-- **Type:** one clean sans for UI/body (e.g. Inter), optional tasteful display face for headlines; monospace (e.g. JetBrains Mono / ui-monospace) for code.
+  - *Dark "engine-room" interludes* = the two technical rungs inside "Where the leverage lived" (generated theme, docs generator) flip to a dark canvas + monospace; the contrast marks them as the technical heart.
+- **Type:** Fraunces display · Inter body/UI · JetBrains Mono code.
 - Fully responsive; reduced-motion respected (`prefers-reduced-motion` disables the scroll animations).
 
 ## Imagery (built-from-data, no fabricated screenshots)
 
-- **Now (from existing system):** live token **swatch grid** from real values; styled **code-snippet cards** (`theme.ts` header, token JSON, `build.py` — all anonymized); the **two diagrams** (`visuals/01-build-loop`, `visuals/02-token-pipeline`) re-rendered as crisp inline SVG/React so they animate; **component-name grid** of the real 27 components; animated **stat counters**.
-- **Signature moment:** the **token → component → docs pipeline** assembles on scroll (dark section).
-- **Later (enhancement slot):** a reserved, clearly-marked section for real component **showcases** built once the system is refreshed for publishing. Page must look complete without it.
+- **Now (from the real system):** live token **swatch grid** from real values; styled **code-snippet cards** (`theme.ts` header, token JSON, `build.py` — all anonymized); the **two diagrams** re-rendered as inline SVG/React so they animate; **component-name grid** of the real 44 components; animated **stat counters** (27→44).
+- **Signature moment:** the **token → generated theme → docs** leverage assembles on scroll (dark rungs).
+- **Live proof (beat 7):** real component demos from the Vael library + the deployed **Storybook** (embed/link). The page must still look complete before the Storybook URL is wired.
 
-## Page structure (8 beats)
+## Page structure (8 beats — on the spine)
 
 | # | Beat | Style | Key elements |
 |---|------|-------|-------------|
-| 1 | **Hero** | light editorial | Title, one-line thesis, credibility line (*solo designer · ~few weeks · production design system*), 3 animated stat counters (27/75/17) |
-| 2 | **The gap** | editorial | Problem framing; pull quote "What it had was me." |
-| 3 | **AI as the method** | ds furniture | `01-build-loop` diagram full-bleed; the designer↔Claude division of labor |
-| 4 | **The tokens** | 🌑 dark | Live swatch grid from real tokens + code card; W3C-format point |
-| 5 | **The pipeline** | 🌑 dark (signature) | `02-token-pipeline` assembles on scroll; Figma→Supernova→theme |
-| 6 | **The infrastructure win** | light editorial | `build.py` beat; "AI built my tooling, not just my components" |
-| 7 | **Where I stayed in control** | ds cards | 4 credibility cards: taste · accessibility · governance · the "why" |
-| 8 | **Close + footer** | editorial | Final stats; one clean closing line; **subtle contact footer** (name + one line + contact link). Reserved enhancement slot above footer. |
+| 1 | **Hero** | light editorial | Title, thesis line, credibility line, 3 animated stat counters (27→44 / 80+ / 1); "code becomes design" animation |
+| 2 | **The gap** | editorial | Problem framing; ends on the *question* ("how much can one designer own if production cost falls away?") |
+| 3 | **How I worked with Claude** | ds furniture | `01-build-loop` diagram; pair-not-autopilot; hands off to "where the leverage lived" |
+| 4 | **Where the leverage lived** | 🌑 dark rungs | One rising movement: tokens → **theme generated itself** → **docs wrote themselves** (`build.py`); `02-token-pipeline` assembles on scroll; pitches/tickets as the upstream rung |
+| 5 | **What AI couldn't do** | full-bleed blue, white cards | Judgment turn led by the a11y hand-audit + addon story: taste · accessibility · governance · the "why" |
+| 6 | **And then it was shelved** | editorial (short, weighty) | Taken to a handoff (17 pitches / 145 tickets), then shelved before the cycle ran |
+| 7 | **Rebuilt in the open** | coral → live | The rescue = proof: 27→44, Highcharts/dashboard/forms, Storybook; live component + code demos / deployed Storybook |
+| 8 | **Close + footer** | editorial | Two-chapter close; two-phase AI disclosure; subtle contact footer |
 
 ## Component architecture
 
@@ -67,25 +73,24 @@ Small, single-purpose components under `components/`:
 - `Section.tsx` (light/dark variant wrapper, handles rhythm + scroll-reveal)
 - `PullQuote.tsx`
 - `BuildLoopDiagram.tsx`, `PipelineDiagram.tsx` (inline SVG/React so they animate)
-- `TokenSwatchGrid.tsx` (data-driven from `data/tokens.ts`)
-- `CodeCard.tsx` (syntax-styled, copy-safe, anonymized snippets from `data/snippets.ts`)
-- `ComponentGrid.tsx` (the 27 names from `data/components.ts`)
-- `ControlCard.tsx` (the four pillars)
+- `LeverageSection.tsx` (the three-rung movement wrapper) with `TokenSwatchGrid.tsx` (data-driven from `data/tokens.ts`) and `CodeCard.tsx` (syntax-styled, anonymized snippets from `data/snippets.ts`)
+- `ComponentGrid.tsx` (the real 44 names from `data/components.ts`)
+- `ControlCard.tsx` (the judgment pillars)
+- `LiveShowcase.tsx` (beat 7 — real component demos + Storybook embed/link; degrades gracefully before the URL is live)
 - `ContactFooter.tsx`
-- `EnhancementSlot.tsx` (placeholder section, visually intentional)
 
 Content + data separated from presentation:
-- `data/copy.ts` — section headings/body (from tightened `medium.md`)
+- `data/copy.ts` — section headings/body (from `copy-deck.md`)
 - `data/tokens.ts`, `data/components.ts`, `data/snippets.ts`, `data/stats.ts`
 
 ## Out of scope (now)
-- Real component-UI showcases (await system refresh → enhancement slot).
 - Medium publishing, portfolio-repo integration, custom domain.
-- Analytics, contact form backend (footer link is `mailto:` / portfolio link).
+- Analytics beyond Vercel's, contact form backend (footer link is `mailto:` / portfolio link).
 
 ## Verification
 - `npm run build` succeeds; `npm run dev` renders all 8 beats with no console errors.
 - Responsive at 375 / 768 / 1280 px; `prefers-reduced-motion` disables animations cleanly.
 - Anonymization scan passes (no company name; no internal name; snippets scrubbed).
 - Visual QA via local preview screenshots before any deploy.
+- **Pre-publish dependency:** the static **Storybook is deployed to a public URL** before the page ships (so beat 7's "open it right now" link isn't dead).
 - **Gate:** Catherine reviews local preview; explicit approval required before push/deploy.

@@ -1,20 +1,22 @@
-# I Built a 27-Component Design System With AI as My Pair
+# I built a design system with AI — then refused to let it die
 
 Most design systems die in the gap between "we should have one" and "someone has to actually build it."
 
 I joined a bioscience startup with a product that had grown fast and inconsistent — three slightly different blues, buttons that disagreed about their own padding, tables built four ways. It needed a real design system: tokens, a themed component library, living docs, a governance process. The kind of thing a platform team builds over a couple of quarters.
 
-What it had was me. One designer, no five-person pod coming to help. So I built it with Claude as a **design-engineering pair** — and called it **Vael.**
+What it had was me. One designer, no five-person pod, one six-week cycle. So I built it with Claude as a **design-engineering pair** — and called it **Vael.**
 
-**The reframe that made it work.** The hard part of a design system isn't writing code, it's *coherence* — keeping 11 color tokens, 27 components, and 75 doc pages all agreeing with each other. That's a working-memory problem, and it's exactly what an AI partner is good at holding. I brought the taste, the standards, and the "why." Claude brought throughput and consistency. I supplied the thread; it never lost it.
+**The reframe.** The hard part of a design system isn't writing code, it's *coherence* — keeping tokens, components, and dozens of doc pages all agreeing with each other. That's a working-memory problem, and it's exactly what an AI partner is good at holding. I brought the taste, the standards, and the "why." Claude brought the throughput. But the surprise wasn't how much it could make — it was *where the leverage lived.*
 
-**The moment it clicked.** A design system without docs is just a folder, and Vael's docs are a 75-page site. Maintaining that by hand is a losing battle. So instead of writing pages, Claude and I built the **machine that generates them** — a build script that turns source files into every page and keeps them in lockstep with the code. The leverage wasn't AI writing a component. It was AI writing the *generator.* One designer maintaining 75 pages fails; one designer maintaining a generator ships. Same energy carried upstream, too: I turned the whole scope into 17 Shape Up pitches and 145 tickets ready for an engineering cycle — days of structured writing compressed into an afternoon.
+**Not in making a button.** It compounded as I aimed it higher: first the tokens held the system together, then the theme *generated itself* from them (Figma → Supernova → the theme the product used, no hex code ever retyped), then the docs wrote themselves from a build script Claude and I built. The leverage was never AI writing a component. It was AI building the machine that documents every component — and freeing me to spend my time on the only thing that needed me.
 
-**Where I stayed in control.** "AI built my design system" is easy to misread as "AI made the decisions." It didn't. I owned the taste (which three blues become one), the accessibility (contrast, focus, every component's a11y status), the governance (how a component gets proposed, versioned, deprecated), and the *why* (I wrote the decision log myself). Claude was the most capable junior I've worked with — and like any junior, only as good as the specs I gave it. The bottleneck was never its speed. It was my judgment — which is exactly where a designer's time should go.
+**Which was judgment.** "Built with AI" is easy to misread as "AI decided." It didn't. I owned the taste, the accessibility (I audited every component by hand, then let the Storybook a11y addon catch what I'd missed), the governance, and the *why.* Claude was the fastest junior I've worked with — and like any junior, only as good as the specs I set. The bottleneck was never its speed. It was my judgment, which is where a designer's time should go.
 
-**Where it landed.** Vael shipped at v0.75: 27 themed components on a W3C-standard token foundation, a 75-page self-generating docs site, a Figma-to-code pipeline that keeps design and engineering in sync, and a roadmap ready to build. One designer, a few weeks, a system that would normally need a team and two quarters.
+**Then it was shelved.** I took it all the way to a handoff — the system built, the rollout scoped into 17 Shape Up pitches and 145 tickets, ready for an engineering cycle. Then priorities shifted, and it was shelved before that cycle ran. This is where most of these stories quietly end. I couldn't accept that.
 
-This isn't a story about AI replacing design work. It's the opposite. AI took everything that *wasn't* design work off my plate and left me with the part only I could do.
+**So I rebuilt it in the open.** I carried it forward on my own, took it from 27 components to 44, re-authored it clean, and traded the internal generator for a live Storybook — so it's not a screenshot in a case study, it's a library anyone can open right now. The rescue is the proof.
+
+This isn't a story about AI replacing design work. It's the opposite. AI took everything that *wasn't* design off my plate — and left me with the part only I could do. And the most senior thing I did wasn't the pipeline. It was refusing to let good work die in a backlog.
 
 ---
 
