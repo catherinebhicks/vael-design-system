@@ -1,168 +1,74 @@
-# Vael: How I Built a Production Design System With AI as My Pair
+# Vael: A design system built with AI — and the judgment it couldn't replace
 
-*A walkthrough of designing, building, and documenting a 27-component design system for a bioscience startup — with Claude in the loop the whole way. What AI was genuinely good at, where my judgment was the bottleneck, and what I'd tell any designer thinking about working this way.*
+*One designer, a bioscience startup, and Claude in the loop. What AI was genuinely good at, where my judgment was the bottleneck, and why I refused to let the whole thing die in a backlog.*
 
 ---
-
-## The gap
 
 Most design systems die in the gap between "we should have one" and "someone has to actually build it."
 
-I joined a bioscience startup with a product that had grown the way real products grow: fast, in a hurry, with good intentions and inconsistent results. There were three slightly different blues. Buttons that disagreed about their own padding. Tables built four ways. None of it was anyone's fault — it's just what happens when a team ships faster than it documents.
+I joined a bioscience startup with a product that had grown the way real products grow: fast, with good intentions and inconsistent results. Three slightly different blues. Buttons that disagreed about their own padding. Tables built four ways. It needed a real design system — tokens, a themed component library, living documentation, a governance process. The kind of thing a platform team builds over a couple of quarters.
 
-What it needed was obvious: a real design system. Tokens, a themed component library, living documentation, a governance process so it wouldn't rot six months later. The kind of thing a platform team of designers and engineers builds over a couple of quarters.
+What it had was me. One designer, a backlog, and no five-person pod coming to help. The honest math said a system this size wasn't going to happen in the time I had — one six-week Shape Up cycle. That gap is where this stopped being a normal design project and became a question I couldn't stop poking at: how much of a team's worth of work can one designer actually own, if the production cost falls away?
 
-What it had was me.
+## The reframe: a pair, not an autopilot
 
-Not "me and a design-systems pod." Me — one designer, with a backlog, and no illusion that a five-person team was about to materialize. The honest math said a system this size wasn't going to happen. That's the gap. And that gap is exactly where this turned into an AI story.
+The hard part of a design system isn't writing the code — it's *coherence.* Color tokens that agree with each other. Components that share one API philosophy. Documentation that doesn't contradict itself sixty pages in. That's a working-memory problem, and it's exactly what a capable AI partner is good at holding — as long as someone supplies the thread.
 
-I called it **Vael** — precise, principled, built to scale. (Internally it had a different name; I've renamed it here and kept the client anonymous.) This is the walkthrough of how it actually got built.
+So I stopped treating Claude as a fancier autocomplete and started treating it as a **design-engineering pair.** I brought the taste, the standards, and the "why." It brought the throughput and a memory that never lost the thread: I'd set a standard once, and it would hold that standard across a hundred decisions without drifting. That division of labor is the whole story — and the surprising part wasn't how much it could make. It was *where* the leverage actually lived.
 
-## Why this was an AI problem, not a tooling problem
+## Where the leverage actually lived
 
-When people say "AI helped me build X," they usually mean autocomplete. That's not what this was.
+It wasn't in generating a button. Anyone can get an AI to make a button. The leverage compounded as I aimed it higher — at the infrastructure that keeps a system honest.
 
-The interesting question a design system asks isn't *can you write the code* — it's *can one person hold the whole thing in their head long enough to make it coherent.* Coherence is the entire value of a design system. Eleven color tokens that agree with each other. Twenty-seven components that share one API philosophy. Seventy-five documentation pages that don't contradict each other on page 60.
+**It started with tokens.** A design system is only as trustworthy as its tokens, so that's where I began. The decision I cared about most wasn't *which* blue — it was the format. I wanted the open [W3C design-tokens standard](https://tr.designtokens.org/format/), not a proprietary blob, so the system could move between tools instead of getting married to one. Claude generated the structured source; I made the architecture calls and set the voice for the descriptions — because a token nobody understands is a token nobody uses. The restraint was mine: eight spacing steps, not forty. The bookkeeping was ours.
 
-That's a working-memory problem, and it's precisely the problem a capable AI partner is good at absorbing. Not "write me a button" — but "here is the token architecture, here is the naming convention, here is the accessibility standard, now hold all of it while we generate the next twenty things and keep them consistent."
+**Then the theme generated itself.** In the production build, those tokens didn't get hand-copied into a theme — they *compiled* into one. A value changed in Figma, flowed through Supernova into the token source, and regenerated the MUI theme the product actually used. No one ever retyped a hex code; design and engineering couldn't drift, because there was only one place the truth lived. Designing that pipeline was the most senior work in the project, and having a partner that could reason about the whole chain at once — then write the connective tissue — is what made it feasible for one person.
 
-So I stopped thinking of Claude as a code generator and started treating it as a **design-engineering pair**: a fast, tireless collaborator who never lost the thread, as long as I supplied the thread. I brought the taste, the judgment, the standards, and the "why." It brought the throughput and the consistency. That division of labor is the whole story.
+**Then the docs wrote themselves.** A design system without documentation is just a folder, and the docs ran to dozens of pages that all had to stay consistent with each other *and* the code. Maintaining that by hand is a losing battle. So instead of writing pages, Claude and I built the **machine that generated them** — a build script (`build.py`, around 485 lines) that turned source files into every section page, rewrote navigation per depth, and never touched the source of truth. One designer hand-maintaining that many pages fails. One designer maintaining a *generator,* with an AI pair holding the whole build graph in context, ships.
 
-Here's how it played out across four build moments.
+That's the moment "AI as build method" clicked. Each rung of the ladder — tokens, then the generated theme, then the generated docs — pulled me further out of production and left me with more room for the only thing that actually needed me. And it ran upstream of code, too: I restructured the entire scope into **17 [Shape Up](https://basecamp.com/shapeup) pitches and 145 tickets,** ready for an engineering cycle. I made every scoping call and wrote the reasoning behind each one; Claude drafted each pitch in a consistent structure and flagged the overlaps. "Vision in my head" to "a roadmap an engineer can pick up Monday" went from days to an afternoon.
 
----
+## The part only I could do
 
-## Build moment 1 — Tokens: getting the foundation standards-correct
+"AI built my design system" is easy to misread as "AI made the decisions." It didn't. Everything above was throughput. The decisions were the job, and they got *more* visible the less time I spent typing:
 
-A design system is only as trustworthy as its tokens, so that's where we started. The decision I cared about most wasn't *which* blue — it was the **format**. I wanted tokens in the W3C [Design Tokens Community Group](https://tr.designtokens.org/format/) standard, not a proprietary blob, so the system would be portable across tools instead of married to one.
+- **Taste** — which three blues become one; what restraint means when you stop adding tokens.
+- **Accessibility** — I audited each component by hand against WCAG, then ran the Storybook a11y addon as a second pass. It caught smaller things I'd missed, and I fixed them. AI can apply a rule consistently. It can't decide the rule is right, or notice when it's quietly wrong.
+- **Governance** — how a component gets proposed, reviewed, versioned, deprecated. A system without governance rots.
+- **The "why"** — I wrote the decision record myself, into the pitches, because the reasons are what the next team needs most.
 
-Claude generated the structured token source. I made the architecture calls. The result looked like this:
+The honest model: Claude was the most capable junior collaborator I've worked with — fast, tireless, with perfect recall of the conventions I set. And like any junior, only as good as my specs. The bottleneck was never its throughput. It was my judgment — which is exactly where a designer's time should go.
 
-```json
-{
-  "$schema": "https://tr.designtokens.org/format/",
-  "color": {
-    "text": {
-      "primary": {
-        "$value": "#000000de",
-        "$type": "color",
-        "$description": "Primary text color. High-emphasis content."
-      },
-      "secondary": {
-        "$value": "#00000099",
-        "$type": "color",
-        "$description": "Secondary text color. Medium-emphasis content."
-      }
-    }
-  }
-}
-```
+## And then it was shelved
 
-Two things in there matter more than they look.
+I took it all the way to a handoff. The system was built. The rollout was scoped — 17 pitches, 145 tickets, the reasoning written down, everything an engineering team needed to implement it into the product.
 
-First, every token carries a `$description`. That's not decoration — it's the difference between a token system a team adopts and one they quietly route around because they can't tell `text/secondary` from `text/disabled`. Writing 60-odd clear, consistent descriptions is exactly the kind of high-volume, judgment-light-but-not-judgment-free work where an AI pair earns its keep. I set the voice on the first three; Claude held it for the rest; I edited the ones that drifted.
+Then priorities shifted, and the project was shelved before that cycle ever ran.
 
-Second, the source was split deliberately — a `base.json` of primitives plus per-theme files (`light.json`, `dark.json`) — so it could feed [Supernova](https://www.supernova.io/) in split-mode and stay in sync with design. The final foundations came out to 11 color tokens, 13 typography, 8 spacing, 24 elevation, plus motion and a full icon set. Small numbers, ruthlessly chosen. The restraint was mine. The bookkeeping was ours.
+This is where most of these stories quietly end — good work, killed by timing, left to rot in a backlog. I couldn't quite accept that. The system was real, the thinking was sound, and it had answered my original question better than I expected. So I did the un-tidy thing: I took it home and carried it forward on my own.
 
-## Build moment 2 — The theme layer and the pipeline that keeps it honest
+## Rebuilt in the open
 
-Vael isn't a from-scratch component library — and it shouldn't be. The smart move for a startup is to stand on [MUI](https://mui.com/) (plus MUI X, AG Grid, and React Flow for the heavy data components) and own the *theme*, not reinvent the primitives. The design system's job is to make all of that speak with one voice.
+Off the clock, with no one to hand it to, I rebuilt it clean — this time to be *shown,* not shipped into one product.
 
-So the tokens compile down into a generated MUI theme. The header of that generated file tells the most important part of the whole story:
+I took it from **27 components to 44:** a Highcharts-powered charting layer, a dashboard and data-visualization set, and the form and completeness pieces a real system needs. I re-authored a fresh theme by hand and, this time, deliberately traded the internal static-site generator for **Storybook** — so every component is live, interactive, and documented in one place instead of behind a private build. Same token foundation, same standards, now on MUI v7 and MUI X, and now something anyone can open.
 
-```ts
-/**
- * GENERATED FILE — DO NOT EDIT MANUALLY
- * Source: Figma variables → Supernova → tokens/design-tokens.json
- * To update: change values in Figma, merge the design-system branch,
- *            Supernova auto-opens a PR that regenerates this file.
- * Version: Vael v.75.0
- */
-
-export const theme = createTheme({
-  palette: {
-    text: {
-      primary: '#000000de',   // token: text/primary
-      secondary: '#00000099', // token: text/secondary
-    },
-    primary: {
-      main: '#1976d2',         // token: primary/main
-      dark: '#1565c0',         // token: primary/dark
-    },
-  },
-});
-```
-
-The flow is: **Figma variables → Supernova → token JSON → generated theme → product.** Change a value in Figma, and a PR regenerates the theme automatically. No human retypes a hex code. No drift between what the designer sees and what the engineer ships.
-
-Designing *that pipeline* — deciding where the source of truth lives, how it propagates, what's generated versus hand-authored — was the most senior design-systems work in the project. It's also where having a partner who could reason about the whole chain at once, and then write the connective tissue, changed what was feasible for one person. I'd describe the topology; Claude would draft the wiring; I'd pressure-test the edge cases ("what happens when a token is removed, not just changed?").
-
-## Build moment 3 — The docs site, where AI built my infrastructure
-
-Here's the part I didn't expect to matter most.
-
-A design system without documentation is just a folder. The docs are the product. Vael's documentation is a 75-page static site — foundations, all 27 components, 13 patterns, a decision log, and a full guides section (contributing, voice & tone, a component decision guide, testing, performance, i18n, a design-QA checklist, Supernova token sync, versioning & migration).
-
-Seventy-five pages that have to stay consistent with each other and with the code is a maintenance nightmare. So instead of hand-maintaining pages, Claude and I built the **tooling that generates them**. A Python build script takes source files and produces every section page, rewriting the navigation for each depth level, and — critically — never deleting the source:
-
-```python
-# build.py
-# Source files live in demo/_src/ (never deleted).
-# Generated pages are written to demo/ subdirectories.
-
-LINK_MAP = {
-    "#overview":      ("getting-started/overview.html", "overview.html"),
-    "#governance":    ("getting-started/governance.html", "governance.html"),
-    "#accessibility": ("getting-started/accessibility.html", "accessibility.html"),
-    # ...
-}
-```
-
-A companion script injects component documentation into the site so the reference stays in lockstep with the components themselves.
-
-This is the moment the "AI as build method" idea clicked for me. The leverage wasn't Claude writing a component — it was Claude writing the **machine that writes the docs**. One designer maintaining 75 pages by hand is a losing battle. One designer maintaining a *generator*, with an AI pair who can hold the whole build graph in context, is a system that maintains itself. That's the difference between a design system that ships and one that's perpetually 80% done.
-
-## Build moment 4 — Planning: turning intent into a roadmap engineering can run
-
-The last surprise was how much of the value was upstream of any code.
-
-A design system has to be handed off. The original plan lived in three sprawling spec documents — the kind of thing that's complete but unschedulable. To make it real, I restructured the whole scope into **17 [Shape Up](https://basecamp.com/shapeup) pitches** — UI cleanup, token architecture, Storybook setup, third-party theming, the Supernova import pipeline, dark mode, new components, new patterns, documentation gaps — and broke those into **145 tickets** ready to drop into a cycle.
-
-Claude was a genuine thinking partner here, not a stenographer. I'd argue the appetite and boundaries of a pitch out loud; it would draft the pitch in a consistent structure, flag where two pitches overlapped, and help me consolidate (five separate "new component" pitches became one). I made every scoping call. But going from "vision in my head" to "17 well-formed pitches and 145 tickets an engineer can pick up Monday" — that's days of structured writing, and the partnership turned it into an afternoon.
-
----
-
-## Where I stayed firmly in control
-
-I want to be precise about this, because "AI built my design system" is easy to misread as "AI made the decisions." It didn't. The decisions are the job, and they stayed mine:
-
-- **Taste.** Which three blues become one. What "restraint" means when you're choosing 11 color tokens instead of 40. The visual judgment isn't delegable, and I didn't try.
-- **Accessibility.** Contrast ratios, focus behavior, the a11y status of every component, the QA checklist — I owned the standard and verified against it. AI can apply a rule consistently; it can't decide what the rule should be or notice when it's quietly wrong.
-- **Governance.** How a component gets proposed, reviewed, versioned, and deprecated. A design system without governance rots; that process is a design artifact in its own right, and it came from experience, not generation.
-- **Naming and the "why."** Tokens and components live or die by their names and their rationale. I wrote the decision log because the *reasons* are what a future team needs most.
-
-The honest model: Claude was the most capable junior collaborator I've ever worked with — fast, consistent, never bored, with perfect recall of the conventions I set. And like any junior, it was only as good as the specs and standards I gave it. The bottleneck was never its throughput. The bottleneck was my judgment — which is exactly where a designer's time *should* go.
+That last part matters more than any claim I could make in prose: the system isn't a screenshot in a case study. It's a live library with a running Storybook you can click through. The rescue is the proof.
 
 ## What I learned
 
-A few things I'd tell any designer considering this way of working:
-
-**1. Judgment is the scarce resource now, not production.** AI collapses the cost of producing the artifact. It does not collapse the cost of *deciding what's correct.* That inverts where your hours go — less time typing, far more time deciding — and it's a better use of a designer.
-
-**2. Specs are leverage.** The quality of what comes back is a direct function of the clarity going in. A vague prompt gets you a mediocre component. A sharp standard ("W3C token format, primitive/semantic split, every token gets a description in this voice") gets you a system. Learning to write the standard *is* the skill.
-
-**3. The underrated win is infrastructure, not artifacts.** Anyone can get AI to generate a button. The compounding value is getting it to build the **generator, the pipeline, the build script** — the machinery that keeps 75 pages and a token set honest over time. Aim the leverage at the system, not the single output.
-
-**4. Stay in the loop, or it drifts.** Every place I let consistency slide, it slid. The partnership works because I reviewed continuously, not because I handed off and walked away. "AI as pair" is load-bearing on the word *pair.*
+- **Judgment is the scarce resource now, not production.** AI collapses the cost of making the artifact, not the cost of deciding what's correct. Less time typing, far more time deciding — a better use of a designer.
+- **Aim leverage at infrastructure, not artifacts.** Anyone can get AI to make a component. The compounding win is the generator and the pipeline that keep everything honest over time.
+- **Specs are leverage.** A vague prompt gets a mediocre component; a sharp standard gets a system. Writing the standard *is* the skill.
+- **Stay in the loop, or it drifts.** Every place I let consistency slide, it slid. "AI as pair" is load-bearing on the word *pair.*
+- **Good work shouldn't need permission to survive.** The most senior thing I did wasn't the pipeline. It was refusing to let a shelved system die when I still believed in it.
 
 ## Where it landed
 
-Vael shipped at **v0.75**: 27 themed components on a token foundation, a 75-page self-generating documentation site, a Figma-to-code pipeline that keeps design and engineering in sync, and a 17-pitch roadmap ready for an engineering cycle. One designer, a few weeks, a system that would normally need a team and a couple of quarters.
+Vael started as a production design system for a bioscience startup — built with AI in a single six-week cycle, taken all the way to a scoped, ready-to-build handoff. When it was shelved, it got a second life: carried forward solo, expanded to 44 components, and rebuilt in the open as a live, documented library. One designer, start to finish.
 
-I don't think that's a story about AI replacing design work. It's the opposite. Every decision that mattered — the taste, the standards, the accessibility, the governance, the *why* — was more mine, and more visible, than on any project I'd done the slow way. AI didn't take the design work off my plate. It took everything that *wasn't* design work off my plate, and left me with the part only I could do.
-
-That's the version of "building with AI" I find worth writing about.
+This was never a story about AI replacing design work. It's the opposite. Every decision that mattered was *more* mine, and more visible, than on any project I'd done the slow way. AI didn't take the design work off my plate. It took everything that *wasn't* design work off my plate — and left me with the part only I could do.
 
 ---
 
-*Vael was built for a bioscience startup and is presented here anonymized. The architecture, tokens, and tooling shown are real; client-identifying details have been removed.*
+*Vael was built for a bioscience startup and is presented here anonymized. The architecture, tokens, and tooling are real; client-identifying details have been removed. Claude generated tokens, components, and tooling under standards I set and edited — first for the production system, then again as I rebuilt it into Vael. The design decisions were mine.*
