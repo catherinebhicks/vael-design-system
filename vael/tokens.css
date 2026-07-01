@@ -250,7 +250,7 @@
      Typography — Font Family
      ========================================================================= */
 
-  --ds-typography-font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  --ds-typography-font-family: "Inter Variable", "Inter", "Helvetica", "Arial", sans-serif;
 
   /* =========================================================================
      Typography — Font Weights
@@ -395,7 +395,7 @@
      Shape
      ========================================================================= */
 
-  --ds-shape-border-radius: 4px;
+  --ds-shape-border-radius: 10px;
 
   /* =========================================================================
      Breakpoints

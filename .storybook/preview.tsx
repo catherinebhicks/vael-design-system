@@ -6,6 +6,7 @@ import { buildVcVars } from '../src/components/Charts/vcDefaults';
 import '../src/components/Charts/vc-chart.css';
 
 // Self-hosted fonts — works in Chromatic's isolated sandbox (no external network)
+import '@fontsource-variable/inter'; // primary UI typeface (Preline-influenced)
 import '@fontsource/dm-sans/300.css';
 import '@fontsource/dm-sans/400.css';
 import '@fontsource/dm-sans/500.css';

@@ -8,7 +8,7 @@ An 8px base unit with an 8-step scale. All padding, margin, and gap values are m
 
 ## The 8px grid, explained
 
-All padding, margin, and gap values in the Console are derived from a single base unit of 8px. This creates a consistent rhythm across the interface — components and layouts align to an invisible grid regardless of who built them or when. The token scale stops at 8 steps (64px) because values beyond that are layout concerns, not spacing concerns.
+All padding, margin, and gap values in the system are derived from a single base unit of 8px. This creates a consistent rhythm across the interface — components and layouts align to an invisible grid regardless of who built them or when. The token scale stops at 8 steps (64px) because values beyond that are layout concerns, not spacing concerns.
 
 ### Base unit
 
@@ -31,7 +31,7 @@ The base unit is **8px**. MUI's `theme.spacing(n)` function multiplies a scalar 
 
 ### Half-step (sub-unit) usage
 
-The Console occasionally uses **4px** (`theme.spacing(0.5)`) for fine-grained adjustments — primarily icon alignment within text, chip spacing, and dense table cell padding. Half-steps are allowed but should be rare — if you find yourself reaching for 4px often, reconsider the layout.
+The system occasionally uses **4px** (`theme.spacing(0.5)`) for fine-grained adjustments — primarily icon alignment within text, chip spacing, and dense table cell padding. Half-steps are allowed but should be rare — if you find yourself reaching for 4px often, reconsider the layout.
 
 - **4px** — Icon micro-adjustment, chip padding (internal), tooltip padding.
 - **2px** (`spacing(0.25)`) — Reserved for micro-adjustments. Do not use for component padding.

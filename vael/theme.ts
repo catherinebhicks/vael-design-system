@@ -1,359 +1,204 @@
 /**
- * GENERATED FILE — DO NOT EDIT MANUALLY
- * Source: Figma variables → Supernova → tokens/design-tokens.json
- * To update: change values in Figma, merge the design-system branch,
- *            Supernova auto-opens a PR that regenerates this file.
- * Version: Vael v.75.0
- */
-
-/**
- * Vael Design System — MUI Theme
+ * Vael Design System — MUI theme (hand-authored)
  *
- * This file exports the MUI theme configuration derived from the design system token set.
- * Import and pass to ThemeProvider in your app root.
+ * A polished, Preline-influenced aesthetic layered on MUI v7:
+ * refined gray neutrals, Inter typography, rounded (8px) geometry, soft layered
+ * shadows, and component styling — while keeping Vael's own brand palette.
+ *
+ * Light and dark modes share one set of typography / shape / shadows / component
+ * overrides; only the palette differs.
  *
  * Usage:
- *   import { theme } from './tokens/theme';
+ *   import { theme } from 'vael-design-system';
  *   <ThemeProvider theme={theme}>...</ThemeProvider>
  *
- * Token reference: foundations/color.md, foundations/typography.md,
- *                  foundations/elevation.md, foundations/spacing.md
+ * The Inter font must be loaded by the app (e.g. `import '@fontsource-variable/inter'`).
  */
 
 import { createTheme } from '@mui/material/styles';
+import type { Shadows, ThemeOptions } from '@mui/material/styles';
 
+// ─── Neutrals (Tailwind "gray") ───────────────────────────────────────────────
+const gray = {
+  50: '#f9fafb',
+  100: '#f3f4f6',
+  200: '#e5e7eb',
+  300: '#d1d5db',
+  400: '#9ca3af',
+  500: '#6b7280',
+  600: '#4b5563',
+  700: '#374151',
+  800: '#1f2937',
+  900: '#111827',
+};
+
+// ─── Soft, layered elevation (Tailwind-style) ─────────────────────────────────
+const s = {
+  xs: '0 1px 2px 0 rgba(16,24,40,0.04)',
+  sm: '0 2px 4px -1px rgba(16,24,40,0.07), 0 1px 3px -1px rgba(16,24,40,0.05)',
+  md: '0 6px 14px -3px rgba(16,24,40,0.08), 0 3px 6px -3px rgba(16,24,40,0.05)',
+  lg: '0 14px 24px -6px rgba(16,24,40,0.09), 0 6px 10px -5px rgba(16,24,40,0.05)',
+  xl: '0 26px 40px -10px rgba(16,24,40,0.10), 0 10px 14px -8px rgba(16,24,40,0.06)',
+  '2xl': '0 36px 64px -16px rgba(16,24,40,0.16)',
+};
+const shadows = [
+  'none', s.xs, s.sm, s.sm, s.md, s.md, s.md, s.lg, s.lg, s.lg,
+  s.lg, s.xl, s.xl, s.xl, s.xl, s.xl, s['2xl'], s['2xl'], s['2xl'], s['2xl'],
+  s['2xl'], s['2xl'], s['2xl'], s['2xl'], s['2xl'],
+] as Shadows;
+
+// ─── Typography (Inter, modern scale) ─────────────────────────────────────────
+const typography: ThemeOptions['typography'] = {
+  fontFamily: '"Inter Variable", "Inter", "Helvetica", "Arial", sans-serif',
+  fontWeightLight: 400,
+  fontWeightRegular: 400,
+  fontWeightMedium: 500,
+  fontWeightBold: 700,
+  h1: { fontSize: '3rem',     fontWeight: 700, lineHeight: 1.2,  letterSpacing: '-0.02em' }, // 48
+  h2: { fontSize: '2.25rem',  fontWeight: 700, lineHeight: 1.25, letterSpacing: '-0.02em' }, // 36
+  h3: { fontSize: '1.875rem', fontWeight: 600, lineHeight: 1.3,  letterSpacing: '-0.01em' }, // 30
+  h4: { fontSize: '1.5rem',   fontWeight: 600, lineHeight: 1.35, letterSpacing: '-0.01em' }, // 24
+  h5: { fontSize: '1.25rem',  fontWeight: 600, lineHeight: 1.4 },                            // 20
+  h6: { fontSize: '1.125rem', fontWeight: 600, lineHeight: 1.45 },                           // 18
+  subtitle1: { fontSize: '1rem',     fontWeight: 500, lineHeight: 1.5 },
+  subtitle2: { fontSize: '0.875rem', fontWeight: 500, lineHeight: 1.5 },
+  body1: { fontSize: '1rem',     fontWeight: 400, lineHeight: 1.6 },
+  body2: { fontSize: '0.875rem', fontWeight: 400, lineHeight: 1.55 },
+  button: { fontSize: '0.875rem', fontWeight: 600, lineHeight: 1.5, letterSpacing: 0, textTransform: 'none' as const },
+  caption: { fontSize: '0.75rem', fontWeight: 400, lineHeight: 1.5 },
+  overline: { fontSize: '0.75rem', fontWeight: 600, lineHeight: 1.5, letterSpacing: '0.08em', textTransform: 'uppercase' as const },
+};
+
+// ─── Component overrides (the "polish") — palette-aware, shared light/dark ─────
+const components: ThemeOptions['components'] = {
+  MuiButton: {
+    defaultProps: { disableElevation: true },
+    styleOverrides: {
+      root: { borderRadius: 10, textTransform: 'none', fontWeight: 600, paddingInline: 16, boxShadow: 'none' },
+      sizeSmall: { paddingBlock: 5, paddingInline: 12, borderRadius: 8 },
+      sizeLarge: { paddingBlock: 10, paddingInline: 20 },
+      containedPrimary: ({ theme }) => ({
+        boxShadow: theme.shadows[1],
+        '&:hover': { boxShadow: theme.shadows[2] },
+      }),
+      outlined: ({ theme }) => ({ borderColor: theme.palette.divider }),
+    },
+  },
+  MuiOutlinedInput: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        borderRadius: 10,
+        '& .MuiOutlinedInput-notchedOutline': { borderColor: theme.palette.divider },
+        '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: gray[300] },
+        '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderWidth: 1, borderColor: theme.palette.primary.main },
+        '&.Mui-focused': { boxShadow: `0 0 0 3px ${theme.palette.primary.main}29` },
+      }),
+    },
+  },
+  MuiPaper: {
+    styleOverrides: { root: { backgroundImage: 'none' }, rounded: { borderRadius: 16 } },
+  },
+  MuiCard: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        borderRadius: 16,
+        border: `1px solid ${theme.palette.divider}`,
+        boxShadow: theme.shadows[2],
+      }),
+    },
+  },
+  MuiChip: { styleOverrides: { root: { borderRadius: 10, fontWeight: 500 } } },
+  MuiAlert: { styleOverrides: { root: { borderRadius: 12 } } },
+  MuiTooltip: {
+    styleOverrides: {
+      tooltip: { borderRadius: 8, backgroundColor: gray[900], fontSize: '0.75rem', padding: '6px 10px' },
+      arrow: { color: gray[900] },
+    },
+  },
+  MuiTableHead: {
+    styleOverrides: { root: ({ theme }) => ({ '& .MuiTableCell-root': { backgroundColor: theme.palette.background.default, fontWeight: 600 } }) },
+  },
+};
+
+const shape = { borderRadius: 10 };
+const spacing = 8;
+const breakpoints = { values: { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536 } };
+const transitions: ThemeOptions['transitions'] = {
+  easing: {
+    easeInOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
+    easeOut: 'cubic-bezier(0.0, 0, 0.2, 1)',
+    easeIn: 'cubic-bezier(0.4, 0, 1, 1)',
+    sharp: 'cubic-bezier(0.4, 0, 0.6, 1)',
+  },
+  duration: { shortest: 150, shorter: 200, short: 250, standard: 300, complex: 375, enteringScreen: 225, leavingScreen: 195 },
+};
+
+// ─── Light theme ──────────────────────────────────────────────────────────────
 export const theme = createTheme({
   palette: {
     mode: 'light',
-
-    text: {
-      primary: '#000000de',   // token: text/primary
-      secondary: '#00000099', // token: text/secondary
-      disabled: '#00000061',  // token: text/disabled
-    },
-
-    primary: {
-      main: '#1976d2',         // token: primary/main
-      dark: '#1565c0',         // token: primary/dark
-      light: '#42a5f5',        // token: primary/light
-      contrastText: '#ffffff', // token: primary/contrast
-    },
-
-    secondary: {
-      main: '#9c27b0',         // token: secondary/main
-      dark: '#7b1fa2',         // token: secondary/dark
-      light: '#ba68c8',        // token: secondary/light
-      contrastText: '#ffffff', // token: secondary/contrast
-    },
-
-    error: {
-      main: '#d32f2f',         // token: error/main
-      dark: '#c62828',         // token: error/dark
-      light: '#ef5350',        // token: error/light
-      contrastText: '#ffffff', // token: error/contrast
-    },
-
-    warning: {
-      main: '#ef6c00',         // token: warning/main
-      dark: '#e65100',         // token: warning/dark
-      light: '#ff9800',        // token: warning/light
-      contrastText: '#ffffff', // token: warning/contrast
-    },
-
-    info: {
-      main: '#0288d1',         // token: info/main
-      dark: '#01579b',         // token: info/dark
-      light: '#03a9f4',        // token: info/light
-      contrastText: '#ffffff', // token: info/contrast
-    },
-
-    success: {
-      main: '#2e7d32',         // token: success/main
-      dark: '#1b5e20',         // token: success/dark
-      light: '#4caf50',        // token: success/light
-      contrastText: '#ffffff', // token: success/contrast
-    },
-
-    background: {
-      default: '#ffffff', // token: background/default
-      paper: '#ffffff',   // token: background/paper
-    },
-
+    // Brand + semantic colors — Vael's own palette, unchanged.
+    primary:   { main: '#1976d2', dark: '#1565c0', light: '#42a5f5', contrastText: '#ffffff' },
+    secondary: { main: '#9c27b0', dark: '#7b1fa2', light: '#ba68c8', contrastText: '#ffffff' },
+    error:     { main: '#d32f2f', dark: '#c62828', light: '#ef5350', contrastText: '#ffffff' },
+    warning:   { main: '#ef6c00', dark: '#e65100', light: '#ff9800', contrastText: '#ffffff' },
+    info:      { main: '#0288d1', dark: '#01579b', light: '#03a9f4', contrastText: '#ffffff' },
+    success:   { main: '#2e7d32', dark: '#1b5e20', light: '#4caf50', contrastText: '#ffffff' },
+    // Refined neutrals (Preline / Tailwind gray).
+    grey: gray,
+    text: { primary: gray[900], secondary: gray[500], disabled: gray[400] },
+    background: { default: gray[50], paper: '#ffffff' },
+    divider: gray[200],
     action: {
-      active: 'rgba(0,0,0,0.54)',            // token: action/active
-      hover: 'rgba(0,0,0,0.04)',             // token: action/hover
-      selected: 'rgba(0,0,0,0.08)',          // token: action/selected
-      disabled: 'rgba(0,0,0,0.26)',          // token: action/disabled
-      disabledBackground: 'rgba(0,0,0,0.12)', // token: action/disabledBackground
-      focus: 'rgba(0,0,0,0.12)',             // token: action/focus
-    },
-
-    divider: 'rgba(0,0,0,0.12)', // token: divider
-  },
-
-  typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-
-    fontWeightLight: 300,   // token: typography/fontWeightLight
-    fontWeightRegular: 400, // token: typography/fontWeightRegular
-    fontWeightMedium: 500,  // token: typography/fontWeightMedium
-    fontWeightBold: 700,    // token: typography/fontWeightBold
-
-    // token group: typography/h1
-    h1: {
-      fontSize: '6rem',          // 96px
-      fontWeight: 300,
-      lineHeight: 1.167,
-      letterSpacing: '-0.01562em', // -1.5px
-    },
-
-    // token group: typography/h2
-    h2: {
-      fontSize: '3.75rem',       // 60px
-      fontWeight: 300,
-      lineHeight: 1.2,
-      letterSpacing: '-0.00833em', // -0.5px
-    },
-
-    // token group: typography/h3
-    h3: {
-      fontSize: '3rem',          // 48px
-      fontWeight: 400,
-      lineHeight: 1.167,
-      letterSpacing: '0em',      // 0px
-    },
-
-    // token group: typography/h4
-    h4: {
-      fontSize: '2.125rem',      // 34px
-      fontWeight: 400,
-      lineHeight: 1.235,
-      letterSpacing: '0.00735em', // 0.25px
-    },
-
-    // token group: typography/h5
-    h5: {
-      fontSize: '1.5rem',        // 24px
-      fontWeight: 400,
-      lineHeight: 1.334,
-      letterSpacing: '0em',      // 0px
-    },
-
-    // token group: typography/h6
-    h6: {
-      fontSize: '1.25rem',       // 20px
-      fontWeight: 500,
-      lineHeight: 1.6,
-      letterSpacing: '0.0075em', // 0.15px
-    },
-
-    // token group: typography/subtitle1
-    subtitle1: {
-      fontSize: '1rem',           // 16px
-      fontWeight: 400,
-      lineHeight: 1.75,
-      letterSpacing: '0.00938em', // 0.15px
-    },
-
-    // token group: typography/subtitle2
-    subtitle2: {
-      fontSize: '0.875rem',       // 14px
-      fontWeight: 500,
-      lineHeight: 1.57,
-      letterSpacing: '0.00714em', // 0.1px
-    },
-
-    // token group: typography/body1
-    body1: {
-      fontSize: '1rem',           // 16px
-      fontWeight: 400,
-      lineHeight: 1.5,
-      letterSpacing: '0.00938em', // 0.15px
-    },
-
-    // token group: typography/body2
-    body2: {
-      fontSize: '0.875rem',       // 14px
-      fontWeight: 400,
-      lineHeight: 1.43,
-      letterSpacing: '0.01071em', // 0.17px
-    },
-
-    // token group: typography/button
-    button: {
-      fontSize: '0.875rem',       // 14px
-      fontWeight: 500,
-      lineHeight: 1.75,
-      letterSpacing: '0.02857em', // 0.4px
-      textTransform: 'uppercase',
-    },
-
-    // token group: typography/caption
-    caption: {
-      fontSize: '0.75rem',        // 12px
-      fontWeight: 400,
-      lineHeight: 1.66,
-      letterSpacing: '0.03333em', // 0.4px
-    },
-
-    // token group: typography/overline
-    overline: {
-      fontSize: '0.75rem',        // 12px
-      fontWeight: 400,
-      lineHeight: 2.66,
-      letterSpacing: '0.08333em', // 1px
-      textTransform: 'uppercase',
+      active: gray[500],
+      hover: 'rgba(17,24,39,0.04)',
+      selected: 'rgba(17,24,39,0.08)',
+      disabled: 'rgba(17,24,39,0.26)',
+      disabledBackground: 'rgba(17,24,39,0.12)',
+      focus: 'rgba(17,24,39,0.12)',
     },
   },
-
-  // token: spacing base — spacing(1) = 8px, spacing(2) = 16px, etc.
-  spacing: 8,
-
-  shape: {
-    borderRadius: 4, // token: shape/borderRadius
-  },
-
-  breakpoints: {
-    values: {
-      xs: 0,    // token: breakpoints/xs
-      sm: 600,  // token: breakpoints/sm
-      md: 900,  // token: breakpoints/md
-      lg: 1200, // token: breakpoints/lg
-      xl: 1536, // token: breakpoints/xl
-    },
-  },
-
-  transitions: {
-    easing: {
-      easeInOut: 'cubic-bezier(0.4, 0, 0.2, 1)', // token: motion/easing/easeInOut
-      easeOut: 'cubic-bezier(0.0, 0, 0.2, 1)',    // token: motion/easing/easeOut
-      easeIn: 'cubic-bezier(0.4, 0, 1, 1)',        // token: motion/easing/easeIn
-      sharp: 'cubic-bezier(0.4, 0, 0.6, 1)',       // token: motion/easing/sharp
-    },
-    duration: {
-      shortest: 150,        // token: motion/duration/shortest
-      shorter: 200,         // token: motion/duration/shorter
-      short: 250,           // token: motion/duration/short
-      standard: 300,        // token: motion/duration/standard
-      complex: 375,         // token: motion/duration/complex
-      enteringScreen: 225,  // token: motion/duration/enteringScreen
-      leavingScreen: 195,   // token: motion/duration/leavingScreen
-    },
-  },
+  typography,
+  shape,
+  shadows,
+  components,
+  spacing,
+  breakpoints,
+  transitions,
 });
 
 export default theme;
 
-/**
- * Dark theme — Draft, pending Figma design finalization
- * See foundations/dark-mode.md for full token documentation.
- *
- * Usage:
- *   import { darkTheme } from './tokens/theme';
- *   // Toggle based on user preference:
- *   const activeTheme = prefersDark ? darkTheme : theme;
- */
+// ─── Dark theme ───────────────────────────────────────────────────────────────
 export const darkTheme = createTheme({
   palette: {
     mode: 'dark',
-    text: {
-      primary: 'rgba(255, 255, 255, 0.87)',   // token: color-dark/text/primary
-      secondary: 'rgba(255, 255, 255, 0.60)', // token: color-dark/text/secondary
-      disabled: 'rgba(255, 255, 255, 0.38)',  // token: color-dark/text/disabled
-    },
-    primary: {
-      main: '#90caf9',                         // token: color-dark/primary/main
-      dark: '#42a5f5',                         // token: color-dark/primary/dark
-      light: '#e3f2fd',                        // token: color-dark/primary/light
-      contrastText: 'rgba(0, 0, 0, 0.87)',    // token: color-dark/primary/contrast
-    },
-    secondary: {
-      main: '#ce93d8',                         // token: color-dark/secondary/main
-      dark: '#ab47bc',                         // token: color-dark/secondary/dark
-      light: '#f3e5f5',                        // token: color-dark/secondary/light
-      contrastText: 'rgba(0, 0, 0, 0.87)',    // token: color-dark/secondary/contrast
-    },
-    error: {
-      main: '#f44336',                         // token: color-dark/error/main
-      dark: '#d32f2f',                         // token: color-dark/error/dark
-      light: '#e57373',                        // token: color-dark/error/light
-      contrastText: '#ffffff',                 // token: color-dark/error/contrast
-    },
-    warning: {
-      main: '#ffa726',                         // token: color-dark/warning/main
-      dark: '#f57c00',                         // token: color-dark/warning/dark
-      light: '#ffb74d',                        // token: color-dark/warning/light
-      contrastText: 'rgba(0, 0, 0, 0.87)',    // token: color-dark/warning/contrast
-    },
-    info: {
-      main: '#29b6f6',                         // token: color-dark/info/main
-      dark: '#0288d1',                         // token: color-dark/info/dark
-      light: '#4fc3f7',                        // token: color-dark/info/light
-      contrastText: 'rgba(0, 0, 0, 0.87)',    // token: color-dark/info/contrast
-    },
-    success: {
-      main: '#66bb6a',                         // token: color-dark/success/main
-      dark: '#388e3c',                         // token: color-dark/success/dark
-      light: '#81c784',                        // token: color-dark/success/light
-      contrastText: 'rgba(0, 0, 0, 0.87)',    // token: color-dark/success/contrast
-    },
-    background: {
-      default: '#121212',                      // token: color-dark/background/default
-      paper: '#1e1e1e',                        // token: color-dark/background/paper
-    },
+    primary:   { main: '#90caf9', dark: '#42a5f5', light: '#e3f2fd', contrastText: 'rgba(0,0,0,0.87)' },
+    secondary: { main: '#ce93d8', dark: '#ab47bc', light: '#f3e5f5', contrastText: 'rgba(0,0,0,0.87)' },
+    error:     { main: '#f44336', dark: '#d32f2f', light: '#e57373', contrastText: '#ffffff' },
+    warning:   { main: '#ffa726', dark: '#f57c00', light: '#ffb74d', contrastText: 'rgba(0,0,0,0.87)' },
+    info:      { main: '#29b6f6', dark: '#0288d1', light: '#4fc3f7', contrastText: 'rgba(0,0,0,0.87)' },
+    success:   { main: '#66bb6a', dark: '#388e3c', light: '#81c784', contrastText: 'rgba(0,0,0,0.87)' },
+    grey: gray,
+    text: { primary: '#f9fafb', secondary: '#9ca3af', disabled: '#6b7280' },
+    background: { default: '#111827', paper: '#1f2937' },
+    divider: 'rgba(255,255,255,0.10)',
     action: {
-      active: 'rgba(255, 255, 255, 0.56)',
-      hover: 'rgba(255, 255, 255, 0.08)',
-      selected: 'rgba(255, 255, 255, 0.16)',
-      disabled: 'rgba(255, 255, 255, 0.30)',
-      disabledBackground: 'rgba(255, 255, 255, 0.12)',
-      focus: 'rgba(255, 255, 255, 0.12)',
-    },
-    divider: 'rgba(255, 255, 255, 0.12)',     // token: color-dark/divider
-  },
-  typography: {
-    // Identical to light theme — typography doesn't change between modes
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    fontWeightLight: 300,
-    fontWeightRegular: 400,
-    fontWeightMedium: 500,
-    fontWeightBold: 700,
-    h1: { fontSize: '6rem', fontWeight: 300, lineHeight: 1.167, letterSpacing: '-0.01562em' },
-    h2: { fontSize: '3.75rem', fontWeight: 300, lineHeight: 1.2, letterSpacing: '-0.00833em' },
-    h3: { fontSize: '3rem', fontWeight: 400, lineHeight: 1.167, letterSpacing: '0em' },
-    h4: { fontSize: '2.125rem', fontWeight: 400, lineHeight: 1.235, letterSpacing: '0.00735em' },
-    h5: { fontSize: '1.5rem', fontWeight: 400, lineHeight: 1.334, letterSpacing: '0em' },
-    h6: { fontSize: '1.25rem', fontWeight: 500, lineHeight: 1.6, letterSpacing: '0.0075em' },
-    subtitle1: { fontSize: '1rem', fontWeight: 400, lineHeight: 1.75, letterSpacing: '0.00938em' },
-    subtitle2: { fontSize: '0.875rem', fontWeight: 500, lineHeight: 1.57, letterSpacing: '0.00714em' },
-    body1: { fontSize: '1rem', fontWeight: 400, lineHeight: 1.5, letterSpacing: '0.00938em' },
-    body2: { fontSize: '0.875rem', fontWeight: 400, lineHeight: 1.43, letterSpacing: '0.01071em' },
-    button: { fontSize: '0.875rem', fontWeight: 500, lineHeight: 1.75, letterSpacing: '0.02857em', textTransform: 'uppercase' as const },
-    caption: { fontSize: '0.75rem', fontWeight: 400, lineHeight: 1.66, letterSpacing: '0.03333em' },
-    overline: { fontSize: '0.75rem', fontWeight: 400, lineHeight: 2.66, letterSpacing: '0.08333em', textTransform: 'uppercase' as const },
-  },
-  spacing: 8,
-  shape: { borderRadius: 4 },
-  breakpoints: {
-    values: { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536 },
-  },
-  transitions: {
-    easing: {
-      easeInOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
-      easeOut: 'cubic-bezier(0.0, 0, 0.2, 1)',
-      easeIn: 'cubic-bezier(0.4, 0, 1, 1)',
-      sharp: 'cubic-bezier(0.4, 0, 0.6, 1)',
-    },
-    duration: {
-      shortest: 150,
-      shorter: 200,
-      short: 250,
-      standard: 300,
-      complex: 375,
-      enteringScreen: 225,
-      leavingScreen: 195,
+      active: 'rgba(255,255,255,0.56)',
+      hover: 'rgba(255,255,255,0.06)',
+      selected: 'rgba(255,255,255,0.12)',
+      disabled: 'rgba(255,255,255,0.30)',
+      disabledBackground: 'rgba(255,255,255,0.12)',
+      focus: 'rgba(255,255,255,0.12)',
     },
   },
+  typography,
+  shape,
+  shadows,
+  components,
+  spacing,
+  breakpoints,
+  transitions,
 });
 
 // ─── Chart Variable Color Map ─────────────────────────────────────────────────
@@ -363,8 +208,6 @@ export const darkTheme = createTheme({
 //
 // Usage: import { chartVariableColors } from './theme';
 //        const color = chartVariableColors['Cpu'];
-//
-// Reference: foundations/data-visualization.md, components/charts.md
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const chartVariableColors: Record<string, string> = {

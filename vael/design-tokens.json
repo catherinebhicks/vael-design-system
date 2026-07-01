@@ -407,7 +407,7 @@
   },
   "typography": {
     "fontFamily": {
-      "$value": "Roboto, Helvetica, Arial, sans-serif",
+      "$value": "Inter Variable, Inter, Helvetica, Arial, sans-serif",
       "$type": "string",
       "$description": "Base font stack for all UI text."
     },
@@ -762,7 +762,7 @@
   },
   "shape": {
     "borderRadius": {
-      "$value": "4px",
+      "$value": 10px",
       "$type": "dimension",
       "$description": "Default border radius for components."
     }
