@@ -1,5 +1,7 @@
 // Theme
 export { theme, darkTheme } from './theme';
+export { palette } from './theme';
+export type { ColorName, ColorStep } from './theme';
 
 // Components
 export * from './components/AgGrid';

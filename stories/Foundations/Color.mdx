@@ -1,10 +1,30 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+import { palette } from '../../src/theme';
 
 <Meta title="Foundations/Color" />
 
 # Color
 
 The color system uses semantic tokens organized by role — each token communicates intent rather than a raw value. All colors are referenced by token name, never hardcoded as hex. This keeps the palette consistent across components and makes future theme changes (dark mode) mechanical.
+
+## Palette
+
+Full tonal ramps (50–950). Each color is a faithful extension of its source value; semantic colors sit at their anchor step, extended data-viz hues and a tinted neutral round out the system.
+
+<ColorPalette>
+  <ColorItem title="Primary" subtitle="Primary actions, links, focus" colors={palette.primary} />
+  <ColorItem title="Secondary" subtitle="Secondary actions, accents" colors={palette.secondary} />
+  <ColorItem title="Error" subtitle="Validation, destructive" colors={palette.error} />
+  <ColorItem title="Warning" subtitle="Caution, pre-alert" colors={palette.warning} />
+  <ColorItem title="Info" subtitle="Neutral information" colors={palette.info} />
+  <ColorItem title="Success" subtitle="Positive, confirmation" colors={palette.success} />
+  <ColorItem title="Teal" subtitle="Extended data-viz series" colors={palette.teal} />
+  <ColorItem title="Amber" subtitle="Extended data-viz series" colors={palette.amber} />
+  <ColorItem title="Indigo" subtitle="Extended data-viz series" colors={palette.indigo} />
+  <ColorItem title="Rose" subtitle="Extended data-viz series" colors={palette.rose} />
+  <ColorItem title="Sienna" subtitle="Extended data-viz series" colors={palette.sienna} />
+  <ColorItem title="Neutral" subtitle="Surfaces, text, borders" colors={palette.neutral} />
+</ColorPalette>
 
 ## Semantic color
 
