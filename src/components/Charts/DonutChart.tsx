@@ -3,7 +3,7 @@ import { useTheme } from '@mui/material/styles';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
 import type { Options } from 'highcharts';
-import { buildVcVars } from './vcDefaults';
+import { buildVcVars, buildVcThemeOptions } from './vcDefaults';
 
 // Donut chart for part-of-whole data, with an optional center label.
 // Series colors default to the Vael categorical palette (set globally in vcDefaults).
@@ -58,7 +58,7 @@ export function DonutChart({
 
   return (
     <div className={className} style={{ position: 'relative', ...vcVars, ...style }}>
-      <HighchartsReact highcharts={Highcharts} options={options} />
+      <HighchartsReact highcharts={Highcharts} options={Highcharts.merge(buildVcThemeOptions(theme), options)} />
       {centerLabel && (
         <div
           aria-hidden

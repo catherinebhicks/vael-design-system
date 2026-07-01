@@ -3,7 +3,7 @@ import { useTheme } from '@mui/material/styles';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
 import type { Options, SeriesOptionsType } from 'highcharts';
-import { buildVcVars } from './vcDefaults';
+import { buildVcVars, buildVcThemeOptions } from './vcDefaults';
 import { chartEventColors, chartVariableColors } from '../../theme';
 import type { TimeSeriesData, ChartEvent, ChartVariable } from './types';
 
@@ -121,7 +121,7 @@ export function ControlChart({
 
   return (
     <div className={className} style={{ ...vcVars, ...style }}>
-      <HighchartsReact highcharts={Highcharts} options={options} />
+      <HighchartsReact highcharts={Highcharts} options={Highcharts.merge(buildVcThemeOptions(theme), options)} />
     </div>
   );
 }

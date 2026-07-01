@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { ThemeProvider, CssBaseline, useTheme } from '@mui/material';
+import { ThemeProvider, CssBaseline, Box, useTheme } from '@mui/material';
 import type { Preview } from '@storybook/react-vite';
-import { theme } from '../src/theme';
+import { theme, darkTheme } from '../src/theme';
 import { buildVcVars } from '../src/components/Charts/vcDefaults';
 import '../src/components/Charts/vc-chart.css';
 
@@ -31,14 +31,42 @@ function CssVarInjector() {
 }
 
 const preview: Preview = {
+  globalTypes: {
+    theme: {
+      description: 'Global theme (light / dark)',
+      defaultValue: 'light',
+      toolbar: {
+        title: 'Theme',
+        icon: 'contrast',
+        items: [
+          { value: 'light', title: 'Light', icon: 'sun' },
+          { value: 'dark', title: 'Dark', icon: 'moon' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+  },
   decorators: [
-    (Story) => (
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <CssVarInjector />
-        <Story />
-      </ThemeProvider>
-    ),
+    (Story, context) => {
+      const activeTheme = context.globals.theme === 'dark' ? darkTheme : theme;
+      return (
+        <ThemeProvider theme={activeTheme}>
+          <CssBaseline />
+          <CssVarInjector />
+          <Box
+            sx={{
+              bgcolor: 'background.default',
+              color: 'text.primary',
+              minHeight: context.viewMode === 'story' ? '100vh' : 'auto',
+              p: context.viewMode === 'story' ? 0 : 1.5,
+              borderRadius: context.viewMode === 'story' ? 0 : 1,
+            }}
+          >
+            <Story />
+          </Box>
+        </ThemeProvider>
+      );
+    },
   ],
   parameters: {
     layout: 'centered',

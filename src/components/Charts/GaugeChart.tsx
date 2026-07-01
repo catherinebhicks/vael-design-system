@@ -6,7 +6,7 @@ import Highcharts from 'highcharts';
 import 'highcharts/highcharts-more';
 import 'highcharts/modules/solid-gauge';
 import type { Options } from 'highcharts';
-import { buildVcVars } from './vcDefaults';
+import { buildVcVars, buildVcThemeOptions } from './vcDefaults';
 import { chartVariableColors } from '../../theme';
 import type { ChartVariable } from './types';
 
@@ -113,7 +113,7 @@ export function GaugeChart({
 
   return (
     <div className={className} style={{ ...vcVars, ...style }}>
-      <HighchartsReact highcharts={Highcharts} options={options} />
+      <HighchartsReact highcharts={Highcharts} options={Highcharts.merge(buildVcThemeOptions(theme), options)} />
     </div>
   );
 }

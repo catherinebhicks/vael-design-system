@@ -3,7 +3,7 @@ import { useTheme } from '@mui/material/styles';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
 import type { Options } from 'highcharts';
-import { buildVcVars } from './vcDefaults';
+import { buildVcVars, buildVcThemeOptions } from './vcDefaults';
 
 // Area chart for trends and part-of-whole-over-time. Accepts time-series
 // ([timestamp, value]) or categorical (number[]) data. Series colors default
@@ -52,7 +52,7 @@ export function AreaChart({
 
   return (
     <div className={className} style={{ ...vcVars, ...style }}>
-      <HighchartsReact highcharts={Highcharts} options={options} />
+      <HighchartsReact highcharts={Highcharts} options={Highcharts.merge(buildVcThemeOptions(theme), options)} />
     </div>
   );
 }

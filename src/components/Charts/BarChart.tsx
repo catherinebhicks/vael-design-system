@@ -3,7 +3,7 @@ import { useTheme } from '@mui/material/styles';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
 import type { Options } from 'highcharts';
-import { buildVcVars } from './vcDefaults';
+import { buildVcVars, buildVcThemeOptions } from './vcDefaults';
 
 // Categorical bar/column chart. Vertical columns by default; set `horizontal`
 // for bars. Series colors default to the Vael categorical palette.
@@ -51,7 +51,7 @@ export function BarChart({
 
   return (
     <div className={className} style={{ ...vcVars, ...style }}>
-      <HighchartsReact highcharts={Highcharts} options={options} />
+      <HighchartsReact highcharts={Highcharts} options={Highcharts.merge(buildVcThemeOptions(theme), options)} />
     </div>
   );
 }

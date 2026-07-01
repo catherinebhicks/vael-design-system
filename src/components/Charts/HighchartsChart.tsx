@@ -2,7 +2,7 @@ import React, { useMemo, useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
-import { buildVcVars, applyVcDefaults } from './vcDefaults';
+import { buildVcVars, buildVcThemeOptions, applyVcDefaults } from './vcDefaults';
 import type { Options } from 'highcharts';
 
 // Base Highcharts wrapper — applies VC global defaults and injects MUI theme
@@ -35,7 +35,7 @@ export function HighchartsChart({ options, height = 300, className, style }: Hig
 
   return (
     <div className={className} style={{ ...vcVars, ...style }}>
-      <HighchartsReact highcharts={Highcharts} options={mergedOptions} />
+      <HighchartsReact highcharts={Highcharts} options={Highcharts.merge(buildVcThemeOptions(theme), mergedOptions)} />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { useTheme } from '@mui/material/styles';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
 import type { Options, YAxisOptions, SeriesLineOptions } from 'highcharts';
-import { buildVcVars } from './vcDefaults';
+import { buildVcVars, buildVcThemeOptions } from './vcDefaults';
 import { chartVariableColors } from '../../theme';
 import type { TimeSeriesData, ChartVariable } from './types';
 
@@ -108,7 +108,7 @@ export function MultiAxisChart({ series, height = 340, className, style }: Multi
 
   return (
     <div className={className} style={{ ...vcVars, ...style }}>
-      <HighchartsReact highcharts={Highcharts} options={options} />
+      <HighchartsReact highcharts={Highcharts} options={Highcharts.merge(buildVcThemeOptions(theme), options)} />
     </div>
   );
 }

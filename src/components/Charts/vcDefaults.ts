@@ -138,5 +138,49 @@ Highcharts.setOptions({
     },
   });
 
+// ─── Theme-aware overrides (light / dark) ────────────────────────────────────
+// The global setOptions above bakes in the light-mode axis/tooltip/label colors
+// (so charts look right before any effect runs). Those values are NOT reactive.
+// Every chart component merges the options below over its own so that axes,
+// gridlines, tooltip surface, and label ink flip correctly in dark mode. In
+// light mode these resolve to the same values as the global defaults, so the
+// light appearance is unchanged.
+export function buildVcThemeOptions(t: Theme): Highcharts.Options {
+  const dark = t.palette.mode === 'dark';
+  const grid = dark ? palette.neutral[800] : palette.neutral[200];
+  const axis = dark ? palette.neutral[700] : palette.neutral[300];
+  const label = dark ? palette.neutral[400] : palette.neutral[500];
+  const ink = dark ? palette.neutral[100] : palette.neutral[900];
+  const surface = dark ? palette.neutral[900] : '#ffffff';
+  const shadow = dark ? 'rgba(0,0,0,0.45)' : 'rgba(16,24,40,0.10)';
+
+  return {
+    tooltip: {
+      backgroundColor: surface,
+      borderColor: grid,
+      shadow: { color: shadow, offsetX: 0, offsetY: 6, opacity: 0.5, width: 10 },
+      style: { color: ink, fontSize: '12px' },
+    },
+    plotOptions: {
+      series: {
+        marker: { states: { hover: { lineColor: surface } } },
+      },
+    },
+    xAxis: {
+      lineColor: axis,
+      tickColor: axis,
+      labels: { style: { color: label, fontSize: '11px' } },
+    },
+    yAxis: {
+      gridLineColor: grid,
+      labels: { style: { color: label, fontSize: '11px' } },
+    },
+    legend: {
+      itemStyle: { color: label, fontWeight: '500', fontSize: '12px' },
+      itemHoverStyle: { color: ink },
+    },
+  };
+}
+
 // Kept for backward compat — defaults are now applied at module load time
 export function applyVcDefaults() {}
