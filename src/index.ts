@@ -11,6 +11,15 @@ export * from './components/StatCard';
 export * from './components/ChartCard';
 export * from './components/Legend';
 export * from './components/TrendBadge';
+// Form + completeness
+export * from './components/Badge';
+export * from './components/Breadcrumbs';
+export * from './components/Pagination';
+export * from './components/Skeleton';
+export * from './components/InputNumber';
+export * from './components/PasswordField';
+export * from './components/AdvancedSelect';
+export * from './components/FileUpload';
 export * from './components/Accordion';
 export * from './components/DragOverlay';
 export * from './components/FlowCanvas';
