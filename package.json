@@ -74,6 +74,7 @@
     "ag-grid-community": "^35.2.1",
     "ag-grid-enterprise": "^35.2.1",
     "ag-grid-react": "^35.2.1",
+    "chromatic": "^17.8.0",
     "highcharts": "^12.6.0",
     "highcharts-react-official": "^3.2.3",
     "reactflow": "^11.11.4",
