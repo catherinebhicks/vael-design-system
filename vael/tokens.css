@@ -497,10 +497,10 @@
    * Assign in order (extended-1 first) when core 6 are exhausted.
    * All verified WCAG AA (≥ 4.5:1) against white.
    * Never use these colors in UI chrome (buttons, chips, alerts). */
-  --ds-chart-extended-amber:  #B45309;  /* warm gold    5.0:1 — cell density, OD600 */
-  --ds-chart-extended-indigo: #3F51B5;  /* blue-purple  6.9:1 — additional gas species */
-  --ds-chart-extended-rose:   #C2185B;  /* warm pink    5.9:1 — secondary metabolites */
-  --ds-chart-extended-sienna: #795548;  /* earthy brown 6.6:1 — media components */
+  --ds-chart-extended-amber:  #B45309;  /* warm gold    5.0:1 — extended series A */
+  --ds-chart-extended-indigo: #3F51B5;  /* blue-purple  6.9:1 — extended series B */
+  --ds-chart-extended-rose:   #C2185B;  /* warm pink    5.9:1 — extended series C */
+  --ds-chart-extended-sienna: #795548;  /* earthy brown 6.6:1 — extended series D */
 
   /* Event marker colors */
   --ds-chart-event-warning:        var(--ds-color-warning-main);   /* Override / caution — diamond */

@@ -762,7 +762,7 @@
   },
   "shape": {
     "borderRadius": {
-      "$value": 10px",
+      "$value": "10px",
       "$type": "dimension",
       "$description": "Default border radius for components."
     }
