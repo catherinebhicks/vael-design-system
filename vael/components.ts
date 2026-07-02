@@ -22,6 +22,13 @@ declare module '@mui/material/Paper' {
 
 const mono = blueprint.font.mono;
 
+// Filled-button colors — matched to the landing page's `.d-btn`/`.cta`, which are
+// ALWAYS `--blue-2` (#1976d2) + white text in BOTH light and dark. (Left as its own
+// pairing so contained buttons never inherit the brighter #42a5f5 dark-mode accent,
+// which would force dark contrastText — the "black button text" divergence.)
+const btnFill = blueprint.light.blue2;   // #1976d2 — filled bg, both modes
+const btnFillHover = blueprint.light.blue; // #1565c0 — darker hover
+
 /** Blueprint blue focus glow, ~16% alpha (hex 29) — mirrors the site's :focus. */
 const glow = (main: string) => `0 0 0 3px ${main}29`;
 
@@ -33,8 +40,14 @@ export const components: ThemeOptions['components'] = {
       sizeSmall: { paddingBlock: 5, paddingInline: 12, borderRadius: 7 },
       sizeLarge: { paddingBlock: 10, paddingInline: 20 },
       containedPrimary: ({ theme }) => ({
+        backgroundColor: btnFill,
+        color: '#fff',
         boxShadow: theme.shadows[1],
-        '&:hover': { boxShadow: theme.shadows[2] },
+        '&:hover': { backgroundColor: btnFillHover, boxShadow: theme.shadows[2] },
+        '&.Mui-disabled': {
+          backgroundColor: theme.palette.action.disabledBackground,
+          color: theme.palette.action.disabled,
+        },
       }),
       outlined: ({ theme }) => ({ borderColor: theme.palette.divider }),
     },
