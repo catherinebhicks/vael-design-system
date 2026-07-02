@@ -14,9 +14,9 @@ Virtualization is on by default. Don't disable it. Avoid `domLayout="autoHeight"
 
 - Dialogs and Drawers — lazy-load with `next/dynamic`; their deps often dwarf the host page.
 - Charts — `HighchartsClient` is already dynamic; don't re-wrap it.
-- Recipe Editor — always dynamic; React Flow adds ~200 KB.
+- Flow Editor (`FlowCanvas`) — always dynamic; React Flow adds ~200 KB.
 
 ## Fonts
 
-- Load Google Fonts and restrict to the four weights we use (300, 400, 500, 700).
-- Avoid `@import url(…)` in CSS — it blocks render.
+- Restrict IBM Plex to the weights the system uses — IBM Plex Sans 400/500/600/700, IBM Plex Mono 400/500/600.
+- Prefer self-hosting via `@fontsource/ibm-plex-sans` + `@fontsource/ibm-plex-mono` (used in Storybook) so there's no external request; avoid `@import url(…)` in CSS — it blocks render.

@@ -1,7 +1,7 @@
 /**
  * Vael color palette - full tonal ramps (50-950).
- * Faithfully derived from the FermieDS colors (each source color preserved at its
- * anchor step). Semantic colors + extended data-viz hues + a tinted neutral.
+ * Each brand color is preserved at its anchor step and expanded into a full
+ * tonal ramp. Semantic colors + extended data-viz hues + a tinted neutral.
  */
 
 export const palette = {

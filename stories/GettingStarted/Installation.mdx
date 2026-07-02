@@ -30,20 +30,24 @@ npm install ag-grid-community ag-grid-react
 
 ## 2. Load the fonts
 
-Vael uses **Inter** for UI and **DM Mono** for numeric/monospaced data. Install them from Fontsource and import once at your app entry point:
+Vael uses **IBM Plex Sans** for UI and **IBM Plex Mono** for labels, numeric values, and code. Install them from Fontsource and import once at your app entry point:
 
 ```bash
-npm install @fontsource-variable/inter @fontsource/dm-mono
+npm install @fontsource/ibm-plex-sans @fontsource/ibm-plex-mono
 ```
 
 ```ts
 // app entry (e.g. main.tsx / _app.tsx)
-import '@fontsource-variable/inter';
-import '@fontsource/dm-mono/400.css';
-import '@fontsource/dm-mono/500.css';
+import '@fontsource/ibm-plex-sans/400.css';
+import '@fontsource/ibm-plex-sans/500.css';
+import '@fontsource/ibm-plex-sans/600.css';
+import '@fontsource/ibm-plex-sans/700.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import '@fontsource/ibm-plex-mono/600.css';
 ```
 
-Any loading strategy works (self-hosted, Google Fonts, next/font) as long as the `Inter` and `DM Mono` families are available — the theme references them by name.
+Any loading strategy works (self-hosted, Google Fonts, next/font) as long as the `IBM Plex Sans` and `IBM Plex Mono` families are available — the theme references them by name.
 
 ## 3. Wrap your app in the theme
 

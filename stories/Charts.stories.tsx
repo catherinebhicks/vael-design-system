@@ -32,7 +32,7 @@ function cpuData() {
   const actual: [number, number][] = ts.map((t, i) => [t, +(40 + Math.sin(i / 18) * 3.5 + (rnd() - 0.5) * 1.6 + (i > 70 && i < 82 ? -6 : 0)).toFixed(2)]);
   const threshold: [number, number][] = ts.map((t) => [t, 40]);
   return { actual, threshold, events: [
-    { t: ts[30], type: 'override' as const, severity: 'info' as const, label: 'Operator override' },
+    { t: ts[30], type: 'override' as const, severity: 'info' as const, label: 'Manual override' },
     { t: ts[74], type: 'alarm' as const, severity: 'warning' as const, label: 'Cpu low alarm' },
   ]};
 }

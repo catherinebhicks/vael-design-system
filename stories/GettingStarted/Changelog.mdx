@@ -8,22 +8,26 @@ Version history for the Vael Design System. V0 establishes the baseline — toke
 
 ## V0 — Initial Release · April 2026
 
-Status: In progress — light mode documented; dark mode deferred.
+Status: In progress — light + dark mode documented; **Blueprint / Engine-Room** visual identity.
 
 This is the initial version of the Vael Design System documentation. It establishes the baseline token system, component library, and pattern documentation derived from the V0 Figma file.
+
+### Update · July 2026 — Blueprint reskin
+
+The visual identity moved to **Blueprint / Engine-Room** to match the Vael case-study landing page: **IBM Plex Sans + IBM Plex Mono** typography (replacing Inter/DM Mono), blueprint-grid surfaces, hairline borders, tightened geometry (8px buttons/inputs, 14px cards), a blue focus glow, and mono metadata labels. Charts adopt IBM Plex Mono. A single toolbar toggle now flips the Storybook chrome, components, and docs together. Brand blue `#1976d2` is unchanged.
 
 ### Foundations (8)
 
 | Area | Status | Notes |
 | --- | --- | --- |
 | Color tokens (light mode) | ✅ Documented | Semantic tokens for text, primary, secondary, feedback, action, divider, background |
-| Typography scale | ✅ Documented | h1–overline; Inter (UI) + DM Mono (numeric); modern scale |
+| Typography scale | ✅ Documented | h1–overline; IBM Plex Sans (UI) + IBM Plex Mono (labels/numeric) |
 | Elevation | ✅ Documented | 24-level shadow system with 3-layer drop shadows per level |
 | Spacing | ✅ Documented | 8px base grid; spacing/1 (8px) through spacing/8 (64px) |
-| Iconography | ✅ Documented | FontAwesome Pro — size, weight, color, and accessibility conventions |
+| Iconography | ✅ Documented | FontAwesome (Regular + Solid ship; Light needs a Pro license) — size, color, accessibility |
 | Breakpoints | ✅ Documented | xs–xl responsive breakpoint scale |
-| Dark mode tokens | ⏳ Deferred | Not yet designed — will be added in a future version |
-| Motion / Animation | ⏳ Deferred | Not yet designed |
+| Dark mode tokens | ✅ Documented | Full light + dark palettes; unified toolbar toggle |
+| Motion / Animation | ✅ Documented | Duration + easing tokens; live Motion specimen |
 
 ### Components — full inventory (52)
 
@@ -138,11 +142,11 @@ All 47 core MUI components and 5 MUI X components are documented.
 
 - ADR 001 — MUI v7 as the component library
 - ADR 002 — 8px spacing base
-- ADR 003 — Inter typeface
+- ADR 003 — IBM Plex typefaces (Sans + Mono)
 - ADR 004 — Semantic token architecture
 - ADR 005 — Autocomplete over Select
 - ADR 006 — AG Grid over MUI DataGrid
-- ADR 007 — FontAwesome Pro over MUI icons
+- ADR 007 — FontAwesome over MUI icons
 - ADR 008 — Custom SideNav over MUI Drawer
 - ADR 009 — Third-party library wrapper pattern; feature code never imports raw library components
 - ADR 010 — Single notification API: `useAlert` routes by severity; `useSnackbarAlert`/`useBanner` are internal

@@ -5,7 +5,7 @@ import { TypeRamp } from '../specimens/TypeRamp';
 
 # Typography
 
-**Inter** for all UI, **DM Mono** for IDs, numeric values, and copy-pasteable strings. Base 16px. Headings are semibold-to-bold (600–700) for a crisp, modern hierarchy; body copy is Regular (400) with generous line height for dense, data-rich screens.
+**IBM Plex Sans** for all UI, **IBM Plex Mono** for eyebrow/caption labels, IDs, numeric values, and code. Base 16px. Headings are semibold (600) with tightened tracking for a crisp, technical hierarchy; body copy is Regular (400) with generous line height for dense, data-rich screens.
 
 ## Type ramp
 
@@ -15,45 +15,45 @@ Every variant below is rendered live at its true theme size — this is the actu
 
 ## Type scale
 
-Type is the workhorse of a data-dense product — every screen is text- and number-heavy. The scale uses 13 MUI variants with weights chosen for legibility at each size. Font families are limited to Inter and DM Mono — no decorative or branded display faces.
+Type is the workhorse of a data-dense product — every screen is text- and number-heavy. The scale uses 13 MUI variants with weights chosen for legibility at each size. Font families are limited to IBM Plex Sans and IBM Plex Mono — no decorative or branded display faces.
 
 ### Font families
 
 | Family | Purpose | Weights |
 | --- | --- | --- |
-| Inter (variable) | All UI text — headings, body copy, buttons, labels | 400 (Regular), 500 (Medium), 600 (Semibold), 700 (Bold) |
-| DM Mono | IDs, numeric values, copy-pasteable strings, code | 400, 500 |
+| IBM Plex Sans | All UI text — headings, body copy, buttons, labels | 400 (Regular), 500 (Medium), 600 (Semibold), 700 (Bold) |
+| IBM Plex Mono | Eyebrow/caption labels, IDs, numeric values, code | 400, 500, 600 |
 
-**Why Inter?** Inter is a highly legible, screen-optimized sans-serif with a large x-height and wide language coverage. Its variable format lets the system pull any weight along a single axis without loading separate files, and it reads cleanly from 12px captions up to 48px display headings. It gives Vael a modern, neutral voice that stays out of the content's way.
+**Why IBM Plex Sans?** IBM Plex Sans is a highly legible, screen-optimized sans-serif with a large x-height and a precise, engineered feel that suits a technical product. It reads cleanly from 12px captions up to 48px display headings and gives Vael a modern, purposeful voice that stays out of the content's way. It also pairs with IBM Plex Mono as a single type superfamily, so labels and data read as one system.
 
-**Why DM Mono for IDs and numbers?** Fixed-width alignment makes long identifiers (e.g. `req-20240115-abc123`) scannable — you can compare them character-by-character. Proportional fonts produce ragged columns in tables and obscure character-level differences like O vs 0 or l vs 1. Tabular numerals also keep decimal points aligned in metric columns.
+**Why IBM Plex Mono for labels and numbers?** Fixed-width alignment makes long identifiers (e.g. `req-20240115-abc123`) scannable — you can compare them character-by-character. Proportional fonts produce ragged columns in tables and obscure character-level differences like O vs 0 or l vs 1. Tabular numerals also keep decimal points aligned in metric columns. The mono face carries the "engineered / blueprint" register the system is built on — it's used for the `overline` and `caption` variants so metadata reads as data, not prose.
 
 ### Full variant scale (13 tokens)
 
 | Variant | Weight | Size | Line height | Letter spacing | Usage |
 | --- | --- | --- | --- | --- | --- |
-| h1 | Bold (700) | 48px | 1.2 | -0.02em | Page-level display headlines |
-| h2 | Bold (700) | 36px | 1.25 | -0.02em | Major section headlines |
-| h3 | Semibold (600) | 30px | 1.3 | -0.01em | Page titles |
-| h4 | Semibold (600) | 24px | 1.35 | -0.01em | Dialog titles, card group headers |
-| h5 | Semibold (600) | 20px | 1.4 | 0 | Section headings within a page |
-| h6 | Semibold (600) | 18px | 1.45 | 0 | Subsection headings, card titles |
+| h1 | Semibold (600) | 48px | 1.2 | -0.03em | Page-level display headlines |
+| h2 | Semibold (600) | 36px | 1.25 | -0.025em | Major section headlines |
+| h3 | Semibold (600) | 30px | 1.3 | -0.02em | Page titles |
+| h4 | Semibold (600) | 24px | 1.35 | -0.015em | Dialog titles, card group headers |
+| h5 | Semibold (600) | 20px | 1.4 | -0.01em | Section headings within a page |
+| h6 | Semibold (600) | 18px | 1.45 | -0.01em | Subsection headings, card titles |
 | subtitle1 | Medium (500) | 16px | 1.5 | 0 | Lead text, form section labels |
 | subtitle2 | Medium (500) | 14px | 1.5 | 0 | Supporting subheadings |
 | body1 | Regular (400) | 16px | 1.6 | 0 | Primary body copy — the default |
 | body2 | Regular (400) | 14px | 1.55 | 0 | Secondary body — tables, sidebars, dense UI |
-| button | Semibold (600) | 14px | 1.5 | 0, no transform | All button labels |
-| caption | Regular (400) | 12px | 1.5 | 0 | Helper text, timestamps, field descriptions |
-| overline | Semibold (600) | 12px | 1.5 | +0.08em, UPPERCASE | Eyebrow labels, category tags |
+| button | Semibold (600) | 14px | 1.5 | 0, no transform | All button labels (IBM Plex Sans) |
+| caption | Regular (400) | 12px | 1.5 | 0 | Helper text, timestamps, field descriptions (IBM Plex Mono) |
+| overline | Medium (500) | 11px | 1.5 | +0.14em, UPPERCASE | Eyebrow labels, category tags (IBM Plex Mono) |
 
-**Why headings tighten their tracking?** Optical spacing compensation. At larger sizes (h1: 48px) the visual gap between letters reads wider than intended — a small negative track (−0.02em) restores density and keeps display headings feeling deliberate. Body and small text sit at the default (0) tracking, where Inter is already tuned for legibility.
+**Why headings tighten their tracking?** Optical spacing compensation. At larger sizes (h1: 48px) the visual gap between letters reads wider than intended — a negative track (−0.01em to −0.03em, tighter as the size grows) restores density and keeps display headings feeling deliberate. Body and small text sit at the default (0) tracking, where IBM Plex Sans is already tuned for legibility; the `overline` eyebrow does the opposite — a wide +0.14em track spaces out the uppercase mono label.
 
 ### Weight rationale
 
-- **Regular (400)** — The workhorse. Default for body copy and input text.
-- **Medium (500)** — Subtitles and supporting labels where a touch more weight sets text apart from body.
-- **Semibold (600)** — Most headings (`h3`–`h6`), `button`, and `overline`. This is the system's primary emphasis weight and the recognition pattern for interactive labels.
-- **Bold (700)** — Reserved for the two display headings (`h1`, `h2`), where extra weight anchors the top of the hierarchy.
+- **Regular (400)** — The workhorse. Default for body copy, captions, and input text.
+- **Medium (500)** — Subtitles, supporting labels, and the `overline` eyebrow.
+- **Semibold (600)** — All headings (`h1`–`h6`) and `button`. This is the system's primary emphasis weight and the recognition pattern for headings and interactive labels.
+- **Bold (700)** — Available in the family for inline emphasis within body copy; not used by the default variant scale.
 
 Buttons use `textTransform: none` — labels are sentence case, not uppercase. Uppercase is reserved for the `overline` eyebrow.
 
@@ -62,9 +62,9 @@ Buttons use `textTransform: none` — labels are sentence case, not uppercase. U
 - **Headings** use `h1`–`h6` semantically — the variant also sets the HTML tag. Override with `component="h1"` when the semantic tag should differ from the visual scale.
 - **Body copy** defaults to `body1` for most contexts; use `body2` inside tables, sidebars, dense lists, and metadata blocks.
 - **Buttons** always use the `button` variant — do not override weight or case.
-- **Captions** are for supplementary metadata (timestamps, helper text). They should never carry primary information a user needs to complete a task.
-- **Overlines** are eyebrow labels above a heading — use sparingly to categorize a page or section.
-- **Monospace** is applied via `fontFamily` (DM Mono) on specific fields (IDs, numeric values); there is no dedicated variant.
+- **Captions** are for supplementary metadata (timestamps, helper text). They render in IBM Plex Mono and should never carry primary information a user needs to complete a task.
+- **Overlines** are eyebrow labels above a heading — uppercase IBM Plex Mono; use sparingly to categorize a page or section.
+- **Monospace** (IBM Plex Mono) is the default for the `overline` and `caption` variants, and can be applied via `fontFamily` on any IDs or numeric fields that benefit from fixed-width alignment.
 
 ### Accessibility
 

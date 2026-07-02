@@ -54,7 +54,7 @@ function DragDemo() {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [dropped, setDropped] = useState<string[]>([]);
 
-  const items = ['Inoculation', 'Media Prep', 'Sampling', 'Harvest'];
+  const items = ['Research', 'Design', 'Build', 'Ship'];
 
   return (
     <DndContext

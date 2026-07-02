@@ -250,7 +250,8 @@
      Typography — Font Family
      ========================================================================= */
 
-  --ds-typography-font-family: "Inter Variable", "Inter", "Helvetica", "Arial", sans-serif;
+  --ds-typography-font-family: "IBM Plex Sans", "Helvetica", "Arial", sans-serif;
+  --ds-typography-font-family-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
 
   /* =========================================================================
      Typography — Font Weights

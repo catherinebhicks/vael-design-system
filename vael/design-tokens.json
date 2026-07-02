@@ -407,9 +407,14 @@
   },
   "typography": {
     "fontFamily": {
-      "$value": "Inter Variable, Inter, Helvetica, Arial, sans-serif",
+      "$value": "\"IBM Plex Sans\", Helvetica, Arial, sans-serif",
       "$type": "string",
       "$description": "Base font stack for all UI text."
+    },
+    "fontFamilyMono": {
+      "$value": "\"IBM Plex Mono\", ui-monospace, monospace",
+      "$type": "string",
+      "$description": "Monospace stack for labels, IDs, numeric values, and code."
     },
     "fontWeightLight": {
       "$value": 300,

@@ -9,7 +9,7 @@ Charts are first-class components, not ad-hoc visualizations. Built on **Highcha
 
 ## Built on Highcharts
 
-Every chart in the system — `HighchartsChart`, `SparklineChart`, and the `AreaChart` / `BarChart` / `DonutChart` wrappers — renders with **[Highcharts](https://www.highcharts.com/)** via `highcharts-react-official`. The reskin themes Highcharts to the Vael aesthetic (palette, hairline axes, rounded soft-shadow tooltips, Inter type) through a global `Highcharts.setOptions` in `vcDefaults.ts` — it does **not** swap the engine. The chart components are thin, opinionated wrappers over that themed base.
+Every chart in the system — `HighchartsChart`, `SparklineChart`, and the `AreaChart` / `BarChart` / `DonutChart` wrappers — renders with **[Highcharts](https://www.highcharts.com/)** via `highcharts-react-official`. Vael themes Highcharts to its Blueprint aesthetic (palette, hairline axes, inverted mono tooltips, IBM Plex Mono labels) through a global `Highcharts.setOptions` plus a per-render `buildVcThemeOptions(theme)` merge in `vcDefaults.ts` — it does **not** swap the engine. The chart components are thin, opinionated wrappers over that themed base, and follow the light/dark toggle automatically.
 
 **Dependencies.** `highcharts` and `highcharts-react-official` are declared as **optional peer dependencies** — install them alongside the library only if you use the chart components:
 

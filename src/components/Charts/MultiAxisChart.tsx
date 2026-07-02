@@ -73,7 +73,7 @@ export function MultiAxisChart({ series, height = 340, className, style }: Multi
         labels: {
           style: {
             color: varColor(s?.variable ?? ''),
-            fontFamily: '"DM Mono", "Courier New", monospace',
+            fontFamily: '"IBM Plex Mono", ui-monospace, monospace',
             fontSize: '12px',
           },
         },

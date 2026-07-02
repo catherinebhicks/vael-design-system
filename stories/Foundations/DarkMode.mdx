@@ -4,48 +4,53 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Dark mode
 
-The system is currently **light-mode only**. Dark mode has been requested by internal users and is on the product roadmap but has not been formally scoped. This section documents the intended approach so that decisions made now don't block it later.
+Dark mode **ships**. Vael exports a full dark palette alongside the light one, and both share the same typography, shape, shadows, and component overrides — only the palette differs. In this Storybook, the sun/moon toggle in the toolbar flips the chrome, components, and docs together.
 
-## Current status
+## How it works
 
-Not shipped. A dark theme is not available in production. `theme.palette.mode` is hardcoded to `'light'`. Any UI built today should use semantic tokens (`background.default`, `text.primary`, etc.) so it adapts automatically when dark mode ships — never reference raw hex values or hardcoded whites/blacks.
+The library exports two ready-made themes from its entry point:
 
-## Why it's not shipped yet
+| Export | Description |
+| --- | --- |
+| `theme` | The default **light** Blueprint theme. |
+| `darkTheme` | The **dark** (Engine-Room) counterpart — same typography/shape/overrides, dark palette. |
 
-- **Charts are the blocker.** Highcharts in styled mode picks up MUI tokens, but our chart layouts (grid lines, fills, zone shading) were all tuned against a white background. Re-tuning across all four chart components plus every downstream screen is a substantial project.
-- **External nav.** `ExternalTopNav` uses `brand.blue` as its background — this needs a dark-mode pairing that hasn't been designed.
-- **Print/export.** Many exports (job reports, PDFs) assume light backgrounds. Dark mode would need a print-specific override or continue using light for exports.
-- **Hasn't been prioritized.** User research shows it's a nice-to-have, not a blocker. Users work in well-lit environments; eye-strain in low-light isn't a top complaint.
+Wrap your app in whichever the user has selected:
 
-## When it does ship — the plan
+```tsx
+import { ThemeProvider, CssBaseline } from '@mui/material';
+import { theme, darkTheme } from 'vael-design-system';
 
-MUI's dark palette is a well-trodden path — we'll follow standard conventions with minor customizations:
+<ThemeProvider theme={isDark ? darkTheme : theme}>
+  <CssBaseline />
+  {/* app */}
+</ThemeProvider>
+```
 
-| Token | Light value | Dark value (planned) |
+Charts follow automatically — `buildVcThemeOptions(theme)` re-derives axis, grid, label, and tooltip colors from the active palette on each render, so no chart-specific dark handling is needed.
+
+## Palette
+
+Both modes draw from the shared Blueprint tokens. The dark mode is a near-black "engine room": a deep background, lighter panels that lift off it, and a brighter blue accent for legibility on dark.
+
+| Token | Light value | Dark value |
 | --- | --- | --- |
-| background.default | #FFFFFF | #121212 |
-| background.paper | #FFFFFF | #1E1E1E (elevated) |
-| text.primary | rgba(0,0,0,0.87) | rgba(255,255,255,0.87) |
-| text.secondary | rgba(0,0,0,0.60) | rgba(255,255,255,0.60) |
-| divider | rgba(0,0,0,0.12) | rgba(255,255,255,0.12) |
-| primary.main | #1976D2 | #90CAF9 (MD dark blue 200) |
-| error.main | #D32F2F | #F44336 (brighter — darker needs more saturation) |
+| background.default | #E9EFF7 | #0A0E14 |
+| background.paper | #FFFFFF | #111925 (lifted panel) |
+| text.primary | #141C28 | #DCE6F2 |
+| text.secondary | #54637A | #8A9BB2 |
+| divider | #DBE4F0 | #1E2A3A |
+| primary.main | #1976D2 | #42A5F5 (brighter accent on dark) |
+| error.main | #D32F2F | #F44336 |
 
-## Design rules for dark-ready UI
+## Design rules for mode-safe UI
 
-- Never hardcode `color: '#fff'`, `background: 'white'`, or `border: '1px solid #e0e0e0'`. Always use tokens.
-- Use `background.paper` for any surface that should "lift" off the background — in dark mode it's slightly lighter than `background.default` rather than identical (as in light mode).
-- Avoid pure black (`#000000`) as a background — it's harsh in dark mode. MUI uses `#121212` per the MD spec.
-- Test color contrast for both modes. A primary color that hits AA on white may fail on dark.
+- Never hardcode `color: '#fff'`, `background: 'white'`, or `border: '1px solid #e0e0e0'`. Always use semantic tokens (`background.default`, `text.primary`, `divider`, `primary.main`, …) so a component works in both modes automatically.
+- Use `background.paper` for any surface that should "lift" off the background — in dark mode it's slightly lighter than `background.default` rather than identical.
+- Avoid pure black (`#000000`) as a background — the dark theme uses `#0A0E14`, which is softer and carries the blueprint grid.
+- Test color contrast in **both** modes. A primary color that hits AA on light may fail on dark — that's why `primary.main` brightens to `#42A5F5` in dark mode.
 
-## Ship-ready checklist
+## Notes
 
-Before dark mode can ship, we need:
-
-1. A complete audit of components for hardcoded colors.
-2. Highcharts styled-mode tuning for dark backgrounds.
-3. A print/export override.
-4. A user toggle with persisted preference.
-5. System preference detection via `prefers-color-scheme`.
-
-Each is tractable — none is scoped yet.
+- **Charts** re-theme per mode via `buildVcThemeOptions` — no per-chart dark work required.
+- **System preference** (`prefers-color-scheme`) detection and a persisted toggle are app-level concerns; this Storybook uses `storybook-dark-mode` to drive the toggle, and consuming apps can wire their own.

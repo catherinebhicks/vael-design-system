@@ -28,7 +28,7 @@ Scope: Tier 1 — Direct MUI usage. No Vael wrapper. Import from `@mui/material/
 | raised | bool | false | Shorthand for `elevation={8}`. Prefer explicit elevation when you need a specific shadow level. |
 | variant | "elevation" \| "outlined" | "elevation" | Use `"outlined"` for digest/summary cards that sit inside an already-elevated surface. |
 | elevation | number (0–24) | 1 | Inherited from Paper. Controls drop-shadow depth. Keep ≤4 for inline cards; reserve 8+ for modals/popovers. |
-| square | bool | false | Removes the 16px border-radius. Use in flush-edge layouts (e.g., full-bleed panel sections). |
+| square | bool | false | Removes the 14px border-radius. Use in flush-edge layouts (e.g., full-bleed panel sections). |
 | sx | SxProps | — | MUI system prop for one-off style overrides. Prefer tokens over raw values. |
 
 #### Sub-components
@@ -87,7 +87,7 @@ Scope: Tier 1 — Direct MUI usage. Import from `@mui/material/Paper`.
 | --- | --- | --- | --- |
 | elevation | number (0–24) | 1 | Maps directly to the MUI shadow scale. 0 = flat (border or background only). Keep ≤4 for page panels; 8–16 for overlays. |
 | variant | "elevation" \| "outlined" | "elevation" | `"outlined"` renders a 1px divider border with no shadow — use when stacking surfaces at the same elevation layer. |
-| square | bool | false | Removes the 16px border-radius. Use for edge-to-edge panel sections that span the full container width. |
+| square | bool | false | Removes the 14px border-radius. Use for edge-to-edge panel sections that span the full container width. |
 | component | elementType | "div" | Override the root element. Common: `"section"`, `"article"`, `"aside"` for semantic HTML landmarks. |
 
 ### Example
