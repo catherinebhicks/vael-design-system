@@ -1,0 +1,135 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Chart Layer" />
+
+# Building the chart layer
+
+Most design systems stop at the component boundary — buttons, inputs, cards — and
+leave data visualization to whatever charting library each team happens to reach for.
+That's where systems drift: the charts end up in a different palette, a different
+typeface, a different set of interaction conventions than everything around them.
+
+Vael treats charts as **first-class system components**. This page explains *how* that
+was done — the one decision that made it tractable, and the three-layer mechanism that
+keeps every chart on-brand and in lockstep with the light/dark theme. For the usage
+rules (chart types, series line styles, guardrails), see
+[Data Visualization](?path=/docs/foundations-data-visualization--docs).
+
+## The decision: theme the engine, don't fork it
+
+The tempting move is to build a bespoke charting layer so it matches the system
+perfectly. It's also the wrong move — you inherit years of edge cases (axis math,
+stacking, accessibility, export, timezones) that a mature engine already solved.
+
+So the decision was: **adopt [Highcharts](https://www.highcharts.com/) and theme it
+completely — never fork it, never hand-roll SVG.** Highcharts earns its place for three
+reasons:
+
+- **Styled mode.** Highcharts can render with *no* inline presentational attributes,
+  exposing its SVG through stable CSS classes. That means the entire look is driven from
+  the outside — by our tokens — rather than by a config object full of hardcoded hex.
+- **Accessibility built in.** A first-party accessibility module gives every chart
+  screen-reader descriptions and keyboard navigation, which is very hard to retrofit onto
+  a from-scratch visualization.
+- **Breadth without new abstractions.** Line, area, bar, donut, box plot, scatter — all
+  from one engine, so the system doesn't invent a parallel vocabulary.
+
+The judgment call — *use a mature engine and own the theming* — is the interesting part.
+The wiring below is just the execution of it.
+
+## Three layers, one source of truth
+
+The integration lives in `src/components/Charts/vcDefaults.ts` and `vc-chart.css`. Every
+value ultimately traces back to the MUI theme (`vael/theme.ts`) and the shared Blueprint
+tokens (`vael/blueprint.ts`) — the same source the rest of the components read. Nothing
+about a chart is styled in isolation.
+
+### 1 · Global defaults, applied at import
+
+A single `Highcharts.setOptions(...)` call runs *at module import time* — before any
+chart mounts, because Highcharts renders synchronously and a `useEffect` would fire too
+late. It sets the things that are true for every chart in the system:
+
+- **Styled mode** and a transparent background, so the surface behind the chart shows
+  through and CSS owns the paint.
+- The **categorical palette** — eight colors drawn from the Vael ramps
+  (`palette.primary`, `teal`, `amber`, `indigo`, `rose`, `success`, `secondary`, `info`),
+  chosen to stay distinct for colorblind and print contexts.
+- **Accessibility on** (`accessibility.enabled`, keyboard navigation), from the imported
+  `highcharts/modules/accessibility`.
+- **IBM Plex Mono** for all chart text, `credits` off, titles off, animation off — the
+  engine-room defaults that match the landing page's charts.
+
+### 2 · A per-render theme merge, so charts follow the toggle
+
+Global defaults are static. The *theme* is not — it flips between light and dark. So each
+chart merges a live, theme-aware options object on every render:
+
+```tsx
+const options = Highcharts.merge(buildVcThemeOptions(theme), userOptions);
+```
+
+`buildVcThemeOptions(theme)` reads the **current** MUI theme and returns axis colors, grid
+lines, tooltip ink, and label colors derived from `theme.palette`. Because it runs per
+render and the preview re-themes on the dark-mode toggle, **the charts switch light/dark
+together with every other component** — no chart-specific toggle, no duplicated palette.
+
+### 3 · A CSS-variable bridge for the SVG
+
+Some of a chart isn't reachable from a config object — the parts Highcharts paints as SVG
+classes in styled mode, plus the tooltip, which renders in a portal *outside* the chart
+container (`tooltip.outside: true`) so it can't inherit local styles. Those are handled
+with CSS custom properties instead:
+
+- `buildVcVars(theme)` produces a `--vc-*` variable map (per-metric colors, event-severity
+  colors, semantic ink/surface/border, font) that's injected on the chart container.
+- `vc-chart.css` styles the Highcharts SVG classes and the portalled tooltip purely from
+  those `--vc-*` variables.
+
+So even the parts that live outside the React tree still read from the same tokens.
+
+## Thin wrappers, not new components
+
+On top of that themed base sit eight small wrappers — `HighchartsChart`,
+`SparklineChart`, `AreaChart`, `BarChart`, `DonutChart`, and friends. They are
+**opinionated presets, not new abstractions**: each one is a thin configuration over the
+same themed engine, encoding a sensible default (a sparkline hides its axes; a donut sets
+its inner radius). They don't wrap Highcharts in a new API surface, so anything Highcharts
+can do is still reachable through `options`.
+
+## Guardrails, enforced in code
+
+Owning the theme also meant owning the *constraints*. The chart layer enforces the
+system's data-viz rules rather than leaving them to documentation:
+
+- **Styled mode only** — no default Highcharts theme, no inline hardcoded colors.
+- **At most 4 visible series** and **at most 2 y-axes** by default — the ceiling where
+  pre-attentive processing still works and axis assignment stays unambiguous.
+- **Line style carries meaning too** — actual (solid), threshold (dashed), predicted
+  (dotted) — so a chart survives being printed, screenshotted, or read by a colorblind
+  viewer.
+- **Visible gaps** — no interpolation across missing data.
+
+## Dependencies & licensing
+
+`highcharts` and `highcharts-react-official` are declared as **optional peer
+dependencies** — install them only if you use the chart components:
+
+```bash
+npm install highcharts highcharts-react-official
+```
+
+> **Licensing.** Highcharts is free for non-commercial use but requires a **commercial
+> license** for commercial products. Because it's a peer dependency, that relationship is
+> between the consuming application and Highcharts — the design system neither bundles nor
+> relicenses it. See the [Highcharts license](https://shop.highcharts.com/).
+
+## What this bought
+
+- **One toggle themes everything.** Charts and UI switch light/dark from the same source;
+  a chart can't fall out of sync with the system.
+- **No parallel design language.** Chart color, type, and ink are the product's tokens —
+  not a second palette that has to be maintained by hand.
+- **Accessibility for free on every chart**, because it's set once at the engine level.
+- **Room to grow.** New chart types are new presets over a themed engine, not new code to
+  keep on-brand.
