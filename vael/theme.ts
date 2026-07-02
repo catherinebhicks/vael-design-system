@@ -25,6 +25,7 @@ import { blueprint } from './blueprint';
 import { components } from './components';
 
 const mono = blueprint.font.mono;
+const sans = blueprint.font.sans;
 
 // ─── Neutrals (Tailwind "gray") ───────────────────────────────────────────────
 const gray = {
@@ -55,13 +56,14 @@ const shadows = [
   s['2xl'], s['2xl'], s['2xl'], s['2xl'], s['2xl'],
 ] as Shadows;
 
-// ─── Typography (IBM Plex Mono headings; IBM Plex Sans body) ──────────────────
-// Matches the Vael landing page's engine-room voice: headings + data/label roles
-// (h1–h6, overline, caption) use IBM Plex Mono; body copy and buttons use IBM
-// Plex Sans. Heading tracking tightens with size (mono glyphs are wide) to echo
-// the page's ramp (`.hero h1` −0.045em … `h2.big` −0.02em … `.panel h3`).
+// ─── Typography — MONO-DOMINANT (matches the landing page) ────────────────────
+// The page uses IBM Plex Mono for essentially all UI + data, and IBM Plex Sans
+// only for long-form prose and buttons. So the theme's BASE font is Mono — every
+// component that inherits it (chips, inputs, table cells, menus, data, labels)
+// reads mono — and the prose roles (body1/2, subtitle1/2, button) opt back into
+// Sans. Headings tighten tracking with size (mono glyphs are wide).
 const typography: ThemeOptions['typography'] = {
-  fontFamily: blueprint.font.sans,
+  fontFamily: mono,
   fontWeightLight: 400,
   fontWeightRegular: 400,
   fontWeightMedium: 500,
@@ -72,11 +74,12 @@ const typography: ThemeOptions['typography'] = {
   h4: { fontFamily: mono, fontSize: '1.5rem',   fontWeight: 600, lineHeight: 1.3,  letterSpacing: '-0.02em' },  // 24
   h5: { fontFamily: mono, fontSize: '1.25rem',  fontWeight: 600, lineHeight: 1.35, letterSpacing: '-0.015em' }, // 20
   h6: { fontFamily: mono, fontSize: '1.125rem', fontWeight: 600, lineHeight: 1.4,  letterSpacing: '-0.01em' },  // 18
-  subtitle1: { fontSize: '1rem',     fontWeight: 500, lineHeight: 1.5 },
-  subtitle2: { fontSize: '0.875rem', fontWeight: 500, lineHeight: 1.5 },
-  body1: { fontSize: '1rem',     fontWeight: 400, lineHeight: 1.6 },
-  body2: { fontSize: '0.875rem', fontWeight: 400, lineHeight: 1.55 },
-  button: { fontSize: '0.875rem', fontWeight: 600, lineHeight: 1.5, letterSpacing: 0, textTransform: 'none' as const },
+  // Prose + buttons opt back into Sans (long-form reading; approachable labels).
+  subtitle1: { fontFamily: sans, fontSize: '1rem',     fontWeight: 500, lineHeight: 1.5 },
+  subtitle2: { fontFamily: sans, fontSize: '0.875rem', fontWeight: 500, lineHeight: 1.5 },
+  body1: { fontFamily: sans, fontSize: '1rem',     fontWeight: 400, lineHeight: 1.6 },
+  body2: { fontFamily: sans, fontSize: '0.875rem', fontWeight: 400, lineHeight: 1.55 },
+  button: { fontFamily: sans, fontSize: '0.875rem', fontWeight: 600, lineHeight: 1.5, letterSpacing: 0, textTransform: 'none' as const },
   caption: { fontFamily: mono, fontSize: '0.75rem', fontWeight: 400, lineHeight: 1.5 },
   overline: { fontFamily: mono, fontSize: '0.6875rem', fontWeight: 500, lineHeight: 1.5, letterSpacing: '0.14em', textTransform: 'uppercase' as const },
 };

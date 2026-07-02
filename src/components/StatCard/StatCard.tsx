@@ -47,7 +47,7 @@ export function StatCard({
         <Box sx={{ minWidth: 0 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
             {icon && <Box sx={{ color: 'text.secondary', display: 'inline-flex' }}>{icon}</Box>}
-            <Typography variant="body2" color="text.secondary" noWrap>
+            <Typography variant="overline" color="text.secondary" noWrap sx={{ lineHeight: 1.5 }}>
               {label}
             </Typography>
           </Box>

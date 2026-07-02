@@ -5,7 +5,7 @@ import { TypeRamp } from '../specimens/TypeRamp';
 
 # Typography
 
-**IBM Plex Mono** for headings, labels, and data (IDs, numbers, code); **IBM Plex Sans** for body copy and buttons. Base 16px. Headings are semibold (600) **mono** with tightened tracking — the system's engine-room voice — while body copy is Regular (400) **sans** for dense, data-rich reading. This is the same split the Vael case-study page uses; the design system matches it exactly.
+**IBM Plex Mono is the system's default** — headings, labels, inputs, table cells, list items, chips, and all UI/data read mono. **IBM Plex Sans** is reserved for long-form prose (body copy, descriptions) and button labels. Base 16px. This **mono-dominant** split matches the Vael case-study page exactly: mono for the interface, sans for reading.
 
 ## Type ramp
 
@@ -21,12 +21,12 @@ Type is the workhorse of a data-dense product — every screen is text- and numb
 
 | Family | Purpose | Weights |
 | --- | --- | --- |
-| IBM Plex Mono | Headings (h1–h6), eyebrow/caption labels, IDs, numeric values, code | 400, 500, 600 |
-| IBM Plex Sans | Body copy, buttons, form inputs, subtitles | 400 (Regular), 500 (Medium), 600 (Semibold), 700 (Bold) |
+| IBM Plex Mono | **The default** — headings, labels, inputs, table cells, list items, chips, IDs, numeric values, code | 400, 500, 600 |
+| IBM Plex Sans | Long-form prose (body copy, descriptions) + button labels + subtitles | 400 (Regular), 500 (Medium), 600 (Semibold), 700 (Bold) |
 
 **Why IBM Plex Mono for headings and data?** The mono face carries the "engineered / blueprint" register the system is built on — headings read as precise, technical labels rather than editorial display type, which is the identity Vael and its case-study page share. Fixed-width alignment also makes long identifiers (e.g. `req-20240115-abc123`) scannable character-by-character and keeps numeric columns and decimal points aligned. So the whole "structural" layer — headings, overlines, captions, table headers, tooltips, and data — is Mono.
 
-**Why IBM Plex Sans for body?** Long-form reading wants a proportional face. IBM Plex Sans is a highly legible, screen-optimized sans-serif with a large x-height that reads cleanly in dense, data-rich screens, and it pairs with IBM Plex Mono as a single type superfamily so body and structure read as one system. Buttons and inputs stay Sans too, so interactive labels feel approachable next to the mono chrome.
+**Why IBM Plex Sans for body?** Long-form reading wants a proportional face. IBM Plex Sans is a highly legible, screen-optimized sans-serif with a large x-height that reads cleanly in dense, data-rich screens, and it pairs with IBM Plex Mono as a single type superfamily so body and structure read as one system. Button labels stay Sans too, so the primary actions feel approachable next to the mono interface (input *values* are data, so they're mono).
 
 ### Full variant scale (13 tokens)
 

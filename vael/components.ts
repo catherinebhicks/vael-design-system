@@ -21,6 +21,7 @@ declare module '@mui/material/Paper' {
 }
 
 const mono = blueprint.font.mono;
+const sans = blueprint.font.sans;
 
 /** Blueprint blue focus glow, ~16% alpha (hex 29) — mirrors the site's :focus. */
 const glow = (main: string) => `0 0 0 3px ${main}29`;
@@ -98,7 +99,13 @@ export const components: ThemeOptions['components'] = {
     },
   },
   MuiChip: { styleOverrides: { root: { borderRadius: 8, fontWeight: 500 } } },
-  MuiAlert: { styleOverrides: { root: { borderRadius: 10 } } },
+  // Alert: rounded; the message is short prose → Sans (site .d-alert span). Title stays mono.
+  MuiAlert: {
+    styleOverrides: {
+      root: { borderRadius: 10 },
+      message: { fontFamily: sans },
+    },
+  },
   // Inverted tooltip (ink surface, bg-colored text), mono — matches site .d-tooltip.
   MuiTooltip: {
     styleOverrides: {
@@ -305,6 +312,23 @@ export const components: ThemeOptions['components'] = {
   // Stepper connector → hairline (site .d-step separator).
   MuiStepConnector: {
     styleOverrides: { line: ({ theme }) => ({ borderColor: theme.palette.divider }) },
+  },
+
+  // ─── Batch 7: mono-dominant reconciliation ───────────────────────────────────
+  // Data that MUI renders with a body variant (→ Sans) is forced back to mono to
+  // match the page (which is mono for all UI/data). Body *prose* stays Sans.
+  // Input values are data → mono (MUI InputBase applies body1/Sans; override it). Site .d-field input.
+  MuiInputBase: {
+    styleOverrides: { input: { fontFamily: mono } },
+  },
+  MuiTableCell: {
+    styleOverrides: { root: { fontFamily: mono } }, // body cells (head is already mono)
+  },
+  MuiListItemText: {
+    styleOverrides: { primary: { fontFamily: mono }, secondary: { fontFamily: mono } },
+  },
+  MuiFormControlLabel: {
+    styleOverrides: { label: { fontFamily: mono } }, // checkbox/radio/switch labels (site .d-check)
   },
 };
 
