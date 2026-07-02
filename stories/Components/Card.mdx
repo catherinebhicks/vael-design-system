@@ -26,7 +26,7 @@ Scope: Tier 1 — Direct MUI usage. No Vael wrapper. Import from `@mui/material/
 | Prop | Type / Values | Default | Notes |
 | --- | --- | --- | --- |
 | raised | bool | false | Shorthand for `elevation={8}`. Prefer explicit elevation when you need a specific shadow level. |
-| variant | "elevation" \| "outlined" | "elevation" | Use `"outlined"` for digest/summary cards that sit inside an already-elevated surface. |
+| variant | "elevation" \| "outlined" \| "accent" | "elevation" | Use `"outlined"` for digest/summary cards inside an already-elevated surface. **`"accent"`** adds a glowing blue accent-bar down the left edge (the engine-room flourish from the case-study page) — for a highlighted/featured card. |
 | elevation | number (0–24) | 1 | Inherited from Paper. Controls drop-shadow depth. Keep ≤4 for inline cards; reserve 8+ for modals/popovers. |
 | square | bool | false | Removes the 14px border-radius. Use in flush-edge layouts (e.g., full-bleed panel sections). |
 | sx | SxProps | — | MUI system prop for one-off style overrides. Prefer tokens over raw values. |

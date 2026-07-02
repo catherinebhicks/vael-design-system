@@ -39,3 +39,21 @@ export const Outlined: StoryObj = {
     </Card>
   ),
 };
+
+/**
+ * Opt-in engine-room flourish: `variant="accent"` adds the landing page's glowing
+ * blue accent-bar down the left edge. Use for a highlighted/featured card.
+ */
+export const Accent: StoryObj = {
+  render: () => (
+    <Card variant="accent" sx={{ maxWidth: 345 }}>
+      <CardContent>
+        <Typography variant="h5" gutterBottom>Accent Card</Typography>
+        <Typography variant="body2" color="text.secondary">
+          A glowing blue accent-bar marks this card as featured — the same device the
+          case-study page uses on its panels.
+        </Typography>
+      </CardContent>
+    </Card>
+  ),
+};

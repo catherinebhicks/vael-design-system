@@ -12,6 +12,14 @@ import type { ThemeOptions } from '@mui/material/styles';
 import type {} from '@mui/lab/themeAugmentation'; // adds MuiTimeline* slots to Components
 import { blueprint } from './blueprint';
 
+// Opt-in Card/Paper variant: variant="accent" adds the page's glowing accent-bar.
+// Card's `variant` prop derives from Paper, so augment PaperPropsVariantOverrides.
+declare module '@mui/material/Paper' {
+  interface PaperPropsVariantOverrides {
+    accent: true;
+  }
+}
+
 const mono = blueprint.font.mono;
 
 /** Blueprint blue focus glow, ~16% alpha (hex 29) — mirrors the site's :focus. */
@@ -61,6 +69,26 @@ export const components: ThemeOptions['components'] = {
         boxShadow: theme.shadows[2],
       }),
     },
+    // Opt-in engine-room flourish: a glowing blue accent-bar (site .panel::before).
+    variants: [
+      {
+        props: { variant: 'accent' },
+        style: ({ theme }) => ({
+          position: 'relative',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            left: 0,
+            top: 18,
+            bottom: 18,
+            width: 3,
+            borderRadius: 3,
+            backgroundColor: theme.palette.primary.main,
+            boxShadow: `0 0 12px ${theme.palette.primary.main}3d`,
+          },
+        }),
+      },
+    ],
   },
   // Card headers read as blueprint "window-chrome" labels: mono, on a hairline.
   MuiCardHeader: {
