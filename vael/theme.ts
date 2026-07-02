@@ -2,9 +2,10 @@
  * Vael Design System — MUI theme (hand-authored)
  *
  * The "Blueprint / Engine-Room" aesthetic layered on MUI v7 — matching the Vael
- * case-study landing page so the two read as one product: IBM Plex Sans + IBM
- * Plex Mono, blueprint surfaces, hairline borders, tight (8px) geometry, a blue
- * focus glow, and mono metadata labels — while keeping Vael's own brand blue.
+ * case-study landing page so the two read as one product: IBM Plex Mono headings
+ * + data/label roles, IBM Plex Sans body, blueprint surfaces, hairline borders,
+ * tight (8px) geometry, and a blue focus glow — while keeping Vael's brand blue.
+ * The landing page is the reference; this theme conforms to it.
  *
  * Light and dark modes share one set of typography / shape / shadows / component
  * overrides; only the palette differs. All surface/ink/line values come from the
@@ -53,21 +54,23 @@ const shadows = [
   s['2xl'], s['2xl'], s['2xl'], s['2xl'], s['2xl'],
 ] as Shadows;
 
-// ─── Typography (IBM Plex Sans; mono for data/label roles) ────────────────────
-// Headings + body use IBM Plex Sans; the "data" roles (overline, caption) use
-// IBM Plex Mono to echo the site's eyebrow/label treatment.
+// ─── Typography (IBM Plex Mono headings; IBM Plex Sans body) ──────────────────
+// Matches the Vael landing page's engine-room voice: headings + data/label roles
+// (h1–h6, overline, caption) use IBM Plex Mono; body copy and buttons use IBM
+// Plex Sans. Heading tracking tightens with size (mono glyphs are wide) to echo
+// the page's ramp (`.hero h1` −0.045em … `h2.big` −0.02em … `.panel h3`).
 const typography: ThemeOptions['typography'] = {
   fontFamily: blueprint.font.sans,
   fontWeightLight: 400,
   fontWeightRegular: 400,
   fontWeightMedium: 500,
   fontWeightBold: 700,
-  h1: { fontSize: '3rem',     fontWeight: 600, lineHeight: 1.2,  letterSpacing: '-0.03em' }, // 48
-  h2: { fontSize: '2.25rem',  fontWeight: 600, lineHeight: 1.25, letterSpacing: '-0.025em' }, // 36
-  h3: { fontSize: '1.875rem', fontWeight: 600, lineHeight: 1.3,  letterSpacing: '-0.02em' }, // 30
-  h4: { fontSize: '1.5rem',   fontWeight: 600, lineHeight: 1.35, letterSpacing: '-0.015em' }, // 24
-  h5: { fontSize: '1.25rem',  fontWeight: 600, lineHeight: 1.4,  letterSpacing: '-0.01em' },  // 20
-  h6: { fontSize: '1.125rem', fontWeight: 600, lineHeight: 1.45, letterSpacing: '-0.01em' },  // 18
+  h1: { fontFamily: mono, fontSize: '3rem',     fontWeight: 600, lineHeight: 1.15, letterSpacing: '-0.04em' },  // 48
+  h2: { fontFamily: mono, fontSize: '2.25rem',  fontWeight: 600, lineHeight: 1.2,  letterSpacing: '-0.03em' },  // 36
+  h3: { fontFamily: mono, fontSize: '1.875rem', fontWeight: 600, lineHeight: 1.25, letterSpacing: '-0.025em' }, // 30
+  h4: { fontFamily: mono, fontSize: '1.5rem',   fontWeight: 600, lineHeight: 1.3,  letterSpacing: '-0.02em' },  // 24
+  h5: { fontFamily: mono, fontSize: '1.25rem',  fontWeight: 600, lineHeight: 1.35, letterSpacing: '-0.015em' }, // 20
+  h6: { fontFamily: mono, fontSize: '1.125rem', fontWeight: 600, lineHeight: 1.4,  letterSpacing: '-0.01em' },  // 18
   subtitle1: { fontSize: '1rem',     fontWeight: 500, lineHeight: 1.5 },
   subtitle2: { fontSize: '0.875rem', fontWeight: 500, lineHeight: 1.5 },
   body1: { fontSize: '1rem',     fontWeight: 400, lineHeight: 1.6 },

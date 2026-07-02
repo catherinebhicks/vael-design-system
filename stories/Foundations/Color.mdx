@@ -56,6 +56,18 @@ Semantic tokens are grouped by role. Each token communicates intent, so componen
 
 **Why this mapping?** Each metric was assigned to the token that most intuitively matched its nature. Once assigned, mappings are permanent — changing them breaks visual recognition across all historical charts and reports.
 
+### Signature accents
+
+The Blueprint identity carries a few accent devices, shared with the Vael case-study page, available as tokens (via the `blueprint` export / `--*` CSS vars) rather than components:
+
+| Device | Token | Use |
+| --- | --- | --- |
+| **Signal (coral)** | `--signal` · `#b8401b` light / `#ff8a5b` dark | Emphasis — a highlighted phrase, a pull-quote rail, a progress indicator. The one warm accent against the blues; use sparingly. Background/decorative use only unless the text independently meets contrast. |
+| **Blue glow** | `--glow` · `rgba(21,101,192,0.16)` / `rgba(66,165,245,0.35)` | "Live"/active states — focus rings (already on buttons + inputs), the node-dot, active pipeline steps. |
+| **Node-dot** | `--blue` + `--glow` | An 8–10px ringed dot marking a live/active point (used in the Legend and the manager brand). |
+
+These are compositions, not components — reach for them when building a Blueprint-styled surface (e.g. a callout or a status marker), the way the case-study page does.
+
 ### Brand palette
 
 | Token | Value | Contrast and usage |
