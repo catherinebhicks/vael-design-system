@@ -7,6 +7,8 @@ import { LineStyleSpecimen, GuardrailSpecimen, ChartTypeSpecimens } from '../spe
 
 Charts are first-class components, not ad-hoc visualizations. Built on **Highcharts styled mode**, driven by MUI tokens and a deterministic metric-to-color map. Every series carries a distinct **line style in addition to color**, so the system holds up in colorblind, print, and screenshot contexts.
 
+> This page is the **usage** reference (chart types, line styles, guardrails). For *how* the Highcharts layer was folded into the design system — the decision, the three-layer theming mechanism, and the tradeoffs — see [Chart Layer](?path=/docs/foundations-chart-layer--docs).
+
 ## Built on Highcharts
 
 Every chart in the system — `HighchartsChart`, `SparklineChart`, and the `AreaChart` / `BarChart` / `DonutChart` wrappers — renders with **[Highcharts](https://www.highcharts.com/)** via `highcharts-react-official`. Vael themes Highcharts to its Blueprint aesthetic (palette, hairline axes, inverted mono tooltips, IBM Plex Mono labels) through a global `Highcharts.setOptions` plus a per-render `buildVcThemeOptions(theme)` merge in `vcDefaults.ts` — it does **not** swap the engine. The chart components are thin, opinionated wrappers over that themed base, and follow the light/dark toggle automatically.
