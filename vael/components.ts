@@ -21,7 +21,6 @@ declare module '@mui/material/Paper' {
 }
 
 const mono = blueprint.font.mono;
-const sans = blueprint.font.sans;
 
 /** Blueprint blue focus glow, ~16% alpha (hex 29) — mirrors the site's :focus. */
 const glow = (main: string) => `0 0 0 3px ${main}29`;
@@ -99,11 +98,10 @@ export const components: ThemeOptions['components'] = {
     },
   },
   MuiChip: { styleOverrides: { root: { borderRadius: 8, fontWeight: 500 } } },
-  // Alert: rounded; the message is short prose → Sans (site .d-alert span). Title stays mono.
+  // Alert: rounded. Message + title both inherit the single Mono voice.
   MuiAlert: {
     styleOverrides: {
       root: { borderRadius: 10 },
-      message: { fontFamily: sans },
     },
   },
   // Inverted tooltip (ink surface, bg-colored text), mono — matches site .d-tooltip.
