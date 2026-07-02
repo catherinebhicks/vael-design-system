@@ -11,10 +11,11 @@ permissions:
   pages: write
   id-token: write
 
-# One concurrent deploy; don't cancel an in-progress publish
+# One concurrent deploy. Cancel a superseded queued run so rapid pushes to main
+# don't deadlock each other at the Pages "deployment_queued" step (which times out).
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
