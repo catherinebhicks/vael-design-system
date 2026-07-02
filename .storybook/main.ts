@@ -10,6 +10,9 @@ const config: StorybookConfig = {
   addons: [
     '@storybook/addon-a11y',
     '@storybook/addon-designs',
+    // One toggle drives the whole app: swaps the manager (chrome) theme and,
+    // via useDarkMode() in preview.tsx, the components + docs.
+    'storybook-dark-mode',
     {
       name: '@storybook/addon-docs',
       options: {

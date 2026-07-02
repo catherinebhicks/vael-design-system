@@ -1,0 +1,151 @@
+/* ============================================================================
+   Vael Storybook — Blueprint docs skin
+   Styles the MDX docs pages (.sbdocs) to match the case-study landing page:
+   IBM Plex Mono editorial headings, blueprint grid page, hairline tables,
+   dark code blocks. Reads the --bg/--ink/--blue/… vars injected per-mode by
+   preview.tsx's CssVarInjector; falls back to light values below so pure-prose
+   pages render correctly even before a story decorator runs.
+   ============================================================================ */
+
+:root {
+  --bg: #e9eff7; --grid: #d2ddec; --panel: #ffffff; --panel-2: #f4f8ff;
+  --line: #dbe4f0; --line-2: #c4d3e6;
+  --ink: #141c28; --dim: #54637a; --faint: #586780;
+  --blue: #1565c0; --blue-2: #1976d2; --blue-soft: #42a5f5; --glow: rgba(21,101,192,0.16);
+  --signal: #b8401b; --codebg: #0e141c; --codeink: #dce6f2;
+  --sans: "IBM Plex Sans", "Helvetica", "Arial", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --grid-size: clamp(28px, 3.4vw, 44px);
+  --code-key: #8fb6e8; --code-str: #7ee7b0; --code-cm: #6b7891;
+}
+
+/* ── Page canvas ─────────────────────────────────────────────────────────── */
+.sbdocs.sbdocs-wrapper {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  background-position: center;
+  padding: clamp(20px, 4vw, 48px) 20px;
+}
+.sbdocs-content { max-width: 900px; }
+
+/* ── Typography ──────────────────────────────────────────────────────────── */
+/* Element-scoped so it catches both MDX headings (.sbdocs-h*) and autodocs
+   headings (.sbdocs-title / plain h2/h3 with hashed emotion classes). */
+.sbdocs.sbdocs-content { font-family: var(--sans); color: var(--dim); }
+.sbdocs-content h1,
+.sbdocs-content h2,
+.sbdocs-content h3,
+.sbdocs-content h4,
+.sbdocs-content h5,
+.sbdocs-content h6,
+.sbdocs-content .sbdocs-title {
+  font-family: var(--mono);
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  border: none;
+}
+.sbdocs-content h1,
+.sbdocs-content .sbdocs-title { font-size: 2.4rem; line-height: 1.05; letter-spacing: -0.035em; }
+.sbdocs-content h2 {
+  font-size: 1.6rem; line-height: 1.1; margin-top: 2.4em;
+  padding-top: 1em; border-top: 1px solid var(--line);
+}
+.sbdocs-content .sbdocs-title + h2,
+.sbdocs-content h2:first-of-type { margin-top: 1em; }
+.sbdocs-content h3 { font-size: 1.2rem; }
+.sbdocs-content p,
+.sbdocs-content li {
+  font-family: var(--sans);
+  color: var(--dim);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.sbdocs-content p strong,
+.sbdocs-content li strong { color: var(--ink); font-weight: 600; }
+.sbdocs-content a { color: var(--blue); text-decoration: none; }
+.sbdocs-content a:hover { text-decoration: underline; }
+/* Autodocs subtitle (component description under the title) */
+.sbdocs-content .sbdocs-subtitle { color: var(--dim); font-family: var(--sans); }
+
+/* ── Tables — hairline, mono headers (matches site .d-table) ─────────────── */
+.sbdocs-content .docblock-argstable th,
+.sbdocs-content table.sbdocs-table th,
+.sbdocs-content table th {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--faint);
+  background: var(--panel-2);
+  border-bottom: 1px solid var(--line-2);
+  text-align: left;
+}
+.sbdocs-content table td {
+  font-size: 0.875rem;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+.sbdocs-content table {
+  border-collapse: collapse;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--panel);
+}
+
+/* ── Code — dark blocks with the site's syntax colors ────────────────────── */
+.sbdocs-content code,
+.sbdocs-content .sbdocs-code {
+  font-family: var(--mono);
+  background: color-mix(in srgb, var(--blue) 12%, transparent);
+  color: var(--blue);
+  border-radius: 5px;
+  padding: 0.12em 0.4em;
+  font-size: 0.85em;
+}
+.sbdocs-content pre,
+.sbdocs-content .sbdocs-pre,
+.sbdocs-content .prismjs {
+  font-family: var(--mono);
+  background: var(--codebg) !important;
+  color: var(--codeink) !important;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+}
+.sbdocs-content pre code {
+  background: transparent;
+  color: var(--codeink);
+  padding: 0;
+}
+.sbdocs-content .token.keyword,
+.sbdocs-content .token.tag { color: var(--code-key); }
+.sbdocs-content .token.string,
+.sbdocs-content .token.attr-value { color: var(--code-str); }
+.sbdocs-content .token.comment { color: var(--code-cm); }
+
+/* ── Blockquote → coral signal rail (matches site .bigq) ─────────────────── */
+.sbdocs-content blockquote {
+  border-left: 3px solid var(--signal);
+  background: var(--panel-2);
+  color: var(--ink);
+  font-family: var(--mono);
+  border-radius: 0 8px 8px 0;
+}
+
+/* ── Dividers ────────────────────────────────────────────────────────────── */
+.sbdocs-content hr { border-color: var(--line); }
+
+/* ── Story canvas blocks inside docs — blueprint "stage" frame ───────────── */
+.sbdocs-content .docs-story,
+.sbdocs-content .sbdocs-preview {
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+  background: var(--panel);
+  box-shadow: 0 18px 40px -24px rgba(20,28,40,0.18);
+}
+.sbdocs-content .sbdocs-preview .os-content,
+.sbdocs-content .docs-story > div:first-child { background: transparent; }

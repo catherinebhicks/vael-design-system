@@ -2,7 +2,8 @@ import type React from 'react';
 import Highcharts from 'highcharts';
 import 'highcharts/modules/accessibility';
 import type { Theme } from '@mui/material/styles';
-import { chartVariableColors, chartEventColors, palette, theme } from '../../theme';
+import { chartVariableColors, chartEventColors, palette } from '../../theme';
+import { blueprint } from '../../../vael/blueprint';
 
 // Chart variable → CSS custom property name
 export const VC_VAR_NAMES: Record<string, string> = {
@@ -42,17 +43,17 @@ export function buildVcVars(t: Theme): React.CSSProperties {
     '--vc-surface':         t.palette.background.paper,
     '--vc-border':          t.palette.divider,
     '--vc-grid':            t.palette.divider,
-    // Font
-    fontFamily:              t.typography.fontFamily,
+    // Font — IBM Plex Mono for chart data/labels (matches the site's charts)
+    fontFamily:              blueprint.font.mono,
     fontSize:                t.typography.body2.fontSize,
   } as React.CSSProperties;
 }
 
-// ─── Preline-aesthetic chart theme ───────────────────────────────────────────
+// ─── Blueprint chart theme ───────────────────────────────────────────────────
 // Default categorical series colors drawn from the Vael palette (harmonious,
-// on-brand, colorblind-distinct). Neutral hairline axes + a rounded, soft-shadow
-// tooltip give the clean, modern look of the reskinned system.
-const fontFamily = theme.typography.fontFamily as string;
+// on-brand, colorblind-distinct). IBM Plex Mono labels + neutral hairline axes
+// match the Engine-Room charts on the case-study landing page.
+const fontFamily = blueprint.font.mono;
 const gridColor = palette.neutral[200];
 const axisColor = palette.neutral[300];
 const labelColor = palette.neutral[500];

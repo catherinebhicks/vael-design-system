@@ -1,22 +1,28 @@
 /**
  * Vael Design System — MUI theme (hand-authored)
  *
- * A polished, Preline-influenced aesthetic layered on MUI v7:
- * refined gray neutrals, Inter typography, rounded (8px) geometry, soft layered
- * shadows, and component styling — while keeping Vael's own brand palette.
+ * The "Blueprint / Engine-Room" aesthetic layered on MUI v7 — matching the Vael
+ * case-study landing page so the two read as one product: IBM Plex Sans + IBM
+ * Plex Mono, blueprint surfaces, hairline borders, tight (8px) geometry, a blue
+ * focus glow, and mono metadata labels — while keeping Vael's own brand blue.
  *
  * Light and dark modes share one set of typography / shape / shadows / component
- * overrides; only the palette differs.
+ * overrides; only the palette differs. All surface/ink/line values come from the
+ * shared `blueprint` token source (`vael/blueprint.ts`).
  *
  * Usage:
  *   import { theme } from 'vael-design-system';
  *   <ThemeProvider theme={theme}>...</ThemeProvider>
  *
- * The Inter font must be loaded by the app (e.g. `import '@fontsource-variable/inter'`).
+ * IBM Plex must be loaded by the app (e.g. `import '@fontsource/ibm-plex-sans'`
+ * and `import '@fontsource/ibm-plex-mono'`).
  */
 
 import { createTheme } from '@mui/material/styles';
 import type { Shadows, ThemeOptions } from '@mui/material/styles';
+import { blueprint } from './blueprint';
+
+const mono = blueprint.font.mono;
 
 // ─── Neutrals (Tailwind "gray") ───────────────────────────────────────────────
 const gray = {
@@ -47,26 +53,28 @@ const shadows = [
   s['2xl'], s['2xl'], s['2xl'], s['2xl'], s['2xl'],
 ] as Shadows;
 
-// ─── Typography (Inter, modern scale) ─────────────────────────────────────────
+// ─── Typography (IBM Plex Sans; mono for data/label roles) ────────────────────
+// Headings + body use IBM Plex Sans; the "data" roles (overline, caption) use
+// IBM Plex Mono to echo the site's eyebrow/label treatment.
 const typography: ThemeOptions['typography'] = {
-  fontFamily: '"Inter Variable", "Inter", "Helvetica", "Arial", sans-serif',
+  fontFamily: blueprint.font.sans,
   fontWeightLight: 400,
   fontWeightRegular: 400,
   fontWeightMedium: 500,
   fontWeightBold: 700,
-  h1: { fontSize: '3rem',     fontWeight: 700, lineHeight: 1.2,  letterSpacing: '-0.02em' }, // 48
-  h2: { fontSize: '2.25rem',  fontWeight: 700, lineHeight: 1.25, letterSpacing: '-0.02em' }, // 36
-  h3: { fontSize: '1.875rem', fontWeight: 600, lineHeight: 1.3,  letterSpacing: '-0.01em' }, // 30
-  h4: { fontSize: '1.5rem',   fontWeight: 600, lineHeight: 1.35, letterSpacing: '-0.01em' }, // 24
-  h5: { fontSize: '1.25rem',  fontWeight: 600, lineHeight: 1.4 },                            // 20
-  h6: { fontSize: '1.125rem', fontWeight: 600, lineHeight: 1.45 },                           // 18
+  h1: { fontSize: '3rem',     fontWeight: 600, lineHeight: 1.2,  letterSpacing: '-0.03em' }, // 48
+  h2: { fontSize: '2.25rem',  fontWeight: 600, lineHeight: 1.25, letterSpacing: '-0.025em' }, // 36
+  h3: { fontSize: '1.875rem', fontWeight: 600, lineHeight: 1.3,  letterSpacing: '-0.02em' }, // 30
+  h4: { fontSize: '1.5rem',   fontWeight: 600, lineHeight: 1.35, letterSpacing: '-0.015em' }, // 24
+  h5: { fontSize: '1.25rem',  fontWeight: 600, lineHeight: 1.4,  letterSpacing: '-0.01em' },  // 20
+  h6: { fontSize: '1.125rem', fontWeight: 600, lineHeight: 1.45, letterSpacing: '-0.01em' },  // 18
   subtitle1: { fontSize: '1rem',     fontWeight: 500, lineHeight: 1.5 },
   subtitle2: { fontSize: '0.875rem', fontWeight: 500, lineHeight: 1.5 },
   body1: { fontSize: '1rem',     fontWeight: 400, lineHeight: 1.6 },
   body2: { fontSize: '0.875rem', fontWeight: 400, lineHeight: 1.55 },
   button: { fontSize: '0.875rem', fontWeight: 600, lineHeight: 1.5, letterSpacing: 0, textTransform: 'none' as const },
-  caption: { fontSize: '0.75rem', fontWeight: 400, lineHeight: 1.5 },
-  overline: { fontSize: '0.75rem', fontWeight: 600, lineHeight: 1.5, letterSpacing: '0.08em', textTransform: 'uppercase' as const },
+  caption: { fontFamily: mono, fontSize: '0.75rem', fontWeight: 400, lineHeight: 1.5 },
+  overline: { fontFamily: mono, fontSize: '0.6875rem', fontWeight: 500, lineHeight: 1.5, letterSpacing: '0.14em', textTransform: 'uppercase' as const },
 };
 
 // ─── Component overrides (the "polish") — palette-aware, shared light/dark ─────
@@ -74,8 +82,8 @@ const components: ThemeOptions['components'] = {
   MuiButton: {
     defaultProps: { disableElevation: true },
     styleOverrides: {
-      root: { borderRadius: 10, textTransform: 'none', fontWeight: 600, paddingInline: 16, boxShadow: 'none' },
-      sizeSmall: { paddingBlock: 5, paddingInline: 12, borderRadius: 8 },
+      root: { borderRadius: 8, textTransform: 'none', fontWeight: 600, paddingInline: 16, boxShadow: 'none' },
+      sizeSmall: { paddingBlock: 5, paddingInline: 12, borderRadius: 7 },
       sizeLarge: { paddingBlock: 10, paddingInline: 20 },
       containedPrimary: ({ theme }) => ({
         boxShadow: theme.shadows[1],
@@ -84,43 +92,79 @@ const components: ThemeOptions['components'] = {
       outlined: ({ theme }) => ({ borderColor: theme.palette.divider }),
     },
   },
+  // Blueprint blue focus glow on all focusable surfaces (mirrors site :focus).
+  MuiButtonBase: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        '&.Mui-focusVisible': { boxShadow: `0 0 0 3px ${theme.palette.primary.main}29` },
+      }),
+    },
+  },
   MuiOutlinedInput: {
     styleOverrides: {
       root: ({ theme }) => ({
-        borderRadius: 10,
+        borderRadius: 8,
         '& .MuiOutlinedInput-notchedOutline': { borderColor: theme.palette.divider },
-        '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: gray[300] },
+        '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: theme.palette.text.disabled },
         '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderWidth: 1, borderColor: theme.palette.primary.main },
         '&.Mui-focused': { boxShadow: `0 0 0 3px ${theme.palette.primary.main}29` },
       }),
     },
   },
   MuiPaper: {
-    styleOverrides: { root: { backgroundImage: 'none' }, rounded: { borderRadius: 16 } },
+    styleOverrides: { root: { backgroundImage: 'none' }, rounded: { borderRadius: 14 } },
   },
   MuiCard: {
     styleOverrides: {
       root: ({ theme }) => ({
-        borderRadius: 16,
+        borderRadius: 14,
         border: `1px solid ${theme.palette.divider}`,
         boxShadow: theme.shadows[2],
       }),
     },
   },
-  MuiChip: { styleOverrides: { root: { borderRadius: 10, fontWeight: 500 } } },
-  MuiAlert: { styleOverrides: { root: { borderRadius: 12 } } },
-  MuiTooltip: {
+  // Card headers read as blueprint "window-chrome" labels: mono, on a hairline.
+  MuiCardHeader: {
     styleOverrides: {
-      tooltip: { borderRadius: 8, backgroundColor: gray[900], fontSize: '0.75rem', padding: '6px 10px' },
-      arrow: { color: gray[900] },
+      title: { fontFamily: mono, fontSize: '0.9375rem', fontWeight: 500, letterSpacing: '-0.005em' },
+      subheader: ({ theme }) => ({ fontFamily: mono, fontSize: '0.75rem', color: theme.palette.text.secondary }),
     },
   },
+  MuiChip: { styleOverrides: { root: { borderRadius: 8, fontWeight: 500 } } },
+  MuiAlert: { styleOverrides: { root: { borderRadius: 10 } } },
+  // Inverted tooltip (ink surface, bg-colored text), mono — matches site .d-tooltip.
+  MuiTooltip: {
+    styleOverrides: {
+      tooltip: ({ theme }) => ({
+        borderRadius: 6,
+        backgroundColor: theme.palette.text.primary,
+        color: theme.palette.background.default,
+        fontFamily: mono,
+        fontSize: '0.6875rem',
+        padding: '6px 10px',
+      }),
+      arrow: ({ theme }) => ({ color: theme.palette.text.primary }),
+    },
+  },
+  // Table headers → mono, uppercase, muted (matches site .d-table th).
   MuiTableHead: {
-    styleOverrides: { root: ({ theme }) => ({ '& .MuiTableCell-root': { backgroundColor: theme.palette.background.default, fontWeight: 600 } }) },
+    styleOverrides: {
+      root: ({ theme }) => ({
+        '& .MuiTableCell-root': {
+          backgroundColor: theme.palette.background.default,
+          fontFamily: mono,
+          fontWeight: 500,
+          fontSize: '0.6875rem',
+          textTransform: 'uppercase',
+          letterSpacing: '0.06em',
+          color: theme.palette.text.secondary,
+        },
+      }),
+    },
   },
 };
 
-const shape = { borderRadius: 10 };
+const shape = { borderRadius: 8 };
 const spacing = 8;
 const breakpoints = { values: { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536 } };
 const transitions: ThemeOptions['transitions'] = {
@@ -144,18 +188,18 @@ export const theme = createTheme({
     warning:   { main: '#ef6c00', dark: '#e65100', light: '#ff9800', contrastText: '#ffffff' },
     info:      { main: '#0288d1', dark: '#01579b', light: '#03a9f4', contrastText: '#ffffff' },
     success:   { main: '#2e7d32', dark: '#1b5e20', light: '#4caf50', contrastText: '#ffffff' },
-    // Refined neutrals (Preline / Tailwind gray).
+    // Blueprint surfaces + ink (matches the landing page light theme).
     grey: gray,
-    text: { primary: gray[900], secondary: gray[500], disabled: gray[400] },
-    background: { default: gray[50], paper: '#ffffff' },
-    divider: gray[200],
+    text: { primary: blueprint.light.ink, secondary: blueprint.light.dim, disabled: blueprint.light.faint },
+    background: { default: blueprint.light.bg, paper: blueprint.light.panel },
+    divider: blueprint.light.line,
     action: {
-      active: gray[500],
-      hover: 'rgba(17,24,39,0.04)',
-      selected: 'rgba(17,24,39,0.08)',
-      disabled: 'rgba(17,24,39,0.26)',
-      disabledBackground: 'rgba(17,24,39,0.12)',
-      focus: 'rgba(17,24,39,0.12)',
+      active: blueprint.light.dim,
+      hover: 'rgba(20,28,40,0.04)',
+      selected: 'rgba(20,28,40,0.08)',
+      disabled: 'rgba(20,28,40,0.26)',
+      disabledBackground: 'rgba(20,28,40,0.12)',
+      focus: 'rgba(20,28,40,0.12)',
     },
   },
   typography,
@@ -173,23 +217,24 @@ export default theme;
 export const darkTheme = createTheme({
   palette: {
     mode: 'dark',
-    primary:   { main: '#90caf9', dark: '#42a5f5', light: '#e3f2fd', contrastText: 'rgba(0,0,0,0.87)' },
+    // Brighter blue accent for the near-black engine-room bg (site's dark --blue).
+    primary:   { main: '#42a5f5', dark: '#1976d2', light: '#90caf9', contrastText: '#08131f' },
     secondary: { main: '#ce93d8', dark: '#ab47bc', light: '#f3e5f5', contrastText: 'rgba(0,0,0,0.87)' },
     error:     { main: '#f44336', dark: '#d32f2f', light: '#e57373', contrastText: '#ffffff' },
     warning:   { main: '#ffa726', dark: '#f57c00', light: '#ffb74d', contrastText: 'rgba(0,0,0,0.87)' },
     info:      { main: '#29b6f6', dark: '#0288d1', light: '#4fc3f7', contrastText: 'rgba(0,0,0,0.87)' },
     success:   { main: '#66bb6a', dark: '#388e3c', light: '#81c784', contrastText: 'rgba(0,0,0,0.87)' },
     grey: gray,
-    text: { primary: '#f9fafb', secondary: '#9ca3af', disabled: '#6b7280' },
-    background: { default: '#111827', paper: '#1f2937' },
-    divider: 'rgba(255,255,255,0.10)',
+    text: { primary: blueprint.dark.ink, secondary: blueprint.dark.dim, disabled: blueprint.dark.faint },
+    background: { default: blueprint.dark.bg, paper: blueprint.dark.panel },
+    divider: blueprint.dark.line,
     action: {
-      active: 'rgba(255,255,255,0.56)',
-      hover: 'rgba(255,255,255,0.06)',
-      selected: 'rgba(255,255,255,0.12)',
-      disabled: 'rgba(255,255,255,0.30)',
-      disabledBackground: 'rgba(255,255,255,0.12)',
-      focus: 'rgba(255,255,255,0.12)',
+      active: 'rgba(220,230,242,0.56)',
+      hover: 'rgba(220,230,242,0.06)',
+      selected: 'rgba(220,230,242,0.12)',
+      disabled: 'rgba(220,230,242,0.30)',
+      disabledBackground: 'rgba(220,230,242,0.12)',
+      focus: 'rgba(220,230,242,0.12)',
     },
   },
   typography,
