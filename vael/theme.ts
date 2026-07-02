@@ -22,6 +22,7 @@
 import { createTheme } from '@mui/material/styles';
 import type { Shadows, ThemeOptions } from '@mui/material/styles';
 import { blueprint } from './blueprint';
+import { components } from './components';
 
 const mono = blueprint.font.mono;
 
@@ -80,93 +81,9 @@ const typography: ThemeOptions['typography'] = {
   overline: { fontFamily: mono, fontSize: '0.6875rem', fontWeight: 500, lineHeight: 1.5, letterSpacing: '0.14em', textTransform: 'uppercase' as const },
 };
 
-// ─── Component overrides (the "polish") — palette-aware, shared light/dark ─────
-const components: ThemeOptions['components'] = {
-  MuiButton: {
-    defaultProps: { disableElevation: true },
-    styleOverrides: {
-      root: { borderRadius: 8, textTransform: 'none', fontWeight: 600, paddingInline: 16, boxShadow: 'none' },
-      sizeSmall: { paddingBlock: 5, paddingInline: 12, borderRadius: 7 },
-      sizeLarge: { paddingBlock: 10, paddingInline: 20 },
-      containedPrimary: ({ theme }) => ({
-        boxShadow: theme.shadows[1],
-        '&:hover': { boxShadow: theme.shadows[2] },
-      }),
-      outlined: ({ theme }) => ({ borderColor: theme.palette.divider }),
-    },
-  },
-  // Blueprint blue focus glow on all focusable surfaces (mirrors site :focus).
-  MuiButtonBase: {
-    styleOverrides: {
-      root: ({ theme }) => ({
-        '&.Mui-focusVisible': { boxShadow: `0 0 0 3px ${theme.palette.primary.main}29` },
-      }),
-    },
-  },
-  MuiOutlinedInput: {
-    styleOverrides: {
-      root: ({ theme }) => ({
-        borderRadius: 8,
-        '& .MuiOutlinedInput-notchedOutline': { borderColor: theme.palette.divider },
-        '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: theme.palette.text.disabled },
-        '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderWidth: 1, borderColor: theme.palette.primary.main },
-        '&.Mui-focused': { boxShadow: `0 0 0 3px ${theme.palette.primary.main}29` },
-      }),
-    },
-  },
-  MuiPaper: {
-    styleOverrides: { root: { backgroundImage: 'none' }, rounded: { borderRadius: 14 } },
-  },
-  MuiCard: {
-    styleOverrides: {
-      root: ({ theme }) => ({
-        borderRadius: 14,
-        border: `1px solid ${theme.palette.divider}`,
-        boxShadow: theme.shadows[2],
-      }),
-    },
-  },
-  // Card headers read as blueprint "window-chrome" labels: mono, on a hairline.
-  MuiCardHeader: {
-    styleOverrides: {
-      title: { fontFamily: mono, fontSize: '0.9375rem', fontWeight: 500, letterSpacing: '-0.005em' },
-      subheader: ({ theme }) => ({ fontFamily: mono, fontSize: '0.75rem', color: theme.palette.text.secondary }),
-    },
-  },
-  MuiChip: { styleOverrides: { root: { borderRadius: 8, fontWeight: 500 } } },
-  MuiAlert: { styleOverrides: { root: { borderRadius: 10 } } },
-  // Inverted tooltip (ink surface, bg-colored text), mono — matches site .d-tooltip.
-  MuiTooltip: {
-    styleOverrides: {
-      tooltip: ({ theme }) => ({
-        borderRadius: 6,
-        backgroundColor: theme.palette.text.primary,
-        color: theme.palette.background.default,
-        fontFamily: mono,
-        fontSize: '0.6875rem',
-        padding: '6px 10px',
-      }),
-      arrow: ({ theme }) => ({ color: theme.palette.text.primary }),
-    },
-  },
-  // Table headers → mono, uppercase, muted (matches site .d-table th).
-  MuiTableHead: {
-    styleOverrides: {
-      root: ({ theme }) => ({
-        '& .MuiTableCell-root': {
-          backgroundColor: theme.palette.background.default,
-          fontFamily: mono,
-          fontWeight: 500,
-          fontSize: '0.6875rem',
-          textTransform: 'uppercase',
-          letterSpacing: '0.06em',
-          color: theme.palette.text.secondary,
-        },
-      }),
-    },
-  },
-};
-
+// ─── Component overrides (the "polish") ───────────────────────────────────────
+// Each component's engine-room styling lives in ./components (palette-aware,
+// shared light/dark). Matched to the landing page's `.d-*` demos.
 const shape = { borderRadius: 8 };
 const spacing = 8;
 const breakpoints = { values: { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536 } };
