@@ -39,19 +39,22 @@ Page copy is `copy-deck.md` (beats on the spine); the full story is `writing/dee
 
 ## Visual system
 
-- **Accent:** Vael blue `#1976d2` (+ `#1565c0` dark, `#42a5f5` light) — the real primary tokens. Coral `#FF6A4D` for callouts.
-- **Aesthetic = three styles as a rhythm, not a blend:**
-  - *Editorial* = the narrative spine (large headings, generous whitespace, pull quotes).
-  - *Design-system furniture* = recurring UI (token swatches, component cards, stat counters, the blue accent).
-  - *Dark "engine-room" interludes* = the two technical rungs inside "Where the leverage lived" (generated theme, docs generator) flip to a dark canvas + monospace; the contrast marks them as the technical heart.
-- **Type:** Fraunces display · Inter body/UI · JetBrains Mono code.
+**Blueprint / Engine-Room** — the same identity as the reskinned design system, so clicking through to the Storybook has no seam.
+
+- **Surfaces:** blueprint bg `#e9eff7` / panels `#ffffff`,`#f4f8ff` (light); `#0a0e14` / `#111925` (dark). Ink `#141c28` / `#dce6f2`. A fine **blueprint grid** background throughout; hairline borders; small radii (7–14px). Light default with a **dark toggle** (`data-theme`).
+- **Accent:** Vael blue `#1976d2` (+ `#1565c0` dark, `#42a5f5` light) — the real primary tokens — with a soft glow on live states. Coral "signal" `#b8401b` (light) / `#ff8a5b` (dark) for callouts.
+- **Aesthetic = one identity, with register shifts:**
+  - *Editorial* = the narrative spine (mono headings, generous whitespace, pull quotes on a coral rail).
+  - *Design-system furniture* = recurring UI (token swatches, component cards, stat counters, node-dot + "stage" chrome).
+  - *Dark "engine-room" register* = the two technical rungs inside "Where the leverage lived" and the OG card lean into the near-black dark canvas; the contrast marks the technical heart.
+- **Type:** IBM Plex Mono (display headings, eyebrows, labels, code) · IBM Plex Sans (body/UI).
 - Fully responsive; reduced-motion respected (`prefers-reduced-motion` disables the scroll animations).
 
 ## Imagery (built-from-data, no fabricated screenshots)
 
 - **Now (from the real system):** live token **swatch grid** from real values; styled **code-snippet cards** (`theme.ts` header, token JSON, `build.py` — all anonymized); the **two diagrams** re-rendered as inline SVG/React so they animate; **component-name grid** of the real 44 components; animated **stat counters** (27→44).
 - **Signature moment:** the **token → generated theme → docs** leverage assembles on scroll (dark rungs).
-- **Live proof (beat 7):** real component demos from the Vael library + the deployed **Storybook** (embed/link). The page must still look complete before the Storybook URL is wired.
+- **Live proof (beat 7):** faithful, interactive component demos on Vael's tokens (charts are real Highcharts) + the deployed **Storybook** (link) as the real library one click away.
 
 ## Page structure (8 beats — on the spine)
 
@@ -92,5 +95,5 @@ Content + data separated from presentation:
 - Responsive at 375 / 768 / 1280 px; `prefers-reduced-motion` disables animations cleanly.
 - Anonymization scan passes (no company name; no internal name; snippets scrubbed).
 - Visual QA via local preview screenshots before any deploy.
-- **Pre-publish dependency:** the static **Storybook is deployed to a public URL** before the page ships (so beat 7's "open it right now" link isn't dead).
+- ✅ **Storybook is deployed to a public URL** (https://catherinebhicks.github.io/vael-design-system/), reskinned to match this page — so beat 7's "open it right now" link is live and seamless.
 - **Gate:** Catherine reviews local preview; explicit approval required before push/deploy.

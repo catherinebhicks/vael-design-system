@@ -29,12 +29,14 @@ Anonymized throughout: "a bioscience startup," never the company; "Vael," never 
 ## Tech
 Next.js (App Router) + TypeScript + Tailwind + Framer Motion → Vercel. Vercel Analytics on. Page itself meets **WCAG AA**.
 
-## Visual identity — expressive & energetic
-- Palette: warm cream `#FBFAF8` · Vael blue `#1976d2` · coral `#FF6A4D`; near-black `#0E1116` for dark interludes; bold full-bleed color-blocking.
-- Type: **Fraunces** display · **Inter** body · **JetBrains Mono** code.
-- Texture: ~4% film grain on color blocks. Motion: playful-but-purposeful spring; reduced-motion safe.
-- Color rhythm: bold moments across the beats (the two "leverage" rungs go dark; a coral callout; a full-bleed blue block on the judgment beat).
-- Brand-mark: coral/blue token-square glyph + "Vael" in Fraunces with a coral accent on the final "l"; glyph doubles as favicon.
+## Visual identity — Blueprint / Engine-Room
+The page shares the design system's identity so there's no seam clicking through to the Storybook.
+- Palette: blueprint surfaces — light bg `#e9eff7` / panels `#ffffff`,`#f4f8ff`; dark "engine room" `#0a0e14` / `#111925`. Ink `#141c28` (light) / `#dce6f2` (dark). Brand blue `#1976d2` (+ `#1565c0` / `#42a5f5`) with a soft glow on live states. Coral "signal" `#b8401b` (light) / `#ff8a5b` (dark) for callouts.
+- Type: **IBM Plex Mono** for display headings, eyebrows, labels, and code · **IBM Plex Sans** for body/UI.
+- Texture: a fine **blueprint grid** background (two 1px gradients, 28–44px). Motion: purposeful — the typing-in hero, the pipeline flow, scroll reveals; reduced-motion safe.
+- Light default with a **dark toggle** (`data-theme`); the two "leverage" rungs and the OG card lean into the dark engine-room register.
+- Signature devices: node-dot motif, mac-window "stage" chrome, hairline borders, small radii (7–14px), dark code blocks.
+- Brand-mark: a node-dot glyph + "Vael" in IBM Plex Mono; dark "dev-tool" OG card.
 
 ## Signature hero — "code becomes design"
 1. Code reveals **line by line** (theme tokens, then a `<Button>` JSX).
@@ -50,7 +52,7 @@ Subhead: **"27 → 44 components · 80+ doc pages · one designer · a six-week 
 4. **Where the leverage lived** — the rising movement, one story across three sub-panels: tokens → **theme generated itself** (🌑 dark, the production build) → **docs wrote themselves** (`build.py`). Each rung pulls further out of production. Pitches/tickets can tag on as the upstream rung.
 5. **What AI couldn't do** (full-bleed blue, white cards) — the judgment turn, led by the a11y hand-audit + addon story: taste · accessibility · governance · the "why."
 6. **And then it was shelved** (short, weighty) — taken to a handoff (17 pitches / 145 tickets), then shelved before the cycle ran. The turn.
-7. **Rebuilt in the open** (coral → live) — the rescue as proof: 27→44, Highcharts/dashboard/forms, traded the generator for **Storybook**; live **component + code** demos from the real Vael library and/or the deployed Storybook.
+7. **Rebuilt in the open** (coral → live) — the rescue as proof: 27→44, Highcharts/dashboard/forms, traded the generator for **Storybook**; **faithful, interactive component demos on Vael's tokens** (charts are real Highcharts) + the deployed Storybook as the real library one click away.
 8. **Close + disclosure + footer** — two-chapter close; two-phase AI-disclosure note; subtle contact footer.
 
 (The old separate "tokens / pipeline / tooling" beats are merged into beat 4 as one escalating movement so the page reads as a story, not a checklist.)
@@ -62,4 +64,4 @@ Thin sticky nav: "Catherine Hicks" (left) · Contact (right) · coral scroll-pro
 Voice locked — first-person, wry, confident, no corporate gloss. Full deck in `copy-deck.md`; shared facts in `writing/README.md`. Timeframe = a six-week Shape Up cycle, then expanded. Impact = output-focused (27→44 / 80+ / 17 / 145), no invented metrics.
 
 ## Note (current reality)
-Vael is now a real, clean, deployable library in this repo (44 components on MUI v7 + MUI X + Highcharts) with a Storybook (Chromatic CI configured; needs token). So **beat 7's proof uses the actual components and the deployed Storybook** — the strongest possible evidence the system is real, and the payoff the rescue chapter is built on. **Pre-publish dependency:** the page's "open it right now" claim needs the static Storybook live at a public URL first (in progress).
+Vael is a real, clean library in this repo (44 components on MUI v7 + MUI X + Highcharts) with a Storybook **live on GitHub Pages** (https://catherinebhicks.github.io/vael-design-system/) — reskinned to the same Blueprint identity as this page, so the click-through has no seam. Beat 7's proof = **faithful, interactive component demos on Vael's tokens** (charts are real Highcharts) plus the **deployed Storybook** as the real library one click away. The "open it right now" link is live.

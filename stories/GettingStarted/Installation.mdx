@@ -4,17 +4,19 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Installation
 
-Vael is a themed **MUI v7** component library with a Highcharts data-viz layer. Getting started is three steps: install, load the fonts, wrap your app in the theme.
+Vael is a themed **MUI v7** component library with a Highcharts data-viz layer. Getting started is three steps: get Vael, load the fonts, wrap your app in the theme.
 
 > **Pre-release (V0).** The API is settled enough to build with, but not yet frozen — see [Versioning](?path=/docs/guides-versioning--docs).
 
-## 1. Install
+## 1. Get Vael
+
+Vael is a portfolio / reference design system — it's **not published to npm**. Use it from source: clone the repo and build it, or copy the `vael/theme.ts` theme and the components you need into your app. It's built on **MUI v7 + Emotion**, so install those in your app:
 
 ```bash
-npm install vael-design-system @mui/material @emotion/react @emotion/styled
+npm install @mui/material @emotion/react @emotion/styled
 ```
 
-`react`, `react-dom`, `@mui/material`, and Emotion are **peer dependencies** — install them alongside the library.
+`react`, `react-dom`, `@mui/material`, and Emotion are the libraries Vael's components expect.
 
 **Optional peers**, only needed for the features that use them:
 
