@@ -168,6 +168,116 @@ export const components: ThemeOptions['components'] = {
       root: { fontFamily: mono, fontSize: '0.8125rem', '& .MuiTypography-root': { fontFamily: mono } },
     },
   },
+
+  // ─── Batch 2: hairline frames on surfaces (site .d-dialog/.d-drawer/.d-aclist) ─
+  MuiDialog: {
+    styleOverrides: {
+      paper: ({ theme }) => ({
+        border: `1px solid ${theme.palette.divider}`,
+        backgroundImage: 'none',
+      }),
+    },
+  },
+  MuiDrawer: {
+    styleOverrides: {
+      paper: ({ theme }) => ({
+        backgroundImage: 'none',
+        borderColor: theme.palette.divider,
+      }),
+    },
+  },
+  // Menu / Select / Popover surfaces → hairline card, radius 10 (site .d-aclist).
+  MuiMenu: {
+    styleOverrides: {
+      paper: ({ theme }) => ({ border: `1px solid ${theme.palette.divider}`, borderRadius: 10 }),
+    },
+  },
+  MuiPopover: {
+    styleOverrides: {
+      paper: ({ theme }) => ({ border: `1px solid ${theme.palette.divider}`, borderRadius: 10 }),
+    },
+  },
+  MuiAutocomplete: {
+    styleOverrides: {
+      paper: ({ theme }) => ({ border: `1px solid ${theme.palette.divider}`, borderRadius: 10 }),
+    },
+  },
+  // Snackbar → inverted ink surface, mono (site .d-snack).
+  MuiSnackbarContent: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        backgroundColor: theme.palette.text.primary,
+        color: theme.palette.background.default,
+        fontFamily: mono,
+        fontSize: '0.8125rem',
+        borderRadius: 10,
+      }),
+    },
+  },
+  // AppBar → flat with a hairline bottom rule (site .topbar); no colored elevation.
+  MuiAppBar: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        boxShadow: 'none',
+        backgroundImage: 'none',
+        borderBottom: `1px solid ${theme.palette.divider}`,
+      }),
+    },
+  },
+
+  // ─── Batch 3: selection controls (blue fills; glow inherited from MuiButtonBase) ─
+  // Switch → solid blue track when on, clean thumb (site .d-switch).
+  MuiSwitch: {
+    styleOverrides: {
+      switchBase: ({ theme }) => ({
+        '&.Mui-checked + .MuiSwitch-track': { opacity: 1, backgroundColor: theme.palette.primary.main },
+      }),
+      thumb: { boxShadow: '0 1px 3px rgba(0,0,0,0.35)' },
+    },
+  },
+  // Slider → blue accent (default) with a blueprint glow on the thumb (site .d-slider).
+  MuiSlider: {
+    styleOverrides: {
+      thumb: ({ theme }) => ({
+        '&:hover, &.Mui-focusVisible': { boxShadow: `0 0 0 6px ${theme.palette.primary.main}29` },
+      }),
+    },
+  },
+
+  // ─── Batch 4: data / nav component states ────────────────────────────────────
+  // Pagination → mono, hairline-bordered, blue-filled when selected (site .d-pag).
+  MuiPaginationItem: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        fontFamily: mono,
+        fontSize: '0.8125rem',
+        borderRadius: 8,
+        border: `1px solid ${theme.palette.divider}`,
+        '&.Mui-selected': {
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.primary.contrastText,
+          borderColor: theme.palette.primary.main,
+        },
+        '&.Mui-selected:hover': { backgroundColor: theme.palette.primary.dark },
+      }),
+    },
+  },
+  // Badge count → mono (site .d-badge i).
+  MuiBadge: {
+    styleOverrides: { badge: { fontFamily: mono, fontWeight: 500 } },
+  },
+  // Avatar initials → mono (site .d-avatar).
+  MuiAvatar: {
+    styleOverrides: { root: { fontFamily: mono, fontWeight: 500 } },
+  },
+  // Progress bar → rounded blue (site aesthetic).
+  MuiLinearProgress: {
+    styleOverrides: { root: { borderRadius: 4 }, bar: { borderRadius: 4 } },
+  },
+  // Stepper connector → hairline (site .d-step separator).
+  MuiStepConnector: {
+    styleOverrides: { line: ({ theme }) => ({ borderColor: theme.palette.divider }) },
+  },
 };
 
 export default components;
