@@ -75,6 +75,12 @@ const preview: Preview = {
     layout: 'centered',
     controls: { matchers: { color: /(background|color)$/i, date: /Date$/i } },
 
+    // storybook-dark-mode (the sun toggle) is the ONE light/dark control — it re-themes
+    // chrome + components + docs + charts together. Disable the native "Preview background"
+    // tool (only recolors the canvas → a confusing duplicate) and its "Grid visibility"
+    // sibling (our decorator already draws the blueprint grid).
+    backgrounds: { disable: true, grid: { disable: true } },
+
     // Blueprint chrome themes for the light/dark toggle (storybook-dark-mode).
     darkMode: {
       current: 'light',
