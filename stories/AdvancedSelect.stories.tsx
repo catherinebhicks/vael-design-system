@@ -5,7 +5,7 @@ import { AdvancedSelect } from '../src/components/AdvancedSelect';
 import type { AdvancedSelectOption } from '../src/components/AdvancedSelect';
 
 const meta: Meta<typeof AdvancedSelect> = {
-  title: 'Components/AdvancedSelect',
+  title: 'Inputs/AdvancedSelect',
   component: AdvancedSelect,
   parameters: { layout: 'padded' },
 };

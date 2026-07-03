@@ -6,7 +6,7 @@ import { TextField } from '../src/components/TextField';
 const options = ['Project A', 'Project B', 'Project C', 'Job 001', 'Job 002'];
 
 const meta: Meta = {
-  title: 'Components/Autocomplete',
+  title: 'Inputs/Autocomplete',
   tags: ['autodocs'],
   parameters: {
   },

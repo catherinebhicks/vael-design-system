@@ -4,7 +4,7 @@ import { Snackbar } from '../src/components/Snackbar';
 import { Button, Alert } from '@mui/material';
 
 const meta: Meta = {
-  title: 'Components/Snackbar',
+  title: 'Feedback/Snackbar',
   tags: ['autodocs'],
   parameters: {
   },

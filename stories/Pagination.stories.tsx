@@ -4,7 +4,7 @@ import { Box, Stack, Typography } from '@mui/material';
 import { Pagination } from '../src/components/Pagination';
 
 const meta: Meta<typeof Pagination> = {
-  title: 'Components/Pagination',
+  title: 'Navigation/Pagination',
   component: Pagination,
   parameters: { layout: 'padded' },
 };

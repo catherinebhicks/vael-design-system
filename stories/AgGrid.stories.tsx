@@ -8,7 +8,7 @@ import { AgGrid } from '../src/components/AgGrid';
 // These stories render a placeholder when the packages are not installed.
 
 const meta: Meta<typeof AgGrid> = {
-  title: 'Components/AgGrid',
+  title: 'Data Grids/AgGrid',
   component: AgGrid,
   tags: ['autodocs'],
   parameters: { layout: 'padded' },

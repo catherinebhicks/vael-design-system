@@ -54,7 +54,7 @@ const multi = multiData();
 // ---
 
 const meta: Meta = {
-  title: 'Components/Charts',
+  title: 'Data Viz/Charts',
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',

@@ -5,7 +5,7 @@ import { TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, Ti
 import { Typography } from '@mui/material';
 
 const meta: Meta = {
-  title: 'Components/Timeline',
+  title: 'Data Display/Timeline',
   tags: ['autodocs'],
   parameters: {
   },

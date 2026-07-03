@@ -5,7 +5,7 @@ import type { GridColDef } from '@mui/x-data-grid';
 import { Box } from '@mui/material';
 
 const meta: Meta = {
-  title: 'Components/DataGrid',
+  title: 'Data Grids/DataGrid',
   tags: ['autodocs'],
   parameters: {
   },

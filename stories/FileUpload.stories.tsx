@@ -5,7 +5,7 @@ import { FileUpload } from '../src/components/FileUpload';
 import type { FileUploadProps } from '../src/components/FileUpload';
 
 const meta: Meta<typeof FileUpload> = {
-  title: 'Components/FileUpload',
+  title: 'Inputs/FileUpload',
   component: FileUpload,
   parameters: { layout: 'padded' },
 };

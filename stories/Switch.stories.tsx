@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Switch } from '../src/components/Switch';
 
 const meta: Meta<typeof Switch> = {
-  title: 'Components/Selection/Switch',
+  title: 'Inputs/Selection/Switch',
   component: Switch,
   tags: ['autodocs'],
   argTypes: {

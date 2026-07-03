@@ -4,7 +4,7 @@ import { Drawer } from '../src/components/Drawer';
 import { Button, List, ListItem, ListItemText, Box } from '@mui/material';
 
 const meta: Meta = {
-  title: 'Components/Drawer',
+  title: 'Navigation/Drawer',
   tags: ['autodocs'],
   parameters: {
   },

@@ -4,7 +4,7 @@ import { Card } from '../src/components/Card';
 import { CardContent, CardActions, Typography, Button } from '@mui/material';
 
 const meta: Meta = {
-  title: 'Components/Card',
+  title: 'Surfaces/Card',
   tags: ['autodocs'],
   parameters: {
   },

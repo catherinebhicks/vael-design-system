@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClockRotateLeft, faHeart, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 const meta: Meta<typeof Navigation> = {
-  title: 'Components/Navigation',
+  title: 'Navigation/Navigation',
   component: Navigation,
   tags: ['autodocs'],
 };

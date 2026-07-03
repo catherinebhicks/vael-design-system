@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const meta: Meta = {
-  title: 'Components/AppBar',
+  title: 'Surfaces/AppBar',
   tags: ['autodocs'],
   decorators: [(Story) => <div style={{ position: 'relative', height: 80 }}><Story /></div>],
   parameters: {
