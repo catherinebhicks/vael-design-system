@@ -50,3 +50,9 @@ export * from './components/Timeline';
 export * from './components/Toggle';
 export * from './components/Tooltip';
 export * from './components/UncontrolledMenu';
+
+// Presentation layer (case-study / deck compositions)
+export * from './components/SectionHeading';
+export * from './components/SlideSection';
+export * from './components/PullQuote';
+export * from './components/BrowserFrame';
