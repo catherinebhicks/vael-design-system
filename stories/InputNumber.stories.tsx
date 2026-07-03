@@ -5,7 +5,7 @@ import { InputNumber } from '../src/components/InputNumber';
 import type { InputNumberProps } from '../src/components/InputNumber';
 
 const meta: Meta<typeof InputNumber> = {
-  title: 'Components/InputNumber',
+  title: 'Inputs/InputNumber',
   component: InputNumber,
   parameters: { layout: 'padded' },
 };

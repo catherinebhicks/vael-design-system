@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Toggle, ToggleButton } from '../src/components/Toggle';
 
 const meta: Meta = {
-  title: 'Components/Toggle',
+  title: 'Inputs/Toggle',
   tags: ['autodocs'],
   parameters: {
   },

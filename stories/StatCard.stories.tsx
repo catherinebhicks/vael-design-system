@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 import { StatCard } from '../src/components/StatCard';
 
 const meta: Meta<typeof StatCard> = {
-  title: 'Components/StatCard',
+  title: 'Data Viz/StatCard',
   component: StatCard,
   parameters: { layout: 'padded' },
 };

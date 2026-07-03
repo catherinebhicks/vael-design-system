@@ -4,7 +4,7 @@ import { Radio } from '../src/components/Radio';
 import { RadioGroup, FormControlLabel, FormControl, FormLabel } from '@mui/material';
 
 const meta: Meta = {
-  title: 'Components/Selection/Radio',
+  title: 'Inputs/Selection/Radio',
   tags: ['autodocs'],
   parameters: {
   },

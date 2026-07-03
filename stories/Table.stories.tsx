@@ -4,7 +4,7 @@ import { Table } from '../src/components/Table';
 import { TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
 const meta: Meta = {
-  title: 'Components/Table',
+  title: 'Data Display/Table',
   tags: ['autodocs'],
   parameters: {
   },

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Slider } from '../src/components/Slider';
 
 const meta: Meta<typeof Slider> = {
-  title: 'Components/Slider',
+  title: 'Inputs/Slider',
   component: Slider,
   tags: ['autodocs'],
   decorators: [(Story) => <div style={{ width: 300, padding: '16px 24px' }}><Story /></div>],

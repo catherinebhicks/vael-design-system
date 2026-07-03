@@ -6,7 +6,7 @@ import { faPen, faCopy, faBoxArchive } from '@fortawesome/free-solid-svg-icons';
 import { UncontrolledMenu } from '../src/components/UncontrolledMenu';
 
 const meta: Meta<typeof UncontrolledMenu> = {
-  title: 'Components/UncontrolledMenu',
+  title: 'Navigation/UncontrolledMenu',
   component: UncontrolledMenu,
   tags: ['autodocs'],
   parameters: {

@@ -6,7 +6,7 @@ import { Legend } from '../src/components/Legend';
 import { AreaChart } from '../src/components/Charts/AreaChart';
 import { palette } from '../src/theme';
 
-const meta: Meta = { title: 'Components/ChartCard', parameters: { layout: 'padded' } };
+const meta: Meta = { title: 'Data Viz/ChartCard', parameters: { layout: 'padded' } };
 export default meta;
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];

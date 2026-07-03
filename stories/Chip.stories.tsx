@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Chip } from '../src/components/Chip';
 
 const meta: Meta<typeof Chip> = {
-  title: 'Components/Chip',
+  title: 'Data Display/Chip',
   component: Chip,
   tags: ['autodocs'],
   argTypes: {

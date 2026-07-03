@@ -72,6 +72,12 @@ const preview: Preview = {
     },
   ],
   parameters: {
+    // Sidebar section order. '*' catches anything unlisted.
+    options: {
+      storySort: {
+        order: ['Getting Started', 'Foundations', 'Inputs', 'Data Display', 'Feedback', 'Surfaces', 'Navigation', 'Layout', 'Data Viz', 'Data Grids', 'Interaction', 'Presentation', 'Patterns', 'Guides', '*'],
+      },
+    },
     layout: 'centered',
     controls: { matchers: { color: /(background|color)$/i, date: /Date$/i } },
 

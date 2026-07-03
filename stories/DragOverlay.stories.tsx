@@ -6,7 +6,7 @@ import { Chip, Paper, Typography, Box } from '@mui/material';
 import { DragOverlay } from '../src/components/DragOverlay';
 
 const meta: Meta<typeof DragOverlay> = {
-  title: 'Components/DragOverlay',
+  title: 'Interaction/DragOverlay',
   component: DragOverlay,
   tags: ['autodocs'],
   parameters: { layout: 'centered' },

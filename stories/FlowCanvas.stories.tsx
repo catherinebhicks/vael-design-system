@@ -5,7 +5,7 @@ import type { Node, Edge } from 'reactflow';
 import { FlowCanvas } from '../src/components/FlowCanvas';
 
 const meta: Meta<typeof FlowCanvas> = {
-  title: 'Components/FlowCanvas',
+  title: 'Interaction/FlowCanvas',
   component: FlowCanvas,
   tags: ['autodocs'],
   parameters: { layout: 'fullscreen', chromatic: { delay: 600 } },

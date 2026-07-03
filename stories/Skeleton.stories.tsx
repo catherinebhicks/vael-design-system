@@ -4,7 +4,7 @@ import { Box, Stack } from '@mui/material';
 import { Skeleton, SkeletonText } from '../src/components/Skeleton';
 
 const meta: Meta<typeof Skeleton> = {
-  title: 'Components/Skeleton',
+  title: 'Feedback/Skeleton',
   component: Skeleton,
   parameters: { layout: 'padded' },
 };

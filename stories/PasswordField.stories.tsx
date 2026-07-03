@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 import { PasswordField } from '../src/components/PasswordField';
 
 const meta: Meta<typeof PasswordField> = {
-  title: 'Components/PasswordField',
+  title: 'Inputs/PasswordField',
   component: PasswordField,
   parameters: { layout: 'padded' },
 };

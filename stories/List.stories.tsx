@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInbox, faEnvelopeOpen } from '@fortawesome/free-solid-svg-icons';
 
 const meta: Meta = {
-  title: 'Components/List',
+  title: 'Data Display/List',
   tags: ['autodocs'],
   parameters: {
   },

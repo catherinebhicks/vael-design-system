@@ -4,7 +4,7 @@ import { Stepper } from '../src/components/Stepper';
 import { Step, StepLabel } from '@mui/material';
 
 const meta: Meta = {
-  title: 'Components/Stepper',
+  title: 'Navigation/Stepper',
   tags: ['autodocs'],
   parameters: {
   },

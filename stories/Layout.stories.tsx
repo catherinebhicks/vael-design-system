@@ -4,7 +4,7 @@ import { Box, Grid, Stack } from '../src/components/Layout';
 import { Paper, Typography } from '@mui/material';
 
 const meta: Meta = {
-  title: 'Components/Layout',
+  title: 'Layout/Layout',
   tags: ['autodocs'],
 };
 

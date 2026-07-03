@@ -3,7 +3,7 @@ import { LinearProgress } from '../src/components/LinearProgress';
 import { Box } from '@mui/material';
 
 const meta: Meta<typeof LinearProgress> = {
-  title: 'Components/Progress/Linear',
+  title: 'Feedback/Progress/Linear',
   component: LinearProgress,
   tags: ['autodocs'],
   decorators: [(Story) => <Box sx={{ width: 300 }}><Story /></Box>],

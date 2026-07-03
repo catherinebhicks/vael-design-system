@@ -4,7 +4,7 @@ import { Tabs } from '../src/components/Tabs';
 import { Tab, Box } from '@mui/material';
 
 const meta: Meta = {
-  title: 'Components/Tabs',
+  title: 'Navigation/Tabs',
   tags: ['autodocs'],
   parameters: {
   },

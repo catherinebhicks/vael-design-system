@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 import { Breadcrumbs } from '../src/components/Breadcrumbs';
 
 const meta: Meta<typeof Breadcrumbs> = {
-  title: 'Components/Breadcrumbs',
+  title: 'Navigation/Breadcrumbs',
   component: Breadcrumbs,
   parameters: { layout: 'padded' },
 };

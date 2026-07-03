@@ -4,7 +4,7 @@ import { Dialog } from '../src/components/Dialog';
 import { DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@mui/material';
 
 const meta: Meta<typeof Dialog> = {
-  title: 'Components/Dialog',
+  title: 'Feedback/Dialog',
   component: Dialog,
   tags: ['autodocs'],
   parameters: {

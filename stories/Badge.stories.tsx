@@ -4,7 +4,7 @@ import { Avatar, Box } from '@mui/material';
 import { Badge } from '../src/components/Badge';
 
 const meta: Meta<typeof Badge> = {
-  title: 'Components/Badge',
+  title: 'Data Display/Badge',
   component: Badge,
   parameters: { layout: 'padded' },
 };
