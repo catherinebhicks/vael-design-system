@@ -132,6 +132,12 @@ export const components: ThemeOptions['components'] = {
       root: { fontWeight: 500, textUnderlineOffset: '0.15em' },
     },
   },
+  // Rating: filled stars take the brand blue instead of MUI's default amber.
+  MuiRating: {
+    styleOverrides: {
+      iconFilled: ({ theme }) => ({ color: theme.palette.primary.main }),
+    },
+  },
   // Alert: rounded. Message + title both inherit the single Mono voice.
   MuiAlert: {
     styleOverrides: {
