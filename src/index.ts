@@ -23,6 +23,8 @@ export * from './components/FileUpload';
 export * from './components/Accordion';
 export * from './components/DragOverlay';
 export * from './components/FlowCanvas';
+export * from './components/ImageList';
+export * from './components/SpeedDial';
 export * from './components/Alert';
 export * from './components/AppBar';
 export * from './components/Autocomplete';
@@ -31,8 +33,10 @@ export * from './components/Button';
 export * from './components/Card';
 export * from './components/Checkbox';
 export * from './components/Chip';
+export * from './components/CircularProgress';
 export * from './components/CopyButton';
 export * from './components/DataGrid';
+export * from './components/DatePicker';
 export * from './components/Dialog';
 export * from './components/Divider';
 export * from './components/Drawer';
@@ -57,6 +61,7 @@ export * from './components/TextField';
 export * from './components/Timeline';
 export * from './components/Toggle';
 export * from './components/Tooltip';
+export * from './components/TreeView';
 export * from './components/UncontrolledMenu';
 
 // Presentation layer (case-study / deck compositions)

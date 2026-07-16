@@ -27,7 +27,7 @@ Tokens are defined in `vael/design-tokens.json` (W3C [Design Tokens](https://tr.
 
 ## Components
 
-Foundations · Inputs (Button, Text Field, Autocomplete, Checkbox, Radio, Switch, Slider, Toggle, Rating, SegmentedControl, CopyButton) · Display (Chip, Avatar, Badge, List, Table, Tooltip, Timeline, StatusBadge, Mark) · Feedback (Alert, Dialog, Progress, Snackbar, Popover) · Surfaces (Card, Accordion, App Bar, Divider) · Navigation (Tabs, Stepper, Drawer, Menu, Breadcrumbs, Pagination, Link) · Layout · Data (MUI X Data Grid, AG Grid, Charts via Highcharts, Flow Canvas via React Flow).
+Foundations · Inputs (Button, Text Field, Autocomplete, Checkbox, Radio, Switch, Slider, Toggle, Rating, SegmentedControl, CopyButton, Date/Time Pickers via MUI X) · Display (Chip, Avatar, Badge, List, Table, Tooltip, Timeline, TreeView via MUI X, ImageList, StatusBadge, Mark) · Feedback (Alert, Dialog, Linear + Circular Progress, Snackbar, Popover) · Surfaces (Card, Accordion, App Bar, Divider) · Navigation (Tabs, Stepper, Drawer, Menu, SpeedDial, Breadcrumbs, Pagination, Link) · Layout · Data (MUI X Data Grid, AG Grid, Charts via Highcharts, Flow Canvas via React Flow, drag & drop via dnd-kit).
 
 Every component has a Storybook story and an MDX documentation page covering usage, do's and don'ts, and accessibility.
 
