@@ -1,0 +1,2002 @@
+[
+{
+"weight": "solid",
+"name": "chevron-down"
+},
+{
+"weight": "solid",
+"name": "chevron-up"
+},
+{
+"weight": "solid",
+"name": "chevron-left"
+},
+{
+"weight": "solid",
+"name": "chevron-right"
+},
+{
+"weight": "solid",
+"name": "angle-down"
+},
+{
+"weight": "solid",
+"name": "angle-up"
+},
+{
+"weight": "solid",
+"name": "angle-left"
+},
+{
+"weight": "solid",
+"name": "angle-right"
+},
+{
+"weight": "solid",
+"name": "angles-right"
+},
+{
+"weight": "solid",
+"name": "angles-left"
+},
+{
+"weight": "solid",
+"name": "caret-down"
+},
+{
+"weight": "solid",
+"name": "caret-up"
+},
+{
+"weight": "solid",
+"name": "caret-left"
+},
+{
+"weight": "solid",
+"name": "caret-right"
+},
+{
+"weight": "solid",
+"name": "arrow-up"
+},
+{
+"weight": "solid",
+"name": "arrow-down"
+},
+{
+"weight": "solid",
+"name": "arrow-left"
+},
+{
+"weight": "solid",
+"name": "arrow-right"
+},
+{
+"weight": "solid",
+"name": "arrow-right-long"
+},
+{
+"weight": "solid",
+"name": "arrow-left-long"
+},
+{
+"weight": "solid",
+"name": "arrow-up-right-from-square"
+},
+{
+"weight": "solid",
+"name": "arrow-rotate-right"
+},
+{
+"weight": "solid",
+"name": "arrow-rotate-left"
+},
+{
+"weight": "solid",
+"name": "arrows-rotate"
+},
+{
+"weight": "solid",
+"name": "arrow-right-arrow-left"
+},
+{
+"weight": "solid",
+"name": "arrow-up-from-bracket"
+},
+{
+"weight": "solid",
+"name": "up-down-left-right"
+},
+{
+"weight": "solid",
+"name": "plus"
+},
+{
+"weight": "solid",
+"name": "minus"
+},
+{
+"weight": "solid",
+"name": "xmark"
+},
+{
+"weight": "solid",
+"name": "check"
+},
+{
+"weight": "solid",
+"name": "check-double"
+},
+{
+"weight": "solid",
+"name": "pen"
+},
+{
+"weight": "solid",
+"name": "pen-to-square"
+},
+{
+"weight": "solid",
+"name": "trash"
+},
+{
+"weight": "solid",
+"name": "trash-can"
+},
+{
+"weight": "solid",
+"name": "copy"
+},
+{
+"weight": "solid",
+"name": "paste"
+},
+{
+"weight": "solid",
+"name": "download"
+},
+{
+"weight": "solid",
+"name": "upload"
+},
+{
+"weight": "solid",
+"name": "share"
+},
+{
+"weight": "solid",
+"name": "share-nodes"
+},
+{
+"weight": "solid",
+"name": "print"
+},
+{
+"weight": "solid",
+"name": "floppy-disk"
+},
+{
+"weight": "solid",
+"name": "filter"
+},
+{
+"weight": "solid",
+"name": "arrow-up-a-z"
+},
+{
+"weight": "solid",
+"name": "arrow-down-a-z"
+},
+{
+"weight": "solid",
+"name": "rotate"
+},
+{
+"weight": "solid",
+"name": "rotate-right"
+},
+{
+"weight": "solid",
+"name": "rotate-left"
+},
+{
+"weight": "solid",
+"name": "expand"
+},
+{
+"weight": "solid",
+"name": "compress"
+},
+{
+"weight": "solid",
+"name": "crop-simple"
+},
+{
+"weight": "solid",
+"name": "scissors"
+},
+{
+"weight": "solid",
+"name": "clone"
+},
+{
+"weight": "solid",
+"name": "link"
+},
+{
+"weight": "solid",
+"name": "link-slash"
+},
+{
+"weight": "solid",
+"name": "paperclip"
+},
+{
+"weight": "solid",
+"name": "magnifying-glass"
+},
+{
+"weight": "solid",
+"name": "magnifying-glass-plus"
+},
+{
+"weight": "solid",
+"name": "magnifying-glass-minus"
+},
+{
+"weight": "solid",
+"name": "sliders"
+},
+{
+"weight": "solid",
+"name": "gear"
+},
+{
+"weight": "solid",
+"name": "gears"
+},
+{
+"weight": "solid",
+"name": "wrench"
+},
+{
+"weight": "solid",
+"name": "circle-check"
+},
+{
+"weight": "solid",
+"name": "circle-info"
+},
+{
+"weight": "solid",
+"name": "circle-exclamation"
+},
+{
+"weight": "solid",
+"name": "circle-xmark"
+},
+{
+"weight": "solid",
+"name": "circle-question"
+},
+{
+"weight": "solid",
+"name": "triangle-exclamation"
+},
+{
+"weight": "solid",
+"name": "ban"
+},
+{
+"weight": "solid",
+"name": "spinner"
+},
+{
+"weight": "solid",
+"name": "circle-notch"
+},
+{
+"weight": "solid",
+"name": "check-circle"
+},
+{
+"weight": "solid",
+"name": "bell"
+},
+{
+"weight": "solid",
+"name": "bell-slash"
+},
+{
+"weight": "solid",
+"name": "flag"
+},
+{
+"weight": "solid",
+"name": "thumbtack"
+},
+{
+"weight": "solid",
+"name": "user"
+},
+{
+"weight": "solid",
+"name": "users"
+},
+{
+"weight": "solid",
+"name": "user-group"
+},
+{
+"weight": "solid",
+"name": "user-plus"
+},
+{
+"weight": "solid",
+"name": "circle-user"
+},
+{
+"weight": "solid",
+"name": "address-card"
+},
+{
+"weight": "solid",
+"name": "id-card"
+},
+{
+"weight": "solid",
+"name": "envelope"
+},
+{
+"weight": "solid",
+"name": "envelope-open"
+},
+{
+"weight": "solid",
+"name": "calendar"
+},
+{
+"weight": "solid",
+"name": "calendar-days"
+},
+{
+"weight": "solid",
+"name": "clock"
+},
+{
+"weight": "solid",
+"name": "house"
+},
+{
+"weight": "solid",
+"name": "house-chimney"
+},
+{
+"weight": "solid",
+"name": "eye"
+},
+{
+"weight": "solid",
+"name": "eye-slash"
+},
+{
+"weight": "solid",
+"name": "lock"
+},
+{
+"weight": "solid",
+"name": "lock-open"
+},
+{
+"weight": "solid",
+"name": "unlock"
+},
+{
+"weight": "solid",
+"name": "key"
+},
+{
+"weight": "solid",
+"name": "shield"
+},
+{
+"weight": "solid",
+"name": "shield-halved"
+},
+{
+"weight": "solid",
+"name": "star"
+},
+{
+"weight": "solid",
+"name": "star-half-stroke"
+},
+{
+"weight": "solid",
+"name": "heart"
+},
+{
+"weight": "solid",
+"name": "bookmark"
+},
+{
+"weight": "solid",
+"name": "tag"
+},
+{
+"weight": "solid",
+"name": "tags"
+},
+{
+"weight": "solid",
+"name": "folder"
+},
+{
+"weight": "solid",
+"name": "folder-open"
+},
+{
+"weight": "solid",
+"name": "file"
+},
+{
+"weight": "solid",
+"name": "file-lines"
+},
+{
+"weight": "solid",
+"name": "image"
+},
+{
+"weight": "solid",
+"name": "images"
+},
+{
+"weight": "solid",
+"name": "video"
+},
+{
+"weight": "solid",
+"name": "camera"
+},
+{
+"weight": "solid",
+"name": "location-dot"
+},
+{
+"weight": "solid",
+"name": "map"
+},
+{
+"weight": "solid",
+"name": "map-pin"
+},
+{
+"weight": "solid",
+"name": "phone"
+},
+{
+"weight": "solid",
+"name": "comment"
+},
+{
+"weight": "solid",
+"name": "comments"
+},
+{
+"weight": "solid",
+"name": "thumbs-up"
+},
+{
+"weight": "solid",
+"name": "thumbs-down"
+},
+{
+"weight": "solid",
+"name": "ellipsis"
+},
+{
+"weight": "solid",
+"name": "ellipsis-vertical"
+},
+{
+"weight": "solid",
+"name": "bars"
+},
+{
+"weight": "solid",
+"name": "bars-staggered"
+},
+{
+"weight": "solid",
+"name": "grip"
+},
+{
+"weight": "solid",
+"name": "grip-vertical"
+},
+{
+"weight": "solid",
+"name": "table"
+},
+{
+"weight": "solid",
+"name": "table-cells"
+},
+{
+"weight": "solid",
+"name": "table-list"
+},
+{
+"weight": "solid",
+"name": "list"
+},
+{
+"weight": "solid",
+"name": "list-ul"
+},
+{
+"weight": "solid",
+"name": "list-ol"
+},
+{
+"weight": "solid",
+"name": "list-check"
+},
+{
+"weight": "solid",
+"name": "border-all"
+},
+{
+"weight": "solid",
+"name": "circle"
+},
+{
+"weight": "solid",
+"name": "square"
+},
+{
+"weight": "solid",
+"name": "circle-half-stroke"
+},
+{
+"weight": "solid",
+"name": "toggle-on"
+},
+{
+"weight": "solid",
+"name": "toggle-off"
+},
+{
+"weight": "solid",
+"name": "bolt"
+},
+{
+"weight": "solid",
+"name": "fire"
+},
+{
+"weight": "solid",
+"name": "lightbulb"
+},
+{
+"weight": "solid",
+"name": "play"
+},
+{
+"weight": "solid",
+"name": "pause"
+},
+{
+"weight": "solid",
+"name": "stop"
+},
+{
+"weight": "solid",
+"name": "forward"
+},
+{
+"weight": "solid",
+"name": "backward"
+},
+{
+"weight": "solid",
+"name": "forward-step"
+},
+{
+"weight": "solid",
+"name": "backward-step"
+},
+{
+"weight": "solid",
+"name": "volume-high"
+},
+{
+"weight": "solid",
+"name": "volume-xmark"
+},
+{
+"weight": "solid",
+"name": "circle-play"
+},
+{
+"weight": "solid",
+"name": "circle-pause"
+},
+{
+"weight": "solid",
+"name": "shuffle"
+},
+{
+"weight": "solid",
+"name": "repeat"
+},
+{
+"weight": "solid",
+"name": "cart-shopping"
+},
+{
+"weight": "solid",
+"name": "bag-shopping"
+},
+{
+"weight": "solid",
+"name": "credit-card"
+},
+{
+"weight": "solid",
+"name": "dollar-sign"
+},
+{
+"weight": "solid",
+"name": "money-bill"
+},
+{
+"weight": "solid",
+"name": "receipt"
+},
+{
+"weight": "solid",
+"name": "wallet"
+},
+{
+"weight": "solid",
+"name": "gift"
+},
+{
+"weight": "solid",
+"name": "truck"
+},
+{
+"weight": "solid",
+"name": "box"
+},
+{
+"weight": "solid",
+"name": "globe"
+},
+{
+"weight": "solid",
+"name": "language"
+},
+{
+"weight": "solid",
+"name": "font"
+},
+{
+"weight": "solid",
+"name": "palette"
+},
+{
+"weight": "solid",
+"name": "droplet"
+},
+{
+"weight": "solid",
+"name": "sun"
+},
+{
+"weight": "solid",
+"name": "moon"
+},
+{
+"weight": "solid",
+"name": "cloud"
+},
+{
+"weight": "solid",
+"name": "wifi"
+},
+{
+"weight": "solid",
+"name": "battery-full"
+},
+{
+"weight": "solid",
+"name": "plug"
+},
+{
+"weight": "solid",
+"name": "chart-line"
+},
+{
+"weight": "solid",
+"name": "chart-bar"
+},
+{
+"weight": "solid",
+"name": "chart-pie"
+},
+{
+"weight": "solid",
+"name": "chart-simple"
+},
+{
+"weight": "solid",
+"name": "calendar-check"
+},
+{
+"weight": "solid",
+"name": "clipboard"
+},
+{
+"weight": "solid",
+"name": "clipboard-list"
+},
+{
+"weight": "solid",
+"name": "arrow-trend-up"
+},
+{
+"weight": "solid",
+"name": "arrow-trend-down"
+},
+{
+"weight": "solid",
+"name": "rocket"
+},
+{
+"weight": "solid",
+"name": "wand-magic-sparkles"
+},
+{
+"weight": "solid",
+"name": "robot"
+},
+{
+"weight": "solid",
+"name": "code"
+},
+{
+"weight": "solid",
+"name": "terminal"
+},
+{
+"weight": "solid",
+"name": "quote-left"
+},
+{
+"weight": "solid",
+"name": "quote-right"
+},
+{
+"weight": "solid",
+"name": "bullhorn"
+},
+{
+"weight": "solid",
+"name": "graduation-cap"
+},
+{
+"weight": "solid",
+"name": "book"
+},
+{
+"weight": "solid",
+"name": "book-open"
+},
+{
+"weight": "solid",
+"name": "briefcase"
+},
+{
+"weight": "solid",
+"name": "building"
+},
+{
+"weight": "solid",
+"name": "location-crosshairs"
+},
+{
+"weight": "solid",
+"name": "angles-down"
+},
+{
+"weight": "solid",
+"name": "angles-up"
+},
+{
+"weight": "solid",
+"name": "arrow-down-1-9"
+},
+{
+"weight": "solid",
+"name": "arrow-down-9-1"
+},
+{
+"weight": "solid",
+"name": "arrow-down-long"
+},
+{
+"weight": "solid",
+"name": "arrow-down-short-wide"
+},
+{
+"weight": "solid",
+"name": "arrow-down-up-across-line"
+},
+{
+"weight": "solid",
+"name": "arrow-down-up-lock"
+},
+{
+"weight": "solid",
+"name": "arrow-down-wide-short"
+},
+{
+"weight": "solid",
+"name": "arrow-down-z-a"
+},
+{
+"weight": "solid",
+"name": "arrow-pointer"
+},
+{
+"weight": "solid",
+"name": "arrow-right-from-bracket"
+},
+{
+"weight": "solid",
+"name": "arrow-right-to-bracket"
+},
+{
+"weight": "solid",
+"name": "arrow-turn-down"
+},
+{
+"weight": "solid",
+"name": "arrow-turn-up"
+},
+{
+"weight": "solid",
+"name": "arrow-up-1-9"
+},
+{
+"weight": "solid",
+"name": "arrow-up-9-1"
+},
+{
+"weight": "solid",
+"name": "arrow-up-long"
+},
+{
+"weight": "solid",
+"name": "arrow-up-right-dots"
+},
+{
+"weight": "solid",
+"name": "arrow-up-short-wide"
+},
+{
+"weight": "solid",
+"name": "arrow-up-wide-short"
+},
+{
+"weight": "solid",
+"name": "arrow-up-z-a"
+},
+{
+"weight": "solid",
+"name": "arrows-down-to-line"
+},
+{
+"weight": "solid",
+"name": "arrows-left-right"
+},
+{
+"weight": "solid",
+"name": "arrows-left-right-to-line"
+},
+{
+"weight": "solid",
+"name": "arrows-spin"
+},
+{
+"weight": "solid",
+"name": "arrows-split-up-and-left"
+},
+{
+"weight": "solid",
+"name": "arrows-to-circle"
+},
+{
+"weight": "solid",
+"name": "arrows-to-dot"
+},
+{
+"weight": "solid",
+"name": "arrows-to-eye"
+},
+{
+"weight": "solid",
+"name": "arrows-turn-right"
+},
+{
+"weight": "solid",
+"name": "arrows-turn-to-dots"
+},
+{
+"weight": "solid",
+"name": "arrows-up-down"
+},
+{
+"weight": "solid",
+"name": "arrows-up-down-left-right"
+},
+{
+"weight": "solid",
+"name": "arrows-up-to-line"
+},
+{
+"weight": "solid",
+"name": "circle-arrow-down"
+},
+{
+"weight": "solid",
+"name": "circle-arrow-left"
+},
+{
+"weight": "solid",
+"name": "circle-arrow-right"
+},
+{
+"weight": "solid",
+"name": "circle-arrow-up"
+},
+{
+"weight": "solid",
+"name": "circle-chevron-down"
+},
+{
+"weight": "solid",
+"name": "circle-chevron-left"
+},
+{
+"weight": "solid",
+"name": "circle-chevron-right"
+},
+{
+"weight": "solid",
+"name": "circle-chevron-up"
+},
+{
+"weight": "solid",
+"name": "circle-down"
+},
+{
+"weight": "solid",
+"name": "circle-left"
+},
+{
+"weight": "solid",
+"name": "circle-right"
+},
+{
+"weight": "solid",
+"name": "circle-up"
+},
+{
+"weight": "solid",
+"name": "clock-rotate-left"
+},
+{
+"weight": "solid",
+"name": "cloud-arrow-down"
+},
+{
+"weight": "solid",
+"name": "cloud-arrow-up"
+},
+{
+"weight": "solid",
+"name": "down-left-and-up-right-to-center"
+},
+{
+"weight": "solid",
+"name": "down-long"
+},
+{
+"weight": "solid",
+"name": "left-long"
+},
+{
+"weight": "solid",
+"name": "left-right"
+},
+{
+"weight": "solid",
+"name": "location-arrow"
+},
+{
+"weight": "solid",
+"name": "maximize"
+},
+{
+"weight": "solid",
+"name": "recycle"
+},
+{
+"weight": "solid",
+"name": "reply"
+},
+{
+"weight": "solid",
+"name": "reply-all"
+},
+{
+"weight": "solid",
+"name": "retweet"
+},
+{
+"weight": "solid",
+"name": "right-from-bracket"
+},
+{
+"weight": "solid",
+"name": "right-left"
+},
+{
+"weight": "solid",
+"name": "right-long"
+},
+{
+"weight": "solid",
+"name": "right-to-bracket"
+},
+{
+"weight": "solid",
+"name": "share-from-square"
+},
+{
+"weight": "solid",
+"name": "sort"
+},
+{
+"weight": "solid",
+"name": "sort-down"
+},
+{
+"weight": "solid",
+"name": "sort-up"
+},
+{
+"weight": "solid",
+"name": "square-arrow-up-right"
+},
+{
+"weight": "solid",
+"name": "square-caret-down"
+},
+{
+"weight": "solid",
+"name": "square-caret-left"
+},
+{
+"weight": "solid",
+"name": "square-caret-right"
+},
+{
+"weight": "solid",
+"name": "square-caret-up"
+},
+{
+"weight": "solid",
+"name": "square-up-right"
+},
+{
+"weight": "solid",
+"name": "turn-down"
+},
+{
+"weight": "solid",
+"name": "turn-up"
+},
+{
+"weight": "solid",
+"name": "up-down"
+},
+{
+"weight": "solid",
+"name": "up-long"
+},
+{
+"weight": "solid",
+"name": "up-right-and-down-left-from-center"
+},
+{
+"weight": "solid",
+"name": "up-right-from-square"
+},
+{
+"weight": "solid",
+"name": "bandage"
+},
+{
+"weight": "solid",
+"name": "brush"
+},
+{
+"weight": "solid",
+"name": "crop"
+},
+{
+"weight": "solid",
+"name": "cube"
+},
+{
+"weight": "solid",
+"name": "delete-left"
+},
+{
+"weight": "solid",
+"name": "eye-dropper"
+},
+{
+"weight": "solid",
+"name": "grip-lines"
+},
+{
+"weight": "solid",
+"name": "grip-lines-vertical"
+},
+{
+"weight": "solid",
+"name": "paintbrush"
+},
+{
+"weight": "solid",
+"name": "pen-clip"
+},
+{
+"weight": "solid",
+"name": "pen-fancy"
+},
+{
+"weight": "solid",
+"name": "pen-nib"
+},
+{
+"weight": "solid",
+"name": "pen-ruler"
+},
+{
+"weight": "solid",
+"name": "pencil"
+},
+{
+"weight": "solid",
+"name": "signature"
+},
+{
+"weight": "solid",
+"name": "square-check"
+},
+{
+"weight": "solid",
+"name": "square-pen"
+},
+{
+"weight": "solid",
+"name": "trash-arrow-up"
+},
+{
+"weight": "solid",
+"name": "trash-can-arrow-up"
+},
+{
+"weight": "solid",
+"name": "wand-magic"
+},
+{
+"weight": "solid",
+"name": "align-center"
+},
+{
+"weight": "solid",
+"name": "align-justify"
+},
+{
+"weight": "solid",
+"name": "align-left"
+},
+{
+"weight": "solid",
+"name": "align-right"
+},
+{
+"weight": "solid",
+"name": "bold"
+},
+{
+"weight": "solid",
+"name": "border-none"
+},
+{
+"weight": "solid",
+"name": "border-top-left"
+},
+{
+"weight": "solid",
+"name": "filter-circle-xmark"
+},
+{
+"weight": "solid",
+"name": "heading"
+},
+{
+"weight": "solid",
+"name": "highlighter"
+},
+{
+"weight": "solid",
+"name": "i-cursor"
+},
+{
+"weight": "solid",
+"name": "icons"
+},
+{
+"weight": "solid",
+"name": "indent"
+},
+{
+"weight": "solid",
+"name": "italic"
+},
+{
+"weight": "solid",
+"name": "outdent"
+},
+{
+"weight": "solid",
+"name": "paragraph"
+},
+{
+"weight": "solid",
+"name": "rectangle-list"
+},
+{
+"weight": "solid",
+"name": "spell-check"
+},
+{
+"weight": "solid",
+"name": "strikethrough"
+},
+{
+"weight": "solid",
+"name": "subscript"
+},
+{
+"weight": "solid",
+"name": "superscript"
+},
+{
+"weight": "solid",
+"name": "table-cells-column-lock"
+},
+{
+"weight": "solid",
+"name": "table-cells-large"
+},
+{
+"weight": "solid",
+"name": "table-cells-row-lock"
+},
+{
+"weight": "solid",
+"name": "table-cells-row-unlock"
+},
+{
+"weight": "solid",
+"name": "table-columns"
+},
+{
+"weight": "solid",
+"name": "text-height"
+},
+{
+"weight": "solid",
+"name": "text-slash"
+},
+{
+"weight": "solid",
+"name": "text-width"
+},
+{
+"weight": "solid",
+"name": "underline"
+},
+{
+"weight": "solid",
+"name": "backward-fast"
+},
+{
+"weight": "solid",
+"name": "circle-stop"
+},
+{
+"weight": "solid",
+"name": "eject"
+},
+{
+"weight": "solid",
+"name": "forward-fast"
+},
+{
+"weight": "solid",
+"name": "hand"
+},
+{
+"weight": "solid",
+"name": "minimize"
+},
+{
+"weight": "solid",
+"name": "music"
+},
+{
+"weight": "solid",
+"name": "phone-volume"
+},
+{
+"weight": "solid",
+"name": "picture-in-picture"
+},
+{
+"weight": "solid",
+"name": "plus-minus"
+},
+{
+"weight": "solid",
+"name": "rss"
+},
+{
+"weight": "solid",
+"name": "volume"
+},
+{
+"weight": "solid",
+"name": "volume-low"
+},
+{
+"weight": "solid",
+"name": "volume-off"
+},
+{
+"weight": "solid",
+"name": "address-book"
+},
+{
+"weight": "solid",
+"name": "at"
+},
+{
+"weight": "solid",
+"name": "blender-phone"
+},
+{
+"weight": "solid",
+"name": "comment-dots"
+},
+{
+"weight": "solid",
+"name": "comment-medical"
+},
+{
+"weight": "solid",
+"name": "comment-nodes"
+},
+{
+"weight": "solid",
+"name": "comment-slash"
+},
+{
+"weight": "solid",
+"name": "comment-sms"
+},
+{
+"weight": "solid",
+"name": "ear-deaf"
+},
+{
+"weight": "solid",
+"name": "ear-listen"
+},
+{
+"weight": "solid",
+"name": "envelope-circle-check"
+},
+{
+"weight": "solid",
+"name": "face-frown"
+},
+{
+"weight": "solid",
+"name": "face-meh"
+},
+{
+"weight": "solid",
+"name": "face-smile"
+},
+{
+"weight": "solid",
+"name": "fax"
+},
+{
+"weight": "solid",
+"name": "hands-asl-interpreting"
+},
+{
+"weight": "solid",
+"name": "inbox"
+},
+{
+"weight": "solid",
+"name": "message"
+},
+{
+"weight": "solid",
+"name": "microphone"
+},
+{
+"weight": "solid",
+"name": "microphone-lines"
+},
+{
+"weight": "solid",
+"name": "microphone-lines-slash"
+},
+{
+"weight": "solid",
+"name": "microphone-slash"
+},
+{
+"weight": "solid",
+"name": "mobile"
+},
+{
+"weight": "solid",
+"name": "mobile-button"
+},
+{
+"weight": "solid",
+"name": "mobile-retro"
+},
+{
+"weight": "solid",
+"name": "mobile-screen"
+},
+{
+"weight": "solid",
+"name": "mobile-screen-button"
+},
+{
+"weight": "solid",
+"name": "mobile-vibrate"
+},
+{
+"weight": "solid",
+"name": "paper-plane"
+},
+{
+"weight": "solid",
+"name": "phone-flip"
+},
+{
+"weight": "solid",
+"name": "phone-slash"
+},
+{
+"weight": "solid",
+"name": "poo"
+},
+{
+"weight": "solid",
+"name": "single-quote-left"
+},
+{
+"weight": "solid",
+"name": "single-quote-right"
+},
+{
+"weight": "solid",
+"name": "square-envelope"
+},
+{
+"weight": "solid",
+"name": "square-phone"
+},
+{
+"weight": "solid",
+"name": "square-phone-flip"
+},
+{
+"weight": "solid",
+"name": "square-rss"
+},
+{
+"weight": "solid",
+"name": "tower-cell"
+},
+{
+"weight": "solid",
+"name": "tty"
+},
+{
+"weight": "solid",
+"name": "video-slash"
+},
+{
+"weight": "solid",
+"name": "voicemail"
+},
+{
+"weight": "solid",
+"name": "walkie-talkie"
+},
+{
+"weight": "solid",
+"name": "box-archive"
+},
+{
+"weight": "solid",
+"name": "file-arrow-down"
+},
+{
+"weight": "solid",
+"name": "file-arrow-up"
+},
+{
+"weight": "solid",
+"name": "file-audio"
+},
+{
+"weight": "solid",
+"name": "file-circle-check"
+},
+{
+"weight": "solid",
+"name": "file-circle-exclamation"
+},
+{
+"weight": "solid",
+"name": "file-circle-minus"
+},
+{
+"weight": "solid",
+"name": "file-circle-plus"
+},
+{
+"weight": "solid",
+"name": "file-circle-question"
+},
+{
+"weight": "solid",
+"name": "file-circle-xmark"
+},
+{
+"weight": "solid",
+"name": "file-code"
+},
+{
+"weight": "solid",
+"name": "file-csv"
+},
+{
+"weight": "solid",
+"name": "file-excel"
+},
+{
+"weight": "solid",
+"name": "file-export"
+},
+{
+"weight": "solid",
+"name": "file-fragment"
+},
+{
+"weight": "solid",
+"name": "file-half-dashed"
+},
+{
+"weight": "solid",
+"name": "file-image"
+},
+{
+"weight": "solid",
+"name": "file-import"
+},
+{
+"weight": "solid",
+"name": "file-pdf"
+},
+{
+"weight": "solid",
+"name": "file-pen"
+},
+{
+"weight": "solid",
+"name": "file-powerpoint"
+},
+{
+"weight": "solid",
+"name": "file-shield"
+},
+{
+"weight": "solid",
+"name": "file-video"
+},
+{
+"weight": "solid",
+"name": "file-word"
+},
+{
+"weight": "solid",
+"name": "file-zipper"
+},
+{
+"weight": "solid",
+"name": "folder-closed"
+},
+{
+"weight": "solid",
+"name": "note-sticky"
+},
+{
+"weight": "solid",
+"name": "photo-film"
+},
+{
+"weight": "solid",
+"name": "bezier-curve"
+},
+{
+"weight": "solid",
+"name": "circle-nodes"
+},
+{
+"weight": "solid",
+"name": "compass-drafting"
+},
+{
+"weight": "solid",
+"name": "crosshairs"
+},
+{
+"weight": "solid",
+"name": "cubes"
+},
+{
+"weight": "solid",
+"name": "draw-polygon"
+},
+{
+"weight": "solid",
+"name": "droplet-slash"
+},
+{
+"weight": "solid",
+"name": "eraser"
+},
+{
+"weight": "solid",
+"name": "fill"
+},
+{
+"weight": "solid",
+"name": "fill-drip"
+},
+{
+"weight": "solid",
+"name": "font-awesome"
+},
+{
+"weight": "solid",
+"name": "layer-group"
+},
+{
+"weight": "solid",
+"name": "lines-leaning"
+},
+{
+"weight": "solid",
+"name": "marker"
+},
+{
+"weight": "solid",
+"name": "object-group"
+},
+{
+"weight": "solid",
+"name": "object-ungroup"
+},
+{
+"weight": "solid",
+"name": "paint-roller"
+},
+{
+"weight": "solid",
+"name": "ruler-combined"
+},
+{
+"weight": "solid",
+"name": "ruler-horizontal"
+},
+{
+"weight": "solid",
+"name": "ruler-vertical"
+},
+{
+"weight": "solid",
+"name": "spiral"
+},
+{
+"weight": "solid",
+"name": "splotch"
+},
+{
+"weight": "solid",
+"name": "spray-can"
+},
+{
+"weight": "solid",
+"name": "stamp"
+},
+{
+"weight": "solid",
+"name": "stapler"
+},
+{
+"weight": "solid",
+"name": "swatchbook"
+},
+{
+"weight": "solid",
+"name": "web-awesome"
+},
+{
+"weight": "solid",
+"name": "barcode"
+},
+{
+"weight": "solid",
+"name": "bath"
+},
+{
+"weight": "solid",
+"name": "bug"
+},
+{
+"weight": "solid",
+"name": "bug-slash"
+},
+{
+"weight": "solid",
+"name": "chart-diagram"
+},
+{
+"weight": "solid",
+"name": "code-branch"
+},
+{
+"weight": "solid",
+"name": "code-commit"
+},
+{
+"weight": "brands",
+"name": "github"
+},
+{
+"weight": "brands",
+"name": "gitlab"
+},
+{
+"weight": "brands",
+"name": "linkedin"
+},
+{
+"weight": "brands",
+"name": "x-twitter"
+},
+{
+"weight": "brands",
+"name": "twitter"
+},
+{
+"weight": "brands",
+"name": "facebook"
+},
+{
+"weight": "brands",
+"name": "facebook-f"
+},
+{
+"weight": "brands",
+"name": "instagram"
+},
+{
+"weight": "brands",
+"name": "youtube"
+},
+{
+"weight": "brands",
+"name": "tiktok"
+},
+{
+"weight": "brands",
+"name": "figma"
+},
+{
+"weight": "brands",
+"name": "sketch"
+},
+{
+"weight": "brands",
+"name": "dribbble"
+},
+{
+"weight": "brands",
+"name": "behance"
+},
+{
+"weight": "brands",
+"name": "slack"
+},
+{
+"weight": "brands",
+"name": "discord"
+},
+{
+"weight": "brands",
+"name": "google"
+},
+{
+"weight": "brands",
+"name": "google-drive"
+},
+{
+"weight": "brands",
+"name": "apple"
+},
+{
+"weight": "brands",
+"name": "microsoft"
+},
+{
+"weight": "brands",
+"name": "windows"
+},
+{
+"weight": "brands",
+"name": "android"
+},
+{
+"weight": "brands",
+"name": "chrome"
+},
+{
+"weight": "brands",
+"name": "firefox"
+},
+{
+"weight": "brands",
+"name": "safari"
+},
+{
+"weight": "brands",
+"name": "aws"
+},
+{
+"weight": "brands",
+"name": "docker"
+},
+{
+"weight": "brands",
+"name": "react"
+},
+{
+"weight": "brands",
+"name": "vuejs"
+},
+{
+"weight": "brands",
+"name": "angular"
+},
+{
+"weight": "brands",
+"name": "node-js"
+},
+{
+"weight": "brands",
+"name": "js"
+},
+{
+"weight": "brands",
+"name": "python"
+},
+{
+"weight": "brands",
+"name": "html5"
+},
+{
+"weight": "brands",
+"name": "css3"
+},
+{
+"weight": "brands",
+"name": "sass"
+},
+{
+"weight": "brands",
+"name": "npm"
+},
+{
+"weight": "brands",
+"name": "wordpress"
+},
+{
+"weight": "brands",
+"name": "shopify"
+},
+{
+"weight": "brands",
+"name": "stripe"
+},
+{
+"weight": "brands",
+"name": "paypal"
+},
+{
+"weight": "brands",
+"name": "spotify"
+},
+{
+"weight": "brands",
+"name": "medium"
+},
+{
+"weight": "brands",
+"name": "dev"
+},
+{
+"weight": "brands",
+"name": "stack-overflow"
+},
+{
+"weight": "brands",
+"name": "codepen"
+},
+{
+"weight": "brands",
+"name": "notion"
+},
+{
+"weight": "solid",
+"name": "code-compare"
+},
+{
+"weight": "solid",
+"name": "code-fork"
+}
+]

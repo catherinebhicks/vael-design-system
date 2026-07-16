@@ -71,6 +71,32 @@ full 3-weight spec) plus Duotone/Sharp.
   ones), and switch the website to the `@fortawesome` **Pro** webfonts via the
   Pro npm token.
 
+## Icons — SVG glyphs + generator
+
+The **full FontAwesome 7 Free SVG set (2,883 icons)** lives in
+`font-awesome/svgs/{solid,regular,brands}/`. The code renders icons as **SVG**
+(`@fortawesome/react-fontawesome` + `free-*-svg-icons`) — no webfont — so these
+SVGs match the code 1:1 (Figma `chevron-down` ↔ code `faChevronDown`).
+
+**Figma icon library:** only a curated **top ~500** are placed in the *Vael Icons*
+Figma file (Figma can only build an icon from inline SVG — no bulk import — so
+placing all 2,883 is deliberately avoided). The selection is reproducible:
+
+```
+python3 font-awesome/generate-icons.py --count 500      # manifest + Figma batches
+python3 font-awesome/generate-icons.py --count 800      # add more later
+```
+
+- `font-awesome/vael-icons/manifest.json` — the ordered selection (source of truth)
+- `font-awesome/vael-icons/batches/batch-NN.json` — `{"weight/name": svg}` fed to Figma
+- Priority: curated essential-UI core → design-relevant categories → major brands.
+
+**Need an icon that isn't in the Figma file?** Three options, all documented on the
+cover page *inside* the Vael Icons Figma file too: (1) bump `--count` and re-run to
+add more; (2) grab any glyph from `svgs/` directly; (3) browse/download from
+**https://fontawesome.com/icons** (filter to Free). The font-based option (type an
+icon name in the FontAwesome font) is also explained there for anyone who prefers it.
+
 ## Sources & versions
 
 - **IBM Plex Sans/Mono** — OFL 1.1. Desktop TTFs from google/fonts (`ofl/ibmplexsans`
