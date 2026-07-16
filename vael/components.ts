@@ -111,6 +111,27 @@ export const components: ThemeOptions['components'] = {
     },
   },
   MuiChip: { styleOverrides: { root: { borderRadius: 8, fontWeight: 500 } } },
+  // Divider: hairline uses palette.divider automatically; a "with text" label
+  // takes the single Mono voice (uppercase, tracked) like the page's eyebrows.
+  MuiDivider: {
+    styleOverrides: {
+      wrapper: {
+        fontFamily: mono,
+        fontSize: '0.6875rem',
+        textTransform: 'uppercase',
+        letterSpacing: '0.08em',
+        opacity: 0.85,
+      },
+    },
+  },
+  // Link: brand-blue, underline on hover only, slightly heavier — matches the
+  // landing page's inline links.
+  MuiLink: {
+    defaultProps: { underline: 'hover' },
+    styleOverrides: {
+      root: { fontWeight: 500, textUnderlineOffset: '0.15em' },
+    },
+  },
   // Alert: rounded. Message + title both inherit the single Mono voice.
   MuiAlert: {
     styleOverrides: {
