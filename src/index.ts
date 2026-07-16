@@ -45,6 +45,8 @@ export * from './components/Navigation';
 export * from './components/Popover';
 export * from './components/Radio';
 export * from './components/Rating';
+export * from './components/SegmentedControl';
+export * from './components/StatusBadge';
 export * from './components/Slider';
 export * from './components/Snackbar';
 export * from './components/Stepper';
