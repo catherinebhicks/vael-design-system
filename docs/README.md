@@ -17,6 +17,8 @@
 - **[../README.md](../README.md)** — library overview + how to run Storybook.
 - **[../CHANGELOG.md](../CHANGELOG.md)** — change history (pre-1.0).
 - **[../start-here.md](../start-here.md)** — repo re-entry / current status.
+- **`../about/`** — the Vael story site (from the archived `vael-case-study`); the package's About / landing section.
+- **`../slide-library/`** — presentation template kit + the downloadable 92-slide deck (`slide-library/deck/Vael-Slide-Library.pptx`).
 - **`../stories/`** — the canonical design documentation *of* the system (~92 MDX pages):
   - `Foundations/` — Color, Typography, Spacing, Motion, DarkMode, DataViz, Elevation, Iconography, Breakpoints.
   - `Docs/` — DesignTokens, TokenUsage, Accessibility, MotionPrinciples, ErrorMessages, DataFormatting, BrowserSupport, ComponentStatus.
