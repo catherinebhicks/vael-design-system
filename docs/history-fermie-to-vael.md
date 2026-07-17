@@ -14,7 +14,7 @@
 |---|---|---|
 | **1. Fermie (production)** | Design system built *at the startup* with Claude as a design-engineering pair, to production standards, in one six-week Shape Up cycle. Codenamed "Fermie" / "FermieDS." Taken all the way to a scoped, ready-to-build handoff (17 pitches / 145 tickets). | Private repo **`catherinebhicks/FermieDS`** (still on GitHub; now cloned to `~/dev/FermieDS`). `fermie-react` is not on the personal GitHub. |
 | **2. Shelved** | Priorities shifted; the rollout cycle never ran. The system was complete and scoped but parked. | — |
-| **3. Vael (carried forward, open)** | Taken home and rebuilt clean, anonymized, and public-facing: renamed **Vael**, re-authored by hand, moved to Storybook, expanded well past the original scope. | This repo (`~/dev/vael-ref` → `catherinebhicks/vael-design-system`, private) |
+| **3. Vael (carried forward, open)** | Taken home and rebuilt clean, anonymized, and public-facing: renamed **Vael**, re-authored by hand, moved to Storybook, expanded well past the original scope. | This repo (`~/dev/vael-design-system` → `catherinebhicks/vael-design-system`, private) |
 
 **Provenance (internal only — do not publish):** the identifiable origin — former employer, product, codename meaning, and the ADR authors' names — is kept in private **memory** (`project_culture_former_employer`, `project_vael_design_system`), **not committed to this repo**, so nothing identifiable leaks if the package is ever made public. Everything downstream is anonymized to Vael.
 
