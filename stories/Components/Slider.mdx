@@ -54,9 +54,9 @@ Scope: Tier 1 — drop in, no wrapper needed. Import from `@mui/material/Rating`
 | getLabelText | `(value) => string` | — | Accessible label for each star. Required for screen readers. |
 | name | string | — | Required when multiple Rating components appear on the same page to avoid ARIA conflicts. |
 
-## Accessibility — a note on the isolated stories
+## Accessibility — labelling the slider
 
-The default Slider stories render the slider **alone**, so axe flags them with
-`label`. That is an isolated-demo artifact. See the **Accessible usage** story:
-in production, name the slider with `aria-labelledby` (to visible text) or
-`aria-label`, and add `getAriaLabel` to name each thumb on range sliders.
+The demo stories render the slider **alone**, so each carries an `aria-label`
+(and range sliders a `getAriaLabel` to name each thumb) — a slider always needs
+an accessible name. In production, prefer a **visible** label wired with
+`aria-labelledby`; the **Accessible usage** story shows that pattern.

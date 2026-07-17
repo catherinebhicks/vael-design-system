@@ -11,16 +11,21 @@ const meta: Meta<typeof Slider> = {
     color: { control: 'select', options: ['primary', 'secondary'] },
     disabled: { control: 'boolean' },
   },
+  // aria-label names the standalone demo; production wires a visible label via
+  // aria-labelledby (see AccessibleUsage).
+  args: { 'aria-label': 'Demo slider' },
   parameters: {
-    a11y: { test: 'todo' },
-    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=40-24' } },
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=40-24' },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Slider>;
 
 export const Default: Story = { args: { defaultValue: 30 } };
-export const Range: Story = { args: { defaultValue: [20, 60] } };
+export const Range: Story = {
+  args: { defaultValue: [20, 60], getAriaLabel: (i: number) => (i === 0 ? 'Minimum' : 'Maximum') },
+};
 export const Disabled: Story = { args: { defaultValue: 30, disabled: true } };
 export const WithMarks: Story = { args: { defaultValue: 30, marks: true, step: 10 } };
 

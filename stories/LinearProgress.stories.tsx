@@ -7,8 +7,11 @@ const meta: Meta<typeof LinearProgress> = {
   component: LinearProgress,
   tags: ['autodocs'],
   parameters: {
-    a11y: { test: 'todo' },
-    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=38-8' } },
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=38-8' },
+  },
+  // aria-label names the standalone demo; production wires a visible label via
+  // aria-labelledby (see AccessibleUsage).
+  args: { 'aria-label': 'Demo progress' },
   decorators: [(Story) => <Box sx={{ width: 300 }}><Story /></Box>],
   argTypes: {
     variant: { control: 'select', options: ['determinate', 'indeterminate', 'buffer', 'query'] },

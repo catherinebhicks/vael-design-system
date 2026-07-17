@@ -7,8 +7,11 @@ const meta: Meta<typeof Switch> = {
   component: Switch,
   tags: ['autodocs'],
   parameters: {
-    a11y: { test: 'todo' },
-    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=30-15' } },
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=30-15' },
+  },
+  // aria-label makes the standalone demo accessible; production uses a visible
+  // label via FormControlLabel (see AccessibleUsage).
+  args: { slotProps: { input: { 'aria-label': 'Demo switch' } } },
   argTypes: {
     color: { control: 'select', options: ['primary', 'secondary', 'default'] },
     disabled: { control: 'boolean' },

@@ -11,9 +11,13 @@ const meta: Meta<typeof Checkbox> = {
     disabled: { control: 'boolean' },
     size: { control: 'select', options: ['small', 'medium'] },
   },
+  // Standalone demos carry an aria-label so they are accessible in isolation
+  // (a control still needs a name). In production, prefer a visible label via
+  // FormControlLabel — see the AccessibleUsage story.
+  args: { slotProps: { input: { 'aria-label': 'Demo checkbox' } } },
   parameters: {
-    a11y: { test: 'todo' },
-    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=32-29' } },
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=32-29' },
+  },
 };
 
 export default meta;

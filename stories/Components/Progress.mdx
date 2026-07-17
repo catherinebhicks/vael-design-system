@@ -80,10 +80,10 @@ Import from `~/components/loaders/LoadingPage`.
 | Section within a loaded page is fetching | `LoadingContainer` |
 | Route-level error with HTTP status code | `ErrorPage` (see Error Pages pattern) |
 
-## Accessibility — a note on the isolated stories
+## Accessibility — naming progress indicators
 
-The bare Circular/Linear progress stories have no surrounding context, so axe
-flags `aria-progressbar-name`. That is an isolated-demo artifact. See the
-**Accessible usage** story: always give a progress indicator an accessible name
-(`aria-labelledby` to visible status text, or `aria-label`) so screen-reader
-users know what is loading.
+The Circular/Linear demo stories carry an `aria-label` so the indicator is named
+even in isolation — a progressbar always needs an accessible name. In production,
+name it for its actual purpose: `aria-labelledby` pointing at visible status text
+(preferred), or `aria-label`. The **Accessible usage** story shows that pattern so
+screen-reader users know *what* is loading.
