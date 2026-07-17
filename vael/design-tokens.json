@@ -987,5 +987,198 @@
         "$description": "Disturbance plot band fill opacity (DebugChart)."
       }
     }
+  },
+  "border": {
+    "width": {
+      "none": {
+        "$value": "0px",
+        "$type": "dimension"
+      },
+      "hairline": {
+        "$value": "1px",
+        "$type": "dimension"
+      },
+      "thin": {
+        "$value": "1px",
+        "$type": "dimension"
+      },
+      "thick": {
+        "$value": "2px",
+        "$type": "dimension"
+      },
+      "heavy": {
+        "$value": "4px",
+        "$type": "dimension"
+      }
+    }
+  },
+  "focus": {
+    "color": {
+      "$value": "#1976d2",
+      "$type": "color"
+    },
+    "width": {
+      "$value": "2px",
+      "$type": "dimension"
+    },
+    "offset": {
+      "$value": "2px",
+      "$type": "dimension"
+    }
+  },
+  "zIndex": {
+    "dropdown": {
+      "$value": 1000,
+      "$type": "number"
+    },
+    "sticky": {
+      "$value": 1100,
+      "$type": "number"
+    },
+    "banner": {
+      "$value": 1200,
+      "$type": "number"
+    },
+    "overlay": {
+      "$value": 1300,
+      "$type": "number"
+    },
+    "modal": {
+      "$value": 1300,
+      "$type": "number"
+    },
+    "popover": {
+      "$value": 1400,
+      "$type": "number"
+    },
+    "toast": {
+      "$value": 1500,
+      "$type": "number"
+    },
+    "tooltip": {
+      "$value": 1600,
+      "$type": "number"
+    },
+    "appBar": {
+      "$value": 1100,
+      "$type": "number"
+    },
+    "drawer": {
+      "$value": 1200,
+      "$type": "number"
+    },
+    "snackbar": {
+      "$value": 1400,
+      "$type": "number"
+    },
+    "fab": {
+      "$value": 1050,
+      "$type": "number"
+    },
+    "speedDial": {
+      "$value": 1050,
+      "$type": "number"
+    }
+  },
+  "state": {
+    "hover": {
+      "$value": 0.04,
+      "$type": "number"
+    },
+    "selected": {
+      "$value": 0.08,
+      "$type": "number"
+    },
+    "focus": {
+      "$value": 0.12,
+      "$type": "number"
+    },
+    "pressed": {
+      "$value": 0.12,
+      "$type": "number"
+    },
+    "dragged": {
+      "$value": 0.16,
+      "$type": "number"
+    },
+    "disabled": {
+      "$value": 0.38,
+      "$type": "number"
+    },
+    "disabledBackground": {
+      "$value": 0.12,
+      "$type": "number"
+    }
+  },
+  "surface": {
+    "base": {
+      "$value": "{color.background.default}",
+      "$type": "color",
+      "$description": "semantic surface alias"
+    },
+    "raised": {
+      "$value": "{color.background.paper}",
+      "$type": "color",
+      "$description": "semantic surface alias"
+    },
+    "sunken": {
+      "$value": "{color.background.subtle}",
+      "$type": "color",
+      "$description": "semantic surface alias"
+    },
+    "overlay": {
+      "$value": "{color.background.paper}",
+      "$type": "color",
+      "$description": "semantic surface alias"
+    },
+    "ink": {
+      "$value": "{color.background.ink}",
+      "$type": "color",
+      "$description": "semantic surface alias"
+    }
+  },
+  "shapeScale": {
+    "none": {
+      "$value": "0px",
+      "$type": "dimension"
+    },
+    "xs": {
+      "$value": "4px",
+      "$type": "dimension"
+    },
+    "sm": {
+      "$value": "6px",
+      "$type": "dimension"
+    },
+    "base": {
+      "$value": "8px",
+      "$type": "dimension"
+    },
+    "md": {
+      "$value": "10px",
+      "$type": "dimension"
+    },
+    "lg": {
+      "$value": "14px",
+      "$type": "dimension"
+    },
+    "xl": {
+      "$value": "20px",
+      "$type": "dimension"
+    },
+    "pill": {
+      "$value": "9999px",
+      "$type": "dimension"
+    }
+  },
+  "reducedMotion": {
+    "query": {
+      "$value": "(prefers-reduced-motion: reduce)",
+      "$type": "string"
+    },
+    "durationScale": {
+      "$value": 0,
+      "$type": "number"
+    }
   }
 }

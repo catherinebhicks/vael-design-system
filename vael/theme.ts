@@ -23,6 +23,20 @@ import { createTheme } from '@mui/material/styles';
 import type { Shadows, ThemeOptions } from '@mui/material/styles';
 import { blueprint } from './blueprint';
 import { components } from './components';
+import { zIndex as vaelZIndex } from './foundation-tokens';
+
+// MUI-native z-index scale (the recognized keys); full layer scale lives in
+// foundation-tokens.ts (zIndex) for direct use.
+const zIndex = {
+  mobileStepper: vaelZIndex.mobileStepper,
+  fab: vaelZIndex.fab,
+  speedDial: vaelZIndex.speedDial,
+  appBar: vaelZIndex.appBar,
+  drawer: vaelZIndex.drawer,
+  modal: vaelZIndex.modal,
+  snackbar: vaelZIndex.snackbar,
+  tooltip: vaelZIndex.tooltip,
+};
 
 const mono = blueprint.font.mono;
 
@@ -132,6 +146,7 @@ export const theme = createTheme({
   spacing,
   breakpoints,
   transitions,
+  zIndex,
 });
 
 export default theme;
@@ -167,6 +182,7 @@ export const darkTheme = createTheme({
   spacing,
   breakpoints,
   transitions,
+  zIndex,
 });
 
 // ─── Chart Variable Color Map ─────────────────────────────────────────────────

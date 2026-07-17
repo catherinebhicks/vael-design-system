@@ -3,6 +3,21 @@ export { theme, darkTheme } from './theme';
 export { palette } from './theme';
 export type { ColorName, ColorStep } from './theme';
 
+// Foundation tokens (border, focus-ring, mono/code type, z-index, state-layer,
+// surfaces, shape scale, reduced-motion). Typed constants + design-tokens.json mirror.
+export {
+  foundationTokens,
+  borderWidths,
+  focusRing,
+  monoType,
+  zIndex,
+  reducedMotion,
+  stateLayer,
+  surfaces,
+  shapeScale,
+} from '../vael/foundation-tokens';
+export type { FoundationTokens } from '../vael/foundation-tokens';
+
 // Components
 export * from './components/AgGrid';
 // Charts — Advanced tier (Highcharts): flat exports (AreaChart, BarChart, DonutChart,

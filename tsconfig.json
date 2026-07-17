@@ -14,6 +14,6 @@
     "rootDir": ".",
     "paths": {}
   },
-  "include": ["src", "vael/theme.ts", "vael/palette.ts"],
+  "include": ["src", "vael/theme.ts", "vael/palette.ts", "vael/foundation-tokens.ts"],
   "exclude": ["node_modules", "dist", "stories", ".storybook"]
 }

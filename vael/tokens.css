@@ -594,3 +594,43 @@
   --ds-chart-extended-rose:   #C2185B;  /* 5.9:1 */
   --ds-chart-extended-sienna: #795548;  /* 6.6:1 */
 }
+
+/* ── Foundation tokens (#67–74) ─────────────────────────────────────────── */
+:root {
+  /* border widths */
+  --vael-border-hairline: 1px;
+  --vael-border-thick: 2px;
+  --vael-border-heavy: 4px;
+  /* focus ring */
+  --vael-focus-color: #1976d2;
+  --vael-focus-width: 2px;
+  --vael-focus-offset: 2px;
+  --vael-focus-shadow: 0 0 0 2px #fff, 0 0 0 4px #1976d2;
+  /* z-index scale */
+  --vael-z-dropdown: 1000;
+  --vael-z-appbar: 1100;
+  --vael-z-drawer: 1200;
+  --vael-z-modal: 1300;
+  --vael-z-popover: 1400;
+  --vael-z-toast: 1500;
+  --vael-z-tooltip: 1600;
+  /* state-layer opacities */
+  --vael-state-hover: 0.04;
+  --vael-state-selected: 0.08;
+  --vael-state-focus: 0.12;
+  --vael-state-pressed: 0.12;
+  --vael-state-dragged: 0.16;
+  /* shape scale */
+  --vael-radius-xs: 4px;
+  --vael-radius-sm: 6px;
+  --vael-radius-base: 8px;
+  --vael-radius-md: 10px;
+  --vael-radius-lg: 14px;
+  --vael-radius-xl: 20px;
+  --vael-radius-pill: 9999px;
+  /* mono / code type */
+  --vael-font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { --vael-duration-scale: 0; }
+}
