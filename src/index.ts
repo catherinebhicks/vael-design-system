@@ -106,6 +106,16 @@ export * from './components/SectionHeading';
 export * from './components/SlideSection';
 export * from './components/PullQuote';
 export * from './components/BrowserFrame';
+// Operational / dashboard + editor components
+export * from './components/InlineEdit';
+export * from './components/CodeBlock';
+export * from './components/LiveValue';
+export * from './components/StaleDataIndicator';
+export * from './components/AlarmBadge';
+export * from './components/CommandBar';
+export * from './components/DensityProvider';
+export * from './components/PrintPage';
+
 // Marketing / portfolio compositions
 export * from './components/HeroBanner';
 export * from './components/CtaBar';
