@@ -1,0 +1,26 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Keyboard Shortcut Disclosure" />
+
+# Keyboard-shortcut disclosure
+
+Make shortcuts **discoverable** without cluttering the UI: surface them where the
+action lives, and provide one place to see them all.
+
+## Layers of disclosure
+
+1. **In menus** — show the shortcut on the right of each `Menu` item (`⌘K`).
+2. **In tooltips** — append the shortcut to the `Tooltip` of an icon button.
+3. **A shortcuts sheet** — a `Dialog` (opened by `?`) listing every shortcut, grouped.
+4. **A hint** — a subtle `Infotext` ("Press / to search") near the relevant control.
+
+## Rules
+
+- Render keys as **individual caps** (`⌘` `K`), not a run-on string.
+- Use platform-correct symbols (`⌘` on macOS, `Ctrl` on Windows) — detect, don't assume.
+- Never bind a shortcut that steals a browser/AT default without an escape.
+- The shortcuts sheet is itself reachable by keyboard and screen reader.
+
+## Build from
+
+`Menu` (trailing shortcut) · `Tooltip` · `Dialog` (the sheet) · `Infotext` (hints).

@@ -1,0 +1,35 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Accessibility" />
+
+# Accessibility
+
+Vael targets **WCAG 2.2 AA**. Accessibility is a component acceptance criterion,
+not a later pass.
+
+## The per-component checklist
+
+- **Contrast** — text ≥ 4.5:1 (≥ 3:1 for large/bold); UI/icon boundaries ≥ 3:1.
+  The palette is pre-checked; don't introduce off-token colors.
+- **Keyboard** — every interactive element is reachable and operable by keyboard,
+  in a logical order, with no traps.
+- **Focus** — a visible `:focus-visible` ring (the `focusRing` token); never
+  `outline: none` without a replacement.
+- **Names & roles** — controls have accessible names; custom widgets use correct
+  ARIA roles/states (`aria-expanded`, `aria-selected`, `role="meter"`, …).
+- **Targets** — interactive targets ≥ 24×24 CSS px (2.2), ideally 44×44 for touch.
+- **Motion** — honor `prefers-reduced-motion`; motion is never the only signal.
+- **Status** — announce async changes with `aria-live` (result counts, saves, errors).
+
+## Per-component notes
+
+- **Meters** (`SegmentMeter`, `MeterRow`, `GaugeStat`) expose `role="meter"` +
+  `aria-valuenow/min/max`.
+- **Menus / listboxes** manage roving focus and `aria-activedescendant`.
+- **Dialogs / SidePanel** trap focus while open and restore it on close; Escape closes.
+- **Icons** that are decorative are `aria-hidden`; icon-only buttons need an `aria-label`.
+
+## Verify
+
+Storybook a11y addon (axe) on every story; manual keyboard + screen-reader pass
+before **Stable**.

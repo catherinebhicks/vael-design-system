@@ -1,0 +1,21 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "custom-property-pattern": null,
+    "selector-class-pattern": null,
+    "value-keyword-case": null,
+    "font-family-name-quotes": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "no-descending-specificity": null,
+    "alpha-value-notation": null,
+    "color-function-notation": null,
+    "declaration-block-single-line-max-declarations": null,
+    "no-duplicate-selectors": null,
+    "media-feature-range-notation": null
+  },
+  "ignoreFiles": [
+    "dist/**",
+    "storybook-static/**",
+    "node_modules/**"
+  ]
+}

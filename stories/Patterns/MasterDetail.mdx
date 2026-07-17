@@ -1,0 +1,27 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Master-Detail" />
+
+# Master-detail / row expansion
+
+Browse a list of records (master) and inspect one in depth (detail) without
+losing your place in the list.
+
+## Two shapes
+
+- **Side panel** — the detail opens in a right-anchored `SidePanel`; the list
+  stays visible. Best for quick inspect-and-return on wide screens.
+- **Row expansion** — the detail expands inline beneath the selected row
+  (`Accordion`-style). Best for comparing a few records in context.
+
+## Rules
+
+- Keep the selected row **highlighted** while its detail is open.
+- The detail must be **dismissable** with Escape and an explicit close control.
+- On narrow screens, collapse to a full-screen detail (`Drawer`) with a back affordance.
+- Don't refetch the list when opening a detail — preserve scroll and selection.
+
+## Build from
+
+`Table`/`List` + `SidePanel` (side) or `Accordion` (inline) · `Descriptions` for the
+detail body.

@@ -1,0 +1,27 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Wizard with Branching" />
+
+# Wizard with branching
+
+A multi-step flow where the remaining steps depend on earlier answers. The
+`Stepper` shows progress; the path adapts.
+
+## Rules
+
+- Show the **current** step and total, but don't promise steps you may skip —
+  label branch points ("2 of 3–4 depending on plan").
+- Keep a **Back** path that restores prior answers (don't wipe on reverse).
+- Validate per step; block **Next** until the step is valid, with inline errors.
+- Summarize before the final commit (a review step) so branches are auditable.
+- Persist progress so a refresh doesn't lose the flow.
+
+## Branch modeling
+
+Treat steps as a graph, not a list: each step declares its `next(answers)`.
+The `Stepper` renders the resolved path; hidden branches never appear.
+
+## Build from
+
+`Stepper` · `TextField`/`Checkbox`/`SegmentedControl` per step · `Descriptions` for the
+review step · `Button` (Back / Next / Finish).

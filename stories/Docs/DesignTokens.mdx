@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Design Tokens Reference" />
+
+# Design tokens reference
+
+Every token has one source of truth and three consumable forms.
+
+| Source | Form | Use from |
+|---|---|---|
+| `vael/design-tokens.json` | W3C Design Tokens | tooling / hand-off |
+| `vael/foundation-tokens.ts` | typed TS constants | app code (`import { foundationTokens }`) |
+| `vael/tokens.css` | CSS custom properties (`--vael-*`) | plain CSS / non-MUI surfaces |
+| `vael/theme.ts` | MUI theme | `<ThemeProvider>` components |
+
+## Token groups
+
+- **Color** — 132 ramp primitives → Light/Dark semantics (`primary`, `text`, `background`,
+  `action`, `divider`) + `Chart` + `Blueprint` engine-room tokens.
+- **Typography** — the IBM Plex ramp (Display → Caption) + `monoType` for code/labels.
+- **Spacing** — `space/xs…4xl` (8-based).
+- **Shape** — `shapeScale` none → pill (mirrors the Figma `Radius` collection).
+- **Elevation** — 7 shadow effect styles (`Elevation/1…24`).
+- **Motion** — 7 durations + 4 easings; `reducedMotion` flag.
+- **Border / Focus / Z-index / State-layer / Surface** — the foundation tokens (#67–74).
+
+## Rules
+
+- Reference **semantic** tokens in components (`text.secondary`), not raw ramps (`gray/600`).
+- CSS var names are stable API — don't rename; add new ones instead.
+- Figma variables mirror these 1:1; changing a value means changing it in both.

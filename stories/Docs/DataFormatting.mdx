@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Data Formatting" />
+
+# Data formatting
+
+Consistent formatting makes tables and dashboards scannable. Format at the
+**view** layer; store raw values.
+
+## Numbers
+
+- Use `Intl.NumberFormat` — never hand-roll separators.
+- **Abbreviate** large values in tight spaces (`12.4k`, `1.2M`); show the full value on hover.
+- **Right-align** numeric table columns; align decimal points.
+- Use **tabular figures** (mono, which Vael already uses) so digits line up.
+
+## Currency
+
+- Always show the currency (`$`, `€`) or ISO code; never a bare number for money.
+- Two decimals for exact amounts; abbreviate only in summaries, not ledgers.
+
+## Dates & times
+
+- **Relative** for recency ("2m ago", "yesterday"); **absolute** for records
+  (`2026-07-16`). Show the absolute value on hover of a relative one.
+- Use ISO (`YYYY-MM-DD`) where sorting/scanning matters; localized elsewhere.
+- State the timezone when it's ambiguous or consequential.
+
+## Percentages & deltas
+
+- One decimal max unless precision is the point.
+- Deltas carry **direction + sentiment** (green up = good is context-dependent —
+  see `StatBlock`'s `good` flag for "down is good" cases like bounce rate).
+
+## Empty & null
+
+- Distinguish **zero** (`0`) from **no data** (`—`). Never render `null`/`NaN`.

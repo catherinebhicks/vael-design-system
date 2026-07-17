@@ -1,0 +1,39 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Error Messages" />
+
+# Error-message writing
+
+A good error says **what happened**, **why**, and **what to do next** — in plain
+language, without blame.
+
+## Formula
+
+> [What went wrong]. [Why, if useful]. [The fix / next step].
+
+- ✅ "We couldn't save your changes — you're offline. Reconnect and try again."
+- ❌ "Error 0x8004: request failed."
+- ❌ "Invalid input." (which field? why?)
+
+## Rules
+
+- **Be specific and human.** Name the field, the limit, the action.
+- **No blame, no jargon.** Avoid "illegal", "invalid", "you failed to…".
+- **Say the fix.** Every error should hint at a path forward.
+- **Right place, right level.** Field errors inline (`Infotext` tone="error");
+  form-level errors in an `Alert`; transient failures in a `Snackbar` with **Retry**.
+- **Preserve the user's work.** Never clear inputs on error.
+- **Don't over-alert.** One clear message beats three redundant ones.
+
+## Severity → component
+
+| Severity | Where | Component |
+|---|---|---|
+| Field validation | beside the field | `Infotext` (error) / `FormHelperText` |
+| Form / page | top of form | `Alert` (error) |
+| Transient / network | corner | `Snackbar` + Retry |
+| Blocking / destructive confirm | center | `Dialog` |
+
+## Tone
+
+Calm and direct. The user is already frustrated — don't be cute, don't be cold.

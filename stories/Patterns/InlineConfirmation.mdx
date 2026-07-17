@@ -1,0 +1,27 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Inline Confirmation" />
+
+# Inline confirmation
+
+Confirm a consequential action without a full modal, by momentarily swapping the
+trigger for a confirm/cancel pair (or a small `Popover`).
+
+## When to use
+
+- **Inline swap** — for low-stakes, reversible actions (remove a tag, delete a draft
+  row). The button becomes "Confirm? · Cancel" in place.
+- **Popover confirm** — for medium-stakes actions where a sentence of context helps.
+- **Dialog** — reserve for high-stakes, irreversible actions (delete account, purge data).
+
+## Rules
+
+- Name the **specific consequence** ("Delete 3 items?"), never just "Are you sure?".
+- The confirm button carries the **verb** ("Delete"), styled `error` when destructive.
+- Default focus goes to **Cancel** for destructive actions.
+- Auto-dismiss the inline prompt on blur/Escape — don't trap the user.
+
+## Build from
+
+`Button` (in-place swap) or `Popover` + `Button` · escalate to `Dialog` for irreversible
+actions. Confirm success with a `Snackbar` that offers **Undo** where possible.

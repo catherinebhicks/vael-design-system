@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Motion Principles" />
+
+# Motion principles
+
+Motion in Vael is **functional**: it orients, confirms, or directs attention.
+If a movement doesn't do one of those, cut it.
+
+## Principles
+
+1. **Purposeful** — every animation answers "what changed / where did it go / did it work?".
+2. **Fast** — UI motion is 150–300ms (`transitions.duration`). If it feels slow, it is.
+3. **Natural** — decelerate on enter (`easeOut`), accelerate on exit (`sharp`);
+   `easeInOut` for in-place changes.
+4. **Consistent** — same change → same motion everywhere. Reuse the recipes in
+   **Motion Templates**, don't reinvent per screen.
+5. **Respectful** — honor `prefers-reduced-motion`; degrade to a cross-fade or none.
+   Motion is never the only carrier of meaning.
+
+## What to animate
+
+- **Transform + opacity only** (compositor-friendly). Avoid animating width/height/top
+  where a transform will do.
+- Enter/exit, expand/collapse, selection, and success confirmations — yes.
+- Decorative loops, parallax, and attention-grabbing bounce — almost never in-product.
+
+## Durations at a glance
+
+| Token | ms | For |
+|---|---|---|
+| `shortest` | 150 | micro (ripple, hover) |
+| `short` | 250 | most UI transitions |
+| `standard` | 300 | expand/collapse, page-level |
+| `complex` | 375 | multi-part, larger surfaces |
+
+See the `reducedMotion` foundation token and **Patterns/Motion Templates** for recipes.

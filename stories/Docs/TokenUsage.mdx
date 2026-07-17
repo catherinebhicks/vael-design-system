@@ -1,0 +1,34 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Token Usage" />
+
+# Token usage guidelines
+
+How to consume tokens so the system stays consistent and re-themable.
+
+## Do
+
+- **Use semantic tokens** in components: `theme.palette.text.secondary`,
+  `theme.palette.divider`, `space/md` — not raw ramps or hex.
+- **Let the theme carry values.** In MUI, prefer `sx`/styleOverrides that read from
+  `theme` over hardcoded numbers.
+- **Reach for the right layer:** `sx`/theme in components, `--vael-*` CSS vars on
+  non-MUI surfaces, `foundationTokens` constants for logic (z-index math, etc.).
+- **Bind, don't copy.** In Figma, bind fills/spacing/radius to variables.
+
+## Don't
+
+- ❌ Hardcode hex (`#1976d2`) — use `primary.main`.
+- ❌ Duplicate a raw value into the semantic layer — alias it.
+- ❌ Invent a one-off spacing/radius — use the scale; if it's missing, add to the scale.
+- ❌ Use `gray/600` directly for text — use `text.secondary`.
+
+## Adding a token
+
+1. Add it to `design-tokens.json` (W3C) — the source of truth.
+2. Surface it in `foundation-tokens.ts` and/or `theme.ts` as appropriate.
+3. Add the `--vael-*` CSS variable in `tokens.css`.
+4. Mirror it as a Figma variable (with scope + WEB code syntax `var(--vael-…)`).
+5. Reference the semantic token everywhere — never the primitive.
+
+Tokens are API. Add freely; rename never.

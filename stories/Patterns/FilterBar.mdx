@@ -1,0 +1,28 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Filter Bar" />
+
+# Filter bar
+
+A horizontal bar of filter controls above a list, table, or grid. Keeps the
+active query visible and reversible.
+
+## Anatomy
+
+- **Filter pills** — one `Chip` (or `Tag`) per active filter, each deletable.
+- **Add-filter control** — a `Button` or `Menu` that opens the available facets.
+- **Search** — an inline `TextField` for free-text narrowing.
+- **Saved views** — a `SegmentedControl` or `Menu` of named filter sets.
+- **Result count** — a mono caption ("128 results") so the query's effect is legible.
+
+## Rules
+
+- Every active filter is a **removable** pill — never hide what's filtering the data.
+- Show a **clear-all** affordance once two or more filters are active.
+- Persist the last filter set per user where it makes sense (saved views).
+- Announce result-count changes to assistive tech (`aria-live="polite"`).
+
+## Build from
+
+`Chip` / `Tag` · `Menu` · `TextField` · `SegmentedControl` · `Infotext` (result count).
+Pair with the **Bulk-action** pattern when rows are selectable.

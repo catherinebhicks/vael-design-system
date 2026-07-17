@@ -1,0 +1,17 @@
+name: a11y
+on: [push, pull_request]
+jobs:
+  axe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build-storybook --quiet
+      - name: Serve + run axe on every story
+        run: |
+          npx concurrently -k -s first -n SB,TEST \
+            "npx http-server storybook-static --port 6006 --silent" \
+            "npx wait-on tcp:6006 && npm run test-storybook"

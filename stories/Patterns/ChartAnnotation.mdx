@@ -1,0 +1,28 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Chart Annotation" />
+
+# Chart annotation
+
+Add context to a chart: mark events, thresholds, and ranges so the reader knows
+*why* a line moves, not just *that* it moves.
+
+## Kinds
+
+- **Reference line** — a horizontal/vertical rule for a target, budget, or SLA.
+- **Band** — a shaded range (e.g. "acceptable", "maintenance window").
+- **Point marker** — a labeled dot for a launch, incident, or release.
+- **Callout** — a small `Callout`/tooltip anchored to a data point.
+
+## Rules
+
+- Annotations are **secondary** — mute them (hairline, muted ink) so the data reads first.
+- Use the **signal** accent (`warning.main`) for thresholds/alerts, not brand blue.
+- Label every reference line; an unlabeled line is a question, not an answer.
+- Keep annotation text out of the plot area when it would occlude data.
+
+## Build from
+
+Advanced tier (`ControlChart`, `MultiAxisChart`) supports reference lines/bands
+natively; for the Standard tier add markers via series overlays. Pair with
+`Callout` for prose context beside the chart.

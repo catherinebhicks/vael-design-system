@@ -1,0 +1,34 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Browser Support" />
+
+# Browser support
+
+Vael targets **evergreen browsers** — the last two major versions of each.
+
+| Browser | Supported |
+|---|---|
+| Chrome / Edge (Chromium) | last 2 versions ✅ |
+| Firefox | last 2 versions ✅ |
+| Safari (macOS) | last 2 versions ✅ |
+| Safari (iOS) | last 2 versions ✅ |
+| IE 11 | not supported ❌ |
+
+## Baseline features used
+
+- CSS custom properties, `color-mix` (progressive), flex + grid, `aspect-ratio`,
+  container-agnostic layout, `:focus-visible`, `prefers-reduced-motion`,
+  `prefers-color-scheme`.
+- No polyfills shipped — the consuming app owns any legacy shims it needs.
+
+## Rendering notes
+
+- Components are SSR-safe (no `window` access at module scope).
+- Dark mode follows `prefers-color-scheme` unless the app pins a theme.
+- Charts: the Advanced (Highcharts) tier and Standard (MUI X) tier both render SVG;
+  no canvas fallback needed.
+
+## Testing
+
+Verify new components in Chromium + Firefox + Safari before marking them **Stable**
+(see **Component Status**).

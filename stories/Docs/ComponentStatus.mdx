@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Component Status" />
+
+# Component status & maturity
+
+Every component carries a maturity label so consumers know what they can rely on.
+
+| Label | Meaning | Guarantees |
+|---|---|---|
+| 🟢 **Stable** | Production-ready | API frozen; a11y verified; both themes; tested cross-browser |
+| 🟡 **Beta** | Usable, may change | API may shift with a deprecation note; a11y in progress |
+| 🔵 **Experimental** | Preview | API can break without notice; feedback wanted |
+| ⚪ **Deprecated** | Being removed | Use the named replacement; removal target given |
+
+## Criteria to reach Stable
+
+1. Autodocs story covering states/variants.
+2. Figma representation at parity with the code.
+3. Accessibility checklist passed (see **Accessibility**).
+4. Renders in both light + dark themes.
+5. Verified in Chromium + Firefox + Safari.
+
+## Current baseline (2026-07)
+
+Foundations and the core MUI-wrapped set (Button, inputs, feedback, surfaces,
+navigation, data display) are **Stable**. Marketing/portfolio compositions and the
+micro-viz tier ship as **Beta** pending broader in-product adoption. Advanced
+(Highcharts) and Standard (MUI X) chart tiers are **Stable**.
+
+_Update this table when a component's label changes; don't let it drift._

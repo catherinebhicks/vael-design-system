@@ -1,0 +1,27 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Bulk Action" />
+
+# Bulk action
+
+Select multiple rows, then act on all of them at once. A contextual action bar
+replaces (or overlays) the toolbar while a selection exists.
+
+## Flow
+
+1. Each row has a selection `Checkbox`; the header has a **select-all** checkbox
+   (indeterminate when a subset is selected).
+2. As soon as ≥1 row is selected, an **action bar** appears: a count
+   ("3 selected"), the bulk actions, and a clear-selection control.
+3. Destructive bulk actions confirm first (see **Inline confirmation**).
+
+## Rules
+
+- The select-all checkbox reflects three states: none / some (indeterminate) / all.
+- Keep the action bar **pinned** so it's reachable without scrolling back up.
+- Show exactly which actions apply to the whole selection — disable ones that don't.
+- After a bulk action completes, confirm with a `Snackbar` and clear the selection.
+
+## Build from
+
+`DataGrid` / `Table` + `Checkbox` · a pinned `AppBar`/toolbar · `Button` · `Snackbar`.
