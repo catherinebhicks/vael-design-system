@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Constraint — Vael Slide Library</title>
+<link rel="stylesheet" href="styles.css?v=6">
+<style>html,body{margin:0;height:100%}body{background:#dbe2ec;display:flex;overflow:hidden;align-items:center;justify-content:center}.slide{flex:none}</style>
+</head><body>
+  <section class="slide">
+    <div class="constraint">
+      <div class="lead">
+        <div class="glyph"><span class="material-icons">&#xE627;</span></div>
+        <div class="badge">The real constraint</div>
+        <h2>Everything had to run on the live stream</h2>
+        <p class="desc">No nightly batch to lean on — every view had to render off a pipeline that refreshed every 90 seconds.</p>
+      </div>
+      <div class="impacts">
+        <h4>How it reshaped the design</h4>
+        <ul>
+          <li>Designed loading &amp; partial states into every screen, not as an afterthought</li>
+          <li>Capped the historical range so live queries stayed fast</li>
+          <li>Scoped v1 to the three highest-traffic views; deferred custom widgets</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <script>/*FIT-TO-VIEWPORT*/(function(){function f(){var s=document.querySelector('.slide');if(s)s.style.transform='scale('+Math.min(innerWidth/1280,innerHeight/720)+')';}f();addEventListener('resize',f);})();</script>
+</body></html>

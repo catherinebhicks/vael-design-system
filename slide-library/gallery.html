@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vael Slide Library — Design Review</title>
+<link rel="stylesheet" href="styles.css?v=6">
+<style>
+  body { margin:0; background:#dbe2ec; font-family:var(--sans); color:var(--ink); padding:48px; }
+  h1 { font-family:var(--mono); font-weight:600; font-size:30px; letter-spacing:-0.02em; margin:0 0 6px; }
+  .sub { color:var(--dim); font-size:16px; margin:0 0 40px; max-width:70ch; line-height:1.5; }
+  .grid { display:flex; flex-wrap:wrap; gap:48px; }
+  .card { }
+  .card .cap { font-family:var(--mono); font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--faint); margin:14px 2px 0; }
+  /* Scale each 1280×720 slide to a 640×360 thumbnail */
+  .thumb { width:640px; height:360px; border-radius:10px; overflow:hidden; box-shadow:0 20px 50px -28px rgba(20,28,40,.5); border:1px solid var(--line-2); }
+  .thumb iframe { width:1280px; height:720px; border:0; transform:scale(0.5); transform-origin:top left; }
+</style>
+</head>
+<body>
+  <h1>Vael Case Study Slide Library — first look</h1>
+  <p class="sub">Three representative Tier A templates, built from your Vael Blueprint tokens
+    (IBM Plex Mono headings, grid-paper canvas, blue/signal accents). Each is a fixed 16:9
+    canvas so it exports 1:1 to PowerPoint. Placeholder content uses NetBase Pro. React to the
+    look — type, spacing, accent use, the image-slot treatment — before I build the rest.</p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="thumb"><iframe src="cover.html" scrolling="no"></iframe></div>
+      <div class="cap">01 · Cover / title</div>
+    </div>
+    <div class="card">
+      <div class="thumb"><iframe src="text-image.html" scrolling="no"></iframe></div>
+      <div class="cap">05 · Text + image (the workhorse)</div>
+    </div>
+    <div class="card">
+      <div class="thumb"><iframe src="metric.html" scrolling="no"></iframe></div>
+      <div class="cap">06 · Metric callout (3-up)</div>
+    </div>
+  </div>
+</body>
+</html>

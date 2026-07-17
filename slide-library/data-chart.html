@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Data Chart — Vael Slide Library</title>
+<link rel="stylesheet" href="styles.css?v=6">
+<style>html,body{margin:0;height:100%}body{background:#dbe2ec;display:flex;overflow:hidden;align-items:center;justify-content:center}.slide{flex:none}</style>
+</head><body>
+  <section class="slide slide--top">
+    <div class="eyebrow-row" style="margin-top:8px"><span class="index">07</span><span class="eyebrow">Adoption</span></div>
+    <h2 class="title">Enterprise seats, first two quarters</h2>
+    <div class="chart-wrap">
+      <svg class="chart" viewBox="0 0 640 380" preserveAspectRatio="xMidYMid meet">
+        <line class="gridln" x1="55" y1="250" x2="610" y2="250"/>
+        <line class="gridln" x1="55" y1="170" x2="610" y2="170"/>
+        <line class="gridln" x1="55" y1="90"  x2="610" y2="90"/>
+        <path class="area" d="M70,300 L176,272 L282,220 L388,150 L494,108 L600,60 L600,330 L70,330 Z"/>
+        <path class="line" d="M70,300 L176,272 L282,220 L388,150 L494,108 L600,60"/>
+        <line class="axis" x1="55" y1="40" x2="55" y2="330"/>
+        <line class="axis" x1="55" y1="330" x2="610" y2="330"/>
+        <g>
+          <circle class="dot" cx="70" cy="300" r="5"/><circle class="dot" cx="176" cy="272" r="5"/>
+          <circle class="dot" cx="282" cy="220" r="5"/><circle class="dot" cx="388" cy="150" r="5"/>
+          <circle class="dot" cx="494" cy="108" r="5"/><circle class="dot" cx="600" cy="60" r="5"/>
+        </g>
+        <text class="lbl" x="70"  y="356" text-anchor="middle">Jan</text>
+        <text class="lbl" x="176" y="356" text-anchor="middle">Feb</text>
+        <text class="lbl" x="282" y="356" text-anchor="middle">Mar</text>
+        <text class="lbl" x="388" y="356" text-anchor="middle">Apr</text>
+        <text class="lbl" x="494" y="356" text-anchor="middle">May</text>
+        <text class="lbl" x="600" y="356" text-anchor="middle">Jun</text>
+      </svg>
+      <div class="chart-note">
+        <div class="big">15</div>
+        <p>new enterprise accounts by end of Q2 — 8 of them upgrades from the free tier.</p>
+      </div>
+    </div>
+  </section>
+  <script>/*FIT-TO-VIEWPORT*/(function(){function f(){var s=document.querySelector('.slide');if(s)s.style.transform='scale('+Math.min(innerWidth/1280,innerHeight/720)+')';}f();addEventListener('resize',f);})();</script>
+</body></html>
