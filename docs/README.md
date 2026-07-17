@@ -10,7 +10,8 @@
    - `writing/` — the narrative in three cuts: `deep-dive.md` (master), `medium.md`, `short.md`.
    - `copy-deck.md`, `DESIGN.md`, `SPEC.md` — the case-study landing page (copy + design + spec).
    - `_original-backup/` — pre-revision drafts (provenance only; not canonical).
-3. **[downstream.md](downstream.md)** — what consumes or spun off Vael (AFD website, slide library, case-study sites). Index + links, not copies.
+3. **[consuming-vael.md](consuming-vael.md)** — how downstream products extend Vael without forking it (the governance model), with the AFD website as the worked example. Design-system reasoning merged from the afd-website build.
+4. **[downstream.md](downstream.md)** — what consumes or spun off Vael (AFD website, slide library, case-study sites). Index + links, not copies.
 
 ## What the system *is* (living reference)
 
