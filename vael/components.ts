@@ -341,7 +341,13 @@ export const components: ThemeOptions['components'] = {
   },
   // Avatar initials → mono (site .d-avatar).
   MuiAvatar: {
-    styleOverrides: { root: { fontFamily: mono, fontWeight: 500 } },
+    styleOverrides: {
+      // White letters (a11y): MUI defaults letter/icon color to background.default
+      // (a light blueprint tint here) which fails contrast on both grey and colored
+      // avatars. White on the darker grey-600 default = ~7.5:1; on primary = 4.6:1.
+      root: ({ theme }) => ({ fontFamily: mono, fontWeight: 500, color: theme.palette.common.white }),
+      colorDefault: ({ theme }) => ({ backgroundColor: theme.palette.grey[600] }),
+    },
   },
   // Progress bar → rounded blue (site aesthetic).
   MuiLinearProgress: {

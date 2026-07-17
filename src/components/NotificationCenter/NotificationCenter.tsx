@@ -80,7 +80,7 @@ export function NotificationCenter({
           {unreadCount > 0 ? ` · ${unreadCount}` : ''}
         </Typography>
         {onMarkAllRead && unreadCount > 0 && (
-          <Button size="small" onClick={onMarkAllRead} sx={{ minWidth: 0, px: 1 }}>
+          <Button size="small" onClick={onMarkAllRead} sx={{ minWidth: 0, px: 1, color: 'primary.dark' }}>
             Mark all read
           </Button>
         )}

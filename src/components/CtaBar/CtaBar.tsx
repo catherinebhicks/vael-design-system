@@ -37,7 +37,7 @@ export function CtaBar({ title, subtitle, actions, variant = 'brand', centered =
           borderRadius: 3,
           bgcolor: (t) =>
             variant === 'brand'
-              ? t.palette.primary.main
+              ? t.palette.primary.dark // a11y: darker blue gives white title + muted subtitle enough contrast
               : variant === 'ink'
               ? t.palette.background.default === '#ffffff'
                 ? '#141c28'
@@ -65,7 +65,7 @@ export function CtaBar({ title, subtitle, actions, variant = 'brand', centered =
             sx={{
               mt: 1,
               fontSize: '1rem',
-              color: onDark ? 'rgba(255,255,255,0.82)' : 'text.secondary',
+              color: onDark ? 'rgba(255,255,255,0.9)' : 'text.secondary',
             }}
           >
             {subtitle}

@@ -37,11 +37,13 @@ export function MeterRow({
   const fill = color ?? theme.palette.primary.main;
   const pct = Math.max(0, Math.min(1, value / max));
   const readout = valueLabel ?? `${Math.round(pct * 100)}%`;
+  const labelId = React.useId();
 
   return (
     <Box sx={[{ display: 'flex', flexDirection: 'column', gap: 0.5 }, ...(Array.isArray(sx) ? sx : [sx])]}>
       <Box sx={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 2 }}>
         <Typography
+          id={labelId}
           sx={{
             fontFamily: (t) => t.typography.body2.fontFamily,
             fontSize: '0.8125rem',
@@ -63,9 +65,11 @@ export function MeterRow({
       </Box>
       <Box
         role="meter"
+        aria-labelledby={labelId}
         aria-valuenow={value}
         aria-valuemin={0}
         aria-valuemax={max}
+        aria-valuetext={typeof readout === 'string' ? readout : undefined}
         sx={{
           height,
           borderRadius: height / 2,
