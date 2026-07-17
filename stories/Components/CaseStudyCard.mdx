@@ -1,0 +1,34 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Marketing/CaseStudyCard/Guidelines" />
+
+# CaseStudyCard
+
+A portfolio case-study tile: media on top, an uppercase eyebrow, a mono title, and a short outcome line. Pass `href` to make the whole card a single click target. The work-grid sibling of `PostCard` and `ServiceCard`.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `title` | `React.ReactNode` | — | Required. Project / case-study title. |
+| `eyebrow` | `React.ReactNode` | — | Small uppercase mono kicker above the title (client or category). |
+| `description` | `React.ReactNode` | — | Supporting line under the title — the outcome, in one sentence. |
+| `image` | `string` | — | Media URL. Omitted renders a placeholder tile. |
+| `ratio` | `number` | `16 / 10` | Media aspect ratio (width / height). |
+| `href` | `string` | — | Makes the whole card a link, with a hover lift. |
+| `sx` | `SxProps<Theme>` | — | Style overrides. |
+
+## When to use
+
+- Use in a work/portfolio grid where each item leads with an outcome and an image.
+- Keep the `description` to one line — the result, not the process.
+- Pass `href` so the entire card is the click target, not just the title.
+- **Don't** use it for dated writing/articles — that's `PostCard`; for a media-less numbered offering, use `ServiceCard`.
+
+## Accessibility
+
+- When `href` is set the whole card is a single `<a>`, so the title text must read as a meaningful link label.
+- Provide a descriptive `image` that reinforces the title; the placeholder tile is decorative only.
+- The eyebrow's accent color is decorative — the title carries the meaning, so keep it specific.

@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Marketing/ServiceCard/Guidelines" />
+
+# ServiceCard
+
+A numbered offering tile: a mono index, a mono title, a short description, and a meta line. No media — it sits on a faint tinted surface. Used in "services" and "what I do" sections where a set of offerings is presented as an ordered list.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `title` | `React.ReactNode` | — | Required. Service name. |
+| `index` | `React.ReactNode` | — | Small mono index above the title, e.g. `"01"`. |
+| `description` | `React.ReactNode` | — | Supporting line under the title. |
+| `meta` | `React.ReactNode` | — | Small mono meta line at the foot, e.g. `"Project · Embedded team"`. |
+| `href` | `string` | — | Makes the whole card a link, with a hover lift. |
+| `sx` | `SxProps<Theme>` | — | Style overrides. |
+
+## When to use
+
+- Use in a services or capabilities grid where offerings read as an ordered set.
+- Set `index` to place each card in its sequence; keep the numbering consistent across the grid.
+- Keep `meta` short — engagement type and team shape, not a full description.
+- **Don't** use it for media-led work or writing (use `CaseStudyCard` / `PostCard`); it deliberately has no image.
+
+## Accessibility
+
+- The `index` is decorative sequencing — the title carries the accessible meaning, so keep it descriptive.
+- When `href` is set the whole card is a single `<a>`; the title must read as a meaningful link label.
+- The tinted surface keeps text at accessible contrast; if you override the background, re-check contrast in both light and dark modes.

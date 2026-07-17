@@ -1,0 +1,34 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Marketing/PostCard/Guidelines" />
+
+# PostCard
+
+A writing/article tile: media on top, an uppercase eyebrow, a mono title, and a date line. The blog sibling of `CaseStudyCard` — same media-led shape, but it closes on a date rather than an outcome.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `title` | `React.ReactNode` | — | Required. Post title. |
+| `eyebrow` | `React.ReactNode` | — | Small uppercase mono kicker above the title (topic or category). |
+| `date` | `React.ReactNode` | — | Publication date or source line under the title. |
+| `image` | `string` | — | Media URL. Omitted renders a placeholder tile. |
+| `ratio` | `number` | `16 / 10` | Media aspect ratio (width / height). |
+| `href` | `string` | — | Makes the whole card a link, with a hover lift. |
+| `sx` | `SxProps<Theme>` | — | Style overrides. |
+
+## When to use
+
+- Use in a blog or writing index where each item leads with an image and a date.
+- Keep the `eyebrow` to a single topic word so a grid of posts stays scannable.
+- Pass `href` so the whole card is the click target.
+- **Don't** use it for portfolio case studies (use `CaseStudyCard`, which closes on an outcome) or for media-less offerings (`ServiceCard`).
+
+## Accessibility
+
+- When `href` is set the whole card is a single `<a>`; the title must read as a meaningful link label.
+- The `date` is real text, not baked into the image, so it stays readable and machine-parseable.
+- Don't rely on the eyebrow color alone to convey the topic — the word carries it.
