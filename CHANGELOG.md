@@ -28,6 +28,12 @@ Per-component history also lives in each component's Storybook **Docs** tab
 
 ### Changed
 - Highcharts chart stories regrouped under "Data Viz/Charts (Advanced · Highcharts)".
+- **Repo is now the single Vael package** — folded in the story site as `about/`
+  (from the archived `vael-case-study`), moved the slide library in as
+  `slide-library/` (+ the 92-slide `deck/Vael-Slide-Library.pptx`), and added a
+  `docs/` home (Fermie→Vael history, downstream index, "consuming Vael" governance).
+- **Figma library** — added a file **Cover** (title-slide layout) and restructured
+  to one-page-per-component with co-located doc panels.
 
 ## Conventions
 - One entry per user-facing change, grouped Added / Changed / Deprecated / Removed / Fixed.

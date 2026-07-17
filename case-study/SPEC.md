@@ -2,7 +2,7 @@
 
 ## Context
 
-Catherine has a finished written walkthrough (three cuts + two diagrams) about building the **Vael** design system with AI — and, after it was shelved, carrying it forward and rebuilding it in the open (`~/Desktop/vael-ai-build/`). She wants to elevate it into a **polished Vercel landing page** that shines — a portfolio-grade, showpiece-quality case study.
+Catherine has a finished written walkthrough (three cuts + two diagrams) about building the **Vael** design system with AI — and, after it was shelved, carrying it forward and rebuilding it in the open (now this repo, `~/dev/vael-design-system`). She wants to elevate it into a **polished Vercel landing page** that shines — a portfolio-grade, showpiece-quality case study.
 
 **Why:** it's an AI-forward portfolio piece during an active job search, and the page's craft is itself proof of design ability.
 

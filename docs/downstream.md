@@ -17,7 +17,7 @@ Vael is consumed by, or has spun off, several other projects. Those docs **stay 
 
 ## Case-study sites (the "shown" surface)
 
-- **Vael case study (walkthrough)** — narrative source in [`../case-study/`](../case-study/); live at **vael-case-study.vercel.app**.
+- **Vael case study (walkthrough)** — narrative source in [`../case-study/`](../case-study/); the story *site* now lives in this repo at [`../about/`](../about/). The old standalone `vael-case-study` repo is **archived**, so its deploy at **vael-case-study.vercel.app** is **frozen** at its last build (no longer auto-updates) — redeploy from `about/` when the package gets its own deployment.
 - **design-case-studies** (`catherinebhicks/design-case-studies`, formerly `new-vael-case-studies`) — Catherine's portfolio case studies rendered as one-page sites *built with* the Vael Blueprint look (9 studies incl. the Vael story under `/vael`). Live URL unchanged: **new-vael-case-studies.vercel.app**. Backup mirror: `~/dev/claude-design-case-study-backup/case-studies/_vercel-sites/design-case-studies/`.
 - **Backup repo** — `catherinebhicks/claude-design-case-study-backup` mirrors the Vercel case-study sites + slide library.
 
