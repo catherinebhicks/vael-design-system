@@ -84,7 +84,7 @@ export function FileUpload(props: FileUploadProps) {
           },
         })}
       >
-        <input {...getInputProps()} />
+        <input {...getInputProps({ 'aria-label': 'Upload files' })} />
         <Typography
           aria-hidden
           sx={{ fontSize: 40, lineHeight: 1, color: isDragActive ? 'primary.main' : 'text.secondary' }}

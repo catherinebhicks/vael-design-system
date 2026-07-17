@@ -105,7 +105,7 @@ export function AdvancedSelect({
               endAdornment: (
                 <>
                   {loading ? (
-                    <CircularProgress color="inherit" size={18} />
+                    <CircularProgress color="inherit" size={18} aria-label="Loading options" />
                   ) : null}
                   {params.InputProps.endAdornment}
                 </>

@@ -53,3 +53,10 @@ Scope: Tier 1 — drop in, no wrapper needed. Import from `@mui/material/Rating`
 | emptyIcon | ReactNode | empty star | Custom empty-star icon. Override together with icon. |
 | getLabelText | `(value) => string` | — | Accessible label for each star. Required for screen readers. |
 | name | string | — | Required when multiple Rating components appear on the same page to avoid ARIA conflicts. |
+
+## Accessibility — a note on the isolated stories
+
+The default Slider stories render the slider **alone**, so axe flags them with
+`label`. That is an isolated-demo artifact. See the **Accessible usage** story:
+in production, name the slider with `aria-labelledby` (to visible text) or
+`aria-label`, and add `getAriaLabel` to name each thumb on range sliders.

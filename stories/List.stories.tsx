@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { List } from '../src/components/List';
-import { ListItem, ListItemText, ListItemIcon, Divider } from '@mui/material';
+import { ListItem, ListItemText, ListItemIcon } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInbox, faEnvelopeOpen } from '@fortawesome/free-solid-svg-icons';
 
@@ -16,11 +16,13 @@ export default meta;
 export const Default: StoryObj = {
   render: () => (
     <List sx={{ width: 300, bgcolor: 'background.paper' }}>
-      <ListItem>
+      {/* Use the `divider` prop on ListItem for a separator that stays a valid
+          list item — a standalone <Divider> renders role="separator", which a
+          <ul>/<ol> may not directly contain (axe: list). */}
+      <ListItem divider>
         <ListItemIcon><FontAwesomeIcon icon={faInbox} /></ListItemIcon>
         <ListItemText primary="Inbox" secondary="Jan 9, 2025" />
       </ListItem>
-      <Divider />
       <ListItem>
         <ListItemIcon><FontAwesomeIcon icon={faEnvelopeOpen} /></ListItemIcon>
         <ListItemText primary="Drafts" secondary="Jan 7, 2025" />

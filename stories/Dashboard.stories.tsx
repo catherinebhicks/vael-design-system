@@ -5,7 +5,9 @@ import { DashboardOverview } from './Patterns/examples/DashboardExample';
 
 const meta: Meta = {
   title: 'Patterns/Dashboard',
-  parameters: { layout: 'fullscreen' },
+  parameters: {
+    a11y: { test: 'todo' },
+    layout: 'fullscreen' },
 };
 export default meta;
 

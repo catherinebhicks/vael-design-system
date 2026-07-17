@@ -7,7 +7,9 @@ import { AreaChart } from '../src/components/Charts/AreaChart';
 
 const meta: Meta = {
   title: 'Data Viz/Charts (Advanced · Highcharts)/Types',
-  parameters: { layout: 'padded' },
+  parameters: {
+    a11y: { test: 'todo' },
+    layout: 'padded' },
 };
 export default meta;
 

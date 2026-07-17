@@ -30,11 +30,15 @@ export const Standard: Story = {
 };
 
 export const WithTitleBars: Story = {
+  // When an ImageListItemBar already shows the title as visible text, the image
+  // is decorative — give it empty alt (alt="") so screen readers don't announce
+  // the same name twice (axe: image-redundant-alt). Use descriptive alt only
+  // when the image carries information the caption doesn't.
   render: () => (
     <ImageList cols={3} gap={8} sx={{ width: 360 }}>
       {tiles.map((t) => (
         <ImageListItem key={t.img}>
-          <img src={t.img} alt={t.title} loading="lazy" />
+          <img src={t.img} alt="" loading="lazy" />
           <ImageListItemBar title={t.title} />
         </ImageListItem>
       ))}

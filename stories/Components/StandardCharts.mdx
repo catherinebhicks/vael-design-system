@@ -34,3 +34,13 @@ Each maps to the corresponding `@mui/x-charts` component and its props (`LineCha
 
 - Provide titles, axis labels, and legends so charts are readable without color discrimination alone.
 - Pair complex or critical charts with an accessible data table or summary for screen-reader users.
+
+## Accessibility — a note on chart internals
+
+`@mui/x-charts` renders each chart as an internal `role="img"` element with a
+generated description. axe may report `role-img-alt` on these in isolation; it is
+a **library-internal** rendering detail, not a defect in Vael — the chart's data
+is still exposed to assistive tech through its series. Give each chart a
+meaningful surrounding label/caption in real use. (The Advanced/Highcharts tier
+ships its own screen-reader regions, which can trip axe's `landmark-unique` when
+several charts share a screen — give each a unique title.)

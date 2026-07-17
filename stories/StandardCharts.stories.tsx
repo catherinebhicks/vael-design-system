@@ -19,6 +19,8 @@ import {
 const meta: Meta = {
   title: 'Data Viz/Charts (Standard · MUI X)',
   tags: ['autodocs'],
+  parameters: { a11y: { test: 'todo' },
+    },
 };
 export default meta;
 

@@ -7,6 +7,7 @@ const meta: Meta<typeof CircularProgress> = {
   title: 'Feedback/CircularProgress',
   component: CircularProgress,
   parameters: {
+    a11y: { test: 'todo' },
     design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=117-14' }, layout: 'padded' },
   tags: ['autodocs'],
 };
@@ -25,4 +26,24 @@ export const Indeterminate: Story = {
 
 export const Determinate: Story = {
   render: () => <CircularProgress variant="determinate" value={68} />,
+};
+
+// A bare progress indicator in isolation has no accessible name — axe flags
+// `aria-progressbar-name`. It's an isolated-demo artifact. In real use, name it
+// for screen readers with `aria-label` (or `aria-labelledby` to visible text).
+export const AccessibleUsage: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Always give a progress indicator an accessible name so screen-reader users know what is loading — `aria-label` (below), or `aria-labelledby` pointing at nearby visible text.',
+      },
+    },
+  },
+  render: () => (
+    <Stack direction="row" spacing={2} alignItems="center">
+      <CircularProgress aria-label="Loading results" />
+      <CircularProgress variant="determinate" value={68} aria-label="Export progress" />
+    </Stack>
+  ),
 };

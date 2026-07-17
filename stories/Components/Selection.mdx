@@ -113,3 +113,12 @@ Scope: Tier 1 — use directly from MUI; no Vael wrapper needed. Import from `@m
 - Don't use Checkbox to trigger actions (Delete, Archive) — that is a button's job; checkboxes represent selection state.
 - Don't leave the Indeterminate state persistent after the user explicitly interacts — it represents a computed intermediate state, not a permanent third option.
 - Don't use a Switch to replace a Checkbox in a multi-item selection list — switches imply immediate system effect; checkboxes imply form submission.
+
+## Accessibility — a note on the isolated stories
+
+The Checkbox and Switch stories show the control **in isolation** to document its
+visual states, so axe flags them with `label` (no accessible name). That is an
+artifact of the isolated demo, **not** a component defect — see the **Accessible
+usage** story beside each, which shows the production pattern: wrap every control
+in `FormControlLabel` so the visible text is its accessible name (or pass
+`inputProps={{ 'aria-label': '…' }}` for an unlabeled control).

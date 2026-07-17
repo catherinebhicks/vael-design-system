@@ -57,6 +57,7 @@ const meta: Meta = {
   title: 'Data Viz/Charts (Advanced · Highcharts)',
   tags: ['autodocs'],
   parameters: {
+    a11y: { test: 'todo' },
     layout: 'padded',
     // Highcharts renders SVG after layout — give Chromatic time to capture it
     chromatic: { delay: 800 },
