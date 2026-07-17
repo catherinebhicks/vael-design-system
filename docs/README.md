@@ -13,6 +13,13 @@
 3. **[consuming-vael.md](consuming-vael.md)** — how downstream products extend Vael without forking it (the governance model), with the AFD website as the worked example. Design-system reasoning merged from the afd-website build.
 4. **[downstream.md](downstream.md)** — what consumes or spun off Vael (AFD website, slide library, case-study sites). Index + links, not copies.
 
+## Getting started (onboarding)
+
+Practical, non-dev-friendly setup guides live in **[onboarding/](onboarding/)**:
+- **[onboarding/using-storybook.md](onboarding/using-storybook.md)** — install & run the component catalog (and why a non-dev would).
+- **[onboarding/import-into-figma.md](onboarding/import-into-figma.md)** — import the `.fig` into Figma (web + desktop) and publish it as a library.
+- **[onboarding/designing-with-an-llm.md](onboarding/designing-with-an-llm.md)** — connect Figma to an LLM via MCP: ingest, design in it, and round-trip changes to code.
+
 ## What the system *is* (living reference)
 
 - **[../README.md](../README.md)** — library overview + how to run Storybook.

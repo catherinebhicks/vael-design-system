@@ -40,6 +40,28 @@ fonts/
     FontAwesome-Free-License.txt Font Awesome Free License
 ```
 
+## Can we redistribute these? (yes — all three bundle-legal)
+
+Every font here is licensed to **ship inside this repo and the Vael package**, so we
+bundle them rather than linking to a CDN or requiring a download:
+
+- **IBM Plex Sans / Mono — SIL OFL 1.1.** Free to use, embed, and redistribute
+  (including commercially) as long as the license travels with them (`LICENSES/IBM-Plex-OFL.txt`)
+  and they're not sold *by themselves*. ✅ bundling in a sold package is fine.
+- **FontAwesome 7 *Free* — bundle-legal, not link-only.** The Free tier is
+  distributable: fonts under SIL OFL 1.1, SVG/JS icons under CC BY 4.0, code under
+  MIT (`LICENSES/FontAwesome-Free-License.txt`). Keep the license file and the terse
+  attribution comments FA embeds in its files; brand/logo glyphs may only be used to
+  represent that brand. ✅ we can distribute the Free glyphs with the package.
+- ⚠️ **FontAwesome *Pro* is different — do NOT bundle it in a public/sold package.**
+  Pro is per-seat licensed and its font files/kits **cannot be redistributed**. If the
+  icons are ever upgraded to Pro (see the note below), the Pro faces must stay out of
+  any shareable/sellable build — link to a Pro kit or keep them in a private,
+  seat-licensed context instead. The distributable package stays on FA **Free**.
+
+**Net:** the current `fonts/` folder is safe to ship as-is. Just don't strip the
+`LICENSES/` files or the embedded attribution.
+
 ## Installing on a machine (desktop / Figma)
 
 Double-click any `.ttf` / `.otf` → **Install Font** (or drag them into Font Book).
