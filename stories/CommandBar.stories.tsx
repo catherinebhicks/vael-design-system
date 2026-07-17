@@ -8,6 +8,7 @@ const meta: Meta<typeof CommandBar> = {
   title: 'Navigation/CommandBar',
   component: CommandBar,
   tags: ['autodocs'],
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=143-24' } },
 };
 export default meta;
 type Story = StoryObj<typeof CommandBar>;

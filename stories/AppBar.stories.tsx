@@ -9,8 +9,7 @@ const meta: Meta = {
   title: 'Surfaces/AppBar',
   tags: ['autodocs'],
   decorators: [(Story) => <div style={{ position: 'relative', height: 80 }}><Story /></div>],
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=16-19' } },
 };
 
 export default meta;

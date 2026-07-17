@@ -6,7 +6,8 @@ import { AnnotatedScreen } from '../src/components/AnnotatedScreen';
 const meta: Meta<typeof AnnotatedScreen> = {
   title: 'Marketing/AnnotatedScreen',
   component: AnnotatedScreen,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=140-17' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

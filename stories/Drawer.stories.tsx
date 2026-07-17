@@ -6,8 +6,7 @@ import { Button, List, ListItem, ListItemText, Box } from '@mui/material';
 const meta: Meta = {
   title: 'Navigation/Drawer',
   tags: ['autodocs'],
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=95-15' } },
 };
 
 export default meta;

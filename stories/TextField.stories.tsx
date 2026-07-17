@@ -11,8 +11,7 @@ const meta: Meta<typeof TextField> = {
     disabled: { control: 'boolean' },
     error: { control: 'boolean' },
   },
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=33-23' } },
 };
 
 export default meta;

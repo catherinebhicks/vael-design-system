@@ -5,7 +5,8 @@ import { ImageList, ImageListItem, ImageListItemBar } from '../src/components/Im
 const meta: Meta<typeof ImageList> = {
   title: 'Data Display/ImageList',
   component: ImageList,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=113-2' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

@@ -5,7 +5,8 @@ import { InlineEdit } from '../src/components/InlineEdit';
 const meta: Meta<typeof InlineEdit> = {
   title: 'Inputs/InlineEdit',
   component: InlineEdit,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=142-38' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

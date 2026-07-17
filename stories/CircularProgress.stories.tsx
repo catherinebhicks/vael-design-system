@@ -6,7 +6,8 @@ import { CircularProgress } from '../src/components/CircularProgress';
 const meta: Meta<typeof CircularProgress> = {
   title: 'Feedback/CircularProgress',
   component: CircularProgress,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=117-14' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

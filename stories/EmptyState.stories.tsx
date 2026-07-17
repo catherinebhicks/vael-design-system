@@ -7,7 +7,8 @@ import { EmptyState } from '../src/components/EmptyState';
 const meta: Meta<typeof EmptyState> = {
   title: 'Display/EmptyState',
   component: EmptyState,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=124-10' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

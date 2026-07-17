@@ -7,8 +7,7 @@ import { Typography } from '@mui/material';
 const meta: Meta = {
   title: 'Data Display/Timeline',
   tags: ['autodocs'],
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=101-2' } },
 };
 
 export default meta;

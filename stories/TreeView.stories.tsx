@@ -6,6 +6,7 @@ import { SimpleTreeView, RichTreeView, TreeItem } from '../src/components/TreeVi
 const meta: Meta = {
   title: 'Data Display/TreeView',
   tags: ['autodocs'],
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=114-2' } },
 };
 export default meta;
 

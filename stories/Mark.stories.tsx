@@ -6,7 +6,8 @@ import { Mark } from '../src/components/Mark';
 const meta: Meta<typeof Mark> = {
   title: 'Typography/Mark',
   component: Mark,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=90-2' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

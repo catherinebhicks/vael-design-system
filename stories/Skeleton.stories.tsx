@@ -6,7 +6,8 @@ import { Skeleton, SkeletonText } from '../src/components/Skeleton';
 const meta: Meta<typeof Skeleton> = {
   title: 'Feedback/Skeleton',
   component: Skeleton,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=38-10' }, layout: 'padded' },
 };
 export default meta;
 type Story = StoryObj<typeof Skeleton>;

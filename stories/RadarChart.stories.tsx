@@ -6,7 +6,8 @@ import { RadarChart } from '../src/components/Charts';
 const meta: Meta<typeof RadarChart> = {
   title: 'Data Viz/Charts (Advanced · Highcharts)/RadarChart',
   component: RadarChart,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=133-2' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

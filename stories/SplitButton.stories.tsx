@@ -6,7 +6,8 @@ import { SplitButton } from '../src/components/SplitButton';
 const meta: Meta<typeof SplitButton> = {
   title: 'Inputs/SplitButton',
   component: SplitButton,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=119-16' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

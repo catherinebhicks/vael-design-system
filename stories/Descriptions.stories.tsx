@@ -6,7 +6,8 @@ import { Descriptions } from '../src/components/Descriptions';
 const meta: Meta<typeof Descriptions> = {
   title: 'Display/Descriptions',
   component: Descriptions,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=125-2' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

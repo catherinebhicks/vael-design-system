@@ -8,6 +8,7 @@ const meta: Meta<typeof Navigation> = {
   title: 'Navigation/Navigation',
   component: Navigation,
   tags: ['autodocs'],
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=16-19' } },
 };
 
 export default meta;

@@ -6,7 +6,8 @@ import { NotificationCenter } from '../src/components/NotificationCenter';
 const meta: Meta<typeof NotificationCenter> = {
   title: 'Feedback/NotificationCenter',
   component: NotificationCenter,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=129-10' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

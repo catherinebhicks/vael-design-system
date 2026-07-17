@@ -5,8 +5,7 @@ const meta: Meta<typeof Avatar> = {
   title: 'Data Display/Avatar',
   component: Avatar,
   tags: ['autodocs'],
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=36-7' } },
 };
 
 export default meta;

@@ -7,7 +7,8 @@ import { IconListItem } from '../src/components/IconListItem';
 const meta: Meta<typeof IconListItem> = {
   title: 'Marketing/IconListItem',
   component: IconListItem,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=134-5' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

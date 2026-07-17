@@ -7,7 +7,8 @@ import { Descriptions } from '../src/components/Descriptions';
 const meta: Meta<typeof PrintPage> = {
   title: 'Layout/PrintPage',
   component: PrintPage,
-  parameters: { layout: 'fullscreen' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=143-69' }, layout: 'fullscreen' },
   tags: ['autodocs'],
 };
 export default meta;

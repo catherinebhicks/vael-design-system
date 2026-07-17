@@ -10,8 +10,7 @@ const meta: Meta<typeof Checkbox> = {
     disabled: { control: 'boolean' },
     size: { control: 'select', options: ['small', 'medium'] },
   },
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=32-29' } },
 };
 
 export default meta;

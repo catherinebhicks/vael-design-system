@@ -7,6 +7,7 @@ const meta: Meta<typeof SectionHeading> = {
   title: 'Presentation/SectionHeading',
   component: SectionHeading,
   tags: ['autodocs'],
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=15-15' } },
 };
 export default meta;
 

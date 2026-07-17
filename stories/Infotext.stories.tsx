@@ -7,7 +7,8 @@ import { Infotext } from '../src/components/Infotext';
 const meta: Meta<typeof Infotext> = {
   title: 'Display/Infotext',
   component: Infotext,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=120-2' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

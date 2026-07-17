@@ -11,8 +11,7 @@ const meta: Meta<typeof Chip> = {
     size: { control: 'select', options: ['small', 'medium'] },
     disabled: { control: 'boolean' },
   },
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=15-11' } },
 };
 
 export default meta;

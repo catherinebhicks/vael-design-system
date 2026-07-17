@@ -9,8 +9,7 @@ const meta: Meta<typeof UncontrolledMenu> = {
   title: 'Navigation/UncontrolledMenu',
   component: UncontrolledMenu,
   tags: ['autodocs'],
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=110-2' } },
 };
 export default meta;
 type Story = StoryObj<typeof UncontrolledMenu>;

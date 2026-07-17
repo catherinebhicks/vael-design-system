@@ -6,8 +6,7 @@ import { TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from
 const meta: Meta = {
   title: 'Data Display/Table',
   tags: ['autodocs'],
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=100-3' } },
 };
 
 export default meta;

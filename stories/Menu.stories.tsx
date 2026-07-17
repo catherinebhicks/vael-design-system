@@ -13,6 +13,7 @@ import { faPenToSquare, faCopy, faShareNodes, faTrash } from '@fortawesome/free-
 const meta: Meta = {
   title: 'Navigation/Menu',
   tags: ['autodocs'],
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=110-2' } },
 };
 export default meta;
 

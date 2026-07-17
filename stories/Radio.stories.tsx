@@ -6,8 +6,7 @@ import { RadioGroup, FormControlLabel, FormControl, FormLabel } from '@mui/mater
 const meta: Meta = {
   title: 'Inputs/Selection/Radio',
   tags: ['autodocs'],
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=32-12' } },
 };
 
 export default meta;

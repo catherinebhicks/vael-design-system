@@ -6,7 +6,8 @@ import { CopyButton } from '../src/components/CopyButton';
 const meta: Meta<typeof CopyButton> = {
   title: 'Inputs/CopyButton',
   component: CopyButton,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=89-28' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

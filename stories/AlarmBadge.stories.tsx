@@ -6,7 +6,8 @@ import { AlarmBadge } from '../src/components/AlarmBadge';
 const meta: Meta<typeof AlarmBadge> = {
   title: 'Data Display/AlarmBadge',
   component: AlarmBadge,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=142-5' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

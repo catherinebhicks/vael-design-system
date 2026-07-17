@@ -6,7 +6,8 @@ import { StatCard } from '../src/components/StatCard';
 const meta: Meta<typeof StatCard> = {
   title: 'Data Viz/StatCard',
   component: StatCard,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=15-12' }, layout: 'padded' },
 };
 export default meta;
 type Story = StoryObj<typeof StatCard>;

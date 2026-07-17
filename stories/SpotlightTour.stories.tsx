@@ -5,7 +5,8 @@ import { SpotlightTour } from '../src/components/SpotlightTour';
 const meta: Meta<typeof SpotlightTour> = {
   title: 'Marketing/SpotlightTour',
   component: SpotlightTour,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=140-39' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

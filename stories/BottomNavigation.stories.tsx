@@ -8,7 +8,8 @@ import { BottomNavigation, BottomNavigationAction } from '../src/components/Bott
 const meta: Meta<typeof BottomNavigation> = {
   title: 'Navigation/BottomNavigation',
   component: BottomNavigation,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=118-2' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

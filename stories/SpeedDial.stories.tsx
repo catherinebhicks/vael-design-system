@@ -8,7 +8,8 @@ import { SpeedDial, SpeedDialAction, SpeedDialIcon } from '../src/components/Spe
 const meta: Meta<typeof SpeedDial> = {
   title: 'Navigation/SpeedDial',
   component: SpeedDial,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=112-2' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

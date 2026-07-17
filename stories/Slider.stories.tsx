@@ -10,8 +10,7 @@ const meta: Meta<typeof Slider> = {
     color: { control: 'select', options: ['primary', 'secondary'] },
     disabled: { control: 'boolean' },
   },
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=40-24' } },
 };
 
 export default meta;

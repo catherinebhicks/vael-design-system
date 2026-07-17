@@ -6,7 +6,8 @@ import { StaleDataIndicator } from '../src/components/StaleDataIndicator';
 const meta: Meta<typeof StaleDataIndicator> = {
   title: 'Data Display/StaleDataIndicator',
   component: StaleDataIndicator,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=142-19' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

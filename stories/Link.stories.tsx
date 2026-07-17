@@ -6,7 +6,8 @@ import { Link } from '../src/components/Link';
 const meta: Meta<typeof Link> = {
   title: 'Navigation/Link',
   component: Link,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=86-6' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

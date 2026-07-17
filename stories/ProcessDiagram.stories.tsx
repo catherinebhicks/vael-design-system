@@ -7,7 +7,8 @@ import { ProcessDiagram } from '../src/components/ProcessDiagram';
 const meta: Meta<typeof ProcessDiagram> = {
   title: 'Marketing/ProcessDiagram',
   component: ProcessDiagram,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=138-462' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

@@ -5,7 +5,8 @@ import { Sitemap } from '../src/components/Sitemap';
 const meta: Meta<typeof Sitemap> = {
   title: 'Marketing/Sitemap',
   component: Sitemap,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=138-479' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

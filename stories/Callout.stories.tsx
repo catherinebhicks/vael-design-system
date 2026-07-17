@@ -6,7 +6,8 @@ import { Callout } from '../src/components/Callout';
 const meta: Meta<typeof Callout> = {
   title: 'Feedback/Callout',
   component: Callout,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=126-10' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

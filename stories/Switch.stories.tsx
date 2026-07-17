@@ -5,6 +5,7 @@ const meta: Meta<typeof Switch> = {
   title: 'Inputs/Selection/Switch',
   component: Switch,
   tags: ['autodocs'],
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=30-15' } },
   argTypes: {
     color: { control: 'select', options: ['primary', 'secondary', 'default'] },
     disabled: { control: 'boolean' },

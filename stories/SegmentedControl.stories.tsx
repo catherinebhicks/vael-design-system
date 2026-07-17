@@ -5,7 +5,8 @@ import { SegmentedControl } from '../src/components/SegmentedControl';
 const meta: Meta<typeof SegmentedControl> = {
   title: 'Inputs/SegmentedControl',
   component: SegmentedControl,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=91-16' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

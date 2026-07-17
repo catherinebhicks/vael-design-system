@@ -11,8 +11,7 @@ const meta: Meta<typeof Button> = {
     size: { control: 'select', options: ['small', 'medium', 'large'] },
     disabled: { control: 'boolean' },
   },
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=6-2' } },
 };
 
 export default meta;

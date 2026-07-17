@@ -6,7 +6,8 @@ import { Divider } from '../src/components/Divider';
 const meta: Meta<typeof Divider> = {
   title: 'Layout/Divider',
   component: Divider,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=85-11' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

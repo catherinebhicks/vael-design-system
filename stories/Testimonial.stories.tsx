@@ -5,7 +5,8 @@ import { Testimonial } from '../src/components/Testimonial';
 const meta: Meta<typeof Testimonial> = {
   title: 'Marketing/Testimonial',
   component: Testimonial,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=134-25' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

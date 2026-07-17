@@ -6,8 +6,7 @@ import { CardContent, CardActions, Typography, Button } from '@mui/material';
 const meta: Meta = {
   title: 'Surfaces/Card',
   tags: ['autodocs'],
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=35-12' } },
 };
 
 export default meta;

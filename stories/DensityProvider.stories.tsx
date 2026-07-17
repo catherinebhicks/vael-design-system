@@ -6,7 +6,8 @@ import { DensityProvider, useDensity } from '../src/components/DensityProvider';
 const meta: Meta = {
   title: 'Foundations/DensityProvider',
   tags: ['autodocs'],
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=143-49' }, layout: 'padded' },
 };
 export default meta;
 

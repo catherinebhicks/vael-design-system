@@ -11,7 +11,8 @@ const meta: Meta<typeof AgGrid> = {
   title: 'Data Grids/AgGrid',
   component: AgGrid,
   tags: ['autodocs'],
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=107-4' }, layout: 'padded' },
 };
 export default meta;
 type Story = StoryObj<typeof AgGrid>;

@@ -6,8 +6,7 @@ import { Step, StepLabel } from '@mui/material';
 const meta: Meta = {
   title: 'Navigation/Stepper',
   tags: ['autodocs'],
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=40-37' } },
 };
 
 export default meta;

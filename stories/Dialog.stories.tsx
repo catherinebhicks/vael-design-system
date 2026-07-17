@@ -7,8 +7,7 @@ const meta: Meta<typeof Dialog> = {
   title: 'Feedback/Dialog',
   component: Dialog,
   tags: ['autodocs'],
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=94-4' } },
 };
 
 export default meta;

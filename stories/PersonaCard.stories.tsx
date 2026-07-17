@@ -5,7 +5,8 @@ import { PersonaCard } from '../src/components/PersonaCard';
 const meta: Meta<typeof PersonaCard> = {
   title: 'Marketing/PersonaCard',
   component: PersonaCard,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=136-11' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

@@ -12,7 +12,8 @@ import { GaugeStat } from '../src/components/GaugeStat';
 const meta: Meta = {
   title: 'Data Viz/Micro',
   tags: ['autodocs'],
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=131-2' }, layout: 'padded' },
 };
 export default meta;
 

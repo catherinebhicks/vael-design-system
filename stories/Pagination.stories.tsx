@@ -6,7 +6,8 @@ import { Pagination } from '../src/components/Pagination';
 const meta: Meta<typeof Pagination> = {
   title: 'Navigation/Pagination',
   component: Pagination,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=39-15' }, layout: 'padded' },
 };
 export default meta;
 type Story = StoryObj<typeof Pagination>;

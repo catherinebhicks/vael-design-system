@@ -5,7 +5,8 @@ import { LogoWall } from '../src/components/LogoWall';
 const meta: Meta<typeof LogoWall> = {
   title: 'Marketing/LogoWall',
   component: LogoWall,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=134-44' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

@@ -6,7 +6,8 @@ import { ImageSlot } from '../src/components/ImageSlot';
 const meta: Meta<typeof ImageSlot> = {
   title: 'Marketing/ImageSlot',
   component: ImageSlot,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=140-3' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

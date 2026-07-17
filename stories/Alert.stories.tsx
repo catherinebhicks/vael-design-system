@@ -9,8 +9,7 @@ const meta: Meta<typeof Alert> = {
     severity: { control: 'select', options: ['error', 'warning', 'info', 'success'] },
     variant: { control: 'select', options: ['standard', 'filled', 'outlined'] },
   },
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=40-22' } },
 };
 
 export default meta;

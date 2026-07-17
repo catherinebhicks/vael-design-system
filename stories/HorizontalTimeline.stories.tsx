@@ -6,7 +6,8 @@ import { HorizontalTimeline } from '../src/components/HorizontalTimeline';
 const meta: Meta<typeof HorizontalTimeline> = {
   title: 'Data Display/HorizontalTimeline',
   component: HorizontalTimeline,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=128-2' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

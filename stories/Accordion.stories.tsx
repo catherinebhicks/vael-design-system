@@ -8,8 +8,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 const meta: Meta = {
   title: 'Surfaces/Accordion',
   tags: ['autodocs'],
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=97-2' } },
 };
 
 export default meta;

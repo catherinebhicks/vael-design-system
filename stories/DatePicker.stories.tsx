@@ -12,6 +12,7 @@ import {
 const meta: Meta = {
   title: 'Inputs/Date & Time Pickers',
   tags: ['autodocs'],
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=115-16' } },
 };
 export default meta;
 

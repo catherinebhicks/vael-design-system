@@ -8,8 +8,7 @@ const options = ['Project A', 'Project B', 'Project C', 'Job 001', 'Job 002'];
 const meta: Meta = {
   title: 'Inputs/Autocomplete',
   tags: ['autodocs'],
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=103-16' } },
 };
 
 export default meta;

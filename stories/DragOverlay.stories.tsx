@@ -9,7 +9,8 @@ const meta: Meta<typeof DragOverlay> = {
   title: 'Interaction/DragOverlay',
   component: DragOverlay,
   tags: ['autodocs'],
-  parameters: { layout: 'centered' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=109-2' }, layout: 'centered' },
 };
 export default meta;
 type Story = StoryObj<typeof DragOverlay>;

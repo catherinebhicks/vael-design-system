@@ -8,8 +8,7 @@ import { faInbox, faEnvelopeOpen } from '@fortawesome/free-solid-svg-icons';
 const meta: Meta = {
   title: 'Data Display/List',
   tags: ['autodocs'],
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=99-2' } },
 };
 
 export default meta;

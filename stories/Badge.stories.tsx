@@ -6,7 +6,8 @@ import { Badge } from '../src/components/Badge';
 const meta: Meta<typeof Badge> = {
   title: 'Data Display/Badge',
   component: Badge,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=36-15' }, layout: 'padded' },
 };
 export default meta;
 type Story = StoryObj<typeof Badge>;

@@ -6,7 +6,8 @@ import { Rating } from '../src/components/Rating';
 const meta: Meta<typeof Rating> = {
   title: 'Inputs/Rating',
   component: Rating,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=89-2' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

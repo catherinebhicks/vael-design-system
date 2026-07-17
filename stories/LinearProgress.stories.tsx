@@ -6,6 +6,7 @@ const meta: Meta<typeof LinearProgress> = {
   title: 'Feedback/Progress/Linear',
   component: LinearProgress,
   tags: ['autodocs'],
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=38-8' } },
   decorators: [(Story) => <Box sx={{ width: 300 }}><Story /></Box>],
   argTypes: {
     variant: { control: 'select', options: ['determinate', 'indeterminate', 'buffer', 'query'] },

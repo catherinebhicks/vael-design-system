@@ -8,6 +8,7 @@ const meta: Meta<typeof SidePanel> = {
   title: 'Navigation/SidePanel',
   component: SidePanel,
   tags: ['autodocs'],
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=127-2' } },
 };
 export default meta;
 type Story = StoryObj<typeof SidePanel>;

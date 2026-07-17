@@ -6,6 +6,7 @@ import { Paper, Typography } from '@mui/material';
 const meta: Meta = {
   title: 'Layout/Layout',
   tags: ['autodocs'],
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=104-2' } },
 };
 
 export default meta;

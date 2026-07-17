@@ -8,7 +8,8 @@ const meta: Meta<typeof FlowCanvas> = {
   title: 'Interaction/FlowCanvas',
   component: FlowCanvas,
   tags: ['autodocs'],
-  parameters: { layout: 'fullscreen', chromatic: { delay: 600 } },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=108-2' }, layout: 'fullscreen', chromatic: { delay: 600 } },
 };
 export default meta;
 type Story = StoryObj<typeof FlowCanvas>;

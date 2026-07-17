@@ -6,7 +6,8 @@ import { QRBlock } from '../src/components/QRBlock';
 const meta: Meta<typeof QRBlock> = {
   title: 'Marketing/QRBlock',
   component: QRBlock,
-  parameters: { layout: 'padded' },
+  parameters: {
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=138-16' }, layout: 'padded' },
   tags: ['autodocs'],
 };
 export default meta;

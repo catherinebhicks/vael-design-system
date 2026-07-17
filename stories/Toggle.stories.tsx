@@ -5,8 +5,7 @@ import { Toggle, ToggleButton } from '../src/components/Toggle';
 const meta: Meta = {
   title: 'Inputs/Toggle',
   tags: ['autodocs'],
-  parameters: {
-  },
+  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=40-28' } },
 };
 
 export default meta;
