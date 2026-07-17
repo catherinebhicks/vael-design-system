@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Data Display/ImageList/Guidelines" />
+
+# ImageList
+
+A grid of images in standard, quilted, woven, or masonry layouts. A thin re-export of MUI `ImageList` with the Vael theme applied.
+
+## Props
+
+Import `ImageList`, `ImageListItem`, and `ImageListItemBar` from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `variant` | `'standard' \| 'quilted' \| 'masonry' \| 'woven'` | `'standard'` | Layout algorithm |
+| `cols` | `number` | `2` | Number of columns |
+| `rowHeight` | `number \| 'auto'` | `'auto'` | Cell height (ignored for masonry) |
+| `gap` | `number` | `4` | Gap between items in px |
+| `children` | `ReactNode` | — | `ImageListItem` children |
+
+`ImageListItemBar` adds an overlay title/subtitle bar; see MUI docs for its full API.
+
+## When to use
+
+- Present a gallery or collection of thumbnails at a glance.
+- Use `quilted` or `woven` to give featured images more visual weight.
+- Pair with `ImageSlot` for placeholder cells while imagery is pending.
+- **Don't** use it for a single hero image or a media placeholder — reach for `ImageSlot` instead.
+
+## Accessibility
+
+- Every image needs a meaningful `alt`; use `alt=""` only for purely decorative tiles.
+- If tiles are interactive, wrap them in a real button or link so they are keyboard-reachable.

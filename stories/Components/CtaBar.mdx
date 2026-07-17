@@ -1,0 +1,34 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Marketing/CtaBar/Guidelines" />
+
+# CtaBar
+
+A call-to-action strip: headline, optional subtext, and action buttons on a full-width band. The section that closes a landing page or separates content blocks with a clear next step.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `title` | `React.ReactNode` | — | Required. The headline. |
+| `subtitle` | `React.ReactNode` | — | Supporting line under the title. |
+| `actions` | `React.ReactNode` | — | Action(s), usually one or two `Button`s. |
+| `variant` | `'brand' \| 'ink' \| 'subtle'` | `'brand'` | Band treatment; `brand` and `ink` are dark surfaces. |
+| `centered` | `boolean` | `false` | Center and stack everything, vs. text-left / actions-right. |
+| `sx` | `SxProps<Theme>` | — | Style overrides. |
+
+Text and button contrast auto-adjust for the dark `brand`/`ink` variants.
+
+## When to use
+
+- Use once near the end of a page to drive the primary next step.
+- Keep `actions` to one primary and at most one secondary button.
+- **Don't** stack multiple CtaBars close together; competing calls dilute the ask.
+
+## Accessibility
+
+- Pass real `Button` elements (or links) in `actions` so they are focusable and correctly labeled.
+- The `brand` and `ink` variants set light text on dark bands to preserve contrast; keep custom colors WCAG-compliant.
+- `title` renders as prominent text, not a semantic heading; wrap it or pass a heading node if the page needs one here.

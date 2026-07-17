@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Navigation/CommandBar/Guidelines" />
+
+# CommandBar
+
+A Cmd-K command palette: a search field over a keyboard-navigable list of commands (icon, label, shortcut), grouped. Arrow keys move, Enter runs, Escape closes. Wire the `open` state to a global Cmd-K / Ctrl-K handler.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `open` | `boolean` | — | Required. Whether the palette is shown. |
+| `onClose` | `() => void` | — | Required. Called on Escape, backdrop click, or after a command runs. |
+| `commands` | `Command[]` | — | Required. Command list (see below). |
+| `placeholder` | `string` | `'Type a command or search…'` | Search input placeholder. |
+| `sx` | `SxProps<Theme>` | — | Style overrides on the dialog. |
+
+Each `Command` is `{ id, label, run, icon?, shortcut?, group?, keywords? }`. Filtering matches `label`, `keywords`, and `group`.
+
+## When to use
+
+- Use as a power-user shortcut to actions and navigation across an app.
+- Provide `keywords` for commands whose label alone will not match how users search.
+- **Don't** make it the only path to an action; every command should also be reachable via normal UI.
+
+## Accessibility
+
+- Built on MUI `Dialog`, so it traps focus and auto-focuses the search field on open.
+- Fully keyboard-operable: ArrowUp/ArrowDown move the active row, Enter runs it, Escape closes.
+- Group and shortcut hints are supplementary text; the `label` remains the primary accessible name.

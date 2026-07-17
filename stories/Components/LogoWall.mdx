@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Marketing/LogoWall/Guidelines" />
+
+# LogoWall
+
+A 'trusted by / worked with' grid or strip of logos. Monochrome-until-hover by default so a row of mixed brand colors reads as a calm set. Falls back to a wordmark when no image is provided.
+
+## Props
+
+Import `LogoWall` (and the `LogoItem` type) from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `logos` | `LogoItem[]` | — | Each item: `{ src?, name, href? }` |
+| `columns` | `number` | — | Grid columns; omit for a single flowing strip |
+| `monochrome` | `boolean` | `true` | Muted grayscale until hover |
+| `height` | `number` | `40` | Cell height in px |
+| `sx` | `SxProps<Theme>` | — | Style overrides |
+
+`LogoItem`: `src` (logo image URL; wordmark from `name` if omitted), `name` (required), `href` (optional link).
+
+## When to use
+
+- Show social proof — clients, partners, or press — on a landing or marketing page.
+- Omit `columns` for a compact inline strip; set it for a balanced grid.
+- **Don't** turn off `monochrome` for a large mixed-brand set — the clashing colors distract from the section.
+
+## Accessibility
+
+- Each logo uses its `name` as `alt`, so give every item a meaningful `name`.
+- When `href` is set the cell becomes a link; ensure the destination is clear and keyboard-reachable.

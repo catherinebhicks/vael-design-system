@@ -1,0 +1,34 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Marketing/ImageSlot/Guidelines" />
+
+# ImageSlot
+
+A fixed-ratio media container that shows a drop-here placeholder until an image is provided. The canonical spot for screenshots and case-study imagery in decks and templates.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `src` | `string` | — | Image URL; when absent, the placeholder shows |
+| `alt` | `string` | `''` | Alt text for the image |
+| `ratio` | `number` | `16 / 9` | Aspect ratio (width / height) |
+| `label` | `ReactNode` | `'Drop image'` | Placeholder prompt text |
+| `icon` | `IconDefinition` | `faImage` | Placeholder icon |
+| `rounded` | `boolean` | `true` | Rounded corners |
+| `dashed` | `boolean` | `true` | Dashed placeholder border vs. solid fill |
+| `sx` | `SxProps<Theme>` | — | Style overrides |
+
+## When to use
+
+- Reserve layout space for imagery in templates and decks before assets exist.
+- Keep a consistent aspect ratio across a set of screenshots or cards.
+- Set `ratio` to match the intended crop so images fill without distortion.
+- **Don't** use it as a multi-image gallery — use `ImageList` for that.
+
+## Accessibility
+
+- Always pass a descriptive `alt` for meaningful images; use `alt=""` for decorative ones.
+- The placeholder label is visual only; ensure surrounding copy conveys intent for assistive tech.

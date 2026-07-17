@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Marketing/Sitemap/Guidelines" />
+
+# Sitemap
+
+An information-architecture tree diagram of a site's page hierarchy. `tree` draws a top-down org-chart with connectors; `indent` draws a nested indented list for deep structures.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| root | `SitemapNode` | — | Required. The top node of the hierarchy. |
+| variant | `'tree' \| 'indent'` | `'tree'` | `tree` = top-down connectors; `indent` = nested indented list. |
+| color | `string` | — | Accent for active nodes (defaults to the primary color). |
+| sx | `SxProps<Theme>` | — | Style overrides. |
+
+`SitemapNode` — `label: React.ReactNode`, `note?: React.ReactNode` (route or annotation), `children?: SitemapNode[]`, `active?: boolean` to highlight a node.
+
+## When to use
+
+- Use to communicate a site or app's page structure in a deck, spec, or IA review.
+- Prefer `tree` for shallow, wide hierarchies; switch to `indent` when the structure is deep and would overflow horizontally.
+- Set `active` on a node to spotlight the page under discussion.
+- **Don't** use it as interactive navigation — it is a static diagram; use `Navigation` or `TreeView` for real menus.
+
+## Accessibility
+
+- Connector lines are decorative; all meaning lives in `label` and `note` text.
+- In `tree` variant the diagram scrolls horizontally when wide — ensure the container allows that so no nodes are clipped.

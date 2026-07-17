@@ -1,0 +1,36 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Data Viz/Charts (Standard · MUI X)/Guidelines" />
+
+# Standard Charts
+
+The Standard charting tier, backed by `@mui/x-charts` (community/free): lightweight, SVG, theme-native. This is the default product-charting layer. Reach for the Advanced (Highcharts) tier only for SPC, multi-axis, solid-gauge, large-dataset, or export needs, and the Micro tier for inline stat viz.
+
+Re-exported under the `StandardCharts` namespace to avoid colliding with the flat Highcharts exports (e.g. `BarChart`). Consume as `StandardCharts.LineChart`, `StandardCharts.BarChart`, etc.
+
+## Charts
+
+Import `StandardCharts` from `vael-design-system`.
+
+| Chart | Purpose |
+| --- | --- |
+| `LineChart` | Trends over a continuous axis (time series). |
+| `BarChart` | Compare values across categories. |
+| `PieChart` | Part-to-whole for a small number of slices. |
+| `ScatterChart` | Correlation / distribution between two measures. |
+| `SparkLineChart` | Compact inline trend, no axes. |
+| `Gauge` | Single value against a range. |
+| `RadarChart` | Multi-dimensional comparison across shared axes. |
+
+Each maps to the corresponding `@mui/x-charts` component and its props (`LineChartProps`, `BarChartProps`, etc.). `RadarChartProps` comes from `@mui/x-charts/RadarChart`.
+
+## When to use
+
+- Default to this tier for in-product dashboards and reports — it inherits Vael theming for free.
+- See Patterns/Choosing a Chart for tier selection (Standard vs Advanced vs Micro) and chart-type guidance.
+- **Don't** import a flat `BarChart` alongside these expecting the Highcharts version — always namespace as `StandardCharts.BarChart`.
+
+## Accessibility
+
+- Provide titles, axis labels, and legends so charts are readable without color discrimination alone.
+- Pair complex or critical charts with an accessible data table or summary for screen-reader users.

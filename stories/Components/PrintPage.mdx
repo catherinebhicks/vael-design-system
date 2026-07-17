@@ -1,0 +1,34 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Layout/PrintPage/Guidelines" />
+
+# PrintPage
+
+A print-first page container that sets the `@page` size and margins, optionally shows a page-like frame on screen, and ships pagination helpers. Use it for invoices, reports, and case-study PDFs exported from the browser.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| children | `React.ReactNode` | — | Required. Page content. |
+| size | `'A4' \| 'Letter' \| 'Legal' \| 'Tabloid'` | `'Letter'` | Paper size; drives `@page` and on-screen frame dimensions. |
+| orientation | `'portrait' \| 'landscape'` | `'portrait'` | Page orientation. |
+| margin | `string` | `'0.75in'` | Page margin as a CSS length. |
+| previewOnScreen | `boolean` | `true` | Show a page-like frame on screen; off = flow normally. |
+| sx | `SxProps<Theme>` | — | Style overrides. |
+
+Two pagination helpers are also exported: `PageBreak` forces a page break before its position, and `KeepTogether` wraps children so they never split across pages.
+
+## When to use
+
+- Use to build browser-printed or PDF-exported documents where physical page size and margins matter.
+- Wrap logical blocks (a table row group, a signature block) in `KeepTogether` to stop them splitting mid-page.
+- Drop a `PageBreak` between major sections to start them on a fresh page.
+- **Don't** use it as a general on-screen layout container — it is tuned for print output, not responsive app screens.
+
+## Accessibility
+
+- Print/screen visibility is driven by the `.vael-print-only` and `.vael-screen-only` classes — keep any print-only content meaningful in source order.
+- The frame is presentational; ensure the document has a real heading hierarchy inside `children`.

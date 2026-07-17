@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Presentation/PullQuote/Guidelines" />
+
+# PullQuote
+
+The large mono statement used on reframe and learnings slides. Wrap a punch word in `strong` to give it the accent color. Dark-mode aware, built on Blueprint tokens.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| children | `React.ReactNode` | — | Required. The statement; a nested `strong` picks up the accent color. |
+| tone | `'signal' \| 'blue'` | `'signal'` | Accent for the emphasis word and left rule. |
+| rule | `boolean` | `true` | Show the left accent rule. |
+| subtext | `React.ReactNode` | — | Optional smaller mono line under the quote. |
+| size | `'md' \| 'lg' \| 'xl'` | `'lg'` | Statement scale (clamps responsively). |
+| sx | `SxProps<Theme>` | — | Style overrides. |
+
+## When to use
+
+- Use for a single high-impact statement on a case-study reframe or takeaway slide.
+- Wrap one or two key words in `strong` for accent emphasis — not the whole line.
+- Pair with `SectionHeading` and `SlideSection` to compose a full slide.
+- **Don't** stack multiple `PullQuote`s on one slide — the impact comes from it being the sole focal statement.
+
+## Accessibility
+
+- Renders as a paragraph; accent color is decorative, so meaning must not rely on the emphasis color alone.
+- Keep contrast in mind when overriding `color` via `sx` — the default Blueprint ink meets contrast in both modes.

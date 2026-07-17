@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Marketing/TagCloud/Guidelines" />
+
+# TagCloud
+
+A frequency-weighted skill or keyword cloud. Font size (and color intensity) scale with each item's weight, so the dominant themes read first.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `items` | `TagCloudItem[]` | — | Required. Each item is `{ label, weight, href? }`. |
+| `minSize` | `number` | `13` | Smallest font size in px (lightest weight). |
+| `maxSize` | `number` | `30` | Largest font size in px (heaviest weight). |
+| `color` | `string` | theme primary | Accent color that heavier tags tint toward. |
+| `sx` | `SxProps<Theme>` | — | Style overrides for the container. |
+
+Weights are scaled relative to the set's own min and max, so absolute values don't matter — only their spread.
+
+## When to use
+
+- Summarize a set of skills, topics, or tags where relative frequency or proficiency is the story.
+- Pass `href` on items to make them navigable links.
+- **Don't** use for precise comparison — use a `BarChart` when exact values matter.
+
+## Accessibility
+
+- When items link out, they render as real anchors; ensure link text is meaningful on its own.
+- Size and color encode weight redundantly, but don't rely on the cloud alone for critical ranking data.

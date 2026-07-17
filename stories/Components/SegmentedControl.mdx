@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Inputs/SegmentedControl/Guidelines" />
+
+# SegmentedControl
+
+A single-select pill group where one option is always active. Wraps MUI `ToggleButtonGroup exclusive` and guards against the null deselect so a segment is never empty.
+
+## Props
+
+Import from `vael-design-system`. Extends `ToggleButtonGroupProps` (minus `children`, `exclusive`, `value`, `onChange`).
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| options | `SegmentedControlOption[]` | — | Required. Each is `{ value, label, disabled? }`. |
+| value | `string` | — | Required. The currently selected option value. |
+| onChange | `(value: string) => void` | — | Required. Fires with the new value; never called with null. |
+| size | `'small' \| 'medium' \| 'large'` | `'small'` | Control density. |
+| color | MUI color | `'primary'` | Active segment color. |
+
+## When to use
+
+- Use to switch between 2–5 mutually exclusive views or modes (e.g. chart range, list vs grid).
+- Keep labels short and parallel so the pills stay even in width.
+- Reach for it when one option must always be selected — the control blocks empty state by design.
+- **Don't** use it for multi-select — use `ToggleButtonGroup` directly, or checkboxes/chips, when several values can be on at once.
+
+## Accessibility
+
+- Renders a grouped set of toggle buttons; provide an `aria-label` on the group describing what is being switched.
+- Each `option.label` is the button's accessible name — icon-only labels should include visually-hidden text.

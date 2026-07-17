@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Interaction/FlowCanvas/Guidelines" />
+
+# FlowCanvas
+
+A themed wrapper over React Flow (`reactflow`) that maps the MUI palette to React Flow's CSS variables so nodes, edges, and controls stay in sync with the active theme. Ships `Background`, `Controls`, and `MiniMap` by default. Always use `FlowCanvas` instead of importing `ReactFlow` directly in feature code.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| nodes | `Node[]` | — | React Flow node models (required). |
+| edges | `Edge[]` | — | React Flow edge models (required). |
+| onNodesChange | `OnNodesChange` | — | Apply with `applyNodeChanges` (required). |
+| onEdgesChange | `OnEdgesChange` | — | Apply with `applyEdgeChanges` (required). |
+| nodeTypes | `NodeTypes` | — | Custom node renderers. |
+| fitView | boolean | false | Auto-fits the graph to the viewport on mount. |
+| height | `number \| string` | `600` | Container height. |
+| zIndex | number | — | Set below MUI Drawer level if the canvas must overlap content. |
+
+## When to use
+
+- Use it for node/edge diagrams — pipelines, dependency graphs, flow builders — that must match the Vael theme.
+- Keep `nodes`/`edges` in state and update them via `applyNodeChanges` / `applyEdgeChanges`.
+- **Don't** render it inside a MUI `Dialog`, `Drawer`, or other focus-trapping component — pan/zoom and focus break.
+
+## Accessibility
+
+- React Flow canvases are pointer-driven; provide a text or list alternative for the same information where the graph carries essential meaning.
+- Ensure node labels use theme text colors (handled by the wrapper) so contrast holds in light and dark.

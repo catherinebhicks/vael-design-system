@@ -1,0 +1,29 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Interaction/DragOverlay/Guidelines" />
+
+# DragOverlay
+
+A drop-in replacement for dnd-kit's `DragOverlay` that re-wraps portalled content in the Vael `ThemeProvider` and sets a sane z-index. It fixes two problems when dnd-kit portals the drag preview outside the React tree: MUI components losing theme/`sx` resolution, and unpredictable stacking against MUI Drawers.
+
+## Props
+
+Import from `vael-design-system`. Extends dnd-kit's `DragOverlayProps` (`@dnd-kit/core`).
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| children | `React.ReactNode` | — | The drag preview; rendered inside the Vael theme. |
+| style | `React.CSSProperties` | — | Merged with the auto `zIndex: 1250`; your value wins on conflict. |
+| dropAnimation | `DropAnimation \| null` | — | Passed through to dnd-kit's `DragOverlay`. |
+| modifiers | `Modifier[]` | — | dnd-kit modifiers (e.g. snap to cursor). |
+
+## When to use
+
+- Render the active drag preview whenever you build drag-and-drop with dnd-kit and MUI components.
+- Keep it inside a `DndContext`, and set its `children` from the currently dragged item on drag start.
+- **Don't** import `@dnd-kit/core`'s `DragOverlay` directly for MUI content — you lose theming and z-index safety.
+
+## Accessibility
+
+- dnd-kit provides keyboard sensors and live-region announcements — configure them so drag works without a mouse.
+- The overlay is a visual preview only; ensure the underlying draggable exposes the accessible name and state.

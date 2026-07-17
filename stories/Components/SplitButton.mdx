@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Inputs/SplitButton/Guidelines" />
+
+# SplitButton
+
+A primary action button paired with a dropdown of alternate actions (MUI `ButtonGroup` + `Menu`). The last-selected option becomes the primary action.
+
+## Props
+
+Import from `vael-design-system`. Extends `ButtonGroupProps` (minus `onChange` / `onSelect`).
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `options` | `string[]` | — | Required. The action labels; index 0 (or `defaultIndex`) is primary. |
+| `defaultIndex` | `number` | `0` | Index of the initially-selected primary option. |
+| `onAction` | `(option: string, index: number) => void` | — | Fires when the primary button is clicked. |
+| `onSelect` | `(option: string, index: number) => void` | — | Fires when a new option is picked from the dropdown. |
+| `variant` | `'contained' \| 'outlined' \| 'text'` | `'contained'` | Passed to the `ButtonGroup`. |
+| `color` | `'primary' \| 'secondary' \| ...` | `'primary'` | Passed to the `ButtonGroup`. |
+
+## When to use
+
+- Offer one dominant action plus a few variations of it (e.g. Save / Save and close / Save as draft).
+- Use when the primary action is the common case and the alternates are occasional.
+- **Don't** use for unrelated actions — group those in a `UncontrolledMenu`; and don't overload with more than ~5 options.
+
+## Accessibility
+
+- The dropdown toggle exposes `aria-haspopup`, `aria-expanded`, and `aria-controls`; the menu opens with focus on the active item.
+- The menu closes on click-away and returns selection state via `onSelect`.

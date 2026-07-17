@@ -1,0 +1,29 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/DensityProvider/Guidelines" />
+
+# DensityProvider
+
+Sets a `compact`, `regular`, or `comfortable` density for its subtree. Consumers read `useDensity()` to size controls, rows, and spacing consistently; density is a foundation choice (like a theme), not a per-component prop.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| density | `'compact' \| 'regular' \| 'comfortable'` | `'regular'` | Chooses the token set (`space`, control `size`, `rowHeight`). |
+| cssVars | boolean | true | Also exposes `--vael-density-space` / `--vael-density-row` for non-MUI surfaces. |
+| children | `React.ReactNode` | — | Subtree that inherits the density. |
+| sx | `SxProps<Theme>` | — | Styles applied to the wrapping `Box`. |
+
+## When to use
+
+- Wrap a page, panel, or data-heavy region to shift its whole rhythm (e.g. `compact` for dense tables).
+- Read `useDensity()` inside components to pass `tokens.size` to controls and `tokens.rowHeight` to list/table rows.
+- **Don't** hand-tune spacing on individual components to fake density — set it once at the provider.
+
+## Accessibility
+
+- Avoid `compact` for primary touch targets; comfortable sizing keeps hit areas large enough to tap reliably.
+- Density changes spacing only — it must not remove labels, focus rings, or other affordances.

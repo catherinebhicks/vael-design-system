@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Marketing/IconListItem/Guidelines" />
+
+# IconListItem
+
+A feature/benefit row: a tinted icon chip beside a title and supporting line. The building block for feature lists, "how it works" steps, and value-prop grids.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| icon | `IconDefinition` | — | FontAwesome icon shown in the tinted chip (required). |
+| title | `React.ReactNode` | — | Feature name / headline (required). |
+| description | `React.ReactNode` | — | Optional supporting line under the title. |
+| color | string | `primary.main` | Accent color for the icon chip (icon + 10% tint). |
+| shape | `'rounded' \| 'circle' \| 'square'` | `'rounded'` | Icon chip shape. |
+| sx | `SxProps<Theme>` | — | Styles applied to the row `Box`. |
+
+## When to use
+
+- Compose several in a `Stack` or grid to build feature lists and value-prop sections.
+- Keep titles to a few words and descriptions to one line for an even, scannable rhythm.
+- **Don't** use it for interactive navigation rows — use `List`/`IconListItem` in a menu context or a `Link` instead.
+
+## Accessibility
+
+- The icon is decorative; the `title` carries the meaning, so keep it clear and specific.
+- If you override `color`, verify the icon-on-tint chip keeps enough contrast to stay legible.

@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Marketing/Comparison/Guidelines" />
+
+# Comparison
+
+Two labeled panels side by side (or stacked) for before/after, old/new, or us/them framing. Panel content can be text, an `ImageSlot`, or any node.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `before` | `ComparisonPanel` | — | Required. Left/top panel; defaults to the `before` tone. |
+| `after` | `ComparisonPanel` | — | Required. Right/bottom panel; defaults to the `after` tone. |
+| `vertical` | `boolean` | `false` | Stack panels vertically instead of side-by-side. |
+| `sx` | `SxProps<Theme>` | — | Style overrides. |
+
+Each `ComparisonPanel` is `{ label, content, tone? }` where `tone` is `'neutral' \| 'before' \| 'after'`. String `content` renders as body text; anything else renders as-is.
+
+## When to use
+
+- Use to contrast two states directly, such as a redesign against the original.
+- Set `vertical` on narrow layouts or when panels contain tall content.
+- **Don't** use it for more than two items; use a table or card grid for multi-way comparisons.
+
+## Accessibility
+
+- The label chip conveys role via color and text; keep labels descriptive ("Before", "After") rather than relying on position.
+- When panels contain images, ensure each carries meaningful alt text.
+- Reading order follows source order, so `before` is announced before `after` in both layouts.

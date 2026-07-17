@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Marketing/QRBlock/Guidelines" />
+
+# QRBlock
+
+A QR code presentation block with a caption, for print and deck handoffs ("scan for the live prototype"). Provide a real scannable code via `children`; without one it draws a deterministic placeholder pattern so layouts read correctly.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| value | `string` | — | Required. The encoded value; also seeds the placeholder pattern. |
+| caption | `React.ReactNode` | — | Caption shown under the code. |
+| size | `number` | `132` | Block size in px. |
+| color | `string` | — | Foreground module color (defaults to the primary text color). |
+| children | `React.ReactNode` | — | A pre-rendered QR (e.g. from a `qrcode` lib) for a real scannable code. |
+| sx | `SxProps<Theme>` | — | Style overrides. |
+
+## When to use
+
+- Use on printed pages or slides to hand off a link that viewers scan on their phone.
+- Pass a real generated code via `children` for anything that must actually scan — the built-in pattern is a placeholder only.
+- Add a `caption` telling people what scanning will do.
+- **Don't** ship the placeholder pattern to production expecting it to scan — it encodes nothing.
+
+## Accessibility
+
+- The placeholder grid renders with `role="img"` and an `aria-label` of "QR code for `value`".
+- Pair the code with a `caption` and a visible plain-text URL so the destination is reachable without a camera.

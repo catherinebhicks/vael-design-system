@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Display/Descriptions/Guidelines" />
+
+# Descriptions
+
+An aligned key/value detail list rendered as a semantic `dl`, for read-only record summaries — order details, profile fields, metadata. Mono-uppercase labels in the Blueprint voice with values in body type.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| items | `DescriptionItem[]` | — | Each item has `label`, `value`, and optional `full`. |
+| columns | `1 \| 2 \| 3` | `1` | Label+value pairs per row. |
+| divided | boolean | false | Draws hairline separators between rows. |
+| sx | `SxProps<Theme>` | — | Styles applied to the `dl` grid. |
+
+Each `DescriptionItem`: `label` (`ReactNode`), `value` (`ReactNode`), `full?` (boolean — spans the full width, value drops below the label).
+
+## When to use
+
+- Present static record fields where alignment and scannability matter more than editing.
+- Set `full` on long values (notes, addresses) so they get the full row width.
+- **Don't** use it for editable forms — use labelled inputs; and don't nest interactive controls inside a value.
+
+## Accessibility
+
+- Renders proper `dl` / `dt` / `dd` semantics so assistive tech reads each label with its value.
+- Keep labels short and unique so the term/definition pairing stays unambiguous.

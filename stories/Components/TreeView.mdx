@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Data Display/TreeView/Guidelines" />
+
+# TreeView
+
+A hierarchical disclosure list from `@mui/x-tree-view`, with the Vael theme applied. Two flavors are re-exported: composable `SimpleTreeView` (JSX children) and data-driven `RichTreeView`, plus `TreeItem`.
+
+## Props
+
+Import `SimpleTreeView`, `RichTreeView`, and `TreeItem` from `vael-design-system`. These are the MUI X components — see the MUI X Tree View API for the full surface. Common props:
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `items` | `TreeViewBaseItem[]` | — | `RichTreeView` only — the tree data (id + label + children). |
+| `children` | `ReactNode` | — | `SimpleTreeView` only — nested `TreeItem` elements. |
+| `defaultExpandedItems` | `string[]` | `[]` | Item ids expanded initially. |
+| `multiSelect` | `boolean` | `false` | Allow selecting multiple nodes. |
+| `checkboxSelection` | `boolean` | `false` | Show selection checkboxes. |
+| `onSelectedItemsChange` | `(event, ids) => void` | — | Fires when selection changes. |
+
+`TreeItem` takes `itemId` and `label` (for `SimpleTreeView`).
+
+## When to use
+
+- Use `SimpleTreeView` for small, static hierarchies authored in JSX (nav trees, settings groups).
+- Use `RichTreeView` for large or dynamic data where you pass an `items` array and want built-in selection.
+- **Don't** use a tree for flat lists or when only one level of nesting exists — a plain list or `Accordion` reads better.
+
+## Accessibility
+
+- Ships the ARIA tree pattern: nodes are keyboard navigable with arrow keys, Enter/Space to select, and expand/collapse.
+- Give each item a clear, unique `label`; avoid encoding meaning in icons alone.

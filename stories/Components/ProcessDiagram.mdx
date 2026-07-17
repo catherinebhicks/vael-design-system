@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Marketing/ProcessDiagram/Guidelines" />
+
+# ProcessDiagram
+
+Labeled step boxes connected by arrows. Use it for "how it works" sequences, pipelines, and journey overviews. Horizontal and wrapping by default; set `vertical` for a top-down flow.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| steps | `ProcessStep[]` | — | Required. Each step is `{ label, caption?, icon?, active? }`. |
+| vertical | `boolean` | `false` | Lay out top-to-bottom with arrows pointing down. |
+| color | `string` | — | Accent color for icons and the active step (defaults to the primary color). |
+| sx | `SxProps<Theme>` | — | Style overrides. |
+
+`ProcessStep` — `label: React.ReactNode`, `caption?: React.ReactNode`, `icon?: IconDefinition` (Font Awesome), `active?: boolean` to emphasise the current step.
+
+## When to use
+
+- Use to explain a short, linear sequence of 3–6 stages at a glance.
+- Set `active` on the current step to highlight where a user is in the flow.
+- Switch to `vertical` on narrow columns or when captions are long.
+- **Don't** use it for branching or looping flows — reach for `FlowCanvas` when the process is not a straight line.
+
+## Accessibility
+
+- The connecting arrows are `aria-hidden`; put all meaning in `label` and `caption` text.
+- Provide `icon` as reinforcement only, never as the sole indicator of a step's meaning.

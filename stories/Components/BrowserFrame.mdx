@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Presentation/BrowserFrame/Guidelines" />
+
+# BrowserFrame
+
+A browser/window chrome frame (traffic-light dots plus an address bar) wrapping a mock. Used on deck openers to present a screenshot or live mock as if in a browser. Dark-mode aware.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `url` | `string` | — | Address-bar text, e.g. `'hyundaiusa.com / mpg-information'`. |
+| `dots` | `boolean` | `true` | Show the three traffic-light dots. |
+| `radius` | `number` | `18` | Corner radius in px. |
+| `bodyPadding` | `string \| number` | `'26px 30px 30px'` | Padding around the framed content. |
+| `children` | `React.ReactNode` | — | The mock or screenshot to frame. |
+| `sx` | `SxProps<Theme>` | — | Style overrides. |
+
+## When to use
+
+- Use to present a web mock, screenshot, or embedded page in a presentation or case study.
+- Set `url` to reinforce which page or route is shown.
+- **Don't** use it as an application layout chrome; it is a decorative presentation frame only.
+
+## Accessibility
+
+- The frame is presentational; ensure the framed `children` (images, text) carry their own alt text and semantics.
+- The `url` is decorative text, not a real navigable control, so do not rely on it as a link.
+- Pairs well with `AnnotatedScreen` inside the frame for annotated walkthroughs.

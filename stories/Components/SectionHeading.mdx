@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Presentation/SectionHeading/Guidelines" />
+
+# SectionHeading
+
+The mono index plus uppercase eyebrow plus Plex-Mono heading that opens every case-study slide. Pure Blueprint tokens, dark-mode aware.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| index | `string` | — | Small mono index before the eyebrow, e.g. "05". |
+| eyebrow | `string` | — | Uppercase mono kicker above the title. |
+| title | `React.ReactNode` | — | Required. The heading (renders as `h2`). |
+| description | `React.ReactNode` | — | Optional supporting paragraph under the title. |
+| tone | `'blue' \| 'signal'` | `'blue'` | Accent for the index and eyebrow. |
+| titleMaxCh | `number` | — | Max title width in `ch`. |
+| sx | `SxProps<Theme>` | — | Style overrides. |
+
+## When to use
+
+- Use to open a slide or section with the standard index + eyebrow + title rhythm.
+- Set `index` and `eyebrow` to place the section within the deck's numbered sequence.
+- Pair with `SlideSection` for the frame and `PullQuote` for focal statements.
+- **Don't** use it as a generic in-app page header — it is tuned for the presentation/case-study voice.
+
+## Accessibility
+
+- The `title` renders as an `h2`; keep one logical heading level per section and don't skip levels across a deck.
+- Accent color on index and eyebrow is decorative — the eyebrow text itself carries the meaning.

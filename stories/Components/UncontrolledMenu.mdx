@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Navigation/UncontrolledMenu/Guidelines" />
+
+# UncontrolledMenu
+
+A self-contained menu that owns its own open/anchor state, so you don't have to wire up `anchorEl` and toggle handlers. Renders a trigger (a default kebab `IconButton` or your own) plus a MUI `Menu`.
+
+## Props
+
+Import from `vael-design-system`. Extends `MenuProps` (minus `open`, `anchorEl`, `onClose`).
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `children` | `ReactNode` | — | The `MenuItem`s to render. |
+| `button` | `(provided, open) => ReactElement` | kebab icon | Render prop for a custom trigger; spread `provided` onto it. |
+| `closeOnClick` | `boolean` | `false` | Auto-close the menu after any item click. |
+| `stopOnClickPropagation` | `boolean` | `false` | Stop the open click from bubbling (useful inside rows). |
+
+The `provided` object gives the trigger its `onClick` plus `aria-controls`, `aria-haspopup`, and `aria-expanded`.
+
+## When to use
+
+- Attach an actions menu to a table row, card, or toolbar without managing state.
+- Use `stopOnClickPropagation` when the trigger sits inside a clickable container.
+- **Don't** use it for a primary action with variants — reach for `SplitButton`; for FAB sub-actions use `SpeedDial`.
+
+## Accessibility
+
+- The trigger receives `aria-haspopup`, `aria-controls`, and `aria-expanded` automatically; the default `IconButton` is labeled `actions`.
+- The `Menu` traps focus and closes on Escape and click-away; give any custom `button` an accessible label.

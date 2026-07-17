@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Marketing/Testimonial/Guidelines" />
+
+# Testimonial
+
+A quote with attribution and an optional headshot. The social-proof sibling of `PullQuote`: use `PullQuote` to emphasise a line of body copy, `Testimonial` to credit a named person.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `quote` | `ReactNode` | — | Required. The quote body. |
+| `author` | `ReactNode` | — | Required. Attribution name; a string yields initials for the avatar fallback. |
+| `role` | `ReactNode` | — | Role / company line under the name. |
+| `avatar` | `string` | — | Headshot URL; falls back to author initials. |
+| `variant` | `'stacked' \| 'inline'` | `'stacked'` | Avatar under the quote, or beside it. |
+| `sx` | `SxProps<Theme>` | — | Style overrides. |
+
+## When to use
+
+- Present customer or user quotes as social proof on marketing pages.
+- Use `inline` in tight layouts and `stacked` when the quote should lead.
+- **Don't** use it for pull quotes from your own body copy — use `PullQuote` for that.
+
+## Accessibility
+
+- The avatar falls back to author initials when no image is provided; supply meaningful `alt` context via the surrounding attribution.
+- Keep quote and author text as real content (not baked into an image) so it's readable and translatable.

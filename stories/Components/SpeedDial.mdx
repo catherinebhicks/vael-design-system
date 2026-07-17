@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Navigation/SpeedDial/Guidelines" />
+
+# SpeedDial
+
+A floating action button that expands on hover or focus to reveal a small set of contextual sub-actions. Re-exported from `@mui/material` with the Vael theme applied.
+
+## Props
+
+Import `SpeedDial`, `SpeedDialAction`, and `SpeedDialIcon` from `vael-design-system`. These are the MUI components — see the MUI SpeedDial API for the full surface. Common props:
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `ariaLabel` | `string` | — | Required. Names the whole dial for assistive tech. |
+| `icon` | `ReactNode` | — | Usually a `SpeedDialIcon` (morphs to a close icon when open). |
+| `direction` | `'up' \| 'down' \| 'left' \| 'right'` | `'up'` | Direction actions fan out. |
+| `open` | `boolean` | — | Controlled open state. |
+| `onOpen` / `onClose` | `(event, reason) => void` | — | Fired on hover/focus/toggle. |
+| `hidden` | `boolean` | `false` | Hides the FAB entirely. |
+
+Each `SpeedDialAction` takes `icon`, `slotProps` (for a tooltip label), and `onClick`.
+
+## When to use
+
+- Surface 3–6 closely related actions from a single persistent FAB (e.g. share, copy, print).
+- Prefer over a cluster of separate FABs when screen space is tight.
+- **Don't** use it as a primary navigation menu or for more than a handful of actions — reach for `UncontrolledMenu` or a full menu instead.
+
+## Accessibility
+
+- Always set `ariaLabel`; give each `SpeedDialAction` a tooltip label so its purpose is announced.
+- Actions are keyboard reachable — the dial opens on focus and arrow keys move between actions.

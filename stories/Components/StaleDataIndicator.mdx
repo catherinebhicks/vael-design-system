@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Data Display/StaleDataIndicator/Guidelines" />
+
+# StaleDataIndicator
+
+Communicates data freshness — fresh, stale, or expired — with a relative timestamp and an optional refresh action. For dashboards and any cached or polled view where the age of the data matters.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `ageSeconds` | `number` | — | Required. Seconds since the data last updated. |
+| `staleAfter` | `number` | `60` | Age (s) past which data reads as stale (warning). |
+| `expiredAfter` | `number` | `300` | Age (s) past which data reads as expired (error). |
+| `onRefresh` | `() => void` | — | When set, shows a refresh affordance that calls this. |
+| `label` | `string` | `'Updated'` | Prefix for the timestamp text. |
+| `sx` | `SxProps<Theme>` | — | Style overrides. |
+
+## When to use
+
+- Show alongside live metrics, polled tables, or cached views so users can trust the numbers.
+- Provide `onRefresh` when a manual re-fetch is possible.
+- **Don't** rely on it as the only signal for critically stale data — pair with a blocking state if acting on old data is dangerous.
+
+## Accessibility
+
+- State is conveyed by icon and label text, not color alone (warning/error text is spelled out via the timestamp).
+- The refresh control is a real `button` with `aria-label="Refresh"` and is keyboard operable.

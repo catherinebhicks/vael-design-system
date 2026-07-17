@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Inputs/Date & Time Pickers/Guidelines" />
+
+# Date & Time Pickers
+
+Themed re-exports of the free MUI X date/time pickers, bundled with `LocalizationProvider` and the dayjs adapter so a tree can be wrapped once and pickers dropped in with the Vael theme.
+
+## Props
+
+Import from `vael-design-system`. Exposes `DatePicker`, `TimePicker`, `DateTimePicker`, `StaticDatePicker`, `DateCalendar`, `LocalizationProvider`, and `AdapterDayjs` from `@mui/x-date-pickers`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| value | `Dayjs \| null` | — | Controlled selected date/time (use with `onChange`). |
+| onChange | `(value) => void` | — | Fires on selection change. |
+| label | string | — | Field label; forwarded to the underlying `TextField`. |
+| disabled | boolean | false | Disables the field and calendar/clock. |
+| minDate / maxDate | `Dayjs` | — | Bounds selectable dates (`DatePicker` / `DateTimePicker`). |
+| dateAdapter | adapter | — | Pass `AdapterDayjs` to the wrapping `LocalizationProvider`. |
+
+## When to use
+
+- Wrap the app (or subtree) once in `<LocalizationProvider dateAdapter={AdapterDayjs}>`, then place pickers freely inside.
+- Use `DatePicker` for dates, `TimePicker` for times, and `DateTimePicker` when both matter in one field.
+- **Don't** render a picker outside a `LocalizationProvider` — it will throw or silently fail to format.
+
+## Accessibility
+
+- Each picker renders a labelled text field with a calendar/clock dialog that is keyboard navigable — always supply `label`.
+- Prefer the input-plus-dialog pattern so users can type a date directly rather than only picking visually.

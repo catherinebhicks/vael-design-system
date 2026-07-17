@@ -1,0 +1,88 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Data Viz/Micro/Guidelines" />
+
+# Micro-viz
+
+Dependency-free SVG stat visuals for **inline** use — a number with a shape, sized for a card, table cell, or KPI strip. For full analytical charts use the Standard (`@mui/x-charts`) or Advanced (Highcharts) tiers; see **Patterns/Choosing a Chart**. All six theme from the same tokens and render at tiny sizes.
+
+## Sparkline
+
+A minimal line chart with an optional filled area and last-point dot.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| data | number[] | — | Required. The series to plot. |
+| width / height | number | 96 / 28 | Overall size in px. |
+| color | string | primary.main | Any CSS color. |
+| area | bool | false | Fill a soft area under the line. |
+| showLast | bool | true | Mark the final point with a dot. |
+
+## StatBlock
+
+An infographic stat tile: mono-uppercase label, large value, optional delta and trailing visual.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| label | node | — | Small uppercase label. |
+| value | node | — | The headline figure. |
+| unit | node | — | Suffix beside the value (e.g. `%`). |
+| delta | `{ value, direction, good? }` | — | `direction` is `'up' \| 'down'`; `good` overrides sentiment (e.g. down-is-good for bounce rate). |
+| icon | IconDefinition | — | Leading FA icon. |
+| visual | node | — | Trailing visual — drop a `Sparkline` in. |
+
+## SegmentMeter
+
+A discrete unit meter: N segments, the first `value` filled.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| value | number | — | Filled count, or a 0–1 fraction of `segments`. |
+| segments | number | 5 | Total segments. |
+| color | string | primary.main | Fill color. |
+| rounded | bool | false | Round the segment ends. |
+
+## MeterRow
+
+A labeled horizontal bar meter (a.k.a. SkillBar): label, track, fill, and value readout.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| label | node | — | Row label. |
+| value | number | — | Current value. |
+| max | number | 100 | Maximum. |
+| valueLabel | node | `%` | Right-hand readout override. |
+
+## WaffleChart
+
+A dot-array / pictograph grid filled to a proportion — reads a percentage as "N of 100 squares".
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| value | number | — | 0–1 fraction or 0–100 percentage. |
+| rows / cols | number | 10 / 10 | Grid dimensions. |
+| color | string | primary.main | Filled-cell color. |
+
+## GaugeStat
+
+A compact radial stat ring with a value in the center.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| value | number | — | Current value. |
+| max | number | 100 | Maximum. |
+| size / thickness | number | 96 / 8 | Ring diameter + stroke in px. |
+| label | node | — | Caption under the value. |
+| variant | 'full' \| 'semi' | 'full' | Full ring or a bottom-open semicircle. |
+
+## When to use
+
+- Reach for micro-viz when a chart is **decoration on a number** — trends beside a KPI, a proficiency bar, a coverage ring.
+- Use `SegmentMeter` (not a continuous bar) when the data is genuinely discrete and a smooth bar would over-imply precision.
+- **Don't** use these for multi-series, axes, or interactive analytical charts — that's the Standard/Advanced tiers.
+
+## Accessibility
+
+- Meters expose `role="meter"` with `aria-valuenow/min/max`; `WaffleChart` and `GaugeStat` carry an `aria-label` with the percentage.
+- Color is never the only signal — always pair with the numeric value or a label.
+- Keep foreground/track contrast ≥ 3:1 so the fill is distinguishable.

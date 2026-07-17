@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Marketing/PreviewCard/Guidelines" />
+
+# PreviewCard
+
+A link/content preview card: media on top, then title, description, and a small source line. Use it for featured work, related links, and social-style cards.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| title | `React.ReactNode` | — | Required. Card heading. |
+| description | `React.ReactNode` | — | Supporting body text under the title. |
+| meta | `React.ReactNode` | — | Small uppercase source line (domain, author, date). |
+| image | `string` | — | Media URL. Omitted renders a placeholder tile. |
+| href | `string` | — | Makes the whole card a clickable link, with a hover lift. |
+| ratio | `number` | `16 / 9` | Media aspect ratio (width / height). |
+| sx | `SxProps<Theme>` | — | Style overrides. |
+
+## When to use
+
+- Use for a grid of featured work, related articles, or resource links where each item has an image and a source.
+- Pass `href` to make the entire card a single click target instead of a small link.
+- Keep `meta` short — one line of source context (domain or date).
+- **Don't** use it for dense data rows or list items with no media — reach for `List` or `PreviewCard`'s sibling `PersonaCard` instead.
+
+## Accessibility
+
+- When `href` is set the whole card is an `a` element, so `title` text should read as a meaningful link label.
+- Provide a descriptive `image` that reinforces `title`; the placeholder tile is decorative only.

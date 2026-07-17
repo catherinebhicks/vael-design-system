@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Marketing/Carousel/Guidelines" />
+
+# Carousel
+
+A single-view slide switcher with arrows and dot indicators. Each child is a slide; the active index is controlled internally. For galleries, testimonials, and step-through decks.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `children` | `React.ReactNode` | — | Required. One node per slide. |
+| `defaultIndex` | `number` | `0` | Starting slide index. |
+| `arrows` | `boolean` | `true` | Show prev/next arrows (only when more than one slide). |
+| `dots` | `boolean` | `true` | Show dot indicators. |
+| `loop` | `boolean` | `true` | Wrap past the first/last slide. |
+| `onChange` | `(index: number) => void` | — | Fires when the active slide changes. |
+| `sx` | `SxProps<Theme>` | — | Style overrides. |
+
+## When to use
+
+- Use for browsable, equal-weight items where showing one at a time is intentional.
+- Keep the slide count modest so the dot indicators stay usable.
+- **Don't** hide primary content or critical steps inside a carousel; users may not advance it.
+
+## Accessibility
+
+- Arrows and dots are real buttons with `aria-label`s ("Previous slide", "Go to slide N").
+- With `loop` off, the arrows correctly disable at the ends rather than being merely inert.
+- Avoid auto-advancing; this component is user-driven, which keeps content readable for everyone.

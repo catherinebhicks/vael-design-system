@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Display/EmptyState/Guidelines" />
+
+# EmptyState
+
+The zero-data placeholder for a list, table, or panel: an icon, a title, an optional description, and an optional call to action. Mono title in the Blueprint voice.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| title | `React.ReactNode` | — | Short headline naming what is empty (required). |
+| description | `React.ReactNode` | — | Supporting sentence — why, or what to do next. |
+| icon | `IconDefinition \| false` | `faInbox` | Leading FontAwesome icon; pass `false` to hide. |
+| action | `React.ReactNode` | — | Primary action, usually a `Button`. |
+| bordered | boolean | false | Renders inside a dashed placeholder frame. |
+| sx | `SxProps<Theme>` | — | Styles applied to the wrapping `Box`. |
+
+## When to use
+
+- Show it in place of a list or table when there is genuinely no data yet.
+- Include an `action` that resolves the emptiness (e.g. a `New project` button).
+- **Don't** use it for loading (use a `Skeleton`) or for error states (use an `Alert`).
+
+## Accessibility
+
+- Keep `title` a real, descriptive sentence — it is the primary cue for screen-reader users, not the icon.
+- The default icon is decorative; ensure the `action` control has its own accessible label.

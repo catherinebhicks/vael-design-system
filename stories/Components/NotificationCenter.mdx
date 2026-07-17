@@ -1,0 +1,36 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Feedback/NotificationCenter/Guidelines" />
+
+# NotificationCenter
+
+A bounded panel listing notifications (icon, title, body, time) with unread accents and a 'mark all read' header action. Drop it inside a `Popover` or `Drawer`, or render it inline.
+
+## Props
+
+Import `NotificationCenter` (and the `NotificationItem` type) from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `items` | `NotificationItem[]` | — | Rows to render |
+| `title` | `ReactNode` | `'Notifications'` | Header label (unread count appended) |
+| `onMarkAllRead` | `() => void` | — | Header action; only shows when there are unread rows |
+| `onItemClick` | `(item) => void` | — | Makes rows clickable |
+| `emptyLabel` | `ReactNode` | `'You’re all caught up'` | Shown when `items` is empty |
+| `width` | `number` | `360` | Panel width in px |
+| `sx` | `SxProps<Theme>` | — | Style overrides |
+
+`NotificationItem`: `id`, `title`, optional `body`, `time`, `icon` (defaults to a bell), and `unread` (adds an accent dot + tint).
+
+## When to use
+
+- Give users a single place to review recent activity and alerts.
+- Combine with `Popover` triggered from a bell icon in the app bar.
+- Set `unread` on new items and wire `onMarkAllRead` to clear the state.
+- **Don't** overload rows with long body copy — keep each notification scannable.
+
+## Accessibility
+
+- When `onItemClick` is set, ensure rows are reachable and actionable by keyboard, not mouse only.
+- Convey unread status with more than the accent dot (e.g. bolder title) so it does not rely on color alone.
+- Consider announcing new notifications via an `aria-live` region.

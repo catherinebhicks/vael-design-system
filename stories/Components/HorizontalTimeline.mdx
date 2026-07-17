@@ -1,0 +1,29 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Data Display/HorizontalTimeline/Guidelines" />
+
+# HorizontalTimeline
+
+A left-to-right roadmap/progress track — the horizontal counterpart to the vertical MUI Lab Timeline. Nodes with connectors, labels above and captions below, each in a `done`, `active`, or `todo` state.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| steps | `RoadmapStep[]` | — | Ordered steps rendered left to right (required). |
+| sx | `SxProps<Theme>` | — | Styles applied to the wrapping `Box`. |
+
+Each `RoadmapStep`: `label` (`ReactNode`), `caption?` (`ReactNode` — date/phase/owner under the connector), `state?` (`'done' \| 'active' \| 'todo'`; drives node color — primary, warning/signal accent, or disabled).
+
+## When to use
+
+- Show a fixed, ordered sequence of phases (discovery → design → build → launch) with clear progress.
+- Mark the current phase `active` and completed ones `done` so status reads at a glance.
+- **Don't** use it for long or branching processes — prefer the vertical Timeline or `ProcessDiagram`/`FlowCanvas`.
+
+## Accessibility
+
+- State is conveyed by color plus position; keep captions like `Complete` / `In progress` so status is not color-only.
+- On narrow viewports the track can crowd — keep labels short and consider fewer steps for readability.

@@ -1,0 +1,30 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Data Display/LiveValue/Guidelines" />
+
+# LiveValue
+
+A real-time value that briefly flashes when it updates and can show a pulsing 'live' indicator. Tabular figures keep its width stable as digits change. For dashboards, tickers, and streaming metrics.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `value` | `ReactNode` | — | The value to display; flashes when it changes |
+| `live` | `boolean` | `true` | Show a pulsing 'live' dot |
+| `flashColor` | `string` | soft brand tint | Background flash color on change |
+| `sx` | `SxProps<Theme>` | — | Style overrides |
+
+## When to use
+
+- Surface a metric that updates in real time and should draw a brief glance on change.
+- Use the `live` dot to signal that a stream is active.
+- Pair with `Statistic` or `Counter` displays where a value refreshes frequently.
+- **Don't** use the flash for static values that rarely change — the motion becomes noise.
+
+## Accessibility
+
+- The flash and pulse are decorative; ensure the value itself is readable without them.
+- For frequently updating values announced to assistive tech, consider an `aria-live` region on the container and respect reduced-motion preferences.

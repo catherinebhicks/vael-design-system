@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Marketing/SpotlightTour/Guidelines" />
+
+# SpotlightTour
+
+The coach-mark card for an onboarding spotlight: a step title and body, progress dots, Back / Next / Done navigation, and a Skip affordance. Anchor it to a target with a `Popover` or drop it into a spotlight overlay — this component owns the step content and navigation.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `steps` | `TourStep[]` | — | Required. Each `TourStep` is `{ title, body }` (both `ReactNode`). |
+| `index` | `number` | — | Controlled active step index. |
+| `defaultIndex` | `number` | `0` | Initial step when uncontrolled. |
+| `onChange` | `(index: number) => void` | — | Fires on Back / Next. |
+| `onFinish` | `() => void` | — | Fires when Done is clicked on the last step. |
+| `onSkip` | `() => void` | — | Fires from the Skip button (shown on step 0). |
+| `sx` | `SxProps<Theme>` | — | Style overrides for the card. |
+
+## When to use
+
+- Introduce a small number of key features to first-time users, one step at a time.
+- Keep tours short (3–5 steps); each step should point at one concrete UI element.
+- **Don't** trap users — always keep Skip reachable and never block core tasks behind the tour.
+
+## Accessibility
+
+- Progress dots convey position; pair them with the Back/Next labels so state isn't color-only.
+- When anchoring via a `Popover`, ensure focus moves into the card and Escape or Skip dismisses it.

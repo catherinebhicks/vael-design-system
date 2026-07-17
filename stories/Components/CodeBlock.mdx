@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Display/CodeBlock/Guidelines" />
+
+# CodeBlock
+
+A mono code panel with an optional language label, line numbers, and a copy button. Dependency-free (no syntax highlighter); pass pre-highlighted nodes as `code` if you want colored tokens. Uses the Blueprint code surface.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `code` | `string` | — | Required. The code to display. |
+| `language` | `string` | — | Language label shown in the header (e.g. `'tsx'`). |
+| `lineNumbers` | `boolean` | `false` | Show a left gutter of 1-based line numbers. |
+| `copy` | `boolean` | `true` | Show the copy button (renders a `CopyButton`). |
+| `highlightLines` | `number[]` | `[]` | 1-based line numbers to emphasize. |
+| `sx` | `SxProps<Theme>` | — | Style overrides. |
+
+## When to use
+
+- Use for read-only code samples in docs, marketing, and case-study pages.
+- Set `language` and `highlightLines` to focus attention on the relevant lines.
+- **Don't** use it as a code editor; it is display-only. Reach for `CopyButton` alone when you only need copy-to-clipboard on a short string.
+
+## Accessibility
+
+- Code renders in a real `<pre><code>` block, preserving whitespace and structure for screen readers.
+- The line-number gutter is marked `aria-hidden` so numbers are not read as part of the code.
+- The header copy control inherits `CopyButton`'s accessible label and copied-state feedback.

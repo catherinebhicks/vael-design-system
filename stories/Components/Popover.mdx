@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Utils/Popover/Guidelines" />
+
+# Popover
+
+A floating surface anchored to an element, used to host transient content like menus, forms, or a `NotificationCenter`. A thin re-export of MUI `Popover` with the Vael theme applied.
+
+## Props
+
+Import `Popover` from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `open` | `boolean` | — | Controls visibility |
+| `anchorEl` | `Element \| null` | — | Element the popover is positioned against |
+| `onClose` | `(event, reason) => void` | — | Fired on backdrop click or Escape |
+| `anchorOrigin` | `{ vertical, horizontal }` | top / left | Anchor attach point |
+| `transformOrigin` | `{ vertical, horizontal }` | top / left | Popover attach point |
+| `children` | `ReactNode` | — | Popover content |
+
+## When to use
+
+- Anchor lightweight, dismissible content (menus, filters, a notification panel) to a trigger.
+- Use `anchorOrigin` and `transformOrigin` to position the surface relative to its trigger.
+- **Don't** use it for a blocking, decision-required flow — use a `Dialog` / `Modal` instead.
+
+## Accessibility
+
+- Popover traps focus and restores it to the trigger on close; keep the trigger a real focusable control.
+- It closes on Escape and backdrop click by default — preserve that expected dismissal behavior.
+- Give the trigger `aria-haspopup` and reflect open state so assistive tech announces the relationship.

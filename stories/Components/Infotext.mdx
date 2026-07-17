@@ -1,0 +1,29 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Display/Infotext/Guidelines" />
+
+# Infotext
+
+Inline helper text — below a field, beside a label, or under a control. Mono and muted by default, with an optional leading info glyph.
+
+## Props
+
+Import from `vael-design-system`. Extends MUI `TypographyProps` (minus `children`).
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `children` | `ReactNode` | — | The helper text to show |
+| `icon` | `IconDefinition \| false` | `faCircleInfo` | Leading glyph; pass `false` to hide |
+| `tone` | `'default' \| 'muted' \| 'error' \| 'success' \| 'warning'` | `'default'` | Maps to a theme text/severity color |
+| `sx` | `SxProps<Theme>` | — | Style overrides |
+
+## When to use
+
+- Add supporting or explanatory text next to a control or label.
+- Use `tone='error'` / `'success'` / `'warning'` to signal validation or status.
+- **Don't** use it for form-field helper text bound to `aria-describedby` — prefer MUI `FormHelperText`, which wires that up.
+
+## Accessibility
+
+- When it describes a specific field, associate it with the input via `aria-describedby`.
+- Tone color is not sufficient alone; keep the wording explicit so meaning does not rely on color.

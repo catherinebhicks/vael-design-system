@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Navigation/BottomNavigation/Guidelines" />
+
+# BottomNavigation
+
+A compact bottom navigation bar for small and mobile viewports. This is a thin re-export of MUI's `BottomNavigation` and `BottomNavigationAction` with the Vael theme applied.
+
+## Props
+
+Import `BottomNavigation` and `BottomNavigationAction` from `vael-design-system`. Key MUI props:
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `value` | `any` | — | The currently selected action's value (controlled). |
+| `onChange` | `(event, value) => void` | — | Fires when an action is selected. |
+| `showLabels` | `boolean` | `false` | Show labels for all actions, not just the selected one. |
+| `children` | `React.ReactNode` | — | `BottomNavigationAction` items. |
+
+`BottomNavigationAction` accepts `label`, `icon`, `value`, and `showLabel`.
+
+## When to use
+
+- Use for top-level switching between 3–5 primary destinations on mobile layouts.
+- Set `showLabels` when icons alone are ambiguous.
+- **Don't** exceed five actions or use it for in-page tabs; use `Tabs` for content within a view.
+
+## Accessibility
+
+- Give each `BottomNavigationAction` a `label` even when relying on icons, so the control has an accessible name.
+- Bars are keyboard navigable and expose the selected state; ensure only one `value` is active at a time.
+- Maintain sufficient touch-target size (MUI defaults meet the 48px guidance).

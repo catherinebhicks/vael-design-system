@@ -1,0 +1,30 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Display/Tag/Guidelines" />
+
+# Tag
+
+A compact, square-cornered label for metadata — statuses, categories, keywords. Distinct from `Chip`: Tag is a lightweight marker, not an interactive input token.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `children` | `ReactNode` | — | Required. The tag content. |
+| `color` | `'default' \| 'primary' \| 'success' \| 'warning' \| 'error' \| 'info'` | `'default'` | Semantic color; drives text, border, and fill tint. |
+| `dot` | `boolean` | `false` | Show a leading status dot. |
+| `onRemove` | `() => void` | — | Shows a remove (×) affordance and fires on click. |
+| `onClick` | `() => void` | — | Makes the tag clickable. |
+
+## When to use
+
+- Label content with statuses, categories, or keywords that aren't user-editable input.
+- Use `color` to encode meaning (e.g. `success` for passed, `error` for failed).
+- **Don't** use Tag for selectable or deletable input entries — use `Chip` for those.
+
+## Accessibility
+
+- The remove button is a real `button` with `aria-label="Remove"` and stops propagation so it won't trigger `onClick`.
+- Don't rely on `color` alone to convey state — keep the label text meaningful.

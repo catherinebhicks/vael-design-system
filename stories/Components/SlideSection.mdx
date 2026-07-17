@@ -1,0 +1,34 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Presentation/SlideSection/Guidelines" />
+
+# SlideSection
+
+The grid-paper slide frame: a full-height flex column on the Blueprint canvas with the standard slide padding rhythm. Dark-mode aware. It is the outer frame that `SectionHeading` and `PullQuote` sit inside.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| variant | `'base' \| 'accent'` | `'base'` | `base` = app bg + grid; `accent` = lighter panel bg + fainter grid. |
+| justify | `React.CSSProperties['justifyContent']` | `'center'` | Vertical alignment of content. |
+| padding | `string \| number` | `'96px 120px'` | CSS padding for the slide. |
+| label | `string` | — | Authoring metadata passed to the DOM for deck tooling. |
+| screenLabel | `string` | — | Screen/presenter metadata passed to the DOM. |
+| speakerNotes | `string` | — | Speaker notes passed to the DOM for deck tooling. |
+| children | `React.ReactNode` | — | Slide content. |
+| sx | `SxProps<Theme>` | — | Style overrides. |
+
+## When to use
+
+- Use as the outermost wrapper for each case-study or deck slide to get the Blueprint grid canvas and padding.
+- Alternate `accent` and `base` variants across consecutive slides to create visual rhythm.
+- Set `label`, `screenLabel`, and `speakerNotes` so deck export/presenter tooling can read them off the DOM.
+- **Don't** use it as a general app section background — it is sized full-height for slides, not scrolling page content.
+
+## Accessibility
+
+- Renders a semantic `section`; place a heading (e.g. `SectionHeading`) inside so the section has an accessible name.
+- The grid background is decorative and set via CSS — keep foreground text contrast intact when overriding colors.

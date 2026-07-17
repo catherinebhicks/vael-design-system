@@ -1,0 +1,36 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Data Display/AlarmBadge/Guidelines" />
+
+# AlarmBadge
+
+A threshold-escalating status badge. Its color and icon escalate `ok` -> `warning` -> `critical` as the value crosses thresholds, with an optional pulse at critical. Built for monitoring, SLA, and alerting surfaces.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `value` | `number` | — | Required. The measured value. |
+| `thresholds` | `AlarmThreshold[]` | derived | Ascending `{ at, level }` entries; the highest matched wins. If omitted, derived from `warnAt`/`critAt`. |
+| `warnAt` | `number` | — | Value at or above which the level becomes `warning`. |
+| `critAt` | `number` | — | Value at or above which the level becomes `critical`. |
+| `unit` | `React.ReactNode` | — | Suffix shown after the value (e.g. `%`, `ms`). |
+| `label` | `React.ReactNode` | — | Short label shown before the value. |
+| `pulse` | `boolean` | `true` | Pulse animation while at `critical`. |
+| `sx` | `SxProps<Theme>` | — | Style overrides. |
+
+`AlarmLevel` is `'ok' \| 'warning' \| 'critical'`.
+
+## When to use
+
+- Use for a live metric that carries an alert state, such as CPU, latency, or error rate.
+- Provide either `thresholds` or the `warnAt`/`critAt` shorthand so escalation is deterministic.
+- **Don't** use it for static, non-escalating status; prefer a plain `Chip` or `Callout` for that.
+
+## Accessibility
+
+- Color is not the only signal: the icon changes per level (`faCircleCheck`, `faTriangleExclamation`, `faCircleExclamation`), so state reads without relying on hue.
+- Values render with `tabular-nums` for stable alignment as they update.
+- If the badge updates live, consider placing it in an `aria-live` region so changes are announced.

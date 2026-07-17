@@ -1,0 +1,34 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Inputs/Rating/Guidelines" />
+
+# Rating
+
+A star rating input for capturing or displaying a score. This is a thin re-export of MUI `Rating` — the full MUI API applies.
+
+## Props
+
+Import from `vael-design-system` (or `@mui/material` for the underlying type). Key MUI props:
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| value | `number \| null` | — | Controlled rating value. Use with `onChange`. |
+| defaultValue | `number` | `null` | Initial value in uncontrolled mode. |
+| onChange | `(event, value: number \| null) => void` | — | Fires when the user picks a rating. |
+| precision | `number` | `1` | Smallest selectable increment, e.g. `0.5` for half stars. |
+| max | `number` | `5` | Number of stars. |
+| readOnly | `boolean` | `false` | Display-only; not interactive. |
+| disabled | `boolean` | `false` | Prevents interaction and dims the control. |
+| size | `'small' \| 'medium' \| 'large'` | `'medium'` | Icon size. |
+
+## When to use
+
+- Use to collect a subjective score (satisfaction, quality) or to display an aggregate rating.
+- Set `readOnly` when showing a computed or historical rating rather than collecting input.
+- Use `precision={0.5}` when half-star granularity is meaningful.
+- **Don't** use it for required binary or multi-option choices — use `SegmentedControl`, `Radio`, or `Switch`.
+
+## Accessibility
+
+- MUI `Rating` renders accessible radio inputs; always provide a `name` and a labelling element so the control has an accessible name.
+- Star icons alone do not convey the value to assistive tech — keep the associated label describing what is being rated.

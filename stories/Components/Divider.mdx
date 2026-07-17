@@ -1,0 +1,30 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Layout/Divider/Guidelines" />
+
+# Divider
+
+A thin separator line for grouping content. A pass-through wrapper over MUI's `Divider`; supports horizontal and vertical orientation and optional inline text.
+
+## Props
+
+Import from `vael-design-system`. All props pass through to `@mui/material`'s `Divider` (`DividerProps`).
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| orientation | `'horizontal' \| 'vertical'` | `'horizontal'` | Vertical needs `flexItem` inside a flex row. |
+| variant | `'fullWidth' \| 'inset' \| 'middle'` | `'fullWidth'` | Controls how far the rule extends. |
+| textAlign | `'center' \| 'left' \| 'right'` | `'center'` | Placement of `children` text within the line. |
+| flexItem | boolean | false | Lets a vertical divider stretch to its flex container. |
+| children | `React.ReactNode` | — | Optional label rendered inline (e.g. `or`). |
+
+## When to use
+
+- Separate stacked sections or list groups where whitespace alone is not enough.
+- Use `children` text (e.g. `or`) to divide alternative choices such as auth methods.
+- **Don't** stack many dividers to build a grid — use spacing/layout primitives instead.
+
+## Accessibility
+
+- MUI renders it with `role="separator"`; keep it decorative and don't rely on it to convey required meaning.
+- Ensure the divider color meets contrast against its background so the grouping stays visible.

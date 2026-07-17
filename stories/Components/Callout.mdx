@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Feedback/Callout/Guidelines" />
+
+# Callout
+
+An inline emphasis panel for asides, tips, and non-blocking notes inside body content (docs, forms, long pages). Unlike `Alert`, it is editorial rather than a status message tied to an action. A left accent bar and tinted surface are keyed to the tone.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `tone` | `'note' \| 'tip' \| 'warning' \| 'success' \| 'neutral'` | `'note'` | Sets the accent color and default icon. |
+| `title` | `React.ReactNode` | — | Optional bold, mono lead-in in the Blueprint voice. |
+| `children` | `React.ReactNode` | — | Required. The callout body. |
+| `icon` | `IconDefinition \| false` | tone default | Override the tone's icon, or `false` to hide it. |
+| `sx` | `SxProps<Theme>` | — | Style overrides. |
+
+## When to use
+
+- Use for supplementary, non-blocking context within a page's reading flow.
+- Match `tone` to intent: `tip` for advice, `warning` for caveats, `success` for confirmations.
+- **Don't** use it for actionable status tied to a task; use `Alert` for that.
+
+## Accessibility
+
+- Tone is conveyed by both an icon and color, so meaning does not depend on hue alone.
+- Because this is editorial, it does not set an ARIA `role`; do not use it for time-sensitive alerts that need to be announced.
+- Keep `title` short and descriptive so the panel's purpose is clear at a glance.

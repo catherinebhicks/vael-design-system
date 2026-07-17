@@ -1,0 +1,35 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Marketing/AnnotatedScreen/Guidelines" />
+
+# AnnotatedScreen
+
+Numbered callout pins positioned over a screenshot, with an optional matching legend. For UI walkthroughs, teardown slides, and "here's what changed" case-study figures.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `annotations` | `Annotation[]` | — | Required. Each is `{ x, y, note, label? }`; `x`/`y` are percentages (0–100) of the image. |
+| `src` | `string` | — | Screenshot URL. If omitted, a placeholder frame is shown. |
+| `alt` | `string` | `''` | Alt text for the screenshot. |
+| `legend` | `boolean` | `true` | Show the numbered legend under the image. |
+| `ratio` | `number` | `16 / 9` | Aspect ratio of the image frame. |
+| `color` | `string` | primary | Pin/legend marker color. |
+| `sx` | `SxProps<Theme>` | — | Style overrides. |
+
+Pins auto-number in source order; pass `label` on an `Annotation` to override the number.
+
+## When to use
+
+- Use to call out specific regions of a UI screenshot in a fixed reading order.
+- Keep the pin count low (roughly 3–7) so the figure stays legible.
+- **Don't** use it for freeform image captions; use a `Callout` or plain caption text instead.
+
+## Accessibility
+
+- Always provide meaningful `alt` text; pins are positioned decoration and are not focusable.
+- Keep the `legend` on so pin content is available as real text, not only spatial markers.
+- Ensure the `color` you pass has sufficient contrast against the screenshot for the pin numerals.

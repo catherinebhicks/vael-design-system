@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Marketing/HeroBanner/Guidelines" />
+
+# HeroBanner
+
+The top-of-page hero: eyebrow, headline, subhead, actions, and optional side media. Mono eyebrow in the Blueprint voice, large display headline, and generous vertical rhythm.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| title | `React.ReactNode` | — | Display headline (required). |
+| eyebrow | `React.ReactNode` | — | Small mono-uppercase kicker above the headline. |
+| subtitle | `React.ReactNode` | — | Supporting subhead under the title. |
+| actions | `React.ReactNode` | — | Action buttons row (e.g. two `Button`s). |
+| media | `React.ReactNode` | — | Optional media (image, `ImageSlot`) beside the copy. |
+| mediaSide | `'right' \| 'left'` | `'right'` | Which side the media sits on. |
+| centered | boolean | false | Centers the copy; media is omitted in this layout. |
+| sx | `SxProps<Theme>` | — | Styles applied to the outer `Box`. |
+
+## When to use
+
+- Open a landing or marketing page with one clear headline plus a primary action.
+- Pair copy with an `ImageSlot` or image via `media`, or use `centered` for a copy-only hero.
+- **Don't** stack multiple competing CTAs — lead with one primary action and at most one secondary.
+
+## Accessibility
+
+- The `title` renders as large text but not a semantic heading — wrap or pass heading markup if it is the page `h1`.
+- Keep action buttons in a logical focus order and ensure their labels read on their own.

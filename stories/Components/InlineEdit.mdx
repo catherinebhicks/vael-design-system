@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Inputs/InlineEdit/Guidelines" />
+
+# InlineEdit
+
+Click-to-edit a value in place. Displays as text with a pencil on hover; clicking swaps to an input with save and cancel actions. Enter saves, Escape cancels.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `value` | `string` | — | The current value to display |
+| `onSave` | `(next: string) => void` | — | Called with the trimmed value on save |
+| `placeholder` | `string` | `'Empty'` | Shown when the value is empty |
+| `editingByDefault` | `boolean` | `false` | Start in edit mode |
+| `variant` | `'body1' \| 'body2' \| 'h6' \| 'subtitle1'` | `'body1'` | Typography variant for the display value |
+| `disabled` | `boolean` | `false` | Disables entering edit mode |
+| `sx` | `SxProps<Theme>` | — | Style overrides |
+
+## When to use
+
+- Let users edit titles, table cells, and detail fields without a separate form.
+- Use for low-friction, single-line edits where a full field would be heavy.
+- **Don't** use it for multi-line or validated input — reach for a proper form field.
+
+## Accessibility
+
+- Save and cancel controls carry `aria-label`s ('Save' / 'Cancel').
+- Enter commits and Escape reverts, matching common inline-edit keyboard expectations.
+- The input auto-focuses on entering edit mode so keyboard users can type immediately.

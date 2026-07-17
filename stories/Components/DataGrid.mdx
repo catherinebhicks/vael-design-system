@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Data Grids/DataGrid/Guidelines" />
+
+# DataGrid
+
+A thin wrapper over the MUI X Data Grid for lightweight, feature-light tables. Use it for grids under ~100 rows with no grouping or server-side needs; reach for `AgGrid` when you need enterprise features or high-row-count performance.
+
+## Props
+
+Import from `vael-design-system`. All props pass straight through to `@mui/x-data-grid`'s `DataGrid` (`DataGridProps`).
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| rows | `readonly GridValidRowModel[]` | — | Row data; each row needs a unique `id` (or set `getRowId`). |
+| columns | `GridColDef[]` | — | Column definitions (`field`, `headerName`, `width`, `type`, etc.). |
+| pageSizeOptions | `number[]` | `[100]` | Selectable page sizes when pagination is on. |
+| checkboxSelection | boolean | false | Adds a leading selection checkbox column. |
+| loading | boolean | false | Shows the built-in loading overlay. |
+| autoHeight | boolean | false | Sizes the grid to its content instead of a fixed height. |
+
+## When to use
+
+- Reach for it for small, mostly-static tabular data with sorting and simple pagination.
+- Give the grid a bounded height (or `autoHeight`) so the virtualized viewport renders.
+- **Don't** use it for grouping, tree data, pivoting, or thousands of rows — use `AgGrid` instead.
+
+## Accessibility
+
+- The grid ships ARIA `grid`/`row`/`cell` roles and keyboard cell navigation from MUI X — keep it intact.
+- Always set a meaningful `headerName` on every column so screen readers announce cells in context.

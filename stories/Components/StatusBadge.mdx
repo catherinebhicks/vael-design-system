@@ -1,0 +1,28 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Data Display/StatusBadge/Guidelines" />
+
+# StatusBadge
+
+A presence pill — a colored dot plus a label — for showing a user or resource's availability state.
+
+## Props
+
+Import from `vael-design-system`.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `status` | `'online' \| 'busy' \| 'away' \| 'offline'` | — | Required. Drives dot color and default label. |
+| `label` | `string` | status name | Override the default label (Online / Busy / Away / Offline). |
+| `pulse` | `boolean` | `false` | Animate the dot — only meaningful for `online`. |
+
+## When to use
+
+- Show presence next to an `Avatar`, name, or list row.
+- Use `pulse` sparingly to draw attention to an active/online state.
+- **Don't** repurpose the four statuses for arbitrary states — use `Tag` or `Chip` for general labels and categories.
+
+## Accessibility
+
+- The label text carries the state, so meaning isn't color-only.
+- If you override `label`, keep it descriptive so screen-reader users get the actual status.

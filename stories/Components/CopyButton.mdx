@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Inputs/CopyButton/Guidelines" />
+
+# CopyButton
+
+A button that copies a string to the clipboard and briefly swaps its icon and label to confirm. Built on MUI `Button`, so it accepts the usual button styling props.
+
+## Props
+
+Import from `vael-design-system`. Extends MUI `ButtonProps` (minus `onClick` and `children`).
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `value` | `string` | — | Required. Text written to the clipboard on click. |
+| `label` | `string` | `'Copy'` | Idle label. |
+| `copiedLabel` | `string` | `'Copied'` | Label shown for ~2s after copying. |
+| `variant` | `'text' \| 'outlined' \| 'contained'` | `'outlined'` | Inherited from `Button`. |
+| `size` | `'small' \| 'medium' \| 'large'` | `'small'` | Inherited from `Button`. |
+
+Other `Button` props (`color`, `disabled`, `sx`, etc.) pass through.
+
+## When to use
+
+- Use to copy a discrete value: a code snippet, token, URL, or command.
+- Reuse it inside larger components, as `CodeBlock` does for its header copy control.
+- **Don't** wire your own `onClick`; the component owns click handling (the prop is omitted).
+
+## Accessibility
+
+- The visible label changes from "Copy" to "Copied", giving sighted users confirmation feedback.
+- The icon swaps to a checkmark on success, so state is not conveyed by text alone.
+- Clipboard failures are caught silently; if copy is business-critical, verify support in your environment.

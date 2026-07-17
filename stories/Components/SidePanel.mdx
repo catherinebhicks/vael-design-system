@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Navigation/SidePanel/Guidelines" />
+
+# SidePanel
+
+A right-anchored detail panel for row detail, record inspectors, and filters. A thin composition over MUI `Drawer` that standardises the header (title/subtitle + close), a scrolling body, and a sticky footer.
+
+## Props
+
+Import from `vael-design-system`. Extends `DrawerProps` (minus `title`), so `open`, `anchor`, `onClose`, etc. pass through.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| title | `React.ReactNode` | — | Panel heading (mono, Blueprint voice). |
+| subtitle | `React.ReactNode` | — | Optional subheading under the title. |
+| onClose | `() => void` | — | Fired by the header close button and Drawer backdrop. |
+| footer | `React.ReactNode` | — | Sticky footer content, usually action buttons. |
+| width | `number` | `380` | Panel width in px. |
+| anchor | `'left' \| 'right' \| 'top' \| 'bottom'` | `'right'` | Edge the panel slides from. |
+| children | `React.ReactNode` | — | Scrolling body content. |
+
+## When to use
+
+- Use to show contextual detail beside the main view without navigating away — row inspectors, filters, record edit.
+- Put primary actions in `footer` so they stay reachable while the body scrolls.
+- Keep the default right anchor for detail/inspect flows; the panel width should fit its content comfortably.
+- **Don't** use it for a blocking, decision-required prompt — use `Dialog` for modal confirmation instead.
+
+## Accessibility
+
+- Provide a `title` so the panel has a clear heading; the close button already carries an "Close panel" label.
+- As a Drawer it traps focus and closes on Escape via `onClose` — keep `onClose` wired so keyboard users can dismiss it.

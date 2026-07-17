@@ -1,0 +1,27 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Typography/Mark/Guidelines" />
+
+# Mark
+
+Inline highlight for a run of text — a styled semantic `<mark>` element. Uses the warm 'signal' accent at low alpha so it reads as emphasis, not a text selection.
+
+## Props
+
+Import `Mark` from `vael-design-system`. It is a styled `mark` element, so it accepts standard HTML/DOM props plus MUI's `sx` and `component` for style overrides.
+
+| Prop | Type / Values | Default | Notes |
+| --- | --- | --- | --- |
+| `children` | `ReactNode` | — | The text to highlight |
+| `sx` | `SxProps<Theme>` | — | Style overrides |
+
+## When to use
+
+- Highlight a keyword or phrase inline to draw the eye within running text.
+- Use sparingly — one or two marks per paragraph keeps the signal strong.
+- **Don't** use it as a general background color or badge — reach for `Chip` or a `Box` tint instead.
+
+## Accessibility
+
+- `<mark>` carries semantic 'highlighted / relevant' meaning; use it for genuine emphasis, not decoration.
+- Do not rely on the highlight color alone to convey meaning; keep the surrounding wording clear.
