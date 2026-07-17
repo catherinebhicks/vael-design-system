@@ -54,7 +54,7 @@ const multi = multiData();
 // ---
 
 const meta: Meta = {
-  title: 'Data Viz/Charts',
+  title: 'Data Viz/Charts (Advanced · Highcharts)',
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',

@@ -1,0 +1,65 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Choosing a Chart" />
+
+# Choosing a chart
+
+Vael ships data visualisation in **three tiers**. Pick the lightest one that
+does the job — going heavier than you need adds bundle weight and config for no
+benefit; going lighter than you need means fighting the tool.
+
+## The decision
+
+| If you need… | Use | Tier |
+|---|---|---|
+| A number with a shape — inline in a card, table cell, or stat tile | `Sparkline`, `StatBlock`, `SegmentMeter`, `MeterRow`, `WaffleChart`, `GaugeStat` | **Micro** (zero-dep SVG) |
+| A standard product chart — line, bar, pie, scatter, radar, gauge | `StandardCharts.*` | **Standard** (`@mui/x-charts`) |
+| SPC / control charts, multi-axis, solid gauges, large datasets, export, financial | `AreaChart`, `BarChart`, `ControlChart`, `MultiAxisChart`, `DonutChart`, `GaugeChart`, `RadarChart`, `HighchartsChart` | **Advanced** (Highcharts) |
+
+## Tier 1 — Micro-viz
+
+Dependency-free SVG primitives for **inline** visuals: a trend next to a KPI, a
+proficiency bar, a coverage ring. They render at tiny sizes, theme from the same
+tokens as everything else, and add ~nothing to the bundle. If a chart is
+decoration on a number, it belongs here.
+
+## Tier 2 — Standard (MUI X)
+
+`@mui/x-charts` (community/free) is the **default** for real charts. It's SVG,
+SSR-friendly, theme-native, and covers Line / Bar / Pie / Scatter / SparkLine /
+Gauge / Radar. Exposed under the `StandardCharts` namespace so the names don't
+collide with the Advanced tier:
+
+```tsx
+import { StandardCharts } from 'vael-design-system';
+
+<StandardCharts.LineChart xAxis={[{ data: months, scaleType: 'point' }]}
+  series={[{ data: revenue, area: true }]} height={260} />
+```
+
+## Tier 3 — Advanced (Highcharts)
+
+Reach for Highcharts only when you need what MUI X doesn't do well: statistical
+process control (`ControlChart`), multiple synchronised axes (`MultiAxisChart`),
+true solid gauges, very large datasets, exporting, or financial series. Every
+Advanced chart is pre-themed via `buildVcThemeOptions(theme)`, so it inherits the
+Vael palette and typography automatically.
+
+```tsx
+import { RadarChart } from 'vael-design-system';
+
+<RadarChart categories={skills} max={5}
+  series={[{ name: 'Now', data: current }, { name: 'Target', data: target }]} />
+```
+
+> **Lineage note.** The Advanced tier carries forward the Highcharts charting
+> that the predecessor system (Fermie / Culture) standardised on — kept, and
+> re-themed against Vael tokens, rather than rebuilt.
+
+## Rules of thumb
+
+- **Consistency beats cleverness.** Within one surface, don't mix a Standard bar
+  chart next to an Advanced one — pick a tier for the view.
+- **Don't pull Highcharts for a sparkline.** That's the Micro tier's whole job.
+- **Colour comes from tokens.** Let the theme drive series colours; only override
+  for a deliberate semantic (e.g. a red "at risk" series).

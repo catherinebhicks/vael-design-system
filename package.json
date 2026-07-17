@@ -53,6 +53,7 @@
     "@fontsource/ibm-plex-sans": "^5.2.8",
     "@mui/lab": "^7.0.0",
     "@mui/material": "^7.0.0",
+    "@mui/x-charts": "^9.9.0",
     "@mui/x-data-grid": "^8.0.0",
     "@mui/x-date-pickers": "^7.29.4",
     "@mui/x-tree-view": "^7.29.10",

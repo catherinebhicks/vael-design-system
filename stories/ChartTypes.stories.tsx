@@ -6,7 +6,7 @@ import { BarChart } from '../src/components/Charts/BarChart';
 import { AreaChart } from '../src/components/Charts/AreaChart';
 
 const meta: Meta = {
-  title: 'Data Viz/Charts/Types',
+  title: 'Data Viz/Charts (Advanced · Highcharts)/Types',
   parameters: { layout: 'padded' },
 };
 export default meta;

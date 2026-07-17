@@ -5,7 +5,19 @@ export type { ColorName, ColorStep } from './theme';
 
 // Components
 export * from './components/AgGrid';
+// Charts — Advanced tier (Highcharts): flat exports (AreaChart, BarChart, DonutChart,
+// GaugeChart, MultiAxisChart, ControlChart, SparklineChart, RadarChart, HighchartsChart).
 export * from './components/Charts';
+// Charts — Standard tier (MUI X): namespaced to avoid the BarChart name clash above.
+// Consume as `StandardCharts.LineChart`, `StandardCharts.RadarChart`, etc.
+export * as StandardCharts from './components/StandardCharts';
+// Micro-viz tier (zero-dep SVG): inline stat visuals.
+export * from './components/Sparkline';
+export * from './components/StatBlock';
+export * from './components/SegmentMeter';
+export * from './components/MeterRow';
+export * from './components/WaffleChart';
+export * from './components/GaugeStat';
 // Dashboard / data-viz layer
 export * from './components/StatCard';
 export * from './components/ChartCard';

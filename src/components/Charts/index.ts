@@ -8,3 +8,4 @@ export * from './SparklineChart';
 export * from './DonutChart';
 export * from './BarChart';
 export * from './AreaChart';
+export * from './RadarChart';
