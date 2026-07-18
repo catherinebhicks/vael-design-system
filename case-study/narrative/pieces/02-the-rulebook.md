@@ -1,0 +1,25 @@
+# The rulebook: designing a design system's guardrails
+
+*How I keep 103 components honest without a platform team behind me — and why the rules were never optional just because I was working alone.*
+
+---
+
+"Solo" is usually the excuse a design system uses for a thin rulebook. Nobody's watching, so the token discipline slips, the accessibility bar erodes a little on the tenth component, and by fifty the system is a folder of things that used to agree with each other. I refused to let that be the story here. A system rots the moment its rules stop being real — and designing rules that hold is senior work, not overhead you skip because it's just you.
+
+**Accessibility is the anchor, not a pass at the end.** Vael targets WCAG 2.1 AA, written as a conformance statement in `stories/Docs/Accessibility.mdx` — contrast, keyboard behavior, focus-visible rings, ARIA roles, target sizes, motion — as a per-component checklist, not a footnote. I hand-audited every one of the 103 components against it myself first; only then did I run the Storybook a11y addon as a second pass, and it earned its keep — catching smaller things I'd missed, a missing `aria-label` here, a contrast edge case there, which I then fixed. The addon is a net under a human judgment call, not a replacement for one.
+
+**Token governance is the second load-bearing rule.** Vael's tokens live in the open [W3C design-tokens format](https://tr.designtokens.org/format/) — one source of truth, not a proprietary blob — and the discipline downstream is simple to state and easy to violate: `--ds-*` tokens, no raw hex. Every component doc restates it; the QA checklist restates it again. Saying it once doesn't make it true forever; saying it at every layer, with a pair that never gets bored of checking, is what makes it true at component 103.
+
+**Contribution is a rule about what you're *not* allowed to do.** `docs/consuming-vael.md` states it plainly: a downstream product either takes Vael as-is, or logs an extension issue and gets the gap fixed in Vael first — never forks it, never invents a private token on the side. The AFD site is the worked example: it originally proposed a violet accent and a stand-in display face as an "additive override layer," and that proposal got reversed — deleted, not shipped — once it was clear the override was the first crack toward a fork. The reversal is the rule working, not failing.
+
+**Every component ships Guidelines** — Do and Don't, not just a props table — mirrored into the Figma doc panels so a designer and an engineer read the same rule in two different tools, and carries a maturity label — Stable, Beta, Experimental, Deprecated — in `stories/Docs/ComponentStatus.mdx`. Decisions that would otherwise live only in my head — why MUI, why a two-tier token architecture, why this accessibility bar and not a looser one — get written down as records, so nobody after me has to reverse-engineer them from the code.
+
+None of that is worth anything without verification, so nothing lands without it: typecheck clean, Storybook building, Chromatic approved, the a11y pass green — that's how I keep the pair honest, since speed without a gate is just faster drift.
+
+I'll say the rest out loud, too: not every dimension is automated. Automated a11y testing in CI and a stylelint rule flagging raw hex are scoped, not built — sitting in the gap analysis as exactly what they are, not a pipeline I'm overstating. What's real today is the conformance statement, the extend-don't-fork model with a proven example, the Guidelines, the token format, the decision records. I'd rather show the honest map of what's enforced than a shinier one that isn't true yet — drawing that map accurately is itself a governance skill.
+
+Even the backlog is run this way. The work that keeps Vael moving lives across three trackers — GitHub, Linear, Todoist — and I don't let that become three half-true pictures of what's left. Scoped work gets written up as an implementation-ready epic, with the same "why" and acceptance criteria I'd want if handing it to someone else — because eventually I might be. A pair that can read all three and draft the epic in a consistent shape turns reconciling them into a habit, not a quarterly dig.
+
+The pair is what makes any of this hold at scale. I set the standard once — the accessibility bar, the token rule, the extend-don't-fork policy — and it applies that standard across a hundred components without cutting a corner on the ninety-eighth one the way a person might. Designing the rulebook was mine. Holding it, gate by gate, audit by audit, alone, is what the pair is for.
+
+It stopped being how I built a design system with AI and became how I run one.
