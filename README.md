@@ -11,7 +11,7 @@
 | `vael/` | Design tokens (`design-tokens.json`), MUI theme (`theme.ts`), CSS variables (`tokens.css`), light/dark theme files |
 | `.storybook/` | Storybook configuration |
 | `docs/` | The documentation home — start at [`docs/README.md`](docs/README.md): the Fermie→Vael history, how downstream products consume Vael, and the downstream index |
-| `case-study/` | The "built with AI" narrative (deep-dive / medium / short cuts) + landing-page spec |
+| `case-study/` | The "built with AI" case study, split into `narrative/` (the story — three cuts, a third movement, and four standalone deep-dive pieces) + `landing/` (the site build: spec + design + copy) |
 | `about/` | The Vael story site (Next.js; from the archived `vael-case-study`) — the package's About / landing section |
 | `slide-library/` | Blueprint slide-template kit + the downloadable 92-slide deck (`slide-library/deck/Vael-Slide-Library.pptx`) |
 | [`CHANGELOG.md`](CHANGELOG.md) | Dated development milestones — what changed and when, from the repo seed through the latest audit |

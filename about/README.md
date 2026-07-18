@@ -4,7 +4,7 @@ This is the **About / landing section of the Vael package**: a Next.js site that
 
 It was folded in from the standalone **`catherinebhicks/vael-case-study`** repo (now **archived**) so the whole Vael package lives in one repo. Its old deploy at `vael-case-study.vercel.app` is frozen; when the package gets its own deployment, this deploys from here (Vercel Root Directory = `about`).
 
-The prose it renders comes from the sibling [`../case-study/`](../case-study/) narrative (deep-dive / medium / short).
+The prose it renders comes from the sibling [`../case-study/narrative/`](../case-study/narrative/) (deep-dive / medium / short). The narrative now runs through a **third movement** ("the method became how I run it") plus **four standalone deep-dive pieces** in `narrative/pieces/`.
 
 ## Run it
 

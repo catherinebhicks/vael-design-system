@@ -29,6 +29,12 @@ Per-component history also lives in each component's Storybook **Docs** tab
   RadarChart component a Figma home to match its Storybook story.
 - **Figma file Cover** — a title-slide layout (blueprint grid, mono wordmark, meta
   footer) that also serves as the file thumbnail.
+- **Case-study narrative extension** — extended the narrative (now the About section)
+  with a **third movement** ("the method became how I run it") plus **four standalone
+  deep-dive pieces** (design↔code loop, governance rulebook, taste/craft,
+  built-to-be-picked-up). Split `case-study/` into `narrative/` (the story) +
+  `landing/` (the site build). Facts refreshed to **27 → 44 → 103 components,
+  226 stories / 251 docs**, 105 Figma pages.
 
 ### Changed
 - **The repo is now the single Vael package** — code + tokens + fonts + docs + the

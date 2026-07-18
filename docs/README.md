@@ -7,7 +7,7 @@
 1. **[history-fermie-to-vael.md](history-fermie-to-vael.md)** — how we got here: the phase-1 Fermie production build (what & why), the shelving, and the transition to Vael (why & how). The internal "how we got here" record. *Contains the anonymization boundary — read it first.*
 2. **[../case-study/](../case-study/)** — the public-facing case study (AI-as-build-method), split into `narrative/` (the story) + `landing/` (the site build):
    - `narrative/NARRATIVE-SPEC.md` — governing spec; the fact-checked decision ledger everything else inherits from.
-   - `narrative/` — the narrative in three cuts: `deep-dive.md` (master), `medium.md`, `short.md`; plus `pieces/` (four satellite deep-dives) and `visuals/`.
+   - `narrative/` — the narrative in three cuts: `deep-dive.md` (master), `medium.md`, `short.md`. The story now runs through a **third movement** ("the method became how I run it") and is joined by **four standalone deep-dive pieces** in `pieces/` (`01-design-and-code.md`..`04-built-to-be-picked-up.md`) plus `visuals/`.
    - `landing/copy-deck.md`, `landing/DESIGN.md`, `landing/SPEC.md` — the case-study landing page (copy + design + spec).
    - `narrative/_original-backup/` — pre-revision drafts (provenance only; not canonical).
 3. **[consuming-vael.md](consuming-vael.md)** — how downstream products extend Vael without forking it (the governance model), with the AFD website as the worked example. Design-system reasoning merged from the afd-website build.
@@ -42,5 +42,5 @@ Practical, non-dev-friendly setup guides live in **[onboarding/](onboarding/)**:
 
 ## Open reconciliation
 
-- **Component count drift:** case-study narrative says "44"; repo is now ~103. Resolve before the case study publishes (see `history-fermie-to-vael.md` → Current state).
+- **Component count drift:** resolved in the narrative — it now frames the arc as **27 → 44 → 103 components** (226 stories / 251 docs). The `history-fermie-to-vael.md` flag below predates that refresh.
 - **Flesh-out flags** in `history-fermie-to-vael.md`: why Supernova specifically, why MUI as the base, why Shape Up — reasoning not recorded; fill in if the case study goes deeper.
