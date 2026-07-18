@@ -127,7 +127,10 @@ case-study/
 - Stack: MUI v7 + MUI X (core) + Highcharts (charts); AG Grid optional; dnd-kit / React Flow.
 - Onboarding: 3 guides (`docs/onboarding/`); fonts bundled (IBM Plex OFL + FA Free); dated `.fig` LFS archive.
 
-**Verify at write (don't invent):** exact Chromatic snapshot count; exact Figma page count; that `Accessibility.mdx` conformance statement, `consuming-vael.md`, and `ComponentStatus.mdx` exist and say what's claimed.
+**Verified at write (2026-07-17):**
+- Figma page count: **105** (`figma.root.children.length` via plugin API on file `4dNRm8xuERpDNfdXYjlbIn`) — exact, no longer "~105".
+- Chromatic: cite **226 stories** (verified story count); do **not** cite a snapshot number (stale/unconfirmed).
+- Governance artifacts all present and support their claims: `stories/Docs/Accessibility.mdx` (mentions WCAG/AA conformance ✓), `docs/consuming-vael.md` (describes extend-not-fork ✓), `stories/Docs/ComponentStatus.mdx` (maturity/status labels ✓).
 
 **Locked from the existing ledger (unchanged):** six-week Shape Up cycle; 17 pitches / 145 tickets as the shelved handoff; "eight spacing steps, not forty"; hand-audit + addon for a11y.
 
