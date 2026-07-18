@@ -55,6 +55,18 @@ I took it from **27 components to 44:** a Highcharts-powered charting layer, a d
 
 That last part matters more than any claim I could make in prose: the system isn't a screenshot in a case study. It's a live library with a running Storybook you can click through. The rescue is the proof.
 
+## The method became how I run it
+
+The rescue proved the *system* was real. What came next proved the *method* was. The same human-in-the-loop pairing that built the components turned out to run the entire practice around them — the design tool I drew in, the craft I held to, the upkeep that keeps a system from rotting, and the door I left open for whoever picks it up next. Somewhere in the second life it stopped being *"how I built a design system with AI"* and became *"how I run one."*
+
+**Design and code stopped being two jobs.** The oldest tax in this work is the handoff: a designer draws a screen, an engineer rebuilds it in code, and the two drift the moment either one moves. With an AI pair that can hold Figma *and* the codebase at once, that gap closes. I brought Vael into Figma — 105 pages of it, real components with per-component doc panels mirroring Storybook, not screenshots — and wired a round-trip over the Figma MCP: read a node, edit the component and tokens and story, verify, commit. I stopped maintaining two representations of the same truth and started maintaining one. *That loop — and how it actually stays honest — is [its own piece](pieces/01-design-and-code.md).*
+
+**Governance I could actually hold.** "Solo" is usually an excuse for a thin rulebook, and I refused to let it be one here. Vael has a real governance discipline — a WCAG 2.1 AA conformance statement, token rules with a single source of truth, an extend-don't-fork contribution model, per-component guidelines, maturity labels, decision records. Designing those rules is senior work; the hard part alone was never *writing* them, it was *enforcing* them across 103 components without drift — and that enforcement is exactly what the pair is for, gate by gate, audit by audit. *How I designed the rulebook and made it stick is [the second piece](pieces/02-the-rulebook.md).*
+
+**The taste compounded.** The library went from 44 components to 103, but growth was never the achievement — when AI makes iteration nearly free, the scarce thing isn't production, it's restraint. The real move was discipline: one coherent Blueprint language, a single typeface held everywhere, a rule that the page is canonical and the system conforms to it. Cheap iteration is what let me spend the surplus on judgment about *what's right* instead of on typing. *Where that discipline shows up, and why taste is the bottleneck now, is [the third piece](pieces/03-taste-compounded.md).*
+
+**Built to be picked up.** Shown wasn't the finish line — I wanted it *portable.* So the fonts are bundled and licensed, the Figma file is archived in the repo, three onboarding guides in `docs/onboarding/` walk a non-developer in, and the way I design *in* an LLM is written down as a handbook, not folklore. A system anyone can run, and a method anyone can learn. *How I made it portable and teachable is [the last piece](pieces/04-built-to-be-picked-up.md).*
+
 ## What I learned
 
 - **Judgment is the scarce resource now, not production.** AI collapses the cost of making the artifact, not the cost of deciding what's correct. Less time typing, far more time deciding — a better use of a designer.
@@ -62,10 +74,15 @@ That last part matters more than any claim I could make in prose: the system isn
 - **Specs are leverage.** A vague prompt gets a mediocre component; a sharp standard gets a system. Writing the standard *is* the skill.
 - **Stay in the loop, or it drifts.** Every place I let consistency slide, it slid. "AI as pair" is load-bearing on the word *pair.*
 - **Good work shouldn't need permission to survive.** The most senior thing I did wasn't the pipeline. It was refusing to let a shelved system die when I still believed in it.
+- **Designing the rules is senior work, not overhead.** A governance model — accessibility conformance, token discipline, an extension policy, decision records — is a design artifact in its own right. The rulebook is where a solo system either holds or quietly rots, and writing it well is the job, not a chore around the edges of it.
+- **The method isn't a project trick — it's an operating model.** The same human-in-the-loop pairing scaled from *making* the system to *running* it: the design tooling, the craft, the upkeep, the handoff. It didn't stop being useful when the components were done; that's when it started earning its keep.
+- **Verification is how you keep an AI pair honest.** Speed without a gate is just faster drift. Typecheck, Storybook, Chromatic, the a11y pass, the audits — the discipline that lets me trust a tireless collaborator is the same discipline that lets me move fast with it.
 
 ## Where it landed
 
-Vael started as a production design system for a bioscience startup — built with AI in a single six-week cycle, taken all the way to a scoped, ready-to-build handoff. When it was shelved, it got a second life: carried forward solo, expanded to 44 components, and rebuilt in the open as a live, documented library. One designer, start to finish.
+Vael started as a production design system for a bioscience startup — built with AI in a single six-week cycle, taken all the way to a scoped, ready-to-build handoff. When it was shelved, it got a second life: carried forward solo, expanded from 44 components to 103, rebuilt in the open as a live, documented library — and then something more than a library. The human-in-the-loop method that built it became the method that *runs* it: the Figma round-trip, the governance, the craft, the door left open for the next person. Not "how I built a design system with AI" anymore. How I run one.
+
+This page is one of the proofs. It — along with my slide library and my portfolio — is built *with* Vael; the system documents itself by being the thing you're reading. And it isn't a demo: it's load-bearing, the design system under my studio's site and my courses, extended in production through the same logged-extension rule it asks of anyone else. A method has to survive contact with real work to be worth teaching, and this one does.
 
 This was never a story about AI replacing design work. It's the opposite. Every decision that mattered was *more* mine, and more visible, than on any project I'd done the slow way. AI didn't take the design work off my plate. It took everything that *wasn't* design work off my plate — and left me with the part only I could do.
 
