@@ -30,7 +30,7 @@ A single, scroll-driven marketing-style case-study page. Not a multi-page site. 
 
 ## Content basis
 
-Page copy is `copy-deck.md` (beats on the spine); the full story is `writing/deep-dive.md`. Full depth links out to the eventual Medium post. Real facts (see `writing/README.md` for the canonical list):
+Page copy is `copy-deck.md` (beats on the spine); the full story is `../narrative/deep-dive.md`. Full depth links out to the eventual Medium post. Real facts (see `../narrative/README.md` for the canonical list):
 
 - **27 components at the startup → 44 now** (carried forward) · **80+ doc pages** (Storybook now; a generated static site originally) · **17 Shape Up pitches · 145 tickets** · a **six-week Shape Up cycle**, then expanded.
 - Tokens in the open **W3C design-tokens format** (described qualitatively — "eight spacing steps, not forty"; don't cite the old 11/13/24 counts).

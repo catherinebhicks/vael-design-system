@@ -2,7 +2,7 @@
 
 *The origin, the choices, and the transition. Written internally so the whole arc lives in one place — from the original production build through the rename and open rebuild. This is the "how we got here" record behind the public case study in [`../case-study/`](../case-study/).*
 
-> **Anonymization boundary (read first).** This is an **internal** doc in a private repo. **Nothing here about the origin company, product, people, or the original codename's meaning may appear in any public artifact.** Public cuts (case study, Medium, portfolio) say only *"a bioscience startup"* and use *"Vael"* for the internal name — the original codename points directly at the former employer. See [`../case-study/writing/README.md`](../case-study/writing/README.md) anonymization checklist before publishing.
+> **Anonymization boundary (read first).** This is an **internal** doc in a private repo. **Nothing here about the origin company, product, people, or the original codename's meaning may appear in any public artifact.** Public cuts (case study, Medium, portfolio) say only *"a bioscience startup"* and use *"Vael"* for the internal name — the original codename points directly at the former employer. See [`../case-study/narrative/README.md`](../case-study/narrative/README.md) anonymization checklist before publishing.
 >
 > **When the public Vael package is cut later**, make it a *curated export or fresh repo* that excludes internal-only docs like this one — not a flip of this private repo to public (whose git history would expose everything). Identifiable provenance is deliberately kept in private **memory**, not committed here.
 
@@ -80,7 +80,7 @@ The repo has grown past the numbers frozen in the public narrative. Reconcile be
 | Live | "you can open it" | **https://catherinebhicks.github.io/vael-design-system/** (Pages) + Chromatic (appId `6a46b2b4b5af28117f0804b1`) |
 | Figma | — | Full documented Figma library `4dNRm8xuERpDNfdXYjlbIn`, one page per component, code↔Figma parity |
 
-> ⚠️ **Fact drift to resolve before the case study publishes:** the narrative says "44"; the library is now ~103. Either update the narrative to the current number or explicitly frame 44 as "at the time of writing." Don't let the two disagree in public. Everything else in [`../case-study/NARRATIVE-SPEC.md`](../case-study/NARRATIVE-SPEC.md) (verified numbers, past/present framing) still holds.
+> ⚠️ **Fact drift to resolve before the case study publishes:** the narrative says "44"; the library is now ~103. Either update the narrative to the current number or explicitly frame 44 as "at the time of writing." Don't let the two disagree in public. Everything else in [`../case-study/narrative/NARRATIVE-SPEC.md`](../case-study/narrative/NARRATIVE-SPEC.md) (verified numbers, past/present framing) still holds.
 
 ---
 

@@ -1,8 +1,8 @@
 # Narrative spec — Vael case study (two-phase, spine-driven)
 
 The governing decisions for the Vael case-study narrative. Supersedes the earlier single-phase
-reconciliation spec. Everything in `copy-deck.md`, `writing/*`, `DESIGN.md`, and `SPEC.md` inherits
-from this.
+reconciliation spec. Everything in `../landing/copy-deck.md`, the prose cuts (`deep-dive.md`, `medium.md`,
+`short.md`), `../landing/DESIGN.md`, and `../landing/SPEC.md` inherits from this.
 
 Status: narrative pass complete (deep-dive master + medium + short + copy-deck beats + DESIGN/SPEC +
 README all rewritten). Landing page itself = separate build, later. Not launching yet.
@@ -66,18 +66,18 @@ thesis lives in phase 1; the range/initiative story lives in phase 2.
 ## Constraints (non-negotiable)
 
 - **Anonymization:** never the company ("a bioscience startup"); never the internal name ("Vael");
-  snippets scrubbed. Run the `writing/README.md` checklist before publishing.
+  snippets scrubbed. Run the `README.md` checklist before publishing.
 - **No invented metrics** — output-focused, verified numbers only.
 - **Voice:** first-person, wry, confident, no corporate gloss.
 - **Show edits inline;** originals preserved under `_original-backup/`.
 
 ## Files (all rewritten this pass)
 
-- `copy-deck.md` — 8 beats on the spine (priority; landing-page copy)
-- `writing/deep-dive.md` — the flowing master
-- `writing/medium.md`, `writing/short.md` — cuts of the master
-- `writing/README.md` — shared facts list
-- `DESIGN.md`, `SPEC.md` — landing-page design/spec aligned to the spine
+- `../landing/copy-deck.md` — 8 beats on the spine (priority; landing-page copy)
+- `deep-dive.md` — the flowing master
+- `medium.md`, `short.md` — cuts of the master
+- `README.md` — shared facts list
+- `../landing/DESIGN.md`, `../landing/SPEC.md` — landing-page design/spec aligned to the spine
 - `_original-backup/` — pristine pre-rewrite originals
 
 ## Out of scope (now)

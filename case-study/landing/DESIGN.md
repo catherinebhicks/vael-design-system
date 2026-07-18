@@ -3,12 +3,21 @@
 A polished Next.js case-study/landing page telling the story of building the **Vael** design system with AI — and, after it was shelved, carrying it forward and rebuilding it in the open. This folder holds the *plan and source material*; the site itself is built later, against the clean Vael library in this repo.
 
 ## What's here
-- `writing/` — the walkthrough in three lengths (`deep-dive.md` master, `medium.md`, `short.md`) + a `README.md` with the shared facts list
+
+`case-study/` splits into two folders: **`narrative/`** (the story, in every form) and **`landing/`** (this folder — the site-build docs).
+
+**`../narrative/`** — the story
+- `deep-dive.md` — the flowing master; `medium.md`, `short.md` — cuts of it
+- `README.md` — the shared-facts list
+- `NARRATIVE-SPEC.md` — the governing narrative decisions (two-phase framing + spine + Movement 3)
+- `pieces/` — the four standalone satellite deep-dives
 - `visuals/` — two diagrams (build-loop, token→generated-theme→docs pipeline) in SVG (web) + PNG (Medium)
+- `_original-backup/` — pristine pre-rewrite originals, kept for merge/reference
+- `2026-07-17-second-life-narrative-design.md` / `-plan.md` — the second-life extension design + plan
+
+**`landing/`** — the site build (this folder)
 - `SPEC.md` — the page spec
 - `copy-deck.md` — the locked page copy (voice-approved), rendered as beats on the spine
-- `NARRATIVE-SPEC.md` — the governing narrative decisions (two-phase framing + spine)
-- `_original-backup/` — pristine pre-rewrite originals, kept for merge/reference
 - `DESIGN.md` — this file
 
 ## The spine (the whole piece serves this)
@@ -61,7 +70,7 @@ Subhead: **"27 → 44 components · 80+ doc pages · one designer · a six-week 
 Thin sticky nav: "Catherine Hicks" (left) · Contact (right) · coral scroll-progress line. Dark "dev-tool" OG share card (1200×630): "Vael" + tagline on dark + blue glow.
 
 ## Copy
-Voice locked — first-person, wry, confident, no corporate gloss. Full deck in `copy-deck.md`; shared facts in `writing/README.md`. Timeframe = a six-week Shape Up cycle, then expanded. Impact = output-focused (27→44 / 80+ / 17 / 145), no invented metrics.
+Voice locked — first-person, wry, confident, no corporate gloss. Full deck in `copy-deck.md`; shared facts in `../narrative/README.md`. Timeframe = a six-week Shape Up cycle, then expanded. Impact = output-focused (27→44 / 80+ / 17 / 145), no invented metrics.
 
 ## Note (current reality)
 Vael is a real, clean library in this repo (44 components on MUI v7 + MUI X + Highcharts) with a Storybook **live on GitHub Pages** (https://catherinebhicks.github.io/vael-design-system/) — reskinned to the same Blueprint identity as this page, so the click-through has no seam. Beat 7's proof = **faithful, interactive component demos on Vael's tokens** (charts are real Highcharts) plus the **deployed Storybook** as the real library one click away. The "open it right now" link is live.

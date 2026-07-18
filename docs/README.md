@@ -5,11 +5,11 @@
 ## The whole story, in order
 
 1. **[history-fermie-to-vael.md](history-fermie-to-vael.md)** — how we got here: the phase-1 Fermie production build (what & why), the shelving, and the transition to Vael (why & how). The internal "how we got here" record. *Contains the anonymization boundary — read it first.*
-2. **[../case-study/](../case-study/)** — the public-facing case study (AI-as-build-method):
-   - `NARRATIVE-SPEC.md` — governing spec; the frozen, fact-checked decision ledger everything else inherits from.
-   - `writing/` — the narrative in three cuts: `deep-dive.md` (master), `medium.md`, `short.md`.
-   - `copy-deck.md`, `DESIGN.md`, `SPEC.md` — the case-study landing page (copy + design + spec).
-   - `_original-backup/` — pre-revision drafts (provenance only; not canonical).
+2. **[../case-study/](../case-study/)** — the public-facing case study (AI-as-build-method), split into `narrative/` (the story) + `landing/` (the site build):
+   - `narrative/NARRATIVE-SPEC.md` — governing spec; the fact-checked decision ledger everything else inherits from.
+   - `narrative/` — the narrative in three cuts: `deep-dive.md` (master), `medium.md`, `short.md`; plus `pieces/` (four satellite deep-dives) and `visuals/`.
+   - `landing/copy-deck.md`, `landing/DESIGN.md`, `landing/SPEC.md` — the case-study landing page (copy + design + spec).
+   - `narrative/_original-backup/` — pre-revision drafts (provenance only; not canonical).
 3. **[consuming-vael.md](consuming-vael.md)** — how downstream products extend Vael without forking it (the governance model), with the AFD website as the worked example. Design-system reasoning merged from the afd-website build.
 4. **[downstream.md](downstream.md)** — what consumes or spun off Vael (AFD website, slide library, case-study sites). Index + links, not copies.
 
