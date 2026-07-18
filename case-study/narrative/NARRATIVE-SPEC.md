@@ -62,10 +62,10 @@ thesis lives in phase 1; the range/initiative story lives in phase 2.
 |---|---|
 | Origin | Two-phase blend, credibility-first; shelving is the turn, rescue is the proof |
 | Phase-2 motive | Rescue/initiative — **not** an AI experiment |
-| Component numbers | **27 → 44**, stated explicitly across both phases |
+| Component numbers | **27 → 44 → 103** (startup → rescue → now), across all three phases |
 | Timeline | A six-week Shape Up cycle, then expanded over additional time for the transition to Vael |
 | Token counts | Qualitative + one concrete detail ("eight spacing steps, not forty"); no 11/13/24 |
-| Doc pages | "80+" (current, Storybook) |
+| Doc pages | **226 Storybook stories / 251 docs** (current); was "80+" pre-Movement-3 |
 | Pipeline + `build.py` | Real phase-1 production work, told **past tense**; reskin deliberately re-authored the theme by hand + moved docs to Storybook — say so |
 | A11y | Hand-audited each component vs WCAG, then verified with the Storybook a11y addon (which caught extras she fixed) |
 | Pitches/tickets | 17 / 145, framed as the **handoff** that got shelved before the eng cycle ran |
