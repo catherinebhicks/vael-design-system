@@ -19,6 +19,8 @@ export interface StatBlockProps {
   /** Optional trailing visual (e.g. a <Sparkline/>). */
   visual?: React.ReactNode;
   bordered?: boolean;
+  /** Visual treatment. Use 'ink' when placed on a dark / inverted band so the label + value read as light-on-dark. */
+  variant?: 'default' | 'ink';
   sx?: SxProps<Theme>;
 }
 
@@ -35,8 +37,11 @@ export function StatBlock({
   icon,
   visual,
   bordered = false,
+  variant = 'default',
   sx,
 }: StatBlockProps) {
+  const onDark = variant === 'ink';
+  const labelColor = onDark ? 'rgba(255,255,255,0.7)' : 'text.secondary';
   const deltaGood = delta ? (delta.good ?? delta.direction === 'up') : false;
   return (
     <Box
@@ -47,9 +52,9 @@ export function StatBlock({
           gap: 0.75,
           p: bordered ? 2 : 0,
           ...(bordered && {
-            border: (t) => `1px solid ${t.palette.divider}`,
+            border: (t) => `1px solid ${onDark ? 'rgba(255,255,255,0.12)' : t.palette.divider}`,
             borderRadius: 2,
-            bgcolor: 'background.paper',
+            bgcolor: onDark ? 'transparent' : 'background.paper',
           }),
         },
         ...(Array.isArray(sx) ? sx : [sx]),
@@ -57,7 +62,7 @@ export function StatBlock({
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
         {icon && (
-          <Box sx={{ color: 'text.secondary', fontSize: 12 }}>
+          <Box sx={{ color: labelColor, fontSize: 12 }}>
             <FontAwesomeIcon icon={icon} />
           </Box>
         )}
@@ -68,7 +73,7 @@ export function StatBlock({
             fontWeight: 500,
             letterSpacing: '0.06em',
             textTransform: 'uppercase',
-            color: 'text.secondary',
+            color: labelColor,
           }}
         >
           {label}
@@ -82,13 +87,13 @@ export function StatBlock({
               fontWeight: 600,
               fontSize: '1.75rem',
               lineHeight: 1,
-              color: 'text.primary',
+              color: onDark ? 'common.white' : 'text.primary',
             }}
           >
             {value}
           </Typography>
           {unit && (
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" sx={{ color: labelColor }}>
               {unit}
             </Typography>
           )}

@@ -99,3 +99,22 @@ export const GaugeStatStory: StoryObj = {
     </Stack>
   ),
 };
+
+/**
+ * Inverted / on-dark: StatBlock (variant="ink") and GaugeStat (onDark) render
+ * light-on-dark for use on an emphasis / ink band — the label, value, and gauge
+ * track all re-resolve to light so the metrics stay legible on a dark surface.
+ */
+export const InvertedOnDark: StoryObj = {
+  name: 'Stats — Inverted (on dark)',
+  render: () => (
+    <Box sx={{ bgcolor: '#0a0e14', p: 5, borderRadius: 2 }}>
+      <Stack direction="row" spacing={6} alignItems="center" flexWrap="wrap">
+        <StatBlock variant="ink" label="Hours saved" value="100K+" />
+        <StatBlock variant="ink" label="Engagement lift" value="23%" delta={{ value: '+18%', direction: 'up' }} />
+        <StatBlock variant="ink" label="Steps cut" value="15 → 8" />
+        <GaugeStat value={92} onDark label="Uptime" />
+      </Stack>
+    </Box>
+  ),
+};

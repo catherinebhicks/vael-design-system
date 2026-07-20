@@ -21,6 +21,8 @@ export interface StatCardProps {
   sparklineColor?: string;
   /** Optional leading icon/adornment. */
   icon?: React.ReactNode;
+  /** Visual treatment. Use 'ink' when placed on a dark / inverted band. */
+  variant?: 'default' | 'ink';
   className?: string;
 }
 
@@ -34,24 +36,30 @@ export function StatCard({
   sparkline,
   sparklineColor,
   icon,
+  variant = 'default',
   className,
 }: StatCardProps) {
+  const onDark = variant === 'ink';
+  const labelColor = onDark ? 'rgba(255,255,255,0.7)' : 'text.secondary';
   const sparkData = useMemo(
     () => (sparkline ? sparkline.map((v, i) => [i, v] as [number, number]) : undefined),
     [sparkline],
   );
 
   return (
-    <Card className={className}>
+    <Card
+      className={className}
+      sx={onDark ? { bgcolor: 'transparent', backgroundImage: 'none', border: '1px solid rgba(255,255,255,0.12)' } : undefined}
+    >
       <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
         <Box sx={{ minWidth: 0 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
-            {icon && <Box sx={{ color: 'text.secondary', display: 'inline-flex' }}>{icon}</Box>}
-            <Typography variant="overline" color="text.secondary" noWrap sx={{ lineHeight: 1.5 }}>
+            {icon && <Box sx={{ color: labelColor, display: 'inline-flex' }}>{icon}</Box>}
+            <Typography variant="overline" noWrap sx={{ color: labelColor, lineHeight: 1.5 }}>
               {label}
             </Typography>
           </Box>
-          <Typography variant="h4" sx={{ fontWeight: 700, lineHeight: 1.1 }}>
+          <Typography variant="h4" sx={{ fontWeight: 700, lineHeight: 1.1, color: onDark ? 'common.white' : 'text.primary' }}>
             {value}
           </Typography>
           {(delta !== undefined || caption) && (
@@ -60,7 +68,7 @@ export function StatCard({
                 <TrendBadge value={delta} suffix={deltaSuffix} positiveIsGood={positiveIsGood} />
               )}
               {caption && (
-                <Typography variant="caption" color="text.secondary">
+                <Typography variant="caption" sx={{ color: labelColor }}>
                   {caption}
                 </Typography>
               )}

@@ -19,6 +19,8 @@ export interface GaugeStatProps {
   valueText?: React.ReactNode;
   /** Sweep angle: 'full' (360°) or 'semi' (180°, bottom-open). */
   variant?: 'full' | 'semi';
+  /** Set when placed on a dark / inverted band so the value + label + track read as light-on-dark. */
+  onDark?: boolean;
 }
 
 /**
@@ -35,10 +37,11 @@ export function GaugeStat({
   label,
   valueText,
   variant = 'full',
+  onDark = false,
 }: GaugeStatProps) {
   const theme = useTheme();
   const arc = color ?? theme.palette.primary.main;
-  const track = theme.palette.action.disabledBackground;
+  const track = onDark ? 'rgba(255,255,255,0.12)' : theme.palette.action.disabledBackground;
   const pct = Math.max(0, Math.min(1, value / max));
 
   const r = (size - thickness) / 2;
@@ -96,7 +99,7 @@ export function GaugeStat({
             fontWeight: 600,
             fontSize: size / 4.5,
             lineHeight: 1,
-            color: 'text.primary',
+            color: onDark ? 'common.white' : 'text.primary',
           }}
         >
           {valueText ?? `${Math.round(pct * 100)}%`}
@@ -108,7 +111,7 @@ export function GaugeStat({
               fontSize: '0.625rem',
               letterSpacing: '0.06em',
               textTransform: 'uppercase',
-              color: 'text.secondary',
+              color: onDark ? 'rgba(255,255,255,0.7)' : 'text.secondary',
             }}
           >
             {label}
