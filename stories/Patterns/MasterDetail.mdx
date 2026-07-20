@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { MasterDetailExample, MasterDetailInlineExample } from './examples/MasterDetailExamples';
 
 <Meta title="Patterns/Master-Detail" />
 
@@ -6,6 +7,18 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 Browse a list of records (master) and inspect one in depth (detail) without
 losing your place in the list.
+
+## Live example
+
+Select a row to open its detail in a right-anchored side panel. The list stays
+visible, the selected row stays highlighted, and the panel dismisses with the
+close control or Escape.
+
+<MasterDetailExample />
+
+The inline-expansion variant keeps the detail in place beneath the selected row.
+
+<MasterDetailInlineExample />
 
 ## Two shapes
 
