@@ -16,6 +16,23 @@ const paletteFor = (theme: import('@mui/material/styles').Theme, color: TagColor
   return theme.palette[color].main;
 };
 
+/**
+ * AA-compliant text/dot colors for the tinted tag. `color/main` fails WCAG AA
+ * (≥4.5:1) as small text on the 10% tint in light mode (e.g. warning 2.76:1),
+ * so tinted tags use a darkened shade in light and a lightened one in dark.
+ * Kept in sync 1:1 with the Vael Figma tokens `{color}/on-tint`.
+ */
+const ON_TINT_TEXT: Record<Exclude<TagColor, 'default'>, { light: string; dark: string }> = {
+  primary: { light: '#176dc1', dark: '#42a5f5' },
+  success: { light: '#2d7a31', dark: '#66bb6a' },
+  warning: { light: '#b15000', dark: '#ffa726' },
+  error: { light: '#c62c2c', dark: '#f5564a' },
+  info: { light: '#0270ab', dark: '#29b6f6' },
+};
+
+const textFor = (theme: import('@mui/material/styles').Theme, color: TagColor) =>
+  color === 'default' ? theme.palette.text.secondary : ON_TINT_TEXT[color][theme.palette.mode];
+
 const Root = styled('span', {
   shouldForwardProp: (p) => p !== 'tagColor' && p !== 'clickable',
 })<{ tagColor: TagColor; clickable?: boolean }>(({ theme, tagColor, clickable }) => {
@@ -32,7 +49,7 @@ const Root = styled('span', {
     fontWeight: 500,
     lineHeight: 1,
     letterSpacing: '0.02em',
-    color: tagColor === 'default' ? theme.palette.text.secondary : c,
+    color: textFor(theme, tagColor),
     backgroundColor: alpha(c, tagColor === 'default' ? 0.06 : 0.1),
     border: `1px solid ${alpha(c, 0.28)}`,
     cursor: clickable ? 'pointer' : 'default',
@@ -43,7 +60,7 @@ const Dot = styled('span')<{ tagColor: TagColor }>(({ theme, tagColor }) => ({
   width: 6,
   height: 6,
   borderRadius: '50%',
-  backgroundColor: paletteFor(theme, tagColor),
+  backgroundColor: textFor(theme, tagColor),
 }));
 
 const Remove = styled('button')(({ theme }) => ({
