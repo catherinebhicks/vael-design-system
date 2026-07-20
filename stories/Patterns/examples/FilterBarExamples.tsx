@@ -11,16 +11,16 @@ import { ExampleFrame } from './ExampleFrame';
 /** Facets offered by the "Add filter" menu, with the values each can add. */
 const FACETS = [
   { key: 'status', label: 'Status', value: 'Active' },
-  { key: 'owner', label: 'Owner', value: 'Owner A' },
-  { key: 'region', label: 'Region', value: 'North' },
+  { key: 'owner', label: 'Owner', value: 'Member 1' },
+  { key: 'region', label: 'Region', value: 'Region 1' },
 ];
 
 const ROWS = [
-  { name: 'Item A', owner: 'Owner A', status: 'Active', region: 'North' },
-  { name: 'Item B', owner: 'Owner B', status: 'Paused', region: 'South' },
-  { name: 'Item C', owner: 'Owner A', status: 'Active', region: 'South' },
-  { name: 'Item D', owner: 'Owner C', status: 'Archived', region: 'North' },
-  { name: 'Item E', owner: 'Owner B', status: 'Active', region: 'North' },
+  { name: 'Item 1', owner: 'Member 1', status: 'Active', region: 'Region 1' },
+  { name: 'Item 2', owner: 'Member 2', status: 'Pending', region: 'Region 2' },
+  { name: 'Item 3', owner: 'Member 1', status: 'Active', region: 'Region 2' },
+  { name: 'Item 4', owner: 'Member 3', status: 'Inactive', region: 'Region 1' },
+  { name: 'Item 5', owner: 'Member 2', status: 'Active', region: 'Region 1' },
 ];
 
 type Filter = { key: string; label: string; value: string };
@@ -94,7 +94,7 @@ export function FilterBarExample() {
         </Stack>
 
         <TextField
-          placeholder="Search items or owners…"
+          placeholder="Search items…"
           size="small"
           value={search}
           onChange={(e) => setSearch(e.target.value)}

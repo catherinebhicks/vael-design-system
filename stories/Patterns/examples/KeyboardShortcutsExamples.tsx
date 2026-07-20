@@ -59,15 +59,15 @@ const SHEET: { section: string; items: { label: string; keys: string[] }[] }[] =
   {
     section: 'General',
     items: [
-      { label: 'Command palette', keys: [MOD, 'K'] },
+      { label: 'Menu', keys: [MOD, 'K'] },
       { label: 'Search', keys: ['/'] },
-      { label: 'Show this sheet', keys: ['?'] },
+      { label: 'Show shortcuts', keys: ['?'] },
     ],
   },
   {
     section: 'Editing',
     items: [
-      { label: 'New item', keys: [MOD, 'N'] },
+      { label: 'New', keys: [MOD, 'N'] },
       { label: 'Save', keys: [MOD, 'S'] },
       { label: 'Undo', keys: [MOD, 'Z'] },
     ],
@@ -115,7 +115,7 @@ export function KeyboardShortcutsExample() {
               </Box>
             }
           >
-            <IconButton aria-label="Search (press /)" size="small">
+            <IconButton aria-label="Search" size="small">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </IconButton>
           </Tooltip>
@@ -129,7 +129,7 @@ export function KeyboardShortcutsExample() {
               </Box>
             }
           >
-            <IconButton aria-label="Keyboard shortcuts (press ?)" size="small" onClick={() => setSheetOpen(true)}>
+            <IconButton aria-label="Keyboard shortcuts" size="small" onClick={() => setSheetOpen(true)}>
               <FontAwesomeIcon icon={faKeyboard} />
             </IconButton>
           </Tooltip>

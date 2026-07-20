@@ -20,7 +20,7 @@ import { Tag } from '../../../src/components/Tag';
 import type { TagColor } from '../../../src/components/Tag';
 import { ExampleFrame } from './ExampleFrame';
 
-type RowStatus = 'Draft' | 'In review' | 'Published';
+type RowStatus = 'Inactive' | 'Pending' | 'Active';
 
 interface Row {
   id: number;
@@ -30,18 +30,18 @@ interface Row {
 }
 
 const ROWS: Row[] = [
-  { id: 1, name: 'Report 01', status: 'Draft', updated: '2 hours ago' },
-  { id: 2, name: 'Report 02', status: 'In review', updated: 'Yesterday' },
-  { id: 3, name: 'Report 03', status: 'Published', updated: '3 days ago' },
-  { id: 4, name: 'Report 04', status: 'Draft', updated: 'Last week' },
-  { id: 5, name: 'Report 05', status: 'In review', updated: 'Last week' },
-  { id: 6, name: 'Report 06', status: 'Published', updated: '2 weeks ago' },
+  { id: 1, name: 'Item 1', status: 'Inactive', updated: '2 hours ago' },
+  { id: 2, name: 'Item 2', status: 'Pending', updated: 'Yesterday' },
+  { id: 3, name: 'Item 3', status: 'Active', updated: '3 days ago' },
+  { id: 4, name: 'Item 4', status: 'Inactive', updated: 'Last week' },
+  { id: 5, name: 'Item 5', status: 'Pending', updated: 'Last week' },
+  { id: 6, name: 'Item 6', status: 'Active', updated: '2 weeks ago' },
 ];
 
 const STATUS_COLOR: Record<RowStatus, TagColor> = {
-  Draft: 'default',
-  'In review': 'warning',
-  Published: 'success',
+  Inactive: 'default',
+  Pending: 'warning',
+  Active: 'success',
 };
 
 /**

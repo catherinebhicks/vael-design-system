@@ -58,7 +58,7 @@ export function InlineConfirmationExample() {
                 autoFocus
                 onClick={() => {
                   setConfirmingDraft(false);
-                  showResult('Draft deleted');
+                  showResult('Item deleted');
                 }}
               >
                 Confirm delete
@@ -74,7 +74,7 @@ export function InlineConfirmationExample() {
                 Cancel
               </Button>
               <Typography variant="caption" color="text.secondary">
-                Delete this draft?
+                Delete this item?
               </Typography>
             </Stack>
           ) : (
@@ -84,7 +84,7 @@ export function InlineConfirmationExample() {
               startIcon={<FontAwesomeIcon icon={faTrash} />}
               onClick={() => setConfirmingDraft(true)}
             >
-              Delete draft
+              Delete item
             </Button>
           )}
         </Box>

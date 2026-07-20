@@ -40,7 +40,7 @@ export function ChartAnnotationExample() {
         point.marker = { enabled: true, radius: 5, fillColor: signal, lineColor: signal, lineWidth: 2 };
         point.dataLabels = {
           enabled: true,
-          format: 'Deploy v2.4',
+          format: 'Event',
           y: -12,
           style: { color: muted, fontWeight: '600', fontSize: '10px', textOutline: 'none' },
         };
@@ -54,7 +54,7 @@ export function ChartAnnotationExample() {
       legend: { enabled: false },
       xAxis: { type: 'datetime', labels: { format: '{value:%b %e}' } },
       yAxis: {
-        title: { text: 'Latency (ms)' },
+        title: { text: 'Value' },
         // Shaded "out of range" region — muted danger band above the SLA.
         plotBands: [
           {
@@ -62,7 +62,7 @@ export function ChartAnnotationExample() {
             to: OUT_OF_RANGE_TO,
             color: alpha(signal, 0.08),
             label: {
-              text: 'Out of range',
+              text: 'Above limit',
               align: 'left',
               x: 8,
               style: { color: muted, fontSize: '10px' },
@@ -78,7 +78,7 @@ export function ChartAnnotationExample() {
             dashStyle: 'Dash',
             zIndex: 4,
             label: {
-              text: `SLA target · ${SLA} ms`,
+              text: 'Upper limit',
               align: 'right',
               x: -8,
               y: -6,
@@ -87,11 +87,11 @@ export function ChartAnnotationExample() {
           },
         ],
       },
-      tooltip: { valueSuffix: ' ms' },
+      tooltip: {},
       series: [
         {
           type: 'line',
-          name: 'Latency',
+          name: 'Value',
           data,
           color: dataColor,
           marker: { enabled: false, symbol: 'circle' },
@@ -105,10 +105,9 @@ export function ChartAnnotationExample() {
       <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '2fr 1fr' }, gap: 3, alignItems: 'center' }}>
         <HighchartsChart options={options} />
         <Callout tone="warning" title="Reading the chart">
-          The dashed amber line is the 200&nbsp;ms SLA target; the shaded band above it is the
-          out-of-range region. Latency held well under target all fortnight except for a single
-          spike to 262&nbsp;ms on the <strong>Deploy v2.4</strong> day — one bad point, not a trend.
-          Annotations stay muted so the data line reads first.
+          The dashed line marks the upper limit; the shaded band above it is the out-of-range
+          region. Values stay under the limit across the range except for a single point marked{' '}
+          <strong>Event</strong>. Annotations stay muted so the data line reads first.
         </Callout>
       </Box>
     </ExampleFrame>

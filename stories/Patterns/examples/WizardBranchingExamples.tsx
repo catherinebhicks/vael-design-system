@@ -40,17 +40,17 @@ function pathFor(answers: Answers): StepId[] {
 }
 
 const STEP_LABEL: Record<StepId, string> = {
-  plan: 'Plan',
+  plan: 'Choose',
   details: 'Details',
-  invite: 'Invite',
+  invite: 'Extra step',
   review: 'Review',
 };
 
 /** Returns an inline error for the step, or null when it is valid. */
 function validate(step: StepId, a: Answers): string | null {
-  if (step === 'details' && a.fullName.trim() === '') return 'Enter your name to continue.';
-  if (step === 'invite' && a.invites.trim() === '') return 'Add at least one email address.';
-  if (step === 'review' && !a.agree) return 'Please accept the terms to finish.';
+  if (step === 'details' && a.fullName.trim() === '') return 'Enter a name to continue.';
+  if (step === 'invite' && a.invites.trim() === '') return 'Add at least one entry.';
+  if (step === 'review' && !a.agree) return 'Please confirm to finish.';
   return null;
 }
 
@@ -126,16 +126,16 @@ export function WizardBranchingExample() {
 
             {step === 'plan' && (
               <Stack spacing={1.5} sx={{ mt: 1 }}>
-                <Typography variant="h6">Choose a plan</Typography>
+                <Typography variant="h6">Choose an option</Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Team plans add a step to invite members.
+                  Option B adds an extra step.
                 </Typography>
                 <SegmentedControl
                   value={answers.plan}
                   onChange={(v) => set('plan', v as Plan)}
                   options={[
-                    { value: 'personal', label: 'Personal' },
-                    { value: 'team', label: 'Team' },
+                    { value: 'personal', label: 'Option A' },
+                    { value: 'team', label: 'Option B' },
                   ]}
                 />
               </Stack>
@@ -145,7 +145,7 @@ export function WizardBranchingExample() {
               <Stack spacing={2} sx={{ mt: 1 }}>
                 <Typography variant="h6">Your details</Typography>
                 <TextField
-                  label="Full name"
+                  label="Name"
                   required
                   fullWidth
                   value={answers.fullName}
@@ -154,7 +154,7 @@ export function WizardBranchingExample() {
                   helperText={error ?? ' '}
                 />
                 <TextField
-                  label="Workspace name (optional)"
+                  label="Label (optional)"
                   fullWidth
                   value={answers.workspace}
                   onChange={(e) => set('workspace', e.target.value)}
@@ -164,9 +164,9 @@ export function WizardBranchingExample() {
 
             {step === 'invite' && (
               <Stack spacing={2} sx={{ mt: 1 }}>
-                <Typography variant="h6">Invite members</Typography>
+                <Typography variant="h6">Extra step</Typography>
                 <TextField
-                  label="Email addresses"
+                  label="Entries"
                   required
                   fullWidth
                   multiline
@@ -186,11 +186,11 @@ export function WizardBranchingExample() {
                 <Descriptions
                   divided
                   items={[
-                    { label: 'Plan', value: answers.plan === 'team' ? 'Team' : 'Personal' },
+                    { label: 'Option', value: answers.plan === 'team' ? 'Option B' : 'Option A' },
                     { label: 'Name', value: answers.fullName || '—' },
-                    { label: 'Workspace', value: answers.workspace || '—' },
+                    { label: 'Label', value: answers.workspace || '—' },
                     ...(answers.plan === 'team'
-                      ? [{ label: 'Invites', value: answers.invites || '—', full: true }]
+                      ? [{ label: 'Entries', value: answers.invites || '—', full: true }]
                       : []),
                   ]}
                 />
@@ -201,7 +201,7 @@ export function WizardBranchingExample() {
                       onChange={(e) => set('agree', e.target.checked)}
                     />
                   }
-                  label="I accept the terms of service"
+                  label="I confirm the details above"
                 />
                 {error && (
                   <Typography variant="caption" color="error">
