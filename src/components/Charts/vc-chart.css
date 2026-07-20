@@ -20,16 +20,19 @@
   font-size: 12px;
   font-weight: 500;
 }
+
 .highcharts-axis-labels text {
   fill: var(--vc-ink-muted);
   font-size: 11px;
   font-family: inherit;
 }
+
 .highcharts-title text {
   fill: var(--vc-ink);
   font-size: 16px;
   font-weight: 600;
 }
+
 .highcharts-subtitle text {
   fill: var(--vc-ink-muted);
   font-size: 14px;
@@ -81,33 +84,36 @@
 /* ── HTML Tooltip ────────────────────────────────────────────────────────────── */
 .vc-tooltip {
   background: var(--vc-surface, #fff);
-  border: 1px solid var(--vc-border, rgba(0,0,0,0.12));
+  border: 1px solid var(--vc-border, rgb(0,0,0,0.12));
   border-radius: 4px;
   padding: 10px 14px;
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: 12.5px;
   min-width: 160px;
   pointer-events: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  box-shadow: 0 2px 8px rgb(0,0,0,0.12);
 }
+
 .vc-tooltip__time {
   font-size: 11px;
-  color: var(--vc-ink-muted, rgba(0,0,0,0.6));
+  color: var(--vc-ink-muted, rgb(0,0,0,0.6));
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   letter-spacing: 0.04em;
   margin-bottom: 8px;
   padding-bottom: 6px;
-  border-bottom: 1px solid var(--vc-border, rgba(0,0,0,0.12));
+  border-bottom: 1px solid var(--vc-border, rgb(0,0,0,0.12));
 }
+
 .vc-tooltip__row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
   padding: 2px 0;
-  color: var(--vc-ink-muted, rgba(0,0,0,0.6));
+  color: var(--vc-ink-muted, rgb(0,0,0,0.6));
   font-size: 12px;
 }
+
 .vc-tooltip__dot {
   display: inline-block;
   width: 8px;
@@ -117,10 +123,11 @@
   vertical-align: middle;
   flex-shrink: 0;
 }
+
 .vc-tooltip__val {
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: 12px;
-  color: var(--vc-ink, rgba(0,0,0,0.87));
+  color: var(--vc-ink, rgb(0,0,0,0.87));
   font-weight: 500;
 }
 
@@ -129,5 +136,6 @@
 .vc-chart--spark .highcharts-grid-line,
 .vc-chart--spark .highcharts-tick,
 .vc-chart--spark .highcharts-axis-labels { display: none; }
+
 .vc-chart--spark .highcharts-background,
 .vc-chart--spark .highcharts-plot-background { fill: transparent !important; }

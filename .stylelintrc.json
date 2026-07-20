@@ -1,5 +1,6 @@
 {
   "extends": "stylelint-config-standard",
+  "plugins": ["stylelint-declaration-strict-value"],
   "rules": {
     "custom-property-pattern": null,
     "selector-class-pattern": null,
@@ -11,8 +12,37 @@
     "color-function-notation": null,
     "declaration-block-single-line-max-declarations": null,
     "no-duplicate-selectors": null,
-    "media-feature-range-notation": null
+    "media-feature-range-notation": null,
+    "scale-unlimited/declaration-strict-value": [
+      [
+        "/color$/",
+        "fill",
+        "stroke"
+      ],
+      {
+        "ignoreValues": [
+          "transparent",
+          "currentColor",
+          "inherit",
+          "initial",
+          "unset",
+          "revert",
+          "none"
+        ],
+        "ignoreFunctions": false,
+        "expandShorthand": true,
+        "message": "Use a --ds-* token via var() instead of a raw %s color (Vael token-linting, #90)"
+      }
+    ]
   },
+  "overrides": [
+    {
+      "files": ["vael/tokens.css", ".storybook/**/*.css"],
+      "rules": {
+        "scale-unlimited/declaration-strict-value": null
+      }
+    }
+  ],
   "ignoreFiles": [
     "dist/**",
     "storybook-static/**",
