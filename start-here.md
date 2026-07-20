@@ -43,6 +43,22 @@ A real, buildable **MUI v7 component library + Storybook** in the Blueprint / IB
 - **Report:** `docs/2026-07-19-dark-mode-audit-report.md`. Gotchas learned: `setBoundVariableForPaint` wipes paint opacity (set `.opacity` in a *separate* step); on-canvas specimens render on the *light* editor canvas so dark screenshots mislead — trust node inspection or the Dark Preview page.
 - **Tickets filed + mirrored (Linear+GitHub+Todoist):** M6 error-contrast — code **FOC-1278/#111**, design mirror **FOC-1279/#112** (blocked by code). M5 follow-ups — chart data-vertices **FOC-1280/#113**, Callout tip/note tones **FOC-1281/#114**, light-mode border sanity-check **FOC-1282/#115**.
 
+### AFD website pressure test — Vael applied to a real marketing site (2026-07-19)
+Pressure-tested the design system by applying it to the **A Focused Design website** Figma (`xrsFsyjmapRgLbnfygNU3Y`, first-pass desktop: Home / Work / Services / Blog). Findings + follow-ups:
+- **Vael published as a Figma team library** (was unpublished). The AFD file previously bound to a *stale local mirror* (`Vael Color` Light-only, `Vael Spacing`, `Vael Radius`). **Rebound the whole site to the real Vael library** — 266 color + 168 radius bindings swapped to remote Vael vars; **zero local refs remain** (local mirror now orphaned, safe to delete). Colors mapped 1:1 (Vael already owns `ink`/`subtle`); lone `common/white` → `background/paper`.
+- **Dark mode now flips from the real Vael Color collection.** Site currently left flipped to Dark for review. Two **dark-mode gaps** found (⚠️ ticket pending): (A) `background/ink` emphasis bands collapse into the page in dark (`#0a0e14` ≈ `#121212`) — needs a dark-tuned ink or an "emphasis/elevated section" surface token; (B) full-bleed `primary/main` bands (CTA) wash out in dark (`#90caf9` pale accent as a big fill) — needs a "branded section / primaryContainer" surface.
+- **Type gap → tickets:** Vael's Display/Heading scale is IBM Plex **Mono** only; the site reinvented a **sans editorial** scale. Add `Editorial/*` + `Metric/Display` — code **#116/FOC-1283**, Figma mirror **#117/FOC-1284**.
+- **Spacing gap:** the site tokenizes **no** spacing (all raw numbers) — decide adopt `space/*` vs opt out.
+
+### Candidate components — TBD (not yet in Vael), from the AFD pressure test
+Most site compositions map to **existing** Vael components (relink pass underway — HeroBanner, LogoWall, StatBlock, CaseStudyCard, PostCard, ServiceCard, CtaBar, Chip, AppBar, Footer). Genuinely **new** candidates, filed + mirrored, **status = TBD / not built**:
+- **PageHeader** (eyebrow + title + intro + optional filter/tag row) — **#118/FOC-1285** — file `xrsFsyjmapRgLbnfygNU3Y`: Work `Title` `13:52` (w/ `Filters` `13:56`), Services `15:90`, Blog `16:128`.
+- **CardGrid** (responsive card-grid layout) — **#119/FOC-1286** — Work `14:51`, Home `9:18`, Blog `16:140`.
+- **FeaturedPost** (large featured-article card) — **#120/FOC-1287** — Blog `Featured` `16:133`.
+- **FeatureCard** (numbered feature/pillar card; may be a `Card` variant) — **#121/FOC-1288** — Home `Pillars` `7:28` (`PillarCard` `7:29/33/37/41`).
+
+**Relink pass (in progress):** the AFD site is being reassembled from **real Vael component instances** (HeroBanner, LogoWall, StatBlock, Case-Study Card, PostCard, ServiceCard, CtaBar, Chip, AppBar, Footer). **Two design consequences this exposes about Vael as it stands:** (1) Vael's card/section/hero components carry **mono titles** — applied to a marketing site they re-impose mono where sans reads warmer (the Editorial ticket #116 is the fix); (2) card media defaults to a **neutral grey** drop-zone (Vael's is arguably more correct than the site's blue blocks). Where every change lands on the site: **`afd-website/docs/2026-07-19-vael-relink-map.md`**.
+
 ## Commands (verify cadence)
 ```
 npm run typecheck          # tsc --noEmit
