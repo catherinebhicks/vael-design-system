@@ -131,6 +131,31 @@ Waffle/Gauge) remain static illustrations — optionally add the same caption to
 Code 104 components · Figma now ~101 real components. Remaining code-only = the ~7 Highcharts *plots*
 (illustrations by design) + WorkCards/SpotlightTour (edge cases). No non-chart drift remains.
 
+## ▶ NEXT SESSION — Responsiveness (#2, audit done, fixes NOT started)
+Full audit complete (code + Figma); user is actioning it next. **No systematic responsive
+strategy either side** — theme has only MUI's stock breakpoints (0 components use `useMediaQuery`);
+Figma has a `Breakpoint` var collection (`VariableCollectionId:19:2`) bound to nothing. Figma is
+*more* resize-ready (~90% auto-layout+FILL) than code (~10% adaptive). Model to copy = the `about/`
+site (`about/app/globals.css` — `clamp()` + `auto-fit minmax`).
+
+**Code fixes (ranked):**
+1. `src/components/SidePanel/SidePanel.tsx:31,38` — hardcoded `width:380`, no mobile fallback →
+   `width: { xs: '100%', sm: 380 }`. Highest-impact real defect.
+2. `src/components/Table/Table.tsx` — ships with no scroll container → wrap in `TableContainer`
+   `overflowX:auto` (DataGrid/AgGrid already self-scroll; plain Table doesn't).
+3. `src/components/Descriptions/Descriptions.tsx:33` — `columns={2|3}` never collapses → responsive
+   `gridTemplateColumns: { xs:'1fr', sm: repeat(...) }`.
+4. `src/components/SpotlightTour/SpotlightTour.tsx:52` — `width:300` → `maxWidth:'calc(100vw - 32px)'`.
+5. Adopt a house convention (responsive `sx` objects / `useMediaQuery` helper) + add mobile-viewport
+   stories so Chromatic catches narrow regressions.
+
+**Figma fixes:** `Tabs` (page 39:3) built absolute → make auto-layout; the 7 `Pattern /` frames are
+fixed-width demos → make FILL-based; decide if the `Breakpoint` tokens stay reference-only.
+
+## Optional loose ends
+- Add "illustration · code-rendered" caption to the standalone chart pages (Bar/Area/Donut/Radar).
+- `WorkCards` + `SpotlightTour`: confirm whether they need their own Figma components.
+
 ## Immediate next steps
 All 16 composites + 7 patterns + 8 Group-B + 3 chart-chrome are DONE. Remaining optional/open items:
 1. Re-point the story `parameters.design` node-ids to the new component nodes (optional).
@@ -140,11 +165,12 @@ All 16 composites + 7 patterns + 8 Group-B + 3 chart-chrome are DONE. Remaining 
 4. Push the 3 local code branches when ready (currently held — see below). No code was
    changed this session; the token fixes were Figma-only (code already renders correctly).
 
-## Local code branches (NOT pushed — holding all pushes per Catherine)
+## Code branches (all PUSHED to origin 2026-07-20; NOT merged — user wants ONE large PR after responsiveness)
+- `a11y/tag-infotext-contrast` — Tag/Infotext AA text-contrast fix (mirrors Figma `on-tint`).
+- `feat/pattern-live-examples` — 7 runnable pattern example components under `stories/Patterns/examples/` + neutralized MDX.
 - `chore/token-linting` — stylelint token-enforcement rule + `.github/workflows/lint.yml`.
-- `a11y/tag-infotext-contrast` — Tag/Infotext AA text-contrast fix in code (mirrors Figma `on-tint`).
-- `feat/pattern-live-examples` — the 7 runnable pattern example components under
-  `stories/Patterns/examples/` + neutralized copy (built earlier this effort).
+- `docs/figma-rebuild` — this re-entry doc.
+`main` is untouched. Do NOT open PRs — the user rolls all branches (+ responsiveness) into one PR later.
 
 ## Notes
 - Storybook dev server may still be running on :6006 (used for 1:1 comparison).
