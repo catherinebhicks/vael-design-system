@@ -134,7 +134,7 @@ const THEMES: Theme[] = [
     cards: [
       {
         rule: "Metric → color mappings are permanent",
-        why: "CPU is blue, memory is teal — and once assigned they never change, because changing one breaks visual recognition across every historical chart and report. In a data system, stability of meaning beats flexibility.",
+        why: "CPU is blue, memory is red — and once assigned they never change, because changing one breaks visual recognition across every historical chart and report. In a data system, stability of meaning beats flexibility.",
       },
       {
         rule: "The reasons live in writing",

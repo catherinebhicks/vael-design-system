@@ -302,6 +302,8 @@ export default function Home() {
                   <span className="count" data-to="27">0</span>
                   <span className="ar">→</span>
                   <span className="count" data-to="44">0</span>
+                  <span className="ar">→</span>
+                  <span className="count" data-to="103">0</span>
                 </div>
                 <div className="l">components</div>
               </div>
@@ -387,7 +389,7 @@ export default function Home() {
           <div className="secbody reveal">
             <p className="statement">
               A production design system, built with AI in a six-week cycle — then carried forward solo,
-              expanded to 44 components, and <span className="sig">rebuilt in the open.</span>
+              expanded to 103 components, and <span className="sig">rebuilt in the open.</span>
             </p>
             <p className="closer">
               This isn&rsquo;t a story about AI replacing design work. It&rsquo;s the opposite. AI took

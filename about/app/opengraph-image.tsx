@@ -49,7 +49,7 @@ export default async function Image() {
           A design system, built with AI in the loop.
         </div>
         <div style={{ display: "flex", fontSize: 22, color: "#5a6b82", marginTop: 44, letterSpacing: "1px" }}>
-          27 → 44 components · 80+ doc pages · one designer
+          27 → 44 → 103 components · 80+ doc pages · one designer
         </div>
       </div>
     ),

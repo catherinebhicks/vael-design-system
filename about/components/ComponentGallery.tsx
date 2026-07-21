@@ -8,7 +8,7 @@ import HighchartsReact from "highcharts-react-official";
  * Interactive component gallery for beat 7.
  * Click a chip → the live component reveals below. Charts use real
  * Highcharts (the library Vael ships); the rest are faithful, interactive
- * demos built on Vael's tokens. Full 44-component library lives in Storybook.
+ * demos built on Vael's tokens. Full ~103-component library lives in Storybook.
  * ------------------------------------------------------------------ */
 
 const V = {
@@ -185,7 +185,7 @@ function AreaChart() {
     xAxis: { ...chartBase.xAxis, categories: ["Wk 1", "Wk 2", "Wk 3", "Wk 4", "Wk 5", "Wk 6"] },
     plotOptions: { areaspline: { fillOpacity: 0.18, marker: { enabled: false } } },
     series: [
-      { type: "areaspline", name: "Components", data: [4, 9, 15, 22, 34, 44], color: V.blue },
+      { type: "areaspline", name: "Components", data: [4, 12, 27, 44, 72, 103], color: V.blue },
       { type: "areaspline", name: "Doc pages", data: [6, 20, 38, 55, 70, 80], color: V.blueLight },
     ],
   };
@@ -212,7 +212,7 @@ function ColumnChart() {
     chart: { ...chartBase.chart, type: "column" },
     xAxis: { ...chartBase.xAxis, categories: ["Core", "Form", "Data-viz", "Nav", "Feedback"] },
     plotOptions: { column: { borderRadius: 4, borderWidth: 0 } },
-    series: [{ type: "column", name: "Components", data: [14, 8, 8, 6, 8], color: V.blue }],
+    series: [{ type: "column", name: "Components", data: [34, 20, 18, 14, 17], color: V.blue }],
   };
   return <div className="gchart"><HighchartsReact highcharts={Highcharts} options={options} /></div>;
 }
@@ -237,7 +237,7 @@ const TextField = () => (
 const StatCardD = () => (
   <div className="d-statcard">
     <div className="d-statlabel">Components</div>
-    <div className="d-statnum">44 <span className="d-trend">▲ 17</span></div>
+    <div className="d-statnum">103 <span className="d-trend">▲ 76</span></div>
     <div className="d-statsub">since the startup build</div>
   </div>
 );
@@ -278,7 +278,7 @@ const Stepper = () => (
 );
 const Timeline = () => (
   <div className="d-timeline">
-    {[["Wk 1", "Token foundation"], ["Wk 3", "27 components"], ["Wk 6", "Docs generator + handoff"], ["Later", "Rebuilt → 44, in the open"]].map(([w, t]) => (
+    {[["Wk 1", "Token foundation"], ["Wk 3", "27 components"], ["Wk 6", "Docs generator + handoff"], ["Later", "Rebuilt → 103, in the open"]].map(([w, t]) => (
       <div key={w} className="d-tlrow"><span className="d-tldot" /><div><b>{w}</b><span>{t}</span></div></div>
     ))}
   </div>
