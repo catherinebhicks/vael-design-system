@@ -24,7 +24,9 @@ type Story = StoryObj<typeof Slider>;
 
 export const Default: Story = { args: { defaultValue: 30 } };
 export const Range: Story = {
-  args: { defaultValue: [20, 60], getAriaLabel: (i: number) => (i === 0 ? 'Minimum' : 'Maximum') },
+  // A range slider names each thumb via getAriaLabel; clear the meta-level root
+  // `aria-label` so MUI doesn't warn about aria-label on a range slider.
+  args: { 'aria-label': undefined, defaultValue: [20, 60], getAriaLabel: (i: number) => (i === 0 ? 'Minimum' : 'Maximum') },
 };
 export const Disabled: Story = { args: { defaultValue: 30, disabled: true } };
 export const WithMarks: Story = { args: { defaultValue: 30, marks: true, step: 10 } };

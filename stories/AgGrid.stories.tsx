@@ -69,7 +69,7 @@ export const WithRowSelection: Story = {
         rowData={rowData}
         columnDefs={columnDefs}
         getRowId={(p) => p.data.id as string}
-        rowSelection="multiple"
+        rowSelection={{ mode: 'multiRow' }}
         height={400}
       />
     </>

@@ -26,54 +26,70 @@ export default meta;
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
 
+// MUI X charts default to a responsive (fill-parent) width. In the centered
+// story canvas the parent hugs its content, so an unwrapped chart collapses to
+// ~0 width. Give each a defined width that still shrinks below the viewport
+// (maxWidth:100%) so it renders at every breakpoint.
+const ChartBox = ({ children }: { children: React.ReactNode }) => (
+  <Box sx={{ width: 520, maxWidth: '100%' }}>{children}</Box>
+);
+
 export const Line: StoryObj = {
   render: () => (
-    <LineChart
-      height={260}
-      xAxis={[{ data: months, scaleType: 'point' }]}
-      series={[{ data: [4, 6, 5, 8, 7, 9], area: true }]}
-    />
+    <ChartBox>
+      <LineChart
+        height={260}
+        xAxis={[{ data: months, scaleType: 'point' }]}
+        series={[{ data: [4, 6, 5, 8, 7, 9], area: true }]}
+      />
+    </ChartBox>
   ),
 };
 
 export const Bar: StoryObj = {
   render: () => (
-    <BarChart
-      height={260}
-      xAxis={[{ data: months, scaleType: 'band' }]}
-      series={[{ data: [5, 7, 6, 9, 8, 11] }]}
-    />
+    <ChartBox>
+      <BarChart
+        height={260}
+        xAxis={[{ data: months, scaleType: 'band' }]}
+        series={[{ data: [5, 7, 6, 9, 8, 11] }]}
+      />
+    </ChartBox>
   ),
 };
 
 export const Pie: StoryObj = {
   render: () => (
-    <PieChart
-      height={260}
-      series={[
-        {
-          data: [
-            { id: 0, value: 45, label: 'Design' },
-            { id: 1, value: 30, label: 'Research' },
-            { id: 2, value: 25, label: 'Systems' },
-          ],
-          innerRadius: 48,
-        },
-      ]}
-    />
+    <ChartBox>
+      <PieChart
+        height={260}
+        series={[
+          {
+            data: [
+              { id: 0, value: 45, label: 'Design' },
+              { id: 1, value: 30, label: 'Research' },
+              { id: 2, value: 25, label: 'Systems' },
+            ],
+            innerRadius: 48,
+          },
+        ]}
+      />
+    </ChartBox>
   ),
 };
 
 export const Scatter: StoryObj = {
   render: () => (
-    <ScatterChart
-      height={260}
-      series={[
-        {
-          data: Array.from({ length: 20 }, (_, i) => ({ x: i, y: (i % 5) + Math.round(Math.abs(Math.sin(i)) * 6), id: i })),
-        },
-      ]}
-    />
+    <ChartBox>
+      <ScatterChart
+        height={260}
+        series={[
+          {
+            data: Array.from({ length: 20 }, (_, i) => ({ x: i, y: (i % 5) + Math.round(Math.abs(Math.sin(i)) * 6), id: i })),
+          },
+        ]}
+      />
+    </ChartBox>
   ),
 };
 

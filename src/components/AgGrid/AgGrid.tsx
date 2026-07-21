@@ -34,6 +34,9 @@ function buildAgVars(t: Theme): React.CSSProperties {
   } as React.CSSProperties;
 }
 
+// Module registration is process-wide in AG Grid; guard so we only do it once.
+let agModulesRegistered = false;
+
 export interface AgGridProps extends AgGridReactProps {
   /** AG Grid Enterprise license key. Must be set before enterprise features are used. */
   licenseKey?: string;
@@ -65,7 +68,23 @@ export function AgGrid({ licenseKey, className, style, height = 600, ...gridProp
   // Lazily resolve AgGridReact so this file compiles even without ag-grid-react installed.
   const [AgGridReact, setAgGridReact] = React.useState<React.ComponentType<AgGridReactProps> | null>(null);
   React.useEffect(() => {
-    import('ag-grid-react').then((mod) => setAgGridReact(() => mod.AgGridReact)).catch(() => null);
+    // AG Grid v33+ requires modules to be registered before any grid renders,
+    // else it throws error #272 and renders nothing. Register all Community
+    // features once (guarded), alongside the lazy react import so ag-grid stays
+    // out of the bundle until the grid is actually used.
+    Promise.all([import('ag-grid-react'), import('ag-grid-community')])
+      .then(([reactMod, communityMod]) => {
+        const { ModuleRegistry, AllCommunityModule } = communityMod as unknown as {
+          ModuleRegistry: { registerModules: (m: unknown[]) => void };
+          AllCommunityModule: unknown;
+        };
+        if (!agModulesRegistered) {
+          ModuleRegistry.registerModules([AllCommunityModule]);
+          agModulesRegistered = true;
+        }
+        setAgGridReact(() => reactMod.AgGridReact);
+      })
+      .catch(() => null);
   }, []);
 
   // Reserve the themed container while the grid module resolves, so the grid
