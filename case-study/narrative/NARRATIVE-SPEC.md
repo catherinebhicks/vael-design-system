@@ -88,6 +88,16 @@ thesis lives in phase 1; the range/initiative story lives in phase 2.
 | Backlog-as-governance | Even the backlog is run this way — the live 3-tracker reconciliation + implementation-ready epics + agent orchestration (piece 2) |
 | Honesty framing | Lead with what's enforced today (WCAG statement, `consuming-vael`, Guidelines, token format, decision records); frame CI/lint/contribution-template items as **scoped tickets** — never claim a dimension is automated when it isn't |
 
+### Receipts + voice pass (2026-07-21)
+
+| Topic | Decision |
+|---|---|
+| Real transcript receipts | Weave verbatim quotes from the actual Vael-build sessions into the prose to turn asserted claims into **evidence**. Source = `source-transcript-excerpts.md` (never the cross-project file, which feeds *other* case studies). Sparingly — a couple land harder than a wall; **no invented quotes**. |
+| Typo handling | **Light-touch clean:** fix jarring typos (Bot5om→Bottom, accordian→accordion, systme→system) but keep the casual voice (lowercase, missing apostrophes) — the imperfection is the authenticity. No `[sic]`. |
+| The five receipts | (1) *piece 03* — the single-typeface rule shown being born mid-build (the "make all fonts the same… keep the overall weight" note); (2) *piece 02* verification — the "reported done but wasn't" accordion-font moment; (3) *piece 02* accessibility — cut-an-inaccessible-component-instead ("does it make sense just to remove those…"); (4) *deep-dive* verification learning — the scan-missed overlap ("logo wall is broken .. they overlap each other"); (5) *deep-dive* design↔code beat — "done" defined as parity ("keep going until the figma file and the design system code have parity"). |
+| Cuts stay lean | Receipts go in the **depth surfaces** (deep-dive + pieces) only. `medium.md` / `short.md` are cuts — no new receipts, kept tight. |
+| "Junior" analogy — **removed entirely** | Claude is an **AI tool, not a junior**; the comparison is degrading to the real juniors Catherine works with. Struck from **all** cuts — `deep-dive`, `medium`, `short`, and `landing/copy-deck` — not just softened. Keep the point that lands ("only as good as the specs I set; the bottleneck was my judgment, not its speed"). The established **"pair / collaborator"** framing stays; only the junior/human comparison is out. Archival `_original-backup/` and `source-transcript-excerpts.md` (which records the instruction itself) left intact. |
+
 ## Fact-correction reference
 
 | Old draft | Corrected |
