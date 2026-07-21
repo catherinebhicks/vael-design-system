@@ -56,7 +56,7 @@ export function GaugeStat({
 
   return (
     <Box sx={{ position: 'relative', width: size, height, display: 'inline-block' }}>
-      <svg width={size} height={variant === 'semi' ? size : size} viewBox={`0 0 ${size} ${size}`}>
+      <svg width={size} height={height} viewBox={`0 0 ${size} ${height}`}>
         <g transform={`rotate(${rotate} ${cx} ${cy})`}>
           <circle
             cx={cx}
@@ -83,7 +83,11 @@ export function GaugeStat({
       <Box
         sx={{
           position: 'absolute',
-          inset: 0,
+          left: 0,
+          right: 0,
+          // full: fill the box and center. semi: anchor to the bottom (top auto)
+          // so the value/label nestle in the arc's bowl instead of over the curve.
+          // (Using `inset:0` here forced top:0 and broke the semi placement.)
           top: variant === 'semi' ? undefined : 0,
           bottom: variant === 'semi' ? thickness : 0,
           display: 'flex',
