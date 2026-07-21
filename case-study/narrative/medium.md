@@ -28,7 +28,7 @@ Not in generating a button — anyone can do that. It compounded as I aimed it h
 
 ## The part only I could do
 
-"AI built my design system" is easy to misread as "AI made the decisions." It didn't. Everything above was throughput; the decisions were the job, and they got *more* visible the less time I spent typing. I owned the taste (which three blues become one). I owned accessibility — I audited every component by hand against WCAG, then ran the Storybook a11y addon as a second pass, which caught smaller things I'd missed and I fixed them. I owned governance (how a component gets proposed, versioned, deprecated) and the *why* (I wrote the decision record myself, into the pitches). Claude was the most capable junior I've worked with — and like any junior, only as good as my specs. The bottleneck was never its speed. It was my judgment, which is exactly where a designer's time should go.
+"AI built my design system" is easy to misread as "AI made the decisions." It didn't. Everything above was throughput; the decisions were the job, and they got *more* visible the less time I spent typing. I owned the taste (which three blues become one). I owned accessibility — I audited every component by hand against WCAG, then ran the Storybook a11y addon as a second pass, which caught smaller things I'd missed and I fixed them. I owned governance (how a component gets proposed, versioned, deprecated) and the *why* (I wrote the decision record myself, into the pitches). Claude was a fast, tireless collaborator with perfect recall — and only as good as the specs I set. The bottleneck was never its speed. It was my judgment, which is exactly where a designer's time should go.
 
 ## And then it was shelved
 

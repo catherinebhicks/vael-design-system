@@ -37,7 +37,7 @@ That's the moment "AI as build method" clicked. Each rung of the ladder — toke
 - **Governance** — how a component gets proposed, reviewed, versioned, deprecated. A system without governance rots.
 - **The "why"** — I wrote the decision record myself, into the pitches, because the reasons are what the next team needs most.
 
-The honest model: Claude was the most capable junior collaborator I've worked with — fast, tireless, with perfect recall of the conventions I set. And like any junior, only as good as my specs. The bottleneck was never its throughput. It was my judgment — which is exactly where a designer's time should go.
+The honest model: Claude was a fast, tireless collaborator with perfect recall of the conventions I set — and only ever as good as the specs I gave it. The bottleneck was never its throughput. It was my judgment — which is exactly where a designer's time should go.
 
 ## And then it was shelved
 

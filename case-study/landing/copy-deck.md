@@ -43,7 +43,7 @@ All that throughput only mattered because the decisions stayed mine — and the 
 - **Governance** — how a component gets proposed, reviewed, versioned, retired. A system without governance rots.
 - **The "why"** — I wrote the decision record myself, into the pitches, because the reasons are what the next person actually needs.
 
-Claude was the fastest junior I've ever worked with — and like any junior, only as good as the standards I set. The bottleneck was never its speed. It was my judgment. Which is exactly where a designer's time should go.
+Claude was fast and tireless — and only as good as the standards I set. The bottleneck was never its speed. It was my judgment. Which is exactly where a designer's time should go.
 
 ## 6 — AND THEN IT WAS SHELVED  ·  "Ready to build, then gone"
 I took it all the way to a handoff: the system built, plus **17 Shape Up pitches and 145 tickets** scoping the rollout for the engineering team. Everything ready for the cycle that would put it into the product.

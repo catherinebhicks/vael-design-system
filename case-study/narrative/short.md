@@ -10,7 +10,7 @@ What it had was me. One designer, no five-person pod, one six-week cycle. So I b
 
 **Not in making a button.** It compounded as I aimed it higher: first the tokens held the system together, then the theme *generated itself* from them (Figma → Supernova → the theme the product used, no hex code ever retyped), then the docs wrote themselves from a build script Claude and I built. The leverage was never AI writing a component. It was AI building the machine that documents every component — and freeing me to spend my time on the only thing that needed me.
 
-**Which was judgment.** "Built with AI" is easy to misread as "AI decided." It didn't. I owned the taste, the accessibility (I audited every component by hand, then let the Storybook a11y addon catch what I'd missed), the governance, and the *why.* Claude was the fastest junior I've worked with — and like any junior, only as good as the specs I set. The bottleneck was never its speed. It was my judgment, which is where a designer's time should go.
+**Which was judgment.** "Built with AI" is easy to misread as "AI decided." It didn't. I owned the taste, the accessibility (I audited every component by hand, then let the Storybook a11y addon catch what I'd missed), the governance, and the *why.* Claude was fast and tireless — and only as good as the specs I set. The bottleneck was never its speed. It was my judgment, which is where a designer's time should go.
 
 **Then it was shelved.** I took it all the way to a handoff — the system built, the rollout scoped into 17 Shape Up pitches and 145 tickets, ready for an engineering cycle. Then priorities shifted, and it was shelved before that cycle ran. This is where most of these stories quietly end. I couldn't accept that.
 
