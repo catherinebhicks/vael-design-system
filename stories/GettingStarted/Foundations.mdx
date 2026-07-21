@@ -18,6 +18,10 @@ IBM Plex Mono headings + labels/data, IBM Plex Sans body + buttons — the same 
 
 8px base, scale 1–8. Values beyond 64px are layout-level, not spacing. → [Spacing](?path=/docs/foundations-spacing--docs)
 
+## Breakpoints
+
+MUI's standard breakpoints (`sm` 600, `md` 900, `lg` 1200, `xl` 1536). Components are mobile-safe to `xs`; the house convention is responsive `sx` t-shirt sizing, and the Storybook viewport switcher (xs–xl) maps 1:1 to these. → [Breakpoints](?path=/docs/foundations-breakpoints--docs)
+
 ## Elevation
 
 24 levels, each a three-layer shadow (umbra, penumbra, ambient). → [Elevation](?path=/docs/foundations-elevation--docs)
@@ -25,6 +29,14 @@ IBM Plex Mono headings + labels/data, IBM Plex Sans body + buttons — the same 
 ## Iconography
 
 FontAwesome — Regular and Solid ship (Light with a Pro license). Never `@mui/icons-material`. → [Iconography](?path=/docs/foundations-iconography--docs)
+
+## Dark Mode
+
+A stable `darkTheme` export that mirrors the light theme token-for-token. Toggle it in Storybook with the sun/moon switch; components and charts adapt automatically. → [Dark Mode](?path=/docs/foundations-dark-mode--docs)
+
+## Chart Layer
+
+Three tiers: Standard (@mui/x-charts, the default), Advanced (Highcharts — SPC, multi-axis, gauge, large-data, export), and Micro (zero-dependency inline SVG). → [Chart Layer](?path=/docs/foundations-chart-layer--docs)
 
 ## Data viz
 

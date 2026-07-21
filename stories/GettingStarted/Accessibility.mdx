@@ -24,7 +24,7 @@ Vael **aims to conform to WCAG 2.1 Level AA**. This is the current state of the 
 
 ## WCAG 2.1 AA
 
-MUI components inherit MUI's built-in WCAG 2.1 AA accessibility. Custom components outside MUI — SideNav, Highcharts, AG Grid, React Flow, and dnd-kit — require independent audit.
+MUI components inherit MUI's built-in WCAG 2.1 AA accessibility. Custom components outside MUI — SidePanel, NotificationCenter, Highcharts, AG Grid, React Flow, and dnd-kit — require independent audit.
 
 ### ADR 011 · WCAG 2.1 Level AA Compliance Target
 
@@ -39,6 +39,8 @@ Charts in PDF run reports: PNG image + descriptive alt text + data table.
 `@react-pdf/renderer` cannot produce PDF/UA-1 certified output. Until a regulated customer requires it, each chart in a PDF export is paired with a data summary table so screen reader users get the information.
 
 ## Audit status at a glance
+
+The roster is 104 components. The categories below are the audit-first tranches — the MUI-backed core plus the custom and third-party surfaces that carry the most a11y risk.
 
 - Inputs (14) — all 🔵 MUI Baseline · Q2 2026 audit scheduled
 - Data Display (9) — all 🔵 MUI Baseline · Q3 2026 audit
@@ -98,7 +100,7 @@ The first pass (Q2 2026 – Q1 2027) covers all base MUI components and custom t
 | --- | --- | --- |
 | macOS | Safari + VoiceOver · Chrome + VoiceOver | Primary target — matches primary user workstations |
 | Windows | Firefox + NVDA · Edge + Narrator | Secondary target — primarily QA |
-| iOS / Android | Safari + VoiceOver · Chrome + TalkBack | Not a primary target; spot-checked on responsive components |
+| iOS / Android | Safari + VoiceOver · Chrome + TalkBack | Not a primary target, but components are mobile-safe to `xs`; spot-checked at the xs and sm viewports (Storybook viewport switcher) alongside the responsive pass |
 
 ### When AA can't be reached
 
@@ -106,7 +108,7 @@ Third-party components (AG Grid keyboard gaps, React Flow canvas keyboard model)
 
 ## Component audit status matrix
 
-52-component audit status — all categories.
+104-component audit status — all categories across the full roster.
 
 Every component in the library is tracked below. All MUI core components are currently at 🔵 MUI Baseline — not independently audited; inheriting MUI's accessibility implementation. Internal and third-party components are ⏳ Pending independent audit. Last reviewed: April 2026.
 
@@ -209,24 +211,27 @@ These components wrap MUI primitives and inherit most MUI accessibility behavior
 
 | Component | Status | Key notes |
 | --- | --- | --- |
-| SearchField | ⏳ Pending | Clear button needs `aria-label="Clear search"` and must not trap focus |
-| StatusChip | ⏳ Pending | 9 custom colors × background combinations need contrast check |
-| ListTable | ⏳ Pending | Selected-column highlight must not rely on color alone |
+| StatusBadge | ⏳ Pending | Semantic colors × background combinations need contrast check; status must be conveyed by text/icon, not color alone |
+| Tag | ⏳ Pending | Display-only, semantic color mapping; must not be announced as interactive; color reinforced with text |
+| Descriptions | ⏳ Pending | Label-value pairs must expose a real term/definition relationship (`<dl>`/`<dt>`/`<dd>` or equivalent) |
+| CommandBar | ⏳ Pending | Icon+label controls need `aria-label`; overflow menu must be keyboard reachable and `aria-expanded` toggled |
+| SplitButton | ⏳ Pending | Primary action + dropdown trigger are two focus stops; menu trigger needs `aria-haspopup` / `aria-expanded` |
 | UncontrolledMenu | ⏳ Pending | Focus must return to trigger on close; `aria-expanded` toggled on trigger |
-| ModalProvider / useModal | ⏳ Pending | Custom content via `show()` must be self-contained with its own focus management |
 | useConfirmationDialog | ⏳ Pending | `confirmLabel` / `rejectLabel` must be descriptive; `enableAutoFocus` should be true on destructive actions |
-| ExternalTopNav | ⏳ Pending | Login button must have visible focus state; BrandLogo link needs descriptive text |
-| BrandLogo | ⏳ Pending | Verify: link announced as "Vael Logo, link, home page" by screen readers |
+| SidePanel | ⏳ Pending | Persistent split-view aside (not a Drawer); needs a landmark/label, and focus management when opened over content |
 
-### Internal components — custom / no MUI baseline (5) highest priority
+### Internal components — custom / no MUI baseline (6) highest priority
+
+These are the monitoring-domain components with no MUI baseline to inherit — the highest-risk surfaces for the audit.
 
 | Component | Status | Key notes |
 | --- | --- | --- |
-| TypographyInput | ⏳ Pending | High risk. At rest renders as Typography — screen readers will not announce as editable. Needs `role="button"`, `aria-label="Edit [field name]"`, live region for edit mode entry/exit |
-| ListTableV2 | ⏳ Pending | High risk. Sortable headers (`aria-sort`), row checkboxes, select-all (`aria-checked="mixed"`), Skeleton rows (`aria-busy`) |
-| LoadingContainer | ⏳ Pending | Container should have `aria-live="polite"` or `aria-busy="true"` |
-| LoadingPage | ⏳ Pending | Page should reflect loading state; focus to first meaningful element on load complete |
-| ErrorPage | ⏳ Pending | Error heading should receive focus on mount; page must reflect error (e.g. "404 — Page Not Found") |
+| InlineEdit | ⏳ Pending | High risk. At rest renders as static text — screen readers will not announce as editable. Needs `role="button"`, `aria-label="Edit [field name]"`, live region for edit mode entry/exit |
+| LiveValue | ⏳ Pending | High risk. Value updates in place; needs `aria-live="polite"` so the current reading + unit is announced without stealing focus |
+| StaleDataIndicator | ⏳ Pending | Grayed-out state must not rely on color alone; stale status needs a text/`aria-label` cue |
+| AlarmBadge | ⏳ Pending | Escalation (info → warning → critical) must be conveyed by text/icon + color; critical changes announced via a live region |
+| NotificationCenter | ⏳ Pending | Bell trigger needs `aria-expanded` + unread count via `aria-label`; event feed is a keyboard-navigable list; new events announced politely |
+| Callout | ⏳ Pending | Bordered info/warning block; needs `role="note"`/`role="status"` as appropriate and must not encode severity by color alone |
 
 ### Third-party wrappers (3) library a11y applies, needs verification
 

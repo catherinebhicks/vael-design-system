@@ -4,7 +4,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Engineering setup
 
-Guidance for building with the design system on MUI v7, Next.js, and TypeScript.
+Guidance for building with the design system on MUI v7 and TypeScript. The library itself builds with **Vite** (`tsc && vite build`); Next.js only enters the picture on the consumer side, when an app that imports Vael happens to be a Next.js app.
 
 ## Styling: sx vs styled()
 
@@ -20,3 +20,9 @@ Guidance for building with the design system on MUI v7, Next.js, and TypeScript.
 - Inside a component, use `useTheme()`.
 - Inside `sx`, use the callback form: `sx={(t) => ({ color: t.palette.primary.main })}`.
 - Never hardcode values.
+
+## Responsive styling
+
+- **T-shirt `sx` values.** Express responsive dimensions as a breakpoint object rather than a single value — e.g. `sx={{ width: { xs: '100%', sm: 380 } }}` (full-width on mobile, a fixed size from `sm` up). MUI resolves each key against the theme breakpoints.
+- **`layout: 'padded'` for wide demos.** Stories that show wide, data-dense components should set `parameters={{ layout: 'padded' }}` so the demo breathes instead of butting against the canvas edge.
+- **Viewport toolbar.** Storybook's viewport toggle maps 1:1 to the MUI breakpoints — `xs` 375, `sm` 700, `md` 1024, `lg` 1280, `xl` 1600 — so switching viewports exercises exactly the breakpoints your `sx` objects key off. Chromatic can snapshot several of these viewports for one story.

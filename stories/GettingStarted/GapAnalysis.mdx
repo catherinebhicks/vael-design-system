@@ -27,19 +27,19 @@ Components present in benchmarked systems not currently covered by Vael (MUI + M
 | Component | Priority | Who has it | Notes |
 | --- | --- | --- | --- |
 | Number input / spinner | High | Carbon, Fluent 2 | ✅ **Shipped** as `InputNumber` — stepper + min/max/step |
-| Status indicator / traffic light | High | All 6 systems | Job states, server health, alarm states — dot + label + semantic color |
-| Structured list / definition list | High | Carbon, Atlassian | Label-value pairs, read-only. Metadata panels, job summaries, project details. |
+| Status indicator / traffic light | High | All 6 systems | ✅ **Shipped** as `StatusBadge` / `AlarmBadge` — dot + label + semantic color for job states, server health, alarm states |
+| Structured list / definition list | High | Carbon, Atlassian | ✅ **Shipped** as `Descriptions` — read-only label-value pairs for metadata panels, job summaries, project details |
 | Stat / KPI tile | High | Carbon, Atlassian, Polaris | ✅ **Shipped** as `StatCard` — metric + `TrendBadge` + inline sparkline |
-| Tag (distinct from Chip) | High | Atlassian, Polaris, Carbon | Read-only, semantic color mapping. Chip implies interactivity; Tag is display-only. |
-| Notification center | High | Carbon, Fluent 2 | Bell icon opening an event feed panel. Core software surface for alarm log and system events. |
-| Inline edit | High | Carbon, Atlassian | Click-to-edit in place, no Dialog required. Project config parameter tweaking. |
+| Tag (distinct from Chip) | High | Atlassian, Polaris, Carbon | ✅ **Shipped** as `Tag` — read-only, semantic color mapping (Chip implies interactivity; Tag is display-only) |
+| Notification center | High | Carbon, Fluent 2 | ✅ **Shipped** as `NotificationCenter` — bell icon opening an event feed panel for alarm log and system events |
+| Inline edit | High | Carbon, Atlassian | ✅ **Shipped** as `InlineEdit` — click-to-edit in place, no Dialog required |
 | Date/time range picker (unified start+end) | High | Carbon, Fluent 2 | Job windows and metric query ranges need a unified range picker. MUI X has two separate pickers only. |
-| Side panel / detail panel | High | Carbon, Fluent 2 | Persistent split-view aside, not a Drawer. Job detail alongside table is a pervasive UI pattern. |
-| Code block / syntax highlight | Medium | Carbon, Atlassian | API keys, config snippets, log output |
+| Side panel / detail panel | High | Carbon, Fluent 2 | ✅ **Shipped** as `SidePanel` — persistent split-view aside (not a Drawer) for job detail alongside a table |
+| Code block / syntax highlight | Medium | Carbon, Atlassian | ✅ **Shipped** as `CodeBlock` — API keys, config snippets, log output |
 | File uploader / dropzone | Medium | Carbon, Polaris, Atlassian | ✅ **Shipped** as `FileUpload` — drag-drop dropzone + file list |
-| Split button | Medium | Carbon, Fluent 2, Atlassian | Primary action + dropdown trigger as one unit. Useful for "Start job" with sub-variants. |
-| Command bar / toolbar | Medium | Fluent 2, Carbon | Icon+label strip with overflow. Data grid toolbars, chart controls. |
-| Callout / inline panel | Medium | Atlassian, Polaris, Carbon | Bordered info/warning block, not a toast. Config warnings, project notes. |
+| Split button | Medium | Carbon, Fluent 2, Atlassian | ✅ **Shipped** as `SplitButton` — primary action + dropdown trigger as one unit |
+| Command bar / toolbar | Medium | Fluent 2, Carbon | ✅ **Shipped** as `CommandBar` — icon+label strip with overflow for grid toolbars, chart controls |
+| Callout / inline panel | Medium | Atlassian, Polaris, Carbon | ✅ **Shipped** as `Callout` — bordered info/warning block (not a toast) for config warnings, project notes |
 | Overflow menu | Medium | Atlassian, Polaris, Carbon | ✅ **Shipped** as `UncontrolledMenu` — icon button revealing contextual actions; see the [Row Menu](?path=/docs/patterns-row-menu--docs) pattern |
 
 ## Pattern gaps
@@ -83,9 +83,9 @@ Components present in benchmarked systems not currently covered by Vael (MUI + M
 
 1. Border/stroke tokens + density tokens
 2. Number input / spinner component ✅ shipped (`InputNumber`)
-3. Status indicator component
-4. Structured list / definition list component
-5. Tag component (distinct from Chip)
+3. Status indicator component ✅ shipped (`StatusBadge` / `AlarmBadge`)
+4. Structured list / definition list component ✅ shipped (`Descriptions`)
+5. Tag component (distinct from Chip) ✅ shipped (`Tag`)
 6. Filtering pattern + bulk action pattern
 7. Per-component a11y documentation
 8. Data formatting guide
@@ -94,8 +94,8 @@ Components present in benchmarked systems not currently covered by Vael (MUI + M
 ### Do next
 
 1. Focus ring tokens + reduced-motion token
-2. Inline edit component
-3. Notification center component
+2. Inline edit component ✅ shipped (`InlineEdit`)
+3. Notification center component ✅ shipped (`NotificationCenter`)
 4. Unified date/time range picker
 5. Stat / KPI tile component ✅ shipped (`StatCard`)
 6. Dashboard layout pattern ✅ shipped (Patterns/Dashboard)
@@ -105,35 +105,34 @@ Components present in benchmarked systems not currently covered by Vael (MUI + M
 
 ## Real-time / streaming data display pattern
 
-None of the six benchmarked systems have a formalized pattern for live-updating metric values, stale data indicators, or alarm escalation states. This is entirely domain-specific to monitoring and operations software — and the highest-leverage area for Vael to define something that no other design system has.
+None of the six benchmarked systems have a formalized pattern for live-updating metric values, stale data indicators, or alarm escalation states. This is entirely domain-specific to monitoring and operations software — and the highest-leverage area for Vael to define something that no other design system has. The core building blocks have **shipped** — marked ✅ below.
 
-### What this pattern library could include
+### What this pattern library includes
 
-- **Live value component** — current reading + unit + freshness indicator
-- **Stale data indicator** — value grayed out when the metric feed drops
-- **Alarm state escalation** — info → warning → critical with visual + audio cues
-- **Telemetry sparkline** — inline mini-chart for trend-at-a-glance
-- **Metric card** — threshold vs. actual, deviation indicator
+- **Live value component** — current reading + unit + freshness indicator ✅ **Shipped** as `LiveValue`
+- **Stale data indicator** — value grayed out when the metric feed drops ✅ **Shipped** as `StaleDataIndicator`
+- **Alarm state escalation** — info → warning → critical with visual + audio cues ✅ **Shipped** as `AlarmBadge`
+- **Telemetry sparkline** — inline mini-chart for trend-at-a-glance ✅ **Shipped** as `Sparkline`
+- **Metric card** — threshold vs. actual, deviation indicator ✅ **Shipped** as `StatCard` / `MeterRow`
 - **Event timeline** — system events overlaid on metric data
 
 ## Marketing & website surfaces
 
 > **Scope note:** the benchmark above is scoped to internal operations software. This section
-> extends that scope to the **marketing/website** surfaces Vael must cover so the **A Focused Design
-> site** ([`afd-website`](https://github.com/catherinebhicks/afd-website), HubSpot build) can be
-> assembled entirely from Vael rather than one-off CSS. Governing rule: every AFD design decision
-> comes from Vael as-is, or is a gap listed here to complete **before** it's used on the site.
-> Audited against Vael 2026-07-13.
+> extends that scope to the **marketing/website** surfaces Vael must cover so a client marketing
+> site can be assembled entirely from Vael rather than one-off CSS. Governing rule: every marketing
+> design decision comes from Vael as-is, or is a gap listed here to complete **before** it's used on
+> the site. Audited against Vael 2026-07-13.
 
 | Surface | Priority | Status | Basis / what's needed |
 | --- | --- | --- | --- |
 | Case-study page layout | — | ✅ **Composable — no new component** | Assemble from `SlideSection` + `SectionHeading` + `PullQuote` + `StatCard` + `Card` + `BrowserFrame`. The repo's own `case-study/` proves the composition. |
-| Marketing hero (headline + CTA + visual) | High | ⚠️ **Variant needed** | `SlideSection` + `SectionHeading` give a full-height section scaffold but render no CTA button or hero visual. Add a hero variant with a CTA slot + media slot. |
-| Testimonial block (quote + attribution) | Medium | ⚠️ **Variant needed** | `PullQuote` is ~90% there (mono statement + accent rule + subtext). Add an attribution affordance (author · role · company · optional avatar). |
+| Marketing hero (headline + CTA + visual) | High | ✅ **Shipped** | `HeroBanner` — eyebrow, headline, subhead, action slot (CTA), and media slot. `CtaBar` covers the standalone call-to-action strip. |
+| Testimonial block (quote + attribution) | Medium | ✅ **Shipped** | `Testimonial` — statement + attribution (author · role · company · optional avatar), built on the `PullQuote` treatment. |
 | Pricing table / offer cards | High | ❌ **Gap** | No pricing component anywhere; only raw `Card`. Needs a tiered pricing/offer card set with feature rows + CTA. |
-| Client logo-strip / marquee | Medium | ❌ **Gap** | No multi-logo row exists (`BrandLogo` is a single product wordmark). Needs a responsive client-logo strip with alt-text-first markup (matters for AI-search proof-as-text). |
-| Marketing footer | High | ❌ **Gap** | Every `footer` in the system is a table/chart-card footer. Needs a site footer: nav columns, legal, social, newsletter slot. |
+| Client logo-strip / marquee | Medium | ✅ **Shipped** | `LogoWall` — responsive multi-logo row with alt-text-first markup (matters for AI-search proof-as-text). |
+| Marketing footer | High | ✅ **Shipped** | `Footer` — site footer with nav columns, legal, social, and a newsletter slot. |
 | Blog / article layout | Medium | ❌ **Gap** | No long-form content template (system is scoped to data-dense UI). Needs an article/blog reading layout (prose measure, headings, figure, pull-quote, TOC optional). |
-| `BrandLogo` component | Medium | ❌ **Gap (referenced, not built)** | Referenced in `AppBar` docs but absent from `src/components/`. Needs a real slot-based brand-logo component so any brand (incl. AFD's "@" mark + favicon, supplied by the AFD theme) can drop in. |
+| Brand mark / logo component | Medium | ❌ **Gap (referenced, not built)** | Referenced in `AppBar` docs but no dedicated brand-logo component in `src/components/`. `Footer` and `AppBar` take a `brand` slot (any node), but a standalone slot-based brand-mark component is still missing. |
 
-**Gates on the AFD side** (`afd-website` Epic H): hero + footer + logo-strip → **H15** (core pages); pricing/offer cards → **H16** (landing pages); blog/article → **H12** (blog); `BrandLogo` → **H3** (theme setup). Case-study layout is **not** a blocker (composable), so **H13/H14** can proceed on existing components.
+**Remaining marketing blockers:** pricing/offer cards, the blog/article layout, and a dedicated brand-mark component are the open gaps. Hero, footer, logo-strip, testimonial, and the case-study layout are all covered by existing components.

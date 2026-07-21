@@ -12,8 +12,10 @@ Virtualization is on by default. Don't disable it. Avoid `domLayout="autoHeight"
 
 ## Code splitting
 
-- Dialogs and Drawers — lazy-load with `next/dynamic`; their deps often dwarf the host page.
-- Charts — `HighchartsClient` is already dynamic; don't re-wrap it.
+This is consumer-side guidance — Vael itself builds with Vite, but the examples below use Next.js's `next/dynamic` because that's a common host. In a Vite app, substitute `React.lazy` + `Suspense`.
+
+- Dialogs and Drawers — lazy-load with `next/dynamic` (or `React.lazy`); their deps often dwarf the host page.
+- Charts — a Highcharts wrapper such as `HighchartsClient` should be loaded dynamically once; don't re-wrap an already-dynamic client.
 - Flow Editor (`FlowCanvas`) — always dynamic; React Flow adds ~200 KB.
 
 ## Fonts

@@ -40,8 +40,8 @@ Semantic tokens are grouped by role. Each token communicates intent, so componen
 | warning.main | #EF6C00 | Caution, pre-alert |
 | info.main | #0288D1 | Neutral info |
 | success.main | #2E7D32 | Positive, confirmation |
-| text.primary | rgba(0,0,0,0.87) — 87% | 13:1 contrast |
-| text.secondary | rgba(0,0,0,0.60) — 60% | 6:1 contrast |
+| text.primary | #141C28 | ~14:1 contrast |
+| text.secondary | #54637A | ~5:1 contrast |
 
 ### Chart metric mapping
 
@@ -49,12 +49,12 @@ Semantic tokens are grouped by role. Each token communicates intent, so componen
 | --- | --- | --- |
 | CPU | primary.main | #1976D2 |
 | Memory | chart-variable-memory | #00796B |
-| Throughput | success.main | #2E7D32 |
-| Requests | secondary.main | #9C27B0 |
-| Latency | warning.main | #EF6C00 |
-| Bandwidth | info.main | #0288D1 |
+| Throughput | secondary.main | #9C27B0 |
+| Requests | warning.main | #EF6C00 |
+| Latency | success.main | #2E7D32 |
+| Storage | info.main | #0288D1 |
 
-**Why this mapping?** Each metric was assigned to the token that most intuitively matched its nature. Once assigned, mappings are permanent — changing them breaks visual recognition across all historical charts and reports.
+**Why this mapping?** Each metric was assigned to a semantic token, and once assigned the mapping is permanent — changing it breaks visual recognition across all historical charts and reports.
 
 ### Signature accents
 
@@ -108,11 +108,11 @@ Every color token, in every role. Each token communicates intent rather than a r
 
 | Token | Value | Usage |
 | --- | --- | --- |
-| text/primary | #000000 (87%) | Body text, headings |
-| text/secondary | #000000 (60%) | Supporting text, captions |
-| text/disabled | #000000 (38%) | Inactive/disabled text |
+| text/primary | #141C28 | Body text, headings |
+| text/secondary | #54637A | Supporting text, captions |
+| text/disabled | #586780 | Inactive/disabled text |
 
-**Why 87%, 60%, and 38%?** These are Material Design's specified opacity values for text on white. Each was chosen to hit a specific contrast ratio: 87% opacity black on white achieves ~13:1 contrast (well above WCAG AA's 4.5:1 minimum); 60% achieves ~6:1 (AA-compliant for normal text); 38% is intentionally below threshold because disabled elements are exempt from contrast requirements under WCAG 1.4.3.
+**Why these ink values?** Vael uses the Blueprint ink ramp rather than Material's black-opacity defaults. `text/primary` (#141C28) is a near-black blueprint navy that reads on the cool `#E9EFF7` canvas at ~14:1 (well above WCAG AA's 4.5:1 minimum); `text/secondary` (#54637A) is a muted slate for supporting content at roughly AA for normal text; `text/disabled` (#586780) is reserved for inactive controls — disabled elements are exempt from contrast requirements under WCAG 1.4.3.
 
 ### Primary — key actions, links, and focus indicators
 
@@ -196,10 +196,10 @@ Use these to create visual depth and hierarchy — panel backgrounds, card resti
 
 | Token | Value | Usage |
 | --- | --- | --- |
-| --ds-surface-1 | #F8FAFC | Sidebar bg, page section bg, very subtle |
-| --ds-surface-2 | #F1F5F9 | Card default, panel background |
-| --ds-surface-3 | #E2E8F0 | Inset content, secondary panels |
-| --ds-surface-4 | #CBD5E1 | Table header, dense background fills |
+| --ds-surface-1 | #F7FAFE | Sidebar bg, page section bg, very subtle |
+| --ds-surface-2 | #F1F4F8 | Card default, panel background |
+| --ds-surface-3 | #E2E5E9 | Inset content, secondary panels |
+| --ds-surface-4 | #D1D4D7 | Table header, dense background fills |
 | --ds-surface-inverse | #1E293B | Dark tooltips, code blocks, 14.6:1 vs white |
 
 #### Use neutral surfaces when
@@ -238,26 +238,26 @@ Opacity tokens define the alpha channel for interactive state layers and chart f
 
 | Token | Value | Usage |
 | --- | --- | --- |
-| background/default | #FFFFFF | Page background, outermost canvas |
+| background/default | #E9EFF7 | Page background, outermost canvas |
 | background/paper | #FFFFFF | Cards, dialogs, menus, drawers |
 
 ### Action — interaction state overlays
 
 | Token | Value | Usage |
 | --- | --- | --- |
-| action/active | #000000 (54%) | Icon tint |
-| action/hover | #000000 (4%) | Hover overlay |
-| action/selected | #000000 (8%) | Selected overlay |
-| action/disabled | #000000 (26%) | Disabled foreground |
-| action/disabledBackground | #000000 (12%) | Disabled background |
-| action/focus | #000000 (12%) | Focus overlay |
+| action/active | #54637A | Icon tint |
+| action/hover | rgba(20,28,40,0.04) | Hover overlay |
+| action/selected | rgba(20,28,40,0.08) | Selected overlay |
+| action/disabled | rgba(20,28,40,0.26) | Disabled foreground |
+| action/disabledBackground | rgba(20,28,40,0.12) | Disabled background |
+| action/focus | rgba(20,28,40,0.12) | Focus overlay |
 
 ### Grey — neutrals for borders and disabled surfaces
 
 | Token | Value | Usage |
 | --- | --- | --- |
-| grey/300 | #E0E0E0 | Stepper connectors, light borders |
-| grey/400 | #BDBDBD | Avatar fill, rating icon border |
+| grey/300 | #D1D5DB | Stepper connectors, light borders |
+| grey/400 | #9CA3AF | Avatar fill, rating icon border |
 
 Only `grey/300` and `grey/400` are defined as named Figma variables. For other grey values use MUI's `theme.palette.grey[n]` (100–900) directly in code.
 
@@ -266,7 +266,7 @@ Only `grey/300` and `grey/400` are defined as named Figma variables. For other g
 | Token | Value | Usage |
 | --- | --- | --- |
 | common/white | #FFFFFF | White overlays, inverse text |
-| divider | #000000 (12%) | Horizontal rules |
+| divider | #DBE4F0 | Horizontal rules |
 | _native/scrollbar-bg | #F1F5F9 | Scrollbar track background — Figma-only alias to surface/2 |
 
 ### Brand palette — reference only, not used in product UI
@@ -312,7 +312,7 @@ Two groups of variables exist in the Figma `palette` collection but have no corr
 
 Most metric colors map to semantic tokens. The exception is Memory, which uses a dedicated chart-only value (`#00796B`) that does not correspond to any semantic role. This separation exists because `error.main` (red) is reserved exclusively for alert and error states — using it for a routine metric would undermine the alert signal. See the Data Visualization Palette section below for the full chart color reference.
 
-**Why these assignments?** CPU uses blue (primary) as the most central measurement; Throughput uses green (success) because high throughput is a positive outcome indicator; Requests uses purple (secondary) as a secondary parameter; Latency uses orange (warning) because latency issues often precede alerts; Bandwidth uses info blue as an informational metric. Memory was previously mapped to red but was reassigned to teal — red is now reserved solely for alerts and error states. Once assigned, metric color mappings are permanent; changing them breaks visual recognition across all historical charts and reports.
+**Why these assignments?** CPU uses blue (primary) as the most central measurement; Throughput uses purple (secondary) as a distinct high-visibility accent; Requests uses orange (warning) because request surges often precede alerts; Latency uses green (success); Storage uses info blue as an informational metric. Memory was previously mapped to red but was reassigned to teal — red is now reserved solely for alerts and error states. Once assigned, metric color mappings are permanent; changing them breaks visual recognition across all historical charts and reports.
 
 ### Accessibility
 
@@ -331,10 +331,10 @@ A fixed set of colors used exclusively in charts, sparklines, and dashboards. Th
 | --- | --- | --- |
 | --ds-chart-variable-cpu | #1976D2 | CPU · 4.7:1 contrast |
 | --ds-chart-variable-memory | #00796B | Memory · 6.2:1 contrast |
-| --ds-chart-variable-throughput | #2E7D32 | Throughput · 7.1:1 contrast |
-| --ds-chart-variable-requests | #9C27B0 | Requests · 5.9:1 contrast |
-| --ds-chart-variable-latency | #EF6C00 | Latency · 3.1:1 contrast |
-| --ds-chart-variable-bandwidth | #0288D1 | Bandwidth · 3.5:1 contrast |
+| --ds-chart-variable-throughput | #9C27B0 | Throughput · 5.9:1 contrast |
+| --ds-chart-variable-requests | #EF6C00 | Requests · 3.1:1 contrast |
+| --ds-chart-variable-latency | #2E7D32 | Latency · 7.1:1 contrast |
+| --ds-chart-variable-storage | #0288D1 | Storage · 3.5:1 contrast |
 
 ### Extended palette — 7th series and beyond
 
@@ -367,10 +367,10 @@ All chart colors are defined in `vael/tokens.css` under `--ds-chart-*` and in th
 | --- | --- | --- | --- | --- |
 | --ds-chart-variable-cpu | CPU | #1976D2 | 4.7:1 | Maps to primary.main |
 | --ds-chart-variable-memory | Memory | #00796B | 6.2:1 | Chart-only value — not a semantic token. Teal avoids alert-red confusion. |
-| --ds-chart-variable-throughput | Throughput | #2E7D32 | 7.1:1 | Maps to success.main |
-| --ds-chart-variable-requests | Requests | #9C27B0 | 5.9:1 | Maps to secondary.main |
-| --ds-chart-variable-latency | Latency | #EF6C00 | 3.1:1 | Maps to warning.main. Meets 3:1 minimum for graphical elements; below 4.5:1 for text labels — use with care at small sizes. |
-| --ds-chart-variable-bandwidth | Bandwidth | #0288D1 | 3.5:1 | Maps to info.main. Visually similar to CPU blue — always rely on legend labels, not color alone. |
+| --ds-chart-variable-throughput | Throughput | #9C27B0 | 5.9:1 | Maps to secondary.main |
+| --ds-chart-variable-requests | Requests | #EF6C00 | 3.1:1 | Maps to warning.main. Meets 3:1 minimum for graphical elements; below 4.5:1 for text labels — use with care at small sizes. |
+| --ds-chart-variable-latency | Latency | #2E7D32 | 7.1:1 | Maps to success.main |
+| --ds-chart-variable-storage | Storage | #0288D1 | 3.5:1 | Maps to info.main. Visually similar to CPU blue — always rely on legend labels, not color alone. |
 
 ### Extended tokens
 
@@ -383,9 +383,9 @@ All chart colors are defined in `vael/tokens.css` under `--ds-chart-*` and in th
 
 ### Known accessibility limitations
 
-- **CPU vs Bandwidth** — `#1976D2` and `#0288D1` are both blue and can be difficult to distinguish without labels, especially for users with tritanopia. Legend labels are required whenever both appear in the same chart.
-- **Latency orange** — `#EF6C00` is at the 3:1 floor for graphical elements. Do not use it for text labels smaller than 18px; always pair with a legend or axis label.
-- **Red/green** — Alert red (`#D32F2F`) and Throughput green (`#2E7D32`) are indistinguishable to deuteranopes (~8% of men). Never rely on these two colors alone to convey different states — use shape, line-style, or position as a second signal.
+- **CPU vs Storage** — `#1976D2` and `#0288D1` are both blue and can be difficult to distinguish without labels, especially for users with tritanopia. Legend labels are required whenever both appear in the same chart.
+- **Requests orange** — `#EF6C00` is at the 3:1 floor for graphical elements. Do not use it for text labels smaller than 18px; always pair with a legend or axis label.
+- **Red/green** — Alert red (`#D32F2F`) and Latency green (`#2E7D32`) are indistinguishable to deuteranopes (~8% of men). Never rely on these two colors alone to convey different states — use shape, line-style, or position as a second signal.
 
 ### Usage rules
 

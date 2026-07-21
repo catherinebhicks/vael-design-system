@@ -4,7 +4,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Contributing
 
-Vael is open to contributions from any engineer or designer on the team. Every change goes through two reviewers — one from design, one from engineering — regardless of which discipline it touches.
+Vael is a single-maintainer portfolio library today, so this is a solo workflow. The process below is written as if for a team because it was: when Vael's components backed **Fermie** (the data-dense bioprocess product it was extracted from, now shelved), every change went through two reviewers — one from design, one from engineering — regardless of which discipline it touched. That two-reviewer bar is preserved here as the standard to hold changes to, even when the "reviewer" is the maintainer revisiting the change with fresh eyes.
 
 ## When to contribute
 
@@ -35,9 +35,9 @@ Don't contribute:
 2. **RFC review** — reviewed in the weekly design system sync. Outcomes: Approved / Approved with changes / Deferred / Declined (with reason).
 3. **Design in Figma** — design all variants, states, and responsive behaviors using existing tokens. Get a design review from at least one other designer.
 4. **Write documentation** — before engineering begins, using the standard template: Overview, Anatomy, Variants, Design Tokens, Usage Guidelines, Accessibility.
-5. **Engineering implementation** — implement using documented tokens; add unit, accessibility (axe), and visual regression tests; update `tokens/design-tokens.json`, `tokens/tokens.css`, and `tokens/theme.ts` if tokens changed.
-6. **Review** — PR requires Figma link, component doc, all states implemented, accessibility check passed, existing tests passing, and `changelog.md` updated. Requires 1 designer + 1 engineer approval (not the author).
-7. **Release** — merge to main, update `changelog.md` with version bump, announce in team channel with what changed, who it affects, and a link to docs.
+5. **Engineering implementation** — implement using documented tokens; add a story per variant so the accessibility (axe via test-storybook) and visual-regression (Chromatic) checks cover it; update `vael/design-tokens.json`, `vael/tokens.css`, and `vael/theme.ts` if tokens changed.
+6. **Review** — a change is ready when it has a Figma link, a component doc, all states implemented, the accessibility check passing, existing checks green, and `CHANGELOG.md` updated. Under Fermie this required 1 designer + 1 engineer approval (not the author); as a single-maintainer library, hold the same bar in self-review.
+7. **Release** — merge to main and update `CHANGELOG.md` with the version bump. (When this backed Fermie, releases were also announced in a team channel with what changed, who it affected, and a link to docs.)
 
 ## Breaking changes
 
@@ -52,13 +52,14 @@ Breaking changes are anything requiring existing implementations to update code 
 
 - Figma component updated with all variants (size, state, density)
 - Storybook story covering each variant + A11y addon clean
-- Unit tests (RTL + axe) green · Chromatic build approved
+- Checked at the `xs`/mobile viewport (Storybook viewport toolbar), not just desktop
+- Storybook a11y (axe) run clean · Chromatic build reviewed
 - Docs page updated — anatomy, props, do/don't, a11y notes
 - Changelog entry in `CHANGELOG.md` under Unreleased
 
 ## When to write an ADR
 
-Write an ADR for any decision future maintainers might second-guess: token values, component API differences from MUI defaults, rejected alternatives. Keep it to 1–2 pages. See [ADRs](decisions.html#adrs) for examples.
+Write an ADR for any decision future maintainers might second-guess: token values, component API differences from MUI defaults, rejected alternatives. Keep it to 1–2 pages, and record it alongside the change so the reasoning survives with the decision.
 
 ## What we won't accept
 

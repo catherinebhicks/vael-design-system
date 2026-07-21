@@ -4,12 +4,14 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Process & governance
 
-How changes land, how versions move, what's in flight. Read this before proposing changes that cross sections — the design system has a contribution process, a versioning policy, and an active audit schedule. **This section signals intent for the living document** — the contribution template, RFC cadence, and reviewer rota are areas we will flesh out as the design system matures.
+How changes land, how versions move, what's in flight. Read this before proposing changes that cross sections — the design system has a contribution process, a versioning policy, and an active audit schedule.
+
+**A note on this process.** Vael was extracted from **Fermie**, a data-dense bioprocess-monitoring product that has since been shelved. When this system backed Fermie, the contribution template, RFC cadence, and reviewer rota below described a real, multi-person team workflow — designers and engineers proposing components, reviewing PRs, and signing off audits. Fermie is now shelved and Vael is maintained by a single person as a portfolio design system, so read the review/governance process here as the model the system was built under, not a present-day team rota.
 
 ## Theme status
 
-- **Light mode** (stable) — All foundations and components shipped in V0 · v.75. Token parity with `theme.ts`.
-- **Dark mode** (draft) — planned for a future release.
+- **Light mode** (stable) — All foundations and components shipped in v0.1.0. Token parity with `theme.ts`.
+- **Dark mode** (stable) — ships as a `darkTheme` export mirroring the light tokens; toggle it in Storybook with the sun/moon switch. Components and charts adapt automatically. See [Dark Mode](?path=/docs/foundations-dark-mode--docs).
 
 ## Documentation guides
 

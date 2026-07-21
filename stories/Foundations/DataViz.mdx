@@ -5,15 +5,21 @@ import { LineStyleSpecimen, GuardrailSpecimen, ChartTypeSpecimens } from '../spe
 
 # Chart System
 
-Charts are first-class components, not ad-hoc visualizations. Built on **Highcharts styled mode**, driven by MUI tokens and a deterministic metric-to-color map. Every series carries a distinct **line style in addition to color**, so the system holds up in colorblind, print, and screenshot contexts.
+Charts are first-class components, not ad-hoc visualizations. The chart system is **three tiers** — a Standard tier on `@mui/x-charts` for everyday product charting, an Advanced tier on Highcharts for specialist needs, and a zero-dependency Micro tier for inline stat viz — all driven by MUI tokens and a deterministic metric-to-color map. Every series carries a distinct **line style in addition to color**, so the system holds up in colorblind, print, and screenshot contexts.
 
-> This page is the **usage** reference (chart types, line styles, guardrails). For *how* the Highcharts layer was folded into the design system — the decision, the three-layer theming mechanism, and the tradeoffs — see [Chart Layer](?path=/docs/foundations-chart-layer--docs).
+> This page is the **usage** reference (chart types, line styles, guardrails). For *how* the chart layer is built — the three tiers, the Highcharts theming mechanism, and the tradeoffs — see [Chart Layer](?path=/docs/foundations-chart-layer--docs).
 
-## Built on Highcharts
+## The three tiers
 
-Every chart in the system — `HighchartsChart`, `SparklineChart`, and the `AreaChart` / `BarChart` / `DonutChart` wrappers — renders with **[Highcharts](https://www.highcharts.com/)** via `highcharts-react-official`. Vael themes Highcharts to its Blueprint aesthetic (palette, hairline axes, inverted mono tooltips, IBM Plex Mono labels) through a global `Highcharts.setOptions` plus a per-render `buildVcThemeOptions(theme)` merge in `vcDefaults.ts` — it does **not** swap the engine. The chart components are thin, opinionated wrappers over that themed base, and follow the light/dark toggle automatically.
+| Tier | Engine | Reach for it when |
+| --- | --- | --- |
+| **Standard** | `@mui/x-charts` (^9) | The default. Everyday product charting — line, bar, pie, scatter, gauge, radar. Lightweight, SVG, theme-native. |
+| **Advanced** | Highcharts (styled mode) | Specialist needs the Standard tier can't cover — SPC / control charts, multi-axis, solid-gauge, large datasets, and export. |
+| **Micro** | Zero-dependency inline SVG | Hand-rolled `Sparkline`, `WaffleChart`, and `GaugeStat` for inline stat viz inside cards and tables — no charting library at all. |
 
-**Dependencies.** `highcharts` and `highcharts-react-official` are declared as **optional peer dependencies** — install them alongside the library only if you use the chart components:
+**Standard (the default).** Reach for `StandardCharts` first — the MUI-X community charts, re-exported under the `StandardCharts` namespace, themed by the same tokens as the rest of the system and following the light/dark toggle automatically. `@mui/x-charts` is a direct dependency, so nothing extra to install.
+
+**Advanced (Highcharts).** `HighchartsChart` and its wrappers (`AreaChart` / `BarChart` / `DonutChart` / `ControlChart` / `MultiAxisChart` / `GaugeChart` / `RadarChart` / `SparklineChart`) render with **[Highcharts](https://www.highcharts.com/)** via `highcharts-react-official`, themed to the Blueprint aesthetic through a global `Highcharts.setOptions` plus a per-render `buildVcThemeOptions(theme)` merge in `vcDefaults.ts`. `highcharts` and `highcharts-react-official` are **optional peer dependencies** — install them only if you use the Advanced tier:
 
 ```bash
 npm install highcharts highcharts-react-official
@@ -21,9 +27,11 @@ npm install highcharts highcharts-react-official
 
 > **Licensing.** Highcharts is free for non-commercial use but requires a **commercial license** for commercial products. Because it's a peer dependency, that licensing relationship is between the consuming application and Highcharts — the design system does not bundle or relicense it. See the [Highcharts license](https://shop.highcharts.com/).
 
+**Micro.** `Sparkline`, `WaffleChart`, and `GaugeStat` are drawn as plain SVG with no charting engine behind them — small enough to sit inline in a `StatCard`, a table cell, or a dashboard tile without pulling in a library.
+
 ## The chart types, live
 
-Area, donut, and bar on the reskinned Highcharts layer — the same tokens and palette as the rest of the system.
+Area, donut, and bar on the Advanced (Highcharts) layer — the same tokens and palette as the rest of the system.
 
 <ChartTypeSpecimens />
 

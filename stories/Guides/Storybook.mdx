@@ -10,7 +10,8 @@ Storybook is where design and engineering meet for review. Every Vael component 
 
 - `Component.stories.tsx` — default plus one story per variant.
 - `Component.mdx` — docs tab narrative with live examples.
-- `Component.test.tsx` — RTL unit tests.
+
+There are no separate `Component.test.tsx` unit-test files — the stories *are* the tests. Accessibility (axe) and visual-regression (Chromatic) checks run against the stories themselves; see the [Testing](?path=/docs/guides-testing--docs) guide.
 
 ## Docs tab structure
 

@@ -4,27 +4,53 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Breakpoints
 
-Vael targets **desktop-first web applications** — data-dense dashboards and admin tools. Breakpoints exist to support graceful degradation on smaller viewports, not to produce a "mobile version." The primary user is an analyst or administrator on a 1280px+ display; mobile layouts are a convenience for monitoring, not primary usage.
+Vael is **desktop-first by heritage.** The system was extracted from **Fermie**, a data-dense bioprocess-monitoring product (since shelved) whose primary surfaces were analyst dashboards and admin tools on 1280px+ displays. That lineage still sets the design center of gravity — layouts are composed for `lg`+ first.
+
+What changed: components are no longer assumed to *only* run on a workstation. Every component is built to **degrade gracefully and stay usable down to `xs` (mobile)**, and each is verified per-breakpoint with the Storybook viewport toggle (below). Desktop-first is a starting point, not an excuse to break on a phone.
 
 ## Breakpoint tokens
 
-MUI defaults — unchanged from the standard theme.
+MUI's standard scale — unchanged. These are the cutoffs every responsive style keys off.
 
-| Token | Min width | Device class | Primary use |
+| Token | Min width | Device class | Notes |
 | --- | --- | --- | --- |
-| xs | 0px | Phone (portrait) | Fallback — single-column layouts, monitoring only |
+| xs | 0px | Phone (portrait) | Single-column; full-bleed panels, stacked forms |
 | sm | 600px | Phone (landscape) / small tablet | Stacked forms, simplified dashboards |
 | md | 900px | Tablet / small laptop | Two-column layouts, compact tables |
-| lg | 1200px | Laptop / desktop (primary target) | Full layouts — all panels visible |
+| lg | 1200px | Laptop / desktop (design center) | Full layouts — all panels visible |
 | xl | 1536px | Large desktop / external monitor | Max-width caps, multi-column dashboards |
 
-## Breakpoints in practice
+## Checking a story at a breakpoint — the viewport toggle
 
-### Philosophy
+Storybook 9/10 folds viewport into core (no addon needed). The toolbar **viewport switcher** is configured with five named sizes mapped **1:1 to the MUI breakpoints**, each sitting *inside* its band at a realistic device width (not on the boundary):
 
-The dashboard does not attempt to be responsive in the marketing-site sense. Designs are built for `lg`+ first, then gracefully reduced for smaller viewports. Below `md`, entire features are often hidden or simplified — for example, multi-axis charts degrade to single-axis, bulk actions collapse into an overflow menu, sidebars become drawers.
+| Toolbar option | Width | Band |
+| --- | --- | --- |
+| xs · Mobile | 375px | xs (0–599) |
+| sm · Tablet portrait | 700px | sm (600–899) |
+| md · Tablet landscape | 1024px | md (900–1199) |
+| lg · Laptop | 1280px | lg (1200–1535) |
+| xl · Desktop | 1600px | xl (1536+) |
 
-**Why desktop-first?** Dashboard users work at desks, running projects on workstations connected to server infrastructure. The task set — monitoring live jobs, configuring multi-step projects, analyzing time-series data — is inherently desktop-class work. Mobile is a secondary surface for at-a-glance monitoring or quick approvals, not the primary workflow. Optimizing for mobile would force compromises that hurt the primary user.
+Default is **"responsive"** (fills the panel), so the normal view is unchanged. Pick a size to check any story exactly in the band its responsive styles react to — "check it at `sm`" means "check it in the 600–899 band." Chromatic can snapshot multiple viewports per story (`parameters.chromatic.viewports = [375, 1440]`) so narrow-width regressions fail the build.
+
+## The responsive `sx` convention (t-shirt sizing)
+
+MUI breakpoints are just named cutoffs — they do nothing until a component *references* them. The house convention is a **responsive `sx` object** ("t-shirt sizing"): give a property an object keyed by breakpoint instead of one fixed value.
+
+```tsx
+// A fixed width overflows a phone:
+width: 380
+// ...becomes full-bleed on xs, the fixed width from sm up:
+width: { xs: '100%', sm: 380 }
+```
+
+Real examples from the component library:
+
+- **SidePanel** — `width: { xs: '100vw', sm: width }` (full-bleed drawer on a phone).
+- **Descriptions** — `gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)' }` (collapses multi-column to one).
+- **SpotlightTour** — `maxWidth: 'calc(100vw - 32px)'` (a floating card can't overflow a small screen).
+- **Data tables** — wrapped in a scroll container so wide tables scroll internally instead of pushing the page.
 
 ### Using breakpoints in MUI
 
@@ -33,25 +59,28 @@ MUI exposes breakpoints via three patterns:
 - `theme.breakpoints.up('md')` — media query for viewports ≥900px
 - `theme.breakpoints.down('md')` — media query for viewports &lt;900px
 - `theme.breakpoints.between('sm', 'lg')` — range (600px to 1199px)
-- Responsive prop syntax on `Grid`, `Stack`, `Box`: `{{ xs: 12, md: 6, lg: 4 }}`
+- Responsive prop / `sx` syntax on `Grid`, `Stack`, `Box`: `{{ xs: 12, md: 6, lg: 4 }}`
 
 ### Component behavior across breakpoints
 
-| Component | lg+ (primary) | md | sm / xs |
+Designs are built for `lg`+ first, then reduced for smaller viewports — but "reduced" means reflowed and still usable, not broken.
+
+| Component | lg+ (design center) | md | sm / xs |
 | --- | --- | --- | --- |
-| Sidebar navigation | Permanent, expanded | Permanent, icon-only | Drawer (modal) |
+| Sidebar / SidePanel | Permanent, expanded | Permanent / drawer | Full-bleed drawer |
 | Page header | Full — breadcrumbs + actions | Breadcrumbs + primary action | Title + menu |
-| Data table | All columns | Hide low-priority columns | Card list (mobile layout) |
+| Data table | All columns | Scrolls to reach columns | Scrolls inside its container |
+| Descriptions | Multi-column | Multi-column | Single column |
 | Forms | Two-column where appropriate | Single column | Single column, full-width |
-| Chart grid | 2×N grid | 1×N | 1×N, reduced series |
-| Dialog | Constrained width (sm/md) | Constrained width (sm) | Full-screen |
+| Chart grid | 2×N grid | 1×N | 1×N, wraps |
+| Dialog | Constrained width | Constrained width | Near-full-width |
 
 ### Min-width baseline
 
-The absolute minimum supported viewport is **320px**. Below that we do not guarantee layout integrity. In practice most dashboard surfaces are unusable below `md` (900px) — they degrade but are not pleasant to use. This is an accepted trade-off.
+The minimum supported viewport is **320px** — below that, layout integrity isn't guaranteed. Complex analyst workflows are still most comfortable at `md`+ (that's the nature of the task, not a layout failure), but nothing should overflow or clip on a phone.
 
 ### Common pitfalls
 
-- **Over-engineering mobile** — don't spend design time perfecting mobile layouts for complex workflows. If a feature isn't usable on mobile, hide it and direct to desktop.
-- **Fluid-everything** — some elements benefit from fixed widths (e.g. numeric inputs for CPU thresholds). Don't reflexively make everything `width: 100%`.
-- **Breakpoint bleed** — writing a style for `xs` that carries into `sm`/`md` unintentionally. Use `down`/`between` helpers to scope precisely.
+- **Fluid-everything** — some elements *should* keep a fixed width (numeric threshold inputs, a coach-mark card). Don't reflexively set `width: 100%`; cap with `maxWidth` so it shrinks on small screens without stretching on large ones.
+- **Breakpoint bleed** — an `xs` style carrying into `sm`/`md` unintentionally. Use `down`/`between` (or a bounded `sx` object) to scope precisely.
+- **Testing only at desktop** — flip the viewport toggle to `xs` before calling a component done; the page-width Storybook canvas hides overflow that a phone won't.

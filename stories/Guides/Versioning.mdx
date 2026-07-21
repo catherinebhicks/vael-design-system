@@ -4,9 +4,9 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Versioning & migration
 
-The design system follows semantic versioning (SemVer) in the form `MAJOR.MINOR.PATCH` to communicate the impact of each release. All consumers should read this before upgrading across a major version boundary. Deprecated items remain available for at least one MINOR version before removal.
+Vael is a private, single-maintainer portfolio library — it is not published to npm and has no external consumers to coordinate. So versioning here is less a release contract than a set of **portfolio milestones**: markers of how far the system has matured. The semantic-versioning vocabulary (`MAJOR.MINOR.PATCH`) is still used as a consistent way to talk about the *impact* of a change, and deprecated items are kept available for at least one MINOR step before removal.
 
-**Current version: V0 (pre-release)** — no stability guarantees until V1.0.0. Teams using V0 should expect to migrate when V1 is declared.
+**Current version: V0 (baseline)** — the roster, tokens, and docs are in place, but the system is not yet audited end-to-end. V1 is a milestone, not a shipped package (see the criteria below).
 
 ## Version format
 
@@ -51,11 +51,12 @@ The design system follows semantic versioning (SemVer) in the form `MAJOR.MINOR.
 
 ## Release process
 
-1. Collect all changes since last release.
-2. Determine version bump based on change types above.
-3. Update `changelog.md` with date, version, and all changes organized by type (Breaking, Added, Changed, Fixed, Deprecated).
-4. Update `index.md` version field.
-5. Announce in team channel with: version number, summary of changes, link to changelog, and any migration needed.
+1. Collect all changes since the last version marker.
+2. Determine the version bump based on the change types above.
+3. Update `CHANGELOG.md` with date, version, and all changes organized by type (Breaking, Added, Changed, Fixed, Deprecated).
+4. Update the `version` field in `package.json` to match.
+
+> When Vael backed **Fermie** (now shelved), a release also meant announcing the version, a summary, a changelog link, and any needed migration in a team channel. As a single-maintainer portfolio library, the changelog entry is the record — there's no team to announce to.
 
 ## Changelog format
 
@@ -63,7 +64,7 @@ Follow the [Keep a Changelog](https://keepachangelog.com) format.
 
 ## V0 → V1 criteria
 
-- All 52 components have been independently accessibility-audited.
+- All 104 components have been independently accessibility-audited.
 - Dark mode tokens have been designed in Figma and finalized.
 - Motion/animation tokens have been reviewed and approved.
 - Token naming has been finalized and stabilized.
@@ -74,6 +75,6 @@ Follow the [Keep a Changelog](https://keepachangelog.com) format.
 
 Patch and minor releases are backward compatible and require no migration. For major version upgrades, follow the migration guide for that version. Each guide lists breaking changes first, then migration steps ordered top to bottom, plus any automated codemods.
 
-**V0 — Baseline (April 2026):** V0 is the initial documentation-only release. It establishes all design token names, component documentation and variant structures, the `tokens/theme.ts` MUI theme configuration, and all pattern and process documentation. A V0 → V1 migration guide will be completed when V1 is released.
+**V0 — Baseline (April 2026):** V0 is the baseline milestone. It establishes all design token names, component documentation and variant structures, the `vael/theme.ts` MUI theme configuration, and all pattern and process documentation. A V0 → V1 migration guide will be written when V1 is declared.
 
-If you encounter issues during migration: check the changelog for the specific version, post in the design system Slack channel with the specific error or component name, or file an issue if the migration guide is incomplete.
+If you hit an issue while working across a version boundary, check the changelog for the specific version and component name; if the migration guide is incomplete, that's a gap to fix in the docs.

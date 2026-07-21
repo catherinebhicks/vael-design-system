@@ -4,19 +4,31 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Testing
 
-React Testing Library, `jest-axe`, and Chromatic. Every component ships with three layers — RTL unit tests, accessibility checks via `jest-axe`, and visual regression in Chromatic. CI blocks on all three.
+Testing here is story-driven, not unit-test-driven. There is no Jest, Vitest, React Testing Library, or `jest-axe` in the project, and there are no `.test.tsx` files. Instead, the stories themselves are the test surface, and two automated checks run against them.
 
-## Query priority (RTL)
+## What actually runs
 
-1. `getByRole` — accessible role (preferred)
-2. `getByLabelText` — form fields
-3. `getByText` — non-interactive copy
-4. `getByTestId` — last resort only
+| Check | Tooling | Where | Gating? |
+| --- | --- | --- | --- |
+| Accessibility | `test-storybook` + `axe-playwright` | `.github/workflows/a11y.yml`, on push & PR | **Non-blocking** — violations report as warnings |
+| Visual regression | Chromatic | `.github/workflows/chromatic.yml`, on `main` only | **Non-blocking** — does not fail the build |
 
-## Keyboard testing
+### Accessibility (test-storybook + axe-playwright)
 
-Use `userEvent.tab()` and `userEvent.keyboard('{Enter}')` — never `fireEvent.keyDown`. `userEvent` dispatches the full event sequence browsers do; `fireEvent` misses focus and blur.
+The a11y workflow builds Storybook, serves it, and runs `test-storybook`, which drives every story through Playwright and runs axe on it. It is deliberately **non-blocking**: the runner is configured with `a11y.test: 'todo'`, which downgrades axe violations to warnings rather than failing the run. So the check surfaces problems without gating merges — treat its output as a to-do list, not a wall.
 
-## Chromatic
+### Visual regression (Chromatic)
 
-One story per variant. Use `parameters.chromatic = { viewports: [360, 768, 1200, 1920] }` for responsive components. Hover, focus, and error states need their own stories — Chromatic does not interact.
+Chromatic publishes Storybook and diffs snapshots, but it does **not** gate. It runs on `main` only, with `onlyChanged: true` (TurboSnap — it only snapshots stories affected by a change) and `exitZeroOnChanges: true` (visual changes never fail the build). Review its diffs as a reference, not a merge blocker.
+
+## Viewports & responsive snapshots
+
+`preview.tsx` registers a viewport toggle (`xs` 375 · `sm` 700 · `md` 1024 · `lg` 1280 · `xl` 1600) mapped 1:1 to the MUI breakpoints. Use it to eyeball responsive behavior in the toolbar. For automated coverage, a story can ask Chromatic to snapshot several viewports at once:
+
+```ts
+parameters = { chromatic: { viewports: [375, 1024, 1280] } };
+```
+
+## What is *not* enforced
+
+Be honest about the gaps: nothing in CI currently *fails* on an accessibility violation or a visual change. There are no interaction/unit assertions. Coverage comes from writing a story for every variant and state (hover, focus, error, empty, loading each need their own story — the tools don't interact), and from actually reading the axe warnings and Chromatic diffs.

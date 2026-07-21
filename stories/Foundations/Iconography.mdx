@@ -19,7 +19,7 @@ FontAwesome is the single icon source. No other icon libraries are permitted —
 
 - Icons are rendered with the FontAwesome React component from `@fortawesome/react-fontawesome`.
 - Two weights ship by default: **Regular** (`@fortawesome/free-regular-svg-icons`) and **Solid** (`@fortawesome/free-solid-svg-icons`).
-- **Never** add `@mui/icons-material` imports — this is the one hard prohibition, enforceable via lint.
+- **Never** add `@mui/icons-material` imports — this is the one hard prohibition, upheld by convention in review (there is no lint rule wired up to catch it, so the discipline is on the author).
 - Keep weight consistent within a view — don't mix Regular and Solid in the same toolbar.
 
 **Light weight and the extended set.** A third weight (Light) and FontAwesome's full ~30,000-icon catalog are available if a project adds a FontAwesome **Pro** license and the corresponding `@fortawesome/pro-*-svg-icons` packages. The design language is the same; only the licensed set differs. Out of the box, Vael documents and ships the Free Regular + Solid weights.

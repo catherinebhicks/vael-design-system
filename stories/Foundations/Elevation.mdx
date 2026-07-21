@@ -5,11 +5,11 @@ import { ShadowScale } from '../specimens/ShadowScale';
 
 # Elevation
 
-Elevation uses layered drop shadows to express depth and hierarchy across 24 levels, following Material Design's additive shadow model.
+Elevation uses soft drop shadows to express depth and hierarchy across 25 levels (0–24). Vael keeps MUI's 25-slot elevation scale but replaces the default shadows with a **Tailwind-style** set — light, cool, low-opacity shadows tinted `rgba(16,24,40,·)` rather than pure black.
 
-## 24 levels, three layers each
+## 25 levels, soft Tailwind-style shadows
 
-Every level uses three layered drop shadows: umbra (20%), penumbra (14%), and ambient (12%). Use the lowest elevation that achieves the necessary visual separation. Elevation alone must not be the only cue for hierarchy.
+Rather than a shadow per level, the system defines **six shadow steps** (xs → 2xl) and maps them across the 25 MUI slots. Each step is one or two thin layers at low opacity (0.04–0.16). Use the lowest elevation that achieves the necessary visual separation. Elevation alone must not be the only cue for hierarchy.
 
 ## The mapped levels, rendered
 
@@ -17,21 +17,24 @@ Each surface below carries the real shadow for the level the system assigns it.
 
 <ShadowScale />
 
-**Why 24 levels?** MUI ships 25 (0–24) following the Material Design spec. This is inherited directly — not a design-system decision. Using MUI defaults means all components that internally reference elevation values (Dialog at 24, Card at 1) work without reconfiguration.
+**Why 25 slots?** MUI ships 25 elevation entries (0–24). Vael keeps the full scale so every component that internally references an elevation value (Dialog at 24, Card at 1) works without reconfiguration — but it substitutes its own shadow values into those slots rather than using Material's defaults.
 
 ## Shadow construction
 
-Each elevation level is composed of three layered drop shadows — umbra (key light), penumbra (ambient occlusion edge), and ambient (overall diffuse) — that together create the illusion of a light source casting a soft, realistic shadow.
+The scale is built from **six named steps** — `xs`, `sm`, `md`, `lg`, `xl`, `2xl` — each a soft, cool-tinted shadow of one or two layers. The 25 MUI slots point at these six steps (many slots share a step), so the perceived depth grows in stages rather than 25 distinct shadows. All layers are tinted `rgba(16, 24, 40, α)` — a near-navy ink, not pure black — which keeps the shadow reading cool against the blueprint surfaces.
 
-### Shadow composition
+### The six steps
 
-| Layer | Opacity | Role |
-| --- | --- | --- |
-| Umbra | 20% | Core shadow — darkest, tightest blur |
-| Penumbra | 14% | Medium blur — fills the edge transition |
-| Ambient | 12% | Widest blur — simulates diffuse sky light |
+| Step | Composition | Peak opacity | Mapped to slots |
+| --- | --- | --- | --- |
+| xs | Single 1px layer | 0.04 | 1 |
+| sm | Two layers, small offset | 0.07 | 2–3 |
+| md | Two layers, medium offset/blur | 0.08 | 4–6 |
+| lg | Two layers, larger offset/blur | 0.09 | 7–10 |
+| xl | Two layers, wide offset/blur | 0.10 | 11–15 |
+| 2xl | Single deep, wide layer | 0.16 | 16–24 |
 
-**Why three layers?** A single drop shadow looks artificial — real shadows have a hard core, a softer edge, and diffuse fill from ambient light. Stacking three shadows approximates this. The specific opacity values (20/14/12) were tuned to produce believable elevation without visual heaviness.
+**Why steps instead of 25 shadows?** Real elevation only needs a handful of perceptual tiers — a resting card, a floating control, a menu, a modal. Six well-tuned steps cover that range; mapping them across the 25 slots keeps MUI compatibility without hand-authoring two dozen near-identical shadows. Low opacities (0.04–0.16) and a cool navy tint keep the lift subtle rather than heavy.
 
 ## Component mappings
 
