@@ -48,7 +48,7 @@ Semantic tokens are grouped by role. Each token communicates intent, so componen
 | Metric | Token | Value |
 | --- | --- | --- |
 | CPU | primary.main | #1976D2 |
-| Memory | chart-variable-memory | #00796B |
+| Memory | chart-variable-memory | #D32F2F |
 | Throughput | success.main | #2E7D32 |
 | Requests | secondary.main | #9C27B0 |
 | Latency | warning.main | #EF6C00 |
@@ -310,9 +310,9 @@ Two groups of variables exist in the Figma `palette` collection but have no corr
 
 ### Chart metric color semantics
 
-Most metric colors map to semantic tokens. The exception is Memory, which uses a dedicated chart-only value (`#00796B`) that does not correspond to any semantic role. This separation exists because `error.main` (red) is reserved exclusively for alert and error states — using it for a routine metric would undermine the alert signal. See the Data Visualization Palette section below for the full chart color reference.
+All metric colors map to semantic tokens. Memory maps to `error.main` (red, `#D32F2F`) — the same value used for alert and error markers, so on a chart a Memory series and an alert marker read as the same red. See the Data Visualization Palette section below for the full chart color reference.
 
-**Why these assignments?** CPU uses blue (primary) as the most central measurement; Throughput uses green (success) because high throughput is a positive outcome indicator; Requests uses purple (secondary) as a secondary parameter; Latency uses orange (warning) because latency issues often precede alerts; Bandwidth uses info blue as an informational metric. Memory was previously mapped to red but was reassigned to teal — red is now reserved solely for alerts and error states. Once assigned, metric color mappings are permanent; changing them breaks visual recognition across all historical charts and reports.
+**Why these assignments?** CPU uses blue (primary) as the most central measurement; Throughput uses green (success) because high throughput is a positive outcome indicator; Requests uses purple (secondary) as a secondary parameter; Latency uses orange (warning) because latency issues often precede alerts; Bandwidth uses info blue as an informational metric. Memory uses red (`#D32F2F`, the same value as `error.main`). Once assigned, metric color mappings are permanent; changing them breaks visual recognition across all historical charts and reports.
 
 ### Accessibility
 
@@ -330,7 +330,7 @@ A fixed set of colors used exclusively in charts, sparklines, and dashboards. Th
 | Token | Value | Metric and contrast |
 | --- | --- | --- |
 | --ds-chart-variable-cpu | #1976D2 | CPU · 4.7:1 contrast |
-| --ds-chart-variable-memory | #00796B | Memory · 6.2:1 contrast |
+| --ds-chart-variable-memory | #D32F2F | Memory · 5.1:1 contrast |
 | --ds-chart-variable-throughput | #2E7D32 | Throughput · 7.1:1 contrast |
 | --ds-chart-variable-requests | #9C27B0 | Requests · 5.9:1 contrast |
 | --ds-chart-variable-latency | #EF6C00 | Latency · 3.1:1 contrast |
@@ -355,7 +355,7 @@ Use extended colors in order (amber → indigo → rose → sienna) only after t
 | --ds-chart-event-warning | #EF6C00 | Override · caution · 3.1:1 contrast |
 | --ds-chart-event-recovery | #2E7D32 | Resolved · cleared · 7.1:1 contrast |
 
-Alert red (`#D32F2F`) is the only color shared between the dataviz palette and the semantic UI palette — it maps directly to `error.main`. All other chart colors are independent of semantic UI tokens and must never appear in buttons, chips, alerts, or any UI component.
+Alert red (`#D32F2F`) is shared between the alert/event markers, the Memory metric, and the semantic UI palette — all map to `error.main`. Every other chart color is independent of semantic UI tokens and must never appear in buttons, chips, alerts, or any UI component.
 
 ## Dataviz color tokens
 
@@ -366,7 +366,7 @@ All chart colors are defined in `vael/tokens.css` under `--ds-chart-*` and in th
 | Token | Metric | Hex | Contrast | Notes |
 | --- | --- | --- | --- | --- |
 | --ds-chart-variable-cpu | CPU | #1976D2 | 4.7:1 | Maps to primary.main |
-| --ds-chart-variable-memory | Memory | #00796B | 6.2:1 | Chart-only value — not a semantic token. Teal avoids alert-red confusion. |
+| --ds-chart-variable-memory | Memory | #D32F2F | 5.1:1 | Maps to error.main — shares its value with alert red. |
 | --ds-chart-variable-throughput | Throughput | #2E7D32 | 7.1:1 | Maps to success.main |
 | --ds-chart-variable-requests | Requests | #9C27B0 | 5.9:1 | Maps to secondary.main |
 | --ds-chart-variable-latency | Latency | #EF6C00 | 3.1:1 | Maps to warning.main. Meets 3:1 minimum for graphical elements; below 4.5:1 for text labels — use with care at small sizes. |
@@ -393,12 +393,12 @@ All chart colors are defined in `vael/tokens.css` under `--ds-chart-*` and in th
 
 - Use `--ds-chart-variable-*` tokens in all chart components.
 - Always include a legend or axis label — never use color as the only differentiator.
-- Use alert red exclusively for alert and error states.
+- Reserve alert red for alert/error states and the Memory metric — don't use it for other routine metrics.
 - Treat these assignments as permanent — changing them breaks historical chart recognition.
 
 #### Don't
 
 - Use chart variable colors in UI components (buttons, chips, alerts).
-- Use alert red for memory or any routine metric.
+- Use alert red for routine metrics other than Memory.
 - Introduce new chart colors without a formal design decision and ADR.
 - Hardcode hex values — always reference the token.

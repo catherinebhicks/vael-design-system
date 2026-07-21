@@ -502,7 +502,7 @@
 :root {
   /* Process variable colors — core 6, permanently assigned */
   --ds-chart-variable-cpu:          var(--ds-color-primary-main);   /* CPU utilization — blue   #1976d2 */
-  --ds-chart-variable-memory: #00796B;                        /* Memory          — teal   #00796b */
+  --ds-chart-variable-memory: #D32F2F;                        /* Memory          — red    #d32f2f (= error.main) */
   --ds-chart-variable-latency:          var(--ds-color-success-main);   /* Latency               — green  #2e7d32 */
   --ds-chart-variable-throughput:   var(--ds-color-secondary-main); /* Throughput       — purple #9c27b0 */
   --ds-chart-variable-requests:   var(--ds-color-warning-main);   /* Requests         — orange #ef6c00 */
