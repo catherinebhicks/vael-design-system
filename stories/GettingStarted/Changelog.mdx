@@ -4,182 +4,99 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Changelog
 
-Version history for the Vael Design System. V0 establishes the baseline — token system, component library, and pattern documentation — derived from the V0 Figma file.
+Version history for the Vael Design System. V0 establishes the baseline — token system, component library, and pattern documentation. Vael was **extracted from Fermie**, a data-dense bioprocess-monitoring product (since shelved); entries below trace how the extracted, portfolio-facing system evolved from that origin.
 
-## V0 — Initial Release · April 2026
+## V0 — Baseline · April 2026
 
-Status: In progress — light + dark mode documented; **Blueprint / Engine-Room** visual identity.
+Status: In progress. Light + dark mode shipped; **Blueprint / Engine-Room** visual identity; ~100 components documented in Storybook.
 
-This is the initial version of the Vael Design System documentation. It establishes the baseline token system, component library, and pattern documentation derived from the V0 Figma file.
+Establishes the baseline token system, component library, and pattern documentation. The roster and tokens were derived from the V0 Figma file and the Fermie product UI, then genericized (server-metrics vocabulary, no product names).
 
 ### Update · July 2026 — Blueprint reskin
 
-The visual identity moved to **Blueprint / Engine-Room** to match the Vael case-study landing page: **IBM Plex Mono for headings + labels/data and IBM Plex Sans for body + buttons** (replacing Inter/DM Mono), blueprint-grid surfaces, hairline borders, tightened geometry (8px buttons/inputs, 14px cards), a blue focus glow, and mono metadata labels. Charts adopt IBM Plex Mono. A single toolbar toggle now flips the Storybook chrome, components, and docs together. Brand blue `#1976d2` is unchanged.
+The visual identity moved to **Blueprint / Engine-Room** to match the Vael case-study landing page: **IBM Plex Mono** for headings + labels/data (replacing Inter/DM Mono), blueprint-grid surfaces, hairline borders, tightened geometry (8px buttons/inputs, 14px cards), a blue focus glow, and mono metadata labels. Charts adopt IBM Plex Mono. A single toolbar toggle flips the Storybook chrome, components, and docs together. Brand blue `#1976d2` is unchanged. The landing page is the reference for this identity; the design system was shifted to match it.
 
-The landing page is the reference for this identity; the design system was shifted to match it — most recently the component **headings moved Sans → Mono** so a Storybook screen and the page read as one system.
+### Update · July 2026 — Single-typeface (Mono) system
 
-### Foundations (8)
+The initial reskin kept IBM Plex Sans for body + buttons. That split read as inconsistent against the mono UI, so **every variant folded into IBM Plex Mono** — the system is now a single-typeface (Mono) family, with weight carrying role (headings 600, prose 400, buttons 600). IBM Plex Sans is no longer used by the theme.
+
+### Update · July 2026 — Responsiveness + viewport toggle
+
+Components were made **mobile-safe down to `xs`** (previously desktop-first with no mobile fallback): SidePanel is full-bleed on phones, Descriptions collapses its columns, LogoWall drops columns, NotificationCenter fills width, wide demos scroll or wrap. The house convention is a responsive `sx` "t-shirt" object (`{ xs: '100%', sm: 380 }`). Storybook gained a **viewport toggle** (xs·375 / sm·700 / md·1024 / lg·1280 / xl·1600) mapped 1:1 to the MUI breakpoints for per-breakpoint checks. See Foundations/Breakpoints.
+
+### Update · July 2026 — Rendering fixes
+
+A debug sweep of all stories fixed: MUI-X standard charts collapsing to zero width in the centered canvas; AG Grid failing to register modules (error #272); the Button not forwarding refs (Tooltip/Popover anchoring); a range-Slider `aria-label` warning; and the GaugeStat `semi` variant overlapping its value with the arc.
+
+### Update · July 2026 — Documentation accuracy pass
+
+Audited the Getting Started, Foundations, and Guides docs against the code and corrected drift: component count, the single-typeface reality, the three-tier chart architecture, the real breakpoint/responsive behaviour, the shadow model, token paths (`vael/`), and the build tool (Vite). Team-process and product-infrastructure references were reframed as Fermie history rather than present-day fact.
+
+### Foundations (10)
 
 | Area | Status | Notes |
 | --- | --- | --- |
-| Color tokens (light mode) | ✅ Documented | Semantic tokens for text, primary, secondary, feedback, action, divider, background |
-| Typography scale | ✅ Documented | h1–overline; IBM Plex Mono headings + labels/data, IBM Plex Sans body + buttons |
-| Elevation | ✅ Documented | 24-level shadow system with 3-layer drop shadows per level |
+| Color tokens | ✅ Documented | Semantic tokens (text, primary, secondary, feedback, action, divider, background) on the Blueprint palette; metric→color map |
+| Typography scale | ✅ Documented | h1–overline; **single-typeface IBM Plex Mono**, weight per role |
+| Elevation | ✅ Documented | 25 MUI slots mapped to Tailwind-style shadows (1–2 thin layers, `rgba(16,24,40,·)`) |
 | Spacing | ✅ Documented | 8px base grid; spacing/1 (8px) through spacing/8 (64px) |
-| Iconography | ✅ Documented | FontAwesome (Regular + Solid ship; Light needs a Pro license) — size, color, accessibility |
-| Breakpoints | ✅ Documented | xs–xl responsive breakpoint scale |
-| Dark mode tokens | ✅ Documented | Full light + dark palettes; unified toolbar toggle |
+| Iconography | ✅ Documented | Font Awesome (Regular + Solid); no `@mui/icons-material`, by convention |
+| Breakpoints | ✅ Documented | xs–xl scale + viewport toggle + responsive `sx` convention |
+| Dark mode | ✅ Documented | Full light + dark palettes; unified toolbar toggle |
 | Motion / Animation | ✅ Documented | Duration + easing tokens; live Motion specimen |
+| Data Visualization | ✅ Documented | Three tiers — Standard (@mui/x-charts), Advanced (Highcharts), Micro (SVG) |
+| Chart Layer | ✅ Documented | How the chart tiers are built and themed |
 
-### Components — full inventory (52)
+### Component roster (~100)
 
-All 47 core MUI components and 5 MUI X components are documented.
+The full roster is browsable in the Storybook sidebar. Counts by section:
 
-#### Inputs (14)
-
-| Component | Status |
+| Section | Count |
 | --- | --- |
-| Autocomplete | ✅ Stable |
-| Button | ✅ Stable |
-| Button Group | ✅ Stable |
-| Checkbox | ✅ Stable |
-| Floating Action Button | ✅ Stable |
-| Form Elements | ✅ Stable |
-| Radio Group | ✅ Stable |
-| Rating | ✅ Stable |
-| Select | ✅ Stable |
-| Slider | ✅ Stable |
-| Switch | ✅ Stable |
-| Text Field | ✅ Stable |
-| Toggle Button | ✅ Stable |
-| Transfer List | ✅ Stable |
+| Inputs | 18 |
+| Marketing | 20 |
+| Data Display | 14 |
+| Navigation | 13 |
+| Feedback | 8 |
+| Data Viz | 7 |
+| Display | 5 |
+| Presentation | 4 |
+| Surfaces | 3 |
+| Layout | 3 |
+| Interaction | 2 |
+| Data Grids | 2 |
 
-#### Data Display (9)
+Beyond the MUI-backed core, the roster includes custom components (Tag, StatusBadge, AlarmBadge, LiveValue, StaleDataIndicator, SidePanel, NotificationCenter, InlineEdit, Descriptions, Callout, SplitButton, CommandBar, CodeBlock, InputNumber, PasswordField, AdvancedSelect, FileUpload), a three-tier chart layer, third-party wrappers (AG Grid, Highcharts, dnd-kit DragOverlay, React Flow FlowCanvas), and Marketing/Presentation components (CaseStudyCard, PostCard, ServiceCard, HeroBanner, CtaBar, Footer, LogoWall, Testimonial, SectionHeading, SlideSection, PullQuote, BrowserFrame) used to build the portfolio surfaces.
 
-| Component | Status |
-| --- | --- |
-| Avatar | ✅ Stable |
-| Badge | ✅ Stable |
-| Chip | ✅ Stable |
-| Divider | ✅ Stable |
-| Icon | ✅ Stable |
-| List | ✅ Stable |
-| Table | ✅ Stable |
-| Tooltip | ✅ Stable |
-| Typography | ✅ Stable |
+### Patterns
 
-#### Feedback (6)
+Documented in the Patterns section: Filter Bar, Bulk Action, Master-Detail, Wizard with Branching, Chart Annotation, Inline Confirmation, Keyboard Shortcut Disclosure, plus Dashboard, Forms, Headings & Page Structure, Navigation, Screen Templates, Empty States, Error Pages, Row Action Menu, and Loading/Error States.
 
-| Component | Status |
-| --- | --- |
-| Alert | ✅ Stable |
-| Backdrop | ✅ Stable |
-| Dialog | ✅ Stable |
-| Progress | ✅ Stable |
-| Skeleton | ✅ Stable |
-| Snackbar | ✅ Stable |
+### Architecture Decision Records
 
-#### Surfaces (4)
-
-| Component | Status |
-| --- | --- |
-| Accordion | ✅ Stable |
-| App Bar | ✅ Stable |
-| Card | ✅ Stable |
-| Paper | ✅ Stable |
-
-#### Navigation (9)
-
-| Component | Status |
-| --- | --- |
-| Bottom Navigation | ✅ Stable |
-| Breadcrumbs | ✅ Stable |
-| Drawer | ✅ Stable |
-| Link | ✅ Stable |
-| Menu | ✅ Stable |
-| Pagination | ✅ Stable |
-| Speed Dial | ✅ Stable |
-| Stepper | ✅ Stable |
-| Tabs | ✅ Stable |
-
-#### Layout (5)
-
-| Component | Status |
-| --- | --- |
-| Container | ✅ Stable |
-| Image List | ✅ Stable |
-| Spacing | ✅ Stable |
-| Stack | ✅ Stable |
-| Timeline | ✅ Stable |
-
-#### MUI X Components (5)
-
-| Component | Status | Library tier |
-| --- | --- | --- |
-| Data Grid | ✅ Documented | Community / Pro / Premium |
-| Date Picker | ✅ Documented | Community / Pro |
-| Time Picker | ✅ Documented | Community / Pro |
-| Date Time Picker | ✅ Documented | Community / Pro |
-| Tree View | ✅ Documented | Community / Pro |
-
-### Patterns (13)
-
-| Pattern | Status |
-| --- | --- |
-| Forms | ✅ Documented |
-| Headings & Page Structure | ✅ Documented |
-| Navigation Patterns | ✅ Documented |
-| Screen Templates | ✅ Documented |
-| Empty States | ✅ Documented |
-| Error Pages | ✅ Documented |
-| Table Visual Specification | ✅ Documented |
-| Component Usage Audit | ✅ Documented |
-| Third-Party Library Migration | ✅ Documented |
-| Row Action Menu | ✅ Documented |
-| Project Page Shell | ✅ Documented |
-| Monitoring Controls | ✅ Documented |
-| Loading and Error States | ✅ Documented |
-
-### Architecture Decision Records (12)
+Active decisions for the extracted design system:
 
 - ADR 001 — MUI v7 as the component library
 - ADR 002 — 8px spacing base
-- ADR 003 — IBM Plex typefaces (Sans + Mono)
+- ADR 003 — IBM Plex typefaces (now consolidated to a single Mono family)
 - ADR 004 — Semantic token architecture
 - ADR 005 — Autocomplete over Select
 - ADR 006 — AG Grid over MUI DataGrid
-- ADR 007 — FontAwesome over MUI icons
-- ADR 008 — Custom SideNav over MUI Drawer
-- ADR 009 — Third-party library wrapper pattern; feature code never imports raw library components
-- ADR 010 — Single notification API: `useAlert` routes by severity; `useSnackbarAlert`/`useBanner` are internal
-- ADR 011 — WCAG 2.1 Level AA as the accessibility compliance target: rationale, scope, and legal context
-- ADR 012 — PDF export accessibility: WCAG 2.1 AA applied to job reports, chart PNG + alt text + data table pattern
+- ADR 007 — Font Awesome over MUI icons
+- ADR 008 — Third-party library wrapper pattern; feature code never imports raw library components
+- ADR 009 — WCAG 2.1 Level AA (not AAA) as the accessibility target — rationale, scope, legal context
+- ADR 010 — PDF/report export accessibility: chart PNG + alt text + data-table pattern
 
-### Internal components documented inline (15)
+Fermie-era ADRs that don't carry into the extracted library (a custom `SideNav` over MUI Drawer; a single `useAlert` notification API) are retained in the product's own history, not here.
 
-| Component | Parent doc |
-| --- | --- |
-| SearchField | text-field.md |
-| TypographyInput | text-field.md |
-| StatusChip | chip.md |
-| ListTable | table.md |
-| ListTableV2 | table.md |
-| UncontrolledMenu | menu.md |
-| ModalProvider / useModal / useConfirmationDialog | dialog.md |
-| useAlert / useSnackbarAlert / useBanner | snackbar.md + alert.md |
-| LoadingContainer / LoadingPage | progress.md |
-| ErrorPage | patterns/error-pages.md |
-| BrandLogo / ExternalTopNav | app-bar.md |
-| DataGrid (AG Grid wrapper) | ag-grid.md |
-| DragOverlay | dnd-kit.md |
-| FlowCanvas | react-flow.md |
-| initHighchartsTheme | charts.md |
+### Fermie-era internal components (historical)
 
-### V1 planned additions
+When this system backed the **Fermie** product, its app layer added internal components and hooks not part of the extracted library: `SearchField`, `TypographyInput`, `StatusChip`, `ListTable`/`ListTableV2`, `ModalProvider`/`useModal`/`useConfirmationDialog`, `useAlert`/`useSnackbarAlert`/`useBanner`, `BrandLogo`/`ExternalTopNav`. Vael ships the reusable primitives (`DensityProvider`, the wrapper components, the chart layer); a consuming app layers its own hooks and app-specific components on top. See Guides/Hooks.
 
-- Dark mode token system (when designed in Figma)
-- Motion and animation tokens
-- MUI X Charts documentation
+### V1 candidates
+
 - Component status lifecycle (Experimental → Stable → Deprecated)
-- Figma component annotation updates post-V0 review
-- Add `brand.*` brand tokens to Figma variable collection
+- API-parity in Figma for the remaining specimen components (see Getting Started/Gap Analysis)
+- `brand.*` tokens in the Figma variable collection
+- Broader pattern coverage (data-formatting, real-time/streaming)
+- Public repo for portfolio (kept `private` today; not published to npm)
