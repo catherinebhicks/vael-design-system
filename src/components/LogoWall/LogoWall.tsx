@@ -30,7 +30,7 @@ export function LogoWall({ logos, columns, monochrome = true, height = 40, sx }:
     <Box
       sx={[
         columns
-          ? { display: 'grid', gridTemplateColumns: `repeat(${columns}, 1fr)`, gap: 3, alignItems: 'center' }
+          ? { display: 'grid', gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`, gap: 3, alignItems: 'center' }
           : { display: 'flex', flexWrap: 'wrap', gap: 4, alignItems: 'center' },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

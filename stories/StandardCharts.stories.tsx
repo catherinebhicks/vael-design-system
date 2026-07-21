@@ -91,7 +91,7 @@ export const Radar: StoryObj = {
 
 export const SparklineAndGauge: StoryObj = {
   render: () => (
-    <Stack direction="row" spacing={4} alignItems="center">
+    <Stack direction="row" spacing={4} alignItems="center" flexWrap="wrap" useFlexGap>
       <SparkLineChart data={[3, 5, 4, 6, 5, 8, 7]} height={40} width={160} area />
       <Gauge width={120} height={120} value={68} startAngle={-110} endAngle={110} text={({ value }) => `${value}%`} />
     </Stack>

@@ -35,7 +35,17 @@ export function SidePanel({
 }: SidePanelProps) {
   return (
     <Drawer anchor={anchor} onClose={onClose} {...drawerProps}>
-      <Box sx={{ width, display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <Box
+        sx={{
+          // Full-bleed on phones (the fixed px width overflows a 375px viewport);
+          // the given width from the `sm` breakpoint up.
+          width: { xs: '100vw', sm: width },
+          maxWidth: '100vw',
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+        }}
+      >
         {(title || onClose) && (
           <Box
             sx={{

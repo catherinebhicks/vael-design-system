@@ -33,7 +33,7 @@ export const SparklineStory: StoryObj = {
 export const StatBlockStory: StoryObj = {
   name: 'StatBlock',
   render: () => (
-    <Stack direction="row" spacing={2}>
+    <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
       <Paper variant="outlined" sx={{ p: 2, minWidth: 200 }}>
         <StatBlock
           label="Monthly active"
@@ -92,7 +92,7 @@ export const WaffleChartStory: StoryObj = {
 export const GaugeStatStory: StoryObj = {
   name: 'GaugeStat',
   render: () => (
-    <Stack direction="row" spacing={4} alignItems="center">
+    <Stack direction="row" spacing={4} alignItems="center" flexWrap="wrap" useFlexGap>
       <GaugeStat value={68} label="Coverage" />
       <GaugeStat value={92} color="#2e7d32" label="Uptime" />
       <GaugeStat value={45} variant="semi" label="Load" />

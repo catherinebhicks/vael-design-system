@@ -19,7 +19,7 @@ const tiles = Array.from({ length: 6 }, (_, i) => ({
 
 export const Standard: Story = {
   render: () => (
-    <ImageList cols={3} gap={8} sx={{ width: 360 }}>
+    <ImageList cols={3} gap={8} sx={{ width: 360, maxWidth: '100%' }}>
       {tiles.map((t) => (
         <ImageListItem key={t.img}>
           <img src={t.img} alt={t.title} loading="lazy" />
@@ -35,7 +35,7 @@ export const WithTitleBars: Story = {
   // the same name twice (axe: image-redundant-alt). Use descriptive alt only
   // when the image carries information the caption doesn't.
   render: () => (
-    <ImageList cols={3} gap={8} sx={{ width: 360 }}>
+    <ImageList cols={3} gap={8} sx={{ width: 360, maxWidth: '100%' }}>
       {tiles.map((t) => (
         <ImageListItem key={t.img}>
           <img src={t.img} alt="" loading="lazy" />
