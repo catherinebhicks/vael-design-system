@@ -30,7 +30,18 @@ export function LogoWall({ logos, columns, monochrome = true, height = 40, sx }:
     <Box
       sx={[
         columns
-          ? { display: 'grid', gridTemplateColumns: `repeat(${columns}, 1fr)`, gap: 3, alignItems: 'center' }
+          ? {
+              display: 'grid',
+              // Drop to fewer columns on small screens so each cell stays wide
+              // enough for its wordmark (a 5-up grid overlaps on a phone).
+              gridTemplateColumns: {
+                xs: `repeat(${Math.min(columns, 2)}, minmax(0, 1fr))`,
+                sm: `repeat(${Math.min(columns, 3)}, minmax(0, 1fr))`,
+                md: `repeat(${columns}, minmax(0, 1fr))`,
+              },
+              gap: 3,
+              alignItems: 'center',
+            }
           : { display: 'flex', flexWrap: 'wrap', gap: 4, alignItems: 'center' },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

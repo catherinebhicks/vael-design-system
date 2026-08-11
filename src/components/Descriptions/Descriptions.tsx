@@ -30,7 +30,9 @@ export function Descriptions({ items, columns = 1, divided = false, sx }: Descri
       sx={[
         {
           display: 'grid',
-          gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
+          // Collapse to a single column on phones so 2–3 column layouts don't
+          // squeeze; the requested column count applies from `sm` up.
+          gridTemplateColumns: { xs: '1fr', sm: `repeat(${columns}, minmax(0, 1fr))` },
           rowGap: divided ? 0 : 1.5,
           columnGap: 3,
           m: 0,

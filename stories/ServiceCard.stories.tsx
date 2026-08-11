@@ -6,7 +6,7 @@ const meta: Meta<typeof ServiceCard> = {
   title: 'Marketing/ServiceCard',
   component: ServiceCard,
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
     design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=16-14' },
   },
   tags: ['autodocs'],
@@ -22,5 +22,5 @@ export const Default: Story = {
     meta: 'Project · Embedded team',
     href: '#',
   },
-  render: (args) => <div style={{ width: 380 }}><ServiceCard {...args} /></div>,
+  render: (args) => <div style={{ width: 380, maxWidth: '100%' }}><ServiceCard {...args} /></div>,
 };

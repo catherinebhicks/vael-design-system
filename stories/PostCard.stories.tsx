@@ -6,7 +6,7 @@ const meta: Meta<typeof PostCard> = {
   title: 'Marketing/PostCard',
   component: PostCard,
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
     design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=16-8' },
   },
   tags: ['autodocs'],
@@ -21,5 +21,5 @@ export const Default: Story = {
     date: 'Jun 2026',
     href: '#',
   },
-  render: (args) => <div style={{ width: 380 }}><PostCard {...args} /></div>,
+  render: (args) => <div style={{ width: 380, maxWidth: '100%' }}><PostCard {...args} /></div>,
 };

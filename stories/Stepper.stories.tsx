@@ -6,7 +6,7 @@ import { Step, StepLabel } from '@mui/material';
 const meta: Meta = {
   title: 'Navigation/Stepper',
   tags: ['autodocs'],
-  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=40-37' } },
+  parameters: { layout: 'padded', design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=40-37' } },
 };
 
 export default meta;
@@ -15,7 +15,7 @@ const steps = ['Select campaign', 'Create an ad group', 'Create an ad'];
 
 export const Default: StoryObj = {
   render: () => (
-    <Stepper activeStep={1} sx={{ width: 500 }}>
+    <Stepper activeStep={1} sx={{ width: 500, maxWidth: '100%', overflowX: 'auto' }}>
       {steps.map((label) => (
         <Step key={label}><StepLabel>{label}</StepLabel></Step>
       ))}
@@ -25,7 +25,7 @@ export const Default: StoryObj = {
 
 export const Completed: StoryObj = {
   render: () => (
-    <Stepper activeStep={3} sx={{ width: 500 }}>
+    <Stepper activeStep={3} sx={{ width: 500, maxWidth: '100%', overflowX: 'auto' }}>
       {steps.map((label) => (
         <Step key={label}><StepLabel>{label}</StepLabel></Step>
       ))}

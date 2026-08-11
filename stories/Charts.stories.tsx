@@ -146,7 +146,7 @@ export const SparklineStory: StoryObj = {
       { label: 'Memory', value: '37.1 %',  data: memSpark, variable: 'Memory' as const },
     ];
     return (
-      <Box display="flex" gap={4}>
+      <Box display="flex" gap={4} flexWrap="wrap">
         {metrics.map((m) => (
           <Box key={m.label} display="flex" alignItems="center" gap={1} p={1.5} border="1px solid" borderColor="divider" borderRadius={1}>
             <Box>

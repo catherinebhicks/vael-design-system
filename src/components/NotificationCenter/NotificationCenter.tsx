@@ -47,7 +47,9 @@ export function NotificationCenter({
     <Box
       sx={[
         {
-          width,
+          // Cap at the given width on tablet+, but fill (never exceed) a phone.
+          width: { xs: '100%', sm: width },
+          maxWidth: '100%',
           borderRadius: 1.5,
           border: (t) => `1px solid ${t.palette.divider}`,
           bgcolor: 'background.paper',

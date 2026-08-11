@@ -6,7 +6,12 @@ import { TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from
 const meta: Meta = {
   title: 'Data Display/Table',
   tags: ['autodocs'],
-  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=100-3' } },
+  parameters: {
+    // Viewport-width canvas (not shrink-wrapped centered) so the table scrolls
+    // inside its container on mobile instead of expanding the canvas.
+    layout: 'padded',
+    design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=100-3' },
+  },
 };
 
 export default meta;
@@ -19,7 +24,7 @@ const rows = [
 
 export const Default: StoryObj = {
   render: () => (
-    <TableContainer component={Paper} sx={{ maxWidth: 500 }}>
+    <TableContainer component={Paper} sx={{ width: 500, maxWidth: '100%' }}>
       <Table>
         <TableHead>
           <TableRow>

@@ -8,7 +8,7 @@ const meta: Meta<typeof Navigation> = {
   title: 'Navigation/Navigation',
   component: Navigation,
   tags: ['autodocs'],
-  parameters: { design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=16-19' } },
+  parameters: { layout: 'padded', design: { type: 'figma', url: 'https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System?node-id=16-19' } },
 };
 
 export default meta;
@@ -17,7 +17,7 @@ export const Default: StoryObj = {
   render: () => {
     const [value, setValue] = useState(0);
     return (
-      <Navigation value={value} onChange={(_, v) => setValue(v)} sx={{ width: 400 }}>
+      <Navigation value={value} onChange={(_, v) => setValue(v)} sx={{ width: 400, maxWidth: '100%' }}>
         <BottomNavigationAction label="Recents" icon={<FontAwesomeIcon icon={faClockRotateLeft} />} />
         <BottomNavigationAction label="Favorites" icon={<FontAwesomeIcon icon={faHeart} />} />
         <BottomNavigationAction label="Nearby" icon={<FontAwesomeIcon icon={faLocationDot} />} />

@@ -50,6 +50,9 @@ export function SpotlightTour({
       sx={[
         {
           width: 300,
+          // Never exceed the viewport on very small phones (the coach mark is a
+          // floating card; 300px + margins can overflow a <332px screen).
+          maxWidth: 'calc(100vw - 32px)',
           p: 2.5,
           borderRadius: 2,
           bgcolor: 'background.paper',

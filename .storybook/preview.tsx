@@ -81,6 +81,22 @@ const preview: Preview = {
     layout: 'centered',
     controls: { matchers: { color: /(background|color)$/i, date: /Date$/i } },
 
+    // Viewport is core in Storybook 9/10 (no addon-essentials needed). The named
+    // sizes map 1:1 to MUI's t-shirt breakpoints (xs:0 / sm:600 / md:900 / lg:1200 /
+    // xl:1536) so "checking a story at Tablet" == "checking it in the `sm` band the
+    // component's responsive sx actually keys off". Each width sits inside its band
+    // (not on the boundary) at a realistic device size. Toolbar switcher, one at a
+    // time; default is "responsive" (fills the panel) so the normal view is unchanged.
+    viewport: {
+      options: {
+        xs: { name: 'xs · Mobile (375)', styles: { width: '375px', height: '812px' }, type: 'mobile' },
+        sm: { name: 'sm · Tablet portrait (700)', styles: { width: '700px', height: '1024px' }, type: 'tablet' },
+        md: { name: 'md · Tablet landscape (1024)', styles: { width: '1024px', height: '768px' }, type: 'tablet' },
+        lg: { name: 'lg · Laptop (1280)', styles: { width: '1280px', height: '832px' }, type: 'desktop' },
+        xl: { name: 'xl · Desktop (1600)', styles: { width: '1600px', height: '900px' }, type: 'desktop' },
+      },
+    },
+
     // storybook-dark-mode (the sun toggle) is the ONE light/dark control — it re-themes
     // chrome + components + docs + charts together. Disable the native "Preview background"
     // tool (only recolors the canvas → a confusing duplicate) and its "Grid visibility"
@@ -104,6 +120,12 @@ const preview: Preview = {
       // 'off' - skip a11y checks entirely
       test: 'todo'
     }
+  },
+
+  // Start in "responsive" (value: undefined) so stories fill the panel as before;
+  // the toolbar switches into Mobile/Tablet/Desktop on demand.
+  initialGlobals: {
+    viewport: { value: undefined, isRotated: false },
   },
 };
 
