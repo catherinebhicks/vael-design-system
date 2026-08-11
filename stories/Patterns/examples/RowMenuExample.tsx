@@ -24,7 +24,7 @@ export function RowMenuExample() {
   return (
     <ExampleFrame padded={false}>
       <TableContainer>
-        <Table size="small">
+        <Table size="small" scrollable={false}>
           <TableHead>
             <TableRow>
               <TableCell>Project</TableCell>

@@ -102,7 +102,7 @@ function Indent({ node, color, depth = 0 }: { node: SitemapNode; color?: string;
  */
 export function Sitemap({ root, variant = 'tree', color, sx }: SitemapProps) {
   return (
-    <Box sx={[{ display: 'inline-block', overflowX: 'auto' }, ...(Array.isArray(sx) ? sx : [sx])]}>
+    <Box sx={[{ display: 'inline-block', maxWidth: '100%', overflowX: 'auto' }, ...(Array.isArray(sx) ? sx : [sx])]}>
       {variant === 'tree' ? <Tree node={root} color={color} /> : <Indent node={root} color={color} />}
     </Box>
   );

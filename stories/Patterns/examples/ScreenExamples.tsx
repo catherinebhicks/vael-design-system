@@ -72,7 +72,7 @@ export function UserManagementScreenExample() {
       </Stack>
       <TextField size="small" placeholder="Search users…" sx={{ mb: 2, maxWidth: 280 }} fullWidth />
       <TableContainer>
-        <Table size="small">
+        <Table size="small" scrollable={false}>
           <TableHead>
             <TableRow>
               <TableCell>Name</TableCell>

@@ -25,7 +25,7 @@ const rows = [
 export const Default: StoryObj = {
   render: () => (
     <TableContainer component={Paper} sx={{ width: 500, maxWidth: '100%' }}>
-      <Table>
+      <Table scrollable={false}>
         <TableHead>
           <TableRow>
             <TableCell>Project</TableCell>
