@@ -2,6 +2,11 @@
 
 **Vael** is a component library and design system built on [MUI](https://mui.com/) v7, documented with Storybook. Precise, principled, and built to scale — a token-driven theme layer over MUI, MUI X, AG Grid, React Flow, and Highcharts, with living documentation for every component.
 
+## Design resources
+
+- **[Figma — Vael Design System](https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System)** — foundations, variables, components, patterns, and design documentation
+- **[Storybook](https://catherinebhicks.github.io/vael-design-system/)** — live component catalog and implementation documentation
+
 ## What's in here
 
 | Directory | Contents |
