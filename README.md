@@ -10,6 +10,7 @@ Built on [MUI](https://mui.com/) v7, Vael extends MUI and MUI X with enterprise 
 
 ## Explore the system
 
+- **[Full portfolio — hireyourselfadesigner.com](https://hireyourselfadesigner.com/)** — Catherine Hicks's broader product design work and case studies
 - **[Figma — Vael Design System](https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System)** — foundations, variables, components, patterns, and design documentation
 - **[Storybook](https://catherinebhicks.github.io/vael-design-system/)** — live component catalog, usage guidance, accessibility notes, and implementation documentation
 - **[Case study](case-study/README.md)** — why Vael exists, how the system evolved, and the design decisions behind it
