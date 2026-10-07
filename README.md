@@ -9,7 +9,7 @@
 | `src/components/` | React component wrappers with the Vael theme applied |
 | `stories/` | Storybook stories (`.stories.tsx`) + MDX documentation (foundations, components, patterns, guides) |
 | `vael/` | Design tokens (`design-tokens.json`), MUI theme (`theme.ts`), CSS variables (`tokens.css`), light/dark theme files |
-| `.storybook/` | Storybook configuration |
+| `.storybook/` | Storybook configuration |\n| **[Figma library](https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System)** | Canonical design library — foundations, variables, components, patterns, and design documentation |
 | `docs/` | The documentation home — start at [`docs/README.md`](docs/README.md): the Fermie→Vael history, how downstream products consume Vael, and the downstream index |
 | `case-study/` | The "built with AI" case study, split into `narrative/` (the story — three cuts, a third movement, and four standalone deep-dive pieces) + `landing/` (the site build: spec + design + copy) |
 | `about/` | The Vael story site (Next.js; from the archived `vael-case-study`) — the package's About / landing section |
