@@ -4,7 +4,6 @@ How downstream products use Vael without fragmenting it — with **A Focused Des
 
 ## The governing rule: extend Vael, don't fork it
 
-*(afd-website `docs/2026-07-13-hubspot-architecture-decision.md` §3, locked 2026-07-13)*
 
 Every design decision on a downstream product is either:
 1. **taken from Vael as-is**, or
@@ -14,7 +13,6 @@ Anything a consumer needs that Vael lacks becomes a **Vael-extension issue**, au
 
 ## Worked example: the brand-strategy reversal
 
-*(afd-website `docs/2026-07-07-afd-website-design.md` → `…-hubspot-architecture-decision.md`)*
 
 A concrete instance of the rule in action, worth keeping for the case study because it shows the governance *correcting itself*:
 
@@ -25,7 +23,6 @@ The lesson: the moment a consumer starts inventing its own tokens/typeface, that
 
 ## What Vael actually is (as the consumer sees it)
 
-*(afd-website `docs/2026-07-07-afd-website-design.md` §5)*
 
 MUI v7 + Emotion · **IBM Plex Sans/Mono** · **W3C design tokens** (`vael/design-tokens.json`, `tokens.css`, `theme.ts`) · light/dark themes · a full component library documented in **Storybook** · a case-study design spec (`case-study/`).
 
@@ -33,16 +30,11 @@ This also pins the **Fermie → Vael delta**: typography changed **Roboto → IB
 
 ## How tokens flow downstream (and the risk)
 
-*(afd-website `docs/deck-tech-stack-spec.md`)*
 
-Vael tokens reach AFD as a **manual copy** of `vael-tokens.css` (from `~/dev/vael-design-system/vael/tokens.css`); a Vael upgrade requires a re-copy → documented risk **"token drift."** An earlier plan had Vael wired in as a **git submodule / local link** instead of a copy. (Open improvement: a real published-token path would remove the drift.)
+Vael tokens reach AFD as a **manual copy** of `vael-tokens.css` (from `vael/tokens.css`); a Vael upgrade requires a re-copy → documented risk **"token drift."** An earlier plan had Vael wired in as a **git submodule / local link** instead of a copy. (Open improvement: a real published-token path would remove the drift.)
 
 ## Parity definition (the FermieDS → Vael contract)
 
-*(afd-website `start-here.md`, locked 2026-07-16)*
 
 **Parity = every origin (FermieDS) component/foundation represented in BOTH** the Vael codebase (`~/dev/vael-design-system`) **AND** the Vael Figma file (`4dNRm8xuERpDNfdXYjlbIn`). The origin's component inventory is treated as the master checklist. Origin-specific items (a branded logo in the AppBar, product-specific loading containers) are deliberately **out of parity** — they don't carry into the public Vael.
 
----
-
-*Sources merged from `~/dev/afd-website` (`start-here.md`, `docs/2026-07-07-afd-website-design.md`, `docs/2026-07-13-hubspot-architecture-decision.md`, `docs/deck-tech-stack-spec.md`). The afd-website repo remains the home for AFD program docs; see [`downstream.md`](downstream.md).*
