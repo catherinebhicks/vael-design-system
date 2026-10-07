@@ -11,6 +11,46 @@ Per-component history also lives in each component's Storybook **Docs** tab
 (status label) — see Docs/Component Status. For the pre-repo origin story
 (the Fermie build → the Vael reskin), see [`docs/history-fermie-to-vael.md`](docs/history-fermie-to-vael.md).
 
+## 2026-10-07 — Public portfolio presentation and documentation
+
+### Changed
+- Reworked the root README into a reviewer-facing entry point: project ownership, self-directed scope, system architecture, and direct links to [Figma](https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System), [Storybook](https://catherinebhicks.github.io/vael-design-system/), and the [case study](case-study/README.md).
+- Added a case-study index that separates the master narrative, shorter reading cuts, focused essays, and supporting presentation specifications.
+- Updated the documentation entry points and governance/history references to reflect the repository's public status. Removed stale private-repository instructions and local-machine references from selected public-facing documents.
+- Clarified the boundary between Vael as a self-directed public project and proprietary production work that informed its design thinking.
+
+### Why it matters
+A design system is evaluated through its decision-making and adoption model as much as through its component catalog. The public entry points now make the token architecture, Figma-to-code workflow, accessibility approach, governance, and complex-product patterns easier to inspect.
+
+### Scope
+Documentation and presentation changes only; no component API, token, or package release is implied.
+
+## Design decisions behind the July 2026 milestones
+
+The following notes explain the rationale for the dated changes below. They are retrospective context, **not additional releases or independently verified outcomes**.
+
+### Token and foundation architecture
+- **Semantic tokens over one-off values.** The design-system architecture separates reusable scales from role-based values, allowing themes and components to evolve without requiring local overrides throughout a product.
+- **Deliberate constraints.** An eight-step spacing scale, defined typography, state/focus tokens, and motion conventions reduce design drift and make component decisions easier to repeat.
+- **Light and dark modes as system concerns.** Theme variants and semantic color roles make appearance a foundation-level decision rather than a screen-by-screen redesign.
+
+### Component coverage and complex workflows
+- **Coverage is not the same as maturity.** The July expansion filled functional gaps across inputs, feedback, navigation, data display, operational interfaces, and presentation surfaces. Component-status documentation remains important for distinguishing presence in the catalog from production readiness.
+- **Data visualization needs more than one abstraction.** The micro/standard/advanced tiers provide different levels of complexity and dependency weight; the chart-selection guidance helps designers choose intentionally.
+- **Enterprise states matter.** Patterns such as stale-data indicators, live values, inline editing, command bars, and dense grids address operational workflows that a marketing-oriented component kit may overlook.
+
+### Design ↔ implementation workflow
+- **Figma and Storybook serve different jobs.** Figma exposes foundations, component structure, and design decisions; Storybook exposes implementation behavior and usage guidance. Component links and the cross-surface audit help reviewers trace between them.
+- **Documentation travels with components.** Co-located guidance on states, usage, accessibility, and implementation makes the system easier to maintain than a disconnected visual inventory.
+
+### Accessibility and verification
+- **Accessibility is both design guidance and testable behavior.** The July work combined usage guidance, hand-review, Storybook accessibility tooling, and fixes to concrete demo/component issues. This records the approach; it does not claim universal certification or that every future change is automatically compliant.
+- **Build reliability is part of system usability.** Storybook build-memory adjustments, CSS linting, and CI accessibility checks support repeatable review.
+
+### Governance and reuse
+- **Extend rather than fork.** When a downstream surface exposes a missing pattern, the intended response is to improve Vael instead of inventing a product-specific design language.
+- **History should explain tradeoffs.** See [the governance guide](docs/consuming-vael.md), [the origin/transition record](docs/history-fermie-to-vael.md), and [the case study](case-study/README.md) for the reasoning behind system decisions.
+
 ## 2026-07-17 — One Vael package · About section · cross-surface audit
 
 ### Added
@@ -39,8 +79,6 @@ Per-component history also lives in each component's Storybook **Docs** tab
 ### Changed
 - **The repo is now the single Vael package** — code + tokens + fonts + docs + the
   story site + the slide library + the case-study narrative, all in one place.
-- **Local folder renamed** `~/dev/vael-ref` → `~/dev/vael-design-system` to match the
-  GitHub repo name.
 - **Figma library restructured to one-page-per-component** (`Category / Component`),
   each with a co-located doc panel (props, do/don't, a11y, Storybook link) + a
   Dev-Mode description. Cross-surface audit cleanups: renamed 4 straggler pages into
