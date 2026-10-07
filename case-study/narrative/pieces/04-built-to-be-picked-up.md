@@ -1,17 +1,27 @@
-# Built to be picked up
+# Could someone else pick up Vael?
 
-"Shown, not shipped" was the promise I made when I rebuilt this thing on my own time. It meant the system had to be *real* — live, clickable, honest about what it was — instead of a deck of screenshots claiming to be a design system. I got there. Storybook runs the whole library, Chromatic catches visual regressions before they ship, and the published site sits on GitHub Pages where anyone with a link can open it. That's the bar I set at the start, and it's cleared.
+When I started rebuilding Vael as a personal project, I wanted to make the work accessible to someone who wasn't sitting next to me. A reviewer should be able to open the components, but a designer or engineer should also be able to understand how to use them.
 
-But "shown" turned out to be the easy half. A live Storybook proves the system exists. It doesn't prove anyone besides me can actually *use* it — and a design system that only its author can run isn't a system, it's a personal habit with good documentation. So the next question wasn't "does it work," it was "can someone else pick it up cold." That's a different, harder bar, and it meant going past display and into distribution.
+The [published Storybook](https://catherinebhicks.github.io/vael-design-system/) gives people a way to inspect components and their documentation. The repository includes the React implementation, tokens, and guidance for running the project locally.
 
-**Portable meant solving the boring problems on purpose.** The typeface is IBM Plex, licensed OFL, and it ships bundled in the repo with that license intact — not "go download the font and hope the version matches," but here it is, cleared, ready. Same for the icon set: FontAwesome Free, bundled, licensed, no silent dependency on whatever happens to be installed on my machine. The Figma file — 105 pages of real components, not a moodboard — lives in the repo too, as a dated `.fig` archive under Git LFS, so "get the design file" is a clone away instead of a Slack message to me. None of that is glamorous work. It's exactly the work that determines whether a system survives its author leaving the room.
+## The practical details
 
-Then I wrote down three onboarding guides in `docs/onboarding/`, and I wrote them for the person the rest of the documentation quietly assumes doesn't exist: someone who isn't a full-time developer. One walks through installing and running Storybook locally, or just pointing a browser at the published one. One walks through pulling that `.fig` archive into Figma, installing the fonts, publishing it as a team library. A system that only onboards engineers isn't finished being designed — the onboarding *is* part of the design.
+I documented the typography and icon dependencies, including their licenses, because those details can become a problem when someone tries to reproduce a design. The project uses IBM Plex and FontAwesome Free.
 
-**Teachable is the layer past portable.** The third guide, `designing-with-an-llm.md`, isn't documentation about Vael — it's documentation about the *method* I used to build and run Vael: connect Figma to an AI agent over MCP, then use that connection three ways — ingest the system as context so new output matches it instead of reinventing it, design new screens directly on its real components and tokens, and round-trip changes back into the code with verification gates before anything merges. I didn't write that guide so I'd remember my own workflow. I wrote it so someone else could run the same workflow without me in the room — which is the same instinct that's driven every other piece of my work as a design educator: don't just do the craft, write down how the craft is done so it transfers. A method you can't teach is a method that dies with you.
+The [Figma library](https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System) provides the design side of the system. The repository's onboarding documentation explains how to work with Storybook and the design resources. I also documented how I use AI tools in the workflow, including where I stop and review the output.
 
-And then the proof got recursive, which I didn't fully plan for but noticed happening. This case study — the page you're reading — is built *with* Vael. So is my slide library. So is my portfolio. The system that was supposed to prove it could present itself is, right now, the thing presenting itself. That's not a metaphor I'm reaching for; it's just what happened when I went to build the case study and reached for the same components and tokens instead of starting over.
+I wrote the onboarding material with more than one kind of reader in mind. Someone reviewing the project may only want the live component catalog. Someone using it for a new product needs the tokens and guidance. Someone maintaining it needs to know how decisions are made and how changes get checked.
 
-It doesn't stop at demonstration, either. Vael is the design system under my studio's site, AFD, and under the courses I teach — not screenshotted, not referenced, actually load-bearing, extended only through the logged-extension rule the system asks of anyone else. A method that only survives inside its own case study isn't proven. One that's still standing under real, unglamorous, everyday work is.
+## Making the workflow understandable
 
-Shown was never the finish line. Portable was the harder promise, teachable was the one that outlasts me, and running a real practice on top of it is the only proof that actually counts. It stopped being how I built a design system with AI and became how I run one.
+The guide in `docs/onboarding/designing-with-an-llm.md` describes three activities:
+
+1. Give the agent the existing system as context.
+2. Design with the components and tokens already available.
+3. Carry proposed changes between design and implementation, then review them.
+
+I have taught design for years, and writing down a process is a useful test of whether I can explain it. If the only way to understand a workflow is to watch me do it, I probably need better documentation.
+
+I also use Vael's patterns in other presentation and portfolio work. Those downstream uses give me places to find gaps in the library and bring the decisions back into the system.
+
+There is still work to do around onboarding and verification. I would rather keep that visible than tell someone the system is finished. The Figma file, Storybook, repository, and documentation are available for people to inspect, and I can keep improving them as the project grows.
