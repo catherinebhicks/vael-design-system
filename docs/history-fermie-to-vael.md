@@ -1,22 +1,8 @@
 # Vael — build history: Fermie → Vael
 
-*The origin, the choices, and the transition. Written internally so the whole arc lives in one place — from the original production build through the rename and open rebuild. This is the "how we got here" record behind the public case study in [`../case-study/`](../case-study/).*
+*The origin, the choices, and the transition behind the public Vael case study. This record preserves the design-system reasoning while keeping the original production context anonymized.*
 
-> **Anonymization boundary (read first).** This is an **internal** doc in a private repo. **Nothing here about the origin company, product, people, or the original codename's meaning may appear in any public artifact.** Public cuts (case study, Medium, portfolio) say only *"a bioscience startup"* and use *"Vael"* for the internal name — the original codename points directly at the former employer. See [`../case-study/narrative/README.md`](../case-study/narrative/README.md) anonymization checklist before publishing.
->
-> **When the public Vael package is cut later**, make it a *curated export or fresh repo* that excludes internal-only docs like this one — not a flip of this private repo to public (whose git history would expose everything). Identifiable provenance is deliberately kept in private **memory**, not committed here.
-
----
-
-## Timeline at a glance
-
-| Phase | What | Where it lived |
-|---|---|---|
-| **1. Fermie (production)** | Design system built *at the startup* with Claude as a design-engineering pair, to production standards, in one six-week Shape Up cycle. Codenamed "Fermie" / "FermieDS." Taken all the way to a scoped, ready-to-build handoff (17 pitches / 145 tickets). | Private repo **`catherinebhicks/FermieDS`** (still on GitHub; now cloned to `~/dev/FermieDS`). `fermie-react` is not on the personal GitHub. |
-| **2. Shelved** | Priorities shifted; the rollout cycle never ran. The system was complete and scoped but parked. | — |
-| **3. Vael (carried forward, open)** | Taken home and rebuilt clean, anonymized, and public-facing: renamed **Vael**, re-authored by hand, moved to Storybook, expanded well past the original scope. | This repo (`~/dev/vael-design-system` → `catherinebhicks/vael-design-system`, private) |
-
-**Provenance (internal only — do not publish):** the identifiable origin — former employer, product, codename meaning, and the ADR authors' names — is kept in private **memory** (`project_culture_former_employer`, `project_vael_design_system`), **not committed to this repo**, so nothing identifiable leaks if the package is ever made public. Everything downstream is anonymized to Vael.
+> **Anonymization boundary.** The original production context remains intentionally anonymized. Public documentation refers to it only as “a bioscience startup” and uses **Vael** for the public system. Employer/client identifiers, private repositories, local paths, and identifiable provenance are deliberately excluded from the public story.
 
 ---
 
@@ -28,7 +14,7 @@ The model that made it work: **Claude as a design-engineering pair, not an autop
 
 ### Choices made in phase 1 — and the reasoning of record
 
-Recovered from the FermieDS repo (private, `catherinebhicks/FermieDS`, cloned to `~/dev/FermieDS`): its **12 MADR-format ADRs** (`demo/decisions/index.html`) + foundation docs are the primary source. Key finding — the *implementation* decisions are documented richly, but three high-level *format / tool / method* choices are **not**; they appear only as named facts.
+Recovered from the private production source: its **12 MADR-format ADRs** (`demo/decisions/index.html`) + foundation docs are the primary source. Key finding — the *implementation* decisions are documented richly, but three high-level *format / tool / method* choices are **not**; they appear only as named facts.
 
 | Choice | Reasoning on record | Sourced? |
 |---|---|---|
@@ -43,7 +29,7 @@ Recovered from the FermieDS repo (private, `catherinebhicks/FermieDS`, cloned to
 
 Other documented decisions (**ADRs 005–012**): autocomplete-only (Select banned by lint), AG Grid for heavy grids, an icon-font choice, one custom nav component, all third-party libs behind internal wrappers, a single notification API, PDF-export a11y — i.e. governance was real and written down.
 
-**Scale at end of phase 1** (FermieDS `start-here.md` + overview): **v.75**, **27 components** (30 reference pages) + 13 patterns + 16 guides, a **~75-page** doc site, **12 ADRs**, tokens + generated theme, and a fully scoped rollout (**17 Shape Up pitches / 145 Linear tickets**) — a complete handoff. Typography was **Roboto / Roboto Mono** then; Vael later swapped to **IBM Plex Sans/Mono**, while primary `#1976d2` and the token architecture carried across unchanged.
+**Scale at end of phase 1**: **v.75**, **27 components** (30 reference pages) + 13 patterns + 16 guides, a **~75-page** doc site, **12 ADRs**, tokens + generated theme, and a fully scoped rollout (**17 Shape Up pitches / 145 Linear tickets**) — a complete handoff. Typography was **Roboto / Roboto Mono** then; Vael later swapped to **IBM Plex Sans/Mono**, while primary `#1976d2` and the token architecture carried across unchanged.
 
 ### The judgment that stayed the designer's
 
