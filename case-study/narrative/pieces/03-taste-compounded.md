@@ -1,13 +1,21 @@
-# The taste compounded
+# How do you keep a growing component library consistent?
 
-The easy version of this story is a growth chart. Vael went from 27 components in the original build to 44 in the rescue to 103 now. That's a real number and I'll use it, but if I let it be the headline I'd be telling you the wrong story. Scope growing isn't the achievement. Anyone with a tireless AI pair and enough evenings can make a library bigger. The achievement is that the bigger it got, the more disciplined it got — and figuring out why that's not a contradiction is most of what I learned in the second life.
+The component count changed quite a bit. The original production work had 27 components. The first public Vael rebuild expanded that to 44, and the later case-study inventory recorded 103.
 
-Here's the mechanism. When production is expensive, restraint is easy — you simply can't afford to build the wrong thing twice, so you think hard before you start and you live with what you get. When production is nearly free, that guardrail disappears. Claude will happily generate you a fourth heading style, a second grid system, a component that almost duplicates one you already have. Nothing stops it. Nothing stops you, either, if you're not paying attention. Cheap iteration doesn't create discipline — it removes the thing that used to fake it for you. So discipline stopped being a byproduct of constraint and had to become a decision I made on purpose.
+Adding components with Claude was relatively fast. Deciding whether another component or variant belonged in the system took more thought. I could ask for another heading style or another grid and get one, but that didn't mean the system needed it.
 
-That decision has a name: the **Blueprint** system. Not a component count, a visual language — IBM Plex (Sans for text, Mono where the interface wants to read as instrumentation) carried across every surface, a grid that gives the whole library the same bones, a token set that's the same handful of values everywhere instead of a different flavor per section. I call it the "engine-room" voice on purpose: it reads like the underside of something precise, not like a marketing site wearing a design system's clothes. That coherence doesn't happen by accident at 103 components. It happens because every new component gets checked against the same handful of rules before it's allowed to exist.
+I wanted the library to have a consistent visual language, especially across the dense enterprise interfaces I was building. I called that language **Blueprint**.
 
-The rule I'm proudest of is the smallest one: **one typeface, everywhere, no exceptions.** It would have been trivial to let a data-viz component reach for something denser, or a marketing surface borrow something friendlier — Claude will generate you that alternative without blinking if you ask. I didn't ask. The restraint was mine to hold, and I held it across every one of those 103 components, because a design system that flexes its own rules under pressure isn't a system, it's a mood board with better documentation.
+## The decisions I kept coming back to
 
-The other rule is directional, and it's the one that actually tests you: **the page is canonical, the system conforms to it.** When a real surface — a reference page, a live layout — disagreed with what the component library assumed, I moved the system to match the page, not the other way around. That's the harder call every time, because the system is the thing I built and the page is just one instance of using it. Protecting your own infrastructure over the actual evidence in front of you is a very human failure mode, and cheap iteration makes it worse, not better, because you can always generate a justification for the system as it stands. I made myself take the correction instead.
+**Typography.** I used IBM Plex Sans for most interface text and Plex Mono where data or instrumentation needed a different treatment. I wanted a recognizable family across the system rather than a different font for every surface.
 
-That's the real shape of what changed. When making things is free, the scarce resource isn't more components — it's judgment about which ones deserve to exist, and the nerve to say no to the rest. That's the senior move, and it's the one no AI pair can make for you. It stopped being how I built a design system with AI and became how I run one.
+**Grid and spacing.** Components use shared layout and spacing conventions. I kept the spacing scale constrained because it is much easier to maintain a few intentional choices than to explain forty slightly different ones.
+
+**Tokens.** I used semantic roles so a component could refer to what a value means in context. That also made light and dark themes easier to reason about.
+
+**Real screens.** When a component didn't work well in an actual page, I went back to the component. I didn't want to force a working interface to accommodate an assumption I'd made in the library.
+
+I had to catch myself here. It is tempting to protect the system you've already spent time building, especially when the alternative is revising several components and their documentation. But the real page is useful evidence. If it exposes a gap, I want to understand that gap and decide whether the shared component should change.
+
+I used AI for iterations, comparisons, and implementation work. I kept the decisions about visual consistency, exceptions, and component scope with me. The result is a system I can continue to refine, and I can explain why I made the choices I did.
