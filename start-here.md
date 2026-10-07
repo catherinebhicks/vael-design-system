@@ -4,7 +4,7 @@
 A real, buildable **MUI v7 component library + Storybook** in the Blueprint / IBM Plex Mono aesthetic, used as Catherine's portfolio + case-study design system (public-facing reference, **not** published to npm — `package.json` is `private: true`; consumed from source). Anonymized from an earlier product system; now general-purpose.
 
 ## Where Things Live
-- **Repo:** `catherinebhicks/vael-design-system` (private). Local: `~/dev/vael-design-system`.
+- **Repo:** [GitHub](https://github.com/catherinebhicks/vael-design-system) (public).
 - **Components:** `src/components/<Name>/`. **Tokens/theme:** `vael/` (`theme.ts`, `blueprint.ts`, `components.ts`, `palette.ts`).
 - **Storybook stories:** `stories/*.stories.tsx`; **Guidelines docs:** `stories/Components/*.mdx`.
 - **Docs home:** `docs/` — start at `docs/README.md` (Fermie→Vael history · consuming-vael · downstream).
