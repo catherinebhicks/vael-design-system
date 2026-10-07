@@ -1,25 +1,31 @@
-# The rulebook: designing a design system's guardrails
+# What rules does a solo design system need?
 
-*How I keep 103 components honest without a platform team behind me — and why the rules were never optional just because I was working alone.*
+I was building Vael on my own, but I still wanted the decisions to be understandable to another designer or engineer. Otherwise every new component would depend on me remembering what I'd done last time.
 
----
+I wrote down the standards I wanted to use and put them close to the work.
 
-"Solo" is usually the excuse a design system uses for a thin rulebook. Nobody's watching, so the token discipline slips, the accessibility bar erodes a little on the tenth component, and by fifty the system is a folder of things that used to agree with each other. I refused to let that be the story here. A system rots the moment its rules stop being real — and designing rules that hold is senior work, not overhead you skip because it's just you.
+## Accessibility
 
-**Accessibility is the anchor, not a pass at the end.** Vael targets WCAG 2.1 AA, written as a conformance statement in `stories/Docs/Accessibility.mdx` — contrast, keyboard behavior, focus-visible rings, ARIA roles, target sizes, motion — as a per-component checklist, not a footnote. I hand-audited every one of the 103 components against it myself first; only then did I run the Storybook a11y addon as a second pass, and it earned its keep — catching smaller things I'd missed, a missing `aria-label` here, a contrast edge case there, which I then fixed. The addon is a net under a human judgment call, not a replacement for one.
+Vael's documentation targets WCAG 2.1 AA and covers contrast, keyboard behavior, visible focus, labels, states, and motion. I reviewed components manually and used Storybook accessibility tooling to help identify issues. Automated checks are useful, especially for things that are easy to overlook, but they don't cover every interaction or prove that an entire library conforms.
 
-**Token governance is the second load-bearing rule.** Vael's tokens live in the open [W3C design-tokens format](https://tr.designtokens.org/format/) — one source of truth, not a proprietary blob — and the discipline downstream is simple to state and easy to violate: `--ds-*` tokens, no raw hex. Every component doc restates it; the QA checklist restates it again. Saying it once doesn't make it true forever; saying it at every layer, with a pair that never gets bored of checking, is what makes it true at component 103.
+The accessibility guidance is in `stories/Docs/Accessibility.mdx`. It describes the target and review approach. I would still want an independently verified audit before making a blanket conformance claim.
 
-**Contribution is a rule about what you're *not* allowed to do.** `docs/consuming-vael.md` states it plainly: a downstream product either takes Vael as-is, or logs an extension issue and gets the gap fixed in Vael first — never forks it, never invents a private token on the side. The AFD site is the worked example: it originally proposed a violet accent and a stand-in display face as an "additive override layer," and that proposal got reversed — deleted, not shipped — once it was clear the override was the first crack toward a fork. The reversal is the rule working, not failing.
+## Tokens and extensions
 
-**Every component ships Guidelines** — Do and Don't, not just a props table — mirrored into the Figma doc panels so a designer and an engineer read the same rule in two different tools, and carries a maturity label — Stable, Beta, Experimental, Deprecated — in `stories/Docs/ComponentStatus.mdx`. Decisions that would otherwise live only in my head — why MUI, why a two-tier token architecture, why this accessibility bar and not a looser one — get written down as records, so nobody after me has to reverse-engineer them from the code.
+The tokens use the [W3C design-tokens format](https://tr.designtokens.org/format/). The working rule is to use the system's semantic tokens instead of adding raw color values whenever a product needs something different.
 
-None of that is worth anything without verification, so nothing lands without it: typecheck clean, Storybook building, Chromatic approved, the a11y pass green — that's how I keep the pair honest, since speed without a gate is just faster drift.
+I also documented an extend-don't-fork approach in [Consuming Vael](../../docs/consuming-vael.md). If a downstream product needs a new pattern, I want that gap recorded and evaluated in the system first. That makes the change visible to the next person who needs it.
 
-I'll say the rest out loud, too: not every dimension is automated. Automated a11y testing in CI and a stylelint rule flagging raw hex are scoped, not built — sitting in the gap analysis as exactly what they are, not a pipeline I'm overstating. What's real today is the conformance statement, the extend-don't-fork model with a proven example, the Guidelines, the token format, the decision records. I'd rather show the honest map of what's enforced than a shinier one that isn't true yet — drawing that map accurately is itself a governance skill.
+One example was a proposed violet accent and alternate display typeface for the A Focused Design site. I reconsidered that override because it would have introduced another visual language outside the system. The proposal was reversed rather than carried forward as a product-specific exception.
 
-Even the backlog is run this way. The work that keeps Vael moving lives across three trackers — GitHub, Linear, Todoist — and I don't let that become three half-true pictures of what's left. Scoped work gets written up as an implementation-ready epic, with the same "why" and acceptance criteria I'd want if handing it to someone else — because eventually I might be. A pair that can read all three and draft the epic in a consistent shape turns reconciling them into a habit, not a quarterly dig.
+## Component guidance
 
-The pair is what makes any of this hold at scale. I set the standard once — the accessibility bar, the token rule, the extend-don't-fork policy — and it applies that standard across a hundred components without cutting a corner on the ninety-eighth one the way a person might. Designing the rulebook was mine. Holding it, gate by gate, audit by audit, alone, is what the pair is for.
+I added usage guidance alongside components, including Do/Don't examples and maturity categories such as Stable, Beta, Experimental, and Deprecated. Those categories are described in `stories/Docs/ComponentStatus.mdx`. They help distinguish a component appearing in the catalog from a component being ready for every use case.
 
-It stopped being how I built a design system with AI and became how I run one.
+I also keep decision records for choices such as MUI, token structure, and accessibility targets. If someone disagrees with a decision later, I want them to be able to see why I made it.
+
+## What still needs work?
+
+Some enforcement remains manual. CI accessibility checks and CSS rules to flag raw hex values were identified as follow-up work in the original gap analysis. I don't want to describe those as completed automation without verifying the current implementation.
+
+I use AI to help compare documentation, draft implementation tasks, and find inconsistencies. I decide which rules belong in the system and review whether the changes actually follow them. That is the part I expect to keep doing, even as the tooling improves.
