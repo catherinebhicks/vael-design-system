@@ -1,50 +1,61 @@
 # Vael
 
-**Vael** is a component library and design system built on [MUI](https://mui.com/) v7, documented with Storybook. Precise, principled, and built to scale — a token-driven theme layer over MUI, MUI X, AG Grid, React Flow, and Highcharts, with living documentation for every component.
+**Vael** is a self-directed design-system project by Catherine Hicks: a production-minded component library, token architecture, Figma library, and living documentation system for complex, data-heavy products.
 
-## Design resources
+It grew out of lessons from an earlier production design-system build and was rebuilt in the open as a way to explore a harder question: **what does a design system look like when design, code, accessibility, documentation, and governance are treated as one system rather than separate deliverables?**
+
+Built on [MUI](https://mui.com/) v7, Vael extends MUI and MUI X with enterprise patterns, data visualization, operational components, and a semantic token layer. The implementation uses React + TypeScript and is documented in Storybook.
+
+> **Portfolio context:** Vael is a self-directed public project. It is separate from Catherine's proprietary design-system work for employers and clients; it exists so the system thinking, craft, documentation, accessibility, and design-engineering workflow can be inspected directly.
+
+## Explore the system
 
 - **[Figma — Vael Design System](https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System)** — foundations, variables, components, patterns, and design documentation
-- **[Storybook](https://catherinebhicks.github.io/vael-design-system/)** — live component catalog and implementation documentation
+- **[Storybook](https://catherinebhicks.github.io/vael-design-system/)** — live component catalog, usage guidance, accessibility notes, and implementation documentation
+- **[Case study](case-study/README.md)** — why Vael exists, how the system evolved, and the design decisions behind it
+- **[Documentation home](docs/README.md)** — architecture, governance, onboarding, history, and downstream use
+
+## What this demonstrates
+
+Vael is intended to make the less-visible parts of design-systems work inspectable:
+
+- **System architecture** — semantic tokens, foundations, light/dark modes, responsive behavior, motion, focus, state, and elevation
+- **Design ↔ code parity** — a Figma library paired with React components and Storybook, with component-level links between design and implementation
+- **Complex product patterns** — dense data display, data visualization, operational states, navigation, forms, overlays, canvas/data-grid patterns, and enterprise workflows
+- **Accessibility as a system constraint** — component guidance, hand-auditing, Storybook a11y tooling, keyboard/focus behavior, and WCAG-oriented acceptance criteria
+- **Governance** — component status, extend-don't-fork guidance, token usage rules, documentation conventions, and a change history
+- **Design-engineering fluency** — React, TypeScript, MUI/MUI X, Highcharts, AG Grid, React Flow, Storybook, Chromatic, and Figma
+- **Documentation as product** — usage guidance, do/don't guidance, patterns, onboarding, error/content guidance, and implementation references live alongside the system
 
 ## What's in here
 
 | Directory | Contents |
 |-----------|----------|
-| `src/components/` | React component wrappers with the Vael theme applied |
-| `stories/` | Storybook stories (`.stories.tsx`) + MDX documentation (foundations, components, patterns, guides) |
-| `vael/` | Design tokens (`design-tokens.json`), MUI theme (`theme.ts`), CSS variables (`tokens.css`), light/dark theme files |
-| `.storybook/` | Storybook configuration |\n| **[Figma library](https://www.figma.com/design/4dNRm8xuERpDNfdXYjlbIn/Vael-Design-System)** | Canonical design library — foundations, variables, components, patterns, and design documentation |
-| `docs/` | The documentation home — start at [`docs/README.md`](docs/README.md): the Fermie→Vael history, how downstream products consume Vael, and the downstream index |
-| `case-study/` | The "built with AI" case study, split into `narrative/` (the story — three cuts, a third movement, and four standalone deep-dive pieces) + `landing/` (the site build: spec + design + copy) |
-| `about/` | The Vael story site (Next.js; from the archived `vael-case-study`) — the package's About / landing section |
-| `slide-library/` | Blueprint slide-template kit + the downloadable 92-slide deck (`slide-library/deck/Vael-Slide-Library.pptx`) |
-| [`CHANGELOG.md`](CHANGELOG.md) | Dated development milestones — what changed and when, from the repo seed through the latest audit |
+| `src/components/` | React component wrappers and Vael-specific components |
+| `stories/` | Storybook stories + MDX documentation for foundations, components, patterns, and guides |
+| `vael/` | Design tokens, MUI theme, CSS variables, and light/dark theme files |
+| `.storybook/` | Storybook configuration |
+| `docs/` | Architecture, history, governance, onboarding, and downstream-use documentation |
+| `case-study/` | Portfolio narrative and supporting design/build documentation |
+| `about/` | Vael story site / long-form project presentation |
+| `slide-library/` | Blueprint presentation-template system + downloadable slide deck |
+| [`CHANGELOG.md`](CHANGELOG.md) | Dated development milestones and system evolution |
+
+## System foundations
+
+Tokens are defined in `vael/design-tokens.json` using the W3C Design Tokens format and applied through `vael/theme.ts`. Light and dark theme variants live in `vael/themes/`, with CSS custom properties exported in `vael/tokens.css`.
+
+The component system spans foundations; inputs; data display; feedback; surfaces; navigation; layout; overlays; data grids and canvas interactions; data visualization; operational patterns; and presentation/marketing surfaces. Component documentation covers intended usage, states, accessibility, and implementation context.
 
 ## Running Storybook
 
 ```bash
 npm install
-npm run storybook      # dev server at http://localhost:6006
+npm run storybook       # dev server at http://localhost:6006
 npm run build-storybook # static build → storybook-static/
 ```
 
-New to this / not a full-time dev? See the step-by-step
-**[docs/onboarding/using-storybook.md](docs/onboarding/using-storybook.md)** (and the
-whole [onboarding section](docs/onboarding/)). The catalog is also live at
-https://catherinebhicks.github.io/vael-design-system/.
-
-The `fix-mdx-shim-url` plugin in `.storybook/main.ts` rewrites `file://` URLs generated by the MDX transform — **do not remove it**.
-
-## Design tokens
-
-Tokens are defined in `vael/design-tokens.json` (W3C [Design Tokens](https://tr.designtokens.org/format/) format) and applied to every component through `vael/theme.ts` (MUI v7 `createTheme`). Light and dark theme variants live in `vael/themes/`, and CSS custom properties are exported in `vael/tokens.css`.
-
-## Components
-
-Foundations · Inputs (Button, Text Field, Autocomplete, Checkbox, Radio, Switch, Slider, Toggle, Rating, SegmentedControl, CopyButton, Date/Time Pickers via MUI X) · Display (Chip, Avatar, Badge, List, Table, Tooltip, Timeline, TreeView via MUI X, ImageList, StatusBadge, Mark) · Feedback (Alert, Dialog, Linear + Circular Progress, Snackbar, Popover) · Surfaces (Card, Accordion, App Bar, Divider) · Navigation (Tabs, Stepper, Drawer, Menu, SpeedDial, Breadcrumbs, Pagination, Link) · Layout · Data (MUI X Data Grid, AG Grid, Charts via Highcharts, Flow Canvas via React Flow, drag & drop via dnd-kit).
-
-Every component has a Storybook story and an MDX documentation page covering usage, do's and don'ts, and accessibility.
+For a guided setup, see **[Using Storybook](docs/onboarding/using-storybook.md)**. The live catalog is available in **[Storybook](https://catherinebhicks.github.io/vael-design-system/)**.
 
 ## Scripts
 
@@ -54,3 +65,5 @@ Every component has a Storybook story and an MDX documentation page covering usa
 | `npm run build-storybook` | Static Storybook build |
 | `npm run build` | Library build (`tsc` + Vite) |
 | `npm run typecheck` | `tsc --noEmit` |
+| `npm run a11y:audit` | Accessibility audit |
+| `npm run lint:css` | CSS linting |
